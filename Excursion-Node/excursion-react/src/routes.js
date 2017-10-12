@@ -14,12 +14,11 @@ import ContactForm from './components/ContactForm';
 import ApiDocs from './components/ApiDocs';
 // import Dashboard from './components/Dashboard';
 import AppLayout from './components/AppLayout';
-// import '.././public/index.html';
 
 const Routes = (props) => (
     <Router {...props}>
         <Route path="/" component={AppLayout}>
-            <Route component={Home} />
+            <Route path="/" component={Home} />
             <Route path="/login" component={LoginForm} />
             {/*<Route path="/signup" component={SignupForm} />*/}
             <Route path="/getStarted" component={GetStarted} />
