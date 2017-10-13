@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { Router, Route } from 'react-router';
+import { Router, Route, browserHistory, IndexRoute } from 'react-router';
 import Home from './components/Home';
 import LoginForm from './components/LoginForm';
 import SignupForm from './components/SignupForm';
@@ -16,9 +16,9 @@ import ApiDocs from './components/ApiDocs';
 import AppLayout from './components/AppLayout';
 
 const Routes = (props) => (
-    <Router {...props}>
+    <Router history={browserHistory}>
         <Route path="/" component={AppLayout}>
-            <Route path="/" component={Home} />
+            <IndexRoute path="/" component={Home} />
             <Route path="/login" component={LoginForm} />
             {/*<Route path="/signup" component={SignupForm} />*/}
             <Route path="/getStarted" component={GetStarted} />
