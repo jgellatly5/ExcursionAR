@@ -9,7 +9,7 @@ body {
 }
 
 #headerwrap {
-    background: url("/images/excursion-logo.jpg") no-repeat center top;
+    background: url("./excursion-logo.jpg") no-repeat center top;
     /*margin-top: -50px;*/
     padding-top: 120px;
     text-align: center;
@@ -22,7 +22,7 @@ body {
 }
 
 #picturewrap {
-    background: url("/images/ExcursionWebPhoto.jpg") no-repeat center top;
+    background: url("./ExcursionWebPhoto.jpg") no-repeat center top;
     padding-top: 120px;
     text-align: center;
     background-position: center center;
@@ -255,7 +255,7 @@ h4 {
 }
 
 .description {
-    background: url("/images/ExcursionGif.gif") no-repeat center top;
+    background: url("./ExcursionGif.gif") no-repeat center top;
     padding-top: 120px;
     background-position: center center;
     min-height: 650px;
