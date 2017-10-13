@@ -4,7 +4,7 @@ import { Link } from 'react-router';
 // import success from '../../api/success';
 // import failure from '../../api/failure';
 // import { Bert } from 'meteor/themeteorchef:bert';
-// import { LinkContainer } from 'react-router-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
 
 class Home extends Component{
     constructor(props) {
@@ -91,11 +91,11 @@ class Home extends Component{
                     <Jumbotron bsClass="description">
                         <h1>A powerful tool for incorporating advertisments into augmented reality apps!</h1>
                         <p>
-                            {/*<LinkContainer to="/learnMore">
+                            <LinkContainer to="/learnMore">
                                 <Button bsStyle="info" className="hvr-grow">
                                     Learn More
                                 </Button>
-                            </LinkContainer>*/}
+                            </LinkContainer>
                         </p>
                     </Jumbotron>
                     <Modal show={this.state.showContact} onHide={this.close}>
@@ -330,11 +330,11 @@ class Home extends Component{
                                 </Row>
                             </Grid>
                         <div>
-                            {/*<LinkContainer to="/getStarted">
+                            <LinkContainer to="/getStarted">
                                 <Button bsStyle="info" className="hvr-grow adv">
                                     Sponsors - Get Started
                                 </Button>
-                            </LinkContainer>*/}
+                            </LinkContainer>
                         </div>
                         </Panel>
                     </div>
@@ -342,11 +342,11 @@ class Home extends Component{
                         <Jumbotron className="contactfooter">
                             <h1>Incorporate your next ad with Excursion!</h1>
                             <p>
-                                {/*<LinkContainer to="/contact">
+                                <LinkContainer to="/contact">
                                     <Button bsStyle="primary" className="contactbutton hvr-grow">
                                         Contact Us
                                     </Button>
-                                </LinkContainer>*/}
+                                </LinkContainer>
                             </p>
                         </Jumbotron>
                     </div>
