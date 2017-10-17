@@ -3,7 +3,7 @@ import {Grid, Row, Col, Panel, Jumbotron, Button, Modal, FormGroup, ControlLabel
 import { Link } from 'react-router';
 // import success from '../../api/success';
 // import failure from '../../api/failure';
-// import { Bert } from 'meteor/themeteorchef:bert';
+// import sendEmail from '.././sendEmail';
 import { LinkContainer } from 'react-router-bootstrap';
 
 class Home extends Component{
@@ -38,7 +38,6 @@ class Home extends Component{
         this.setState(this.baseState);
     }
     handleSendMessage() {
-        console.log("handling message");
         const message = {
             name: this.state.contactName,
             email: this.state.contactEmail,
@@ -64,15 +63,27 @@ class Home extends Component{
             refer: this.state.devRefer,
             message: this.state.devMessage
         };
-
-        // Meteor.call('messages.sendDevKit', message, (error) => {
-        //     if (error) {
-        //         Bert.alert(error.reason, 'danger');
-        //     } else {
-        //         close();
-        //         Bert.alert('Thanks for signing up! We will reach out to you shortly.', 'success');
-        //     }
-        // });
+        fetch('/form', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                email: this.state.devEmail,
+                // then continue this with the other inputs, such as email body, etc.
+            })
+        })
+        .then((response) => response.json())
+        .then((responseJson) => {
+            if (responseJson.success) {
+                this.setState({formSent: true})
+            }
+            else this.setState({formSent: false})
+        })
+        .catch((error) => {
+            console.error(error);
+        });
     }
     close() {
         this.setState({showContact: false, showDev: false});
