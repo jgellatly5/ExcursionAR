@@ -43,26 +43,8 @@ class Home extends Component{
             email: this.state.contactEmail,
             message: this.state.contactMessage
         };
-
-        // Meteor.call('messages.sendMessage', message, (error) => {
-        //     if (error) {
-        //         Bert.alert(error.reason, 'danger');
-        //     } else {
-        //         close();
-        //         Bert.alert('Thank you for your message! We will be in touch.', 'success');
-        //     }
-        // });
     }
     handleDevForm() {
-        const message = {
-            name: this.state.devName,
-            email: this.state.devEmail,
-            companyName: this.state.devCompany,
-            website: this.state.devWebsite,
-            storeLink: this.state.devStoreLink,
-            refer: this.state.devRefer,
-            message: this.state.devMessage
-        };
         fetch('/form', {
             method: 'POST',
             headers: {
@@ -70,8 +52,13 @@ class Home extends Component{
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
+                name: this.state.devName,
                 email: this.state.devEmail,
-                // then continue this with the other inputs, such as email body, etc.
+                companyName: this.state.devCompany,
+                website: this.state.devWebsite,
+                storeLink: this.state.devStoreLink,
+                refer: this.state.devRefer,
+                message: this.state.devMessage
             })
         })
         .then((response) => response.json())

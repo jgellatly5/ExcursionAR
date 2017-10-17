@@ -30,11 +30,11 @@ app.post('/form', (req, res) => {
 
     setTimeout(() => {
         res.send(JSON.stringify({
-            firstName: req.body.firstName || null,
-            lastName: req.body.lastName || null
+            name: req.body.name || null,
+            email: req.body.email || null
         }));
     }, 1000)
-    console.log('you posted: First Name: ' + req.body.firstName + ', LastName: ' + req.body.lastName);
+    console.log('you posted: Name: ' + req.body.name + ', Email: ' + req.body.email);
 });
 
 app.get('*', (req, res) => {
