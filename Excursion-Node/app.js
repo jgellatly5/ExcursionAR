@@ -25,13 +25,18 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', index);
 // app.use('/users', users);
 
-app.post('/form', (req, res) => {
+app.post('/sdkForm', (req, res) => {
     res.setHeader('Content-Type', 'application/json');
 
     setTimeout(() => {
         res.send(JSON.stringify({
             name: req.body.name || null,
-            email: req.body.email || null
+            email: req.body.email || null,
+            companyName: req.body.companyName || null,
+            website: req.body.website || null,
+            storeLink: req.body.storeLink || null,
+            refer: req.body.refer || null,
+            message: req.body.message || null
         }));
     }, 1000)
 
@@ -46,13 +51,137 @@ app.post('/form', (req, res) => {
     });
 
     var mailOptions = {
-        from: 'jgellatly5@gmail.com',
-        to: 'jgellatly5@gmail.com',
-        subject: 'Excursion test',
-        text: 'This is a test!'
+        from: 'jordan.gellatly@excursion-ar.com',
+        to: req.body.email,
+        subject: 'Beta Registration Confirmation',
+        text: `Thank you for signing up for the Excursion SDK. We will notify you when the beta will be ready to release.
+            - Excursion`
     }
 
     transporter.sendMail(mailOptions, function(error, info){
+        if (error) {
+            console.log(error);
+        } else {
+            console.log('Email sent: ' + info.response);
+        }
+    });
+
+    var mailOptions2 = {
+        from: 'jordan.gellatly@excursion-ar.com',
+        to: 'contact@excursion-ar.com',
+        subject: `${req.body.name} wants to sign up for the SDK!`,
+        text: `
+            Name: ${req.body.name},
+            Email: ${req.body.email},
+            Company: ${req.body.companyName},
+            Website: ${req.body.website},
+            StoreLink: ${req.body.storeLink},
+            Referral: ${req.body.refer},
+            Message: ${req.body.message}`
+    }
+
+    transporter.sendMail(mailOptions2, function(error, info){
+        if (error) {
+            console.log(error);
+        } else {
+            console.log('Email sent: ' + info.response);
+        }
+    });
+});
+
+app.post('/contactForm', (req, res) => {
+    res.setHeader('Content-Type', 'application/json');
+
+    setTimeout(() => {
+        res.send(JSON.stringify({
+            name: req.body.name || null,
+            email: req.body.email || null,
+            message: req.body.message || null
+        }));
+    }, 1000)
+
+    console.log('you posted: Name: ' + req.body.name + ', Email: ' + req.body.email);
+    var nodemailer = require('nodemailer');
+    var transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+            user: 'jgellatly5@gmail.com',
+            pass: 'beloteca1992'
+        }
+    });
+
+    var mailOptions = {
+        from: 'jordan.gellatly@excursion-ar.com',
+        to: 'contact@excursion-ar.com'
+        subject: `${req.body.name} ${req.body.email} sent a message!`,
+        text: req.body.message
+    }
+
+    transporter.sendMail(mailOptions, function(error, info){
+        if (error) {
+            console.log(error);
+        } else {
+            console.log('Email sent: ' + info.response);
+        }
+    });
+});
+
+app.post('/adForm', (req, res) => {
+    res.setHeader('Content-Type', 'application/json');
+
+    setTimeout(() => {
+        res.send(JSON.stringify({
+            name: req.body.name || null,
+            email: req.body.email || null,
+            phone: req.body.phoneNumber || null,
+            company: req.body.companyName || null,
+            industry: req.body.industry || null,
+            website: req.body.website || null,
+            referral: req.body.referral || null,
+        }));
+    }, 1000)
+
+    console.log('you posted: Name: ' + req.body.name + ', Email: ' + req.body.email);
+    var nodemailer = require('nodemailer');
+    var transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+            user: 'jgellatly5@gmail.com',
+            pass: 'beloteca1992'
+        }
+    });
+
+    var mailOptions = {
+        from: 'jordan.gellatly@excursion-ar.com',
+        to: req.body.email,
+        subject: 'Excursion Ad Portal Confirmation',
+        text: `Thank you for signing up for the Excursion Ad Portal. We will notify you when we are finished building the web app.
+                - Excursion`
+    }
+
+    transporter.sendMail(mailOptions, function(error, info){
+        if (error) {
+            console.log(error);
+        } else {
+            console.log('Email sent: ' + info.response);
+        }
+    });
+
+    var mailOptions2 = {
+        from: 'jordan.gellatly@excursion-ar.com',
+        to: 'contact@excursion-ar.com',
+        subject: `${req.body.name} wants to sign up to the Ad Portal!`,
+        text:`
+            Name: ${req.body.name},
+            Email: ${req.body.email},
+            Company: ${req.body.company},
+            Website: ${req.body.website},
+            Referral: ${req.body.referral},
+            Phone: ${req.body.phone},
+            Industry: ${req.body.industry}`
+    }
+
+    transporter.sendMail(mailOptions2, function(error, info){
         if (error) {
             console.log(error);
         } else {

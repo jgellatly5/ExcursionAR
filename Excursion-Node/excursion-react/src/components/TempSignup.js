@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 // import submitAd from '../../api/submitAd';
 // import success from '../../api/success';
 // import failure from '../../api/failure';
-// import { Bert } from 'meteor/themeteorchef:bert';
 import { Jumbotron, FormGroup, ControlLabel, FormControl } from 'react-bootstrap';
 // import { browserHistory } from 'react-router';
 
@@ -27,23 +26,32 @@ class TempSignup extends Component {
         // browserHistory.push('/');
     }
     handleSendMessage() {
-        const message = {
-            name: this.state.contactName,
-            email: this.state.contactEmail,
-            phone: this.state.phoneNumber,
-            company: this.state.companyName,
-            industry: this.state.industry,
-            website: this.state.website,
-            referral: this.state.referral
-        };
-
-        // Meteor.call('messages.sendAdMessage', message, (error) => {
-        //     if (error) {
-        //         Bert.alert(error.reason, 'danger');
-        //     } else {
-        //         Bert.alert('Thank you for your message! We will be in touch.', 'success');
-        //     }
-        // });
+        fetch('/adForm', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                name: this.state.contactName,
+                email: this.state.contactEmail,
+                phone: this.state.phoneNumber,
+                company: this.state.companyName,
+                industry: this.state.industry,
+                website: this.state.website,
+                referral: this.state.referral
+            })
+        })
+        .then((response) => response.json())
+        .then((responseJson) => {
+            if (responseJson.success) {
+                this.setState({formSent: true})
+            }
+            else this.setState({formSent: false})
+        })
+        .catch((error) => {
+            console.error(error);
+        });
     }
     render() {
         return (

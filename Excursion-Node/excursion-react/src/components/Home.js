@@ -45,7 +45,7 @@ class Home extends Component{
         };
     }
     handleDevForm() {
-        fetch('/form', {
+        fetch('/sdkForm', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
