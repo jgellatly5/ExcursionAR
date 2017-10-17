@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
-// import submitAd from '../../api/submitAd';
-// import success from '../../api/success';
-// import failure from '../../api/failure';
 import { Jumbotron, FormGroup, ControlLabel, FormControl } from 'react-bootstrap';
-// import { browserHistory } from 'react-router';
+import { browserHistory } from 'react-router';
 
 class TempSignup extends Component {
     constructor(props) {
@@ -23,7 +20,7 @@ class TempSignup extends Component {
         e.preventDefault();
         this.handleSendMessage();
         this.setState(this.baseState);
-        // browserHistory.push('/');
+        browserHistory.push('/');
     }
     handleSendMessage() {
         fetch('/adForm', {

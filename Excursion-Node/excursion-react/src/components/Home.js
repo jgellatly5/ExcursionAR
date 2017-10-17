@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import {Grid, Row, Col, Panel, Jumbotron, Button, Modal, FormGroup, ControlLabel, FormControl} from 'react-bootstrap';
 import { Link } from 'react-router';
-// import success from '../../api/success';
-// import failure from '../../api/failure';
-// import sendEmail from '.././sendEmail';
 import { LinkContainer } from 'react-router-bootstrap';
 
 class Home extends Component{
