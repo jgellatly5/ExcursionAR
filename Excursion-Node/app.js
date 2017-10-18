@@ -112,7 +112,7 @@ app.post('/contactForm', (req, res) => {
 
     var mailOptions = {
         from: 'jordan.gellatly@excursion-ar.com',
-        to: 'contact@excursion-ar.com'
+        to: 'contact@excursion-ar.com',
         subject: `${req.body.name} ${req.body.email} sent a message!`,
         text: req.body.message
     }
