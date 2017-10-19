@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 import { Grid, Row, Col, Panel, Jumbotron, Button } from 'react-bootstrap';
-// import { LinkContainer } from 'react-router-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
 
 class GetStarted extends Component{
     render() {
@@ -43,22 +43,22 @@ class GetStarted extends Component{
                         </Row>
                     </Grid>
                 <div>
-                    {/*<LinkContainer to="/signup">
+                    <LinkContainer to="/signup">
                         <Button bsStyle="info" className="hvr-grow adv">
                             Sponsor Signup
                         </Button>
-                    </LinkContainer>*/}
+                    </LinkContainer>
                 </div>
                 </Panel>
                 <div className="greywrap">
                     <Jumbotron className="contactfooter">
                         <h1>Still have questions?</h1>
                         <p>
-                            {/*<LinkContainer to="/contact">
+                            <LinkContainer to="/contact">
                                 <Button bsStyle="primary" className="contactbutton hvr-grow">
                                     Contact Us
                                 </Button>
-                            </LinkContainer>*/}
+                            </LinkContainer>
                         </p>
                     </Jumbotron>
                 </div>

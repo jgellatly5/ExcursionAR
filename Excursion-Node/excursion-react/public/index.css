@@ -22,7 +22,7 @@ body {
 }
 
 #picturewrap {
-    /*background: url("./ExcursionWebPhoto.jpg") no-repeat center top;*/
+    background: url("./ExcursionWebPhoto.jpg") no-repeat center top;
     padding-top: 120px;
     text-align: center;
     background-position: center center;

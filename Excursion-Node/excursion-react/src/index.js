@@ -1,10 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import { browserHistory } from 'react-router';
-import App from './App';
 import Routes from './routes';
 import registerServiceWorker from './registerServiceWorker';
+import 'bootstrap/dist/css/bootstrap.css';
+import './index.css';
+// import 'bootstrap/dist/css/bootstrap-theme.css';
 
 ReactDOM.render(
     <Routes history={browserHistory}/>,

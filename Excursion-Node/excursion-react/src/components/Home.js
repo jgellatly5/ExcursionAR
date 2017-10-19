@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 import {Grid, Row, Col, Panel, Jumbotron, Button, Modal, FormGroup, ControlLabel, FormControl} from 'react-bootstrap';
 import { Link } from 'react-router';
-// import success from '../../api/success';
-// import failure from '../../api/failure';
-// import { Bert } from 'meteor/themeteorchef:bert';
-// import { LinkContainer } from 'react-router-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
 
 class Home extends Component{
     constructor(props) {
@@ -38,41 +35,39 @@ class Home extends Component{
         this.setState(this.baseState);
     }
     handleSendMessage() {
-        console.log("handling message");
         const message = {
             name: this.state.contactName,
             email: this.state.contactEmail,
             message: this.state.contactMessage
         };
-
-        // Meteor.call('messages.sendMessage', message, (error) => {
-        //     if (error) {
-        //         Bert.alert(error.reason, 'danger');
-        //     } else {
-        //         close();
-        //         Bert.alert('Thank you for your message! We will be in touch.', 'success');
-        //     }
-        // });
     }
     handleDevForm() {
-        const message = {
-            name: this.state.devName,
-            email: this.state.devEmail,
-            companyName: this.state.devCompany,
-            website: this.state.devWebsite,
-            storeLink: this.state.devStoreLink,
-            refer: this.state.devRefer,
-            message: this.state.devMessage
-        };
-
-        // Meteor.call('messages.sendDevKit', message, (error) => {
-        //     if (error) {
-        //         Bert.alert(error.reason, 'danger');
-        //     } else {
-        //         close();
-        //         Bert.alert('Thanks for signing up! We will reach out to you shortly.', 'success');
-        //     }
-        // });
+        fetch('/sdkForm', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                name: this.state.devName,
+                email: this.state.devEmail,
+                companyName: this.state.devCompany,
+                website: this.state.devWebsite,
+                storeLink: this.state.devStoreLink,
+                refer: this.state.devRefer,
+                message: this.state.devMessage
+            })
+        })
+        .then((response) => response.json())
+        .then((responseJson) => {
+            if (responseJson.success) {
+                this.setState({formSent: true})
+            }
+            else this.setState({formSent: false})
+        })
+        .catch((error) => {
+            console.error(error);
+        });
     }
     close() {
         this.setState({showContact: false, showDev: false});
@@ -91,11 +86,11 @@ class Home extends Component{
                     <Jumbotron bsClass="description">
                         <h1>A powerful tool for incorporating advertisments into augmented reality apps!</h1>
                         <p>
-                            {/*<LinkContainer to="/learnMore">
+                            <LinkContainer to="/learnMore">
                                 <Button bsStyle="info" className="hvr-grow">
                                     Learn More
                                 </Button>
-                            </LinkContainer>*/}
+                            </LinkContainer>
                         </p>
                     </Jumbotron>
                     <Modal show={this.state.showContact} onHide={this.close}>
@@ -330,11 +325,11 @@ class Home extends Component{
                                 </Row>
                             </Grid>
                         <div>
-                            {/*<LinkContainer to="/getStarted">
+                            <LinkContainer to="/getStarted">
                                 <Button bsStyle="info" className="hvr-grow adv">
                                     Sponsors - Get Started
                                 </Button>
-                            </LinkContainer>*/}
+                            </LinkContainer>
                         </div>
                         </Panel>
                     </div>
@@ -342,11 +337,11 @@ class Home extends Component{
                         <Jumbotron className="contactfooter">
                             <h1>Incorporate your next ad with Excursion!</h1>
                             <p>
-                                {/*<LinkContainer to="/contact">
+                                <LinkContainer to="/contact">
                                     <Button bsStyle="primary" className="contactbutton hvr-grow">
                                         Contact Us
                                     </Button>
-                                </LinkContainer>*/}
+                                </LinkContainer>
                             </p>
                         </Jumbotron>
                     </div>

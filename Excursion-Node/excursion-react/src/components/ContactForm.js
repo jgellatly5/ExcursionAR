@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
-// import success from '../../api/success';
-// import failure from '../../api/failure';
-// import { Bert } from 'meteor/themeteorchef:bert';
 import { Grid, Row, Col, Jumbotron, Button } from 'react-bootstrap';
-// import { browserHistory } from 'react-router';
+import { browserHistory } from 'react-router';
 
 class ContactForm extends Component {
     constructor(props) {
@@ -23,22 +20,31 @@ class ContactForm extends Component {
         e.preventDefault();
         this.handleSendMessage();
         this.setState(this.baseState);
-        // browserHistory.push('/');
+        browserHistory.push('/');
     }
     handleSendMessage() {
-        const message = {
-            name: this.state.contactName,
-            email: this.state.contactEmail,
-            message: this.state.contactMessage
-        };
-
-        // Meteor.call('messages.sendMessage', message, (error) => {
-        //     if (error) {
-        //         Bert.alert(error.reason, 'danger');
-        //     } else {
-        //         Bert.alert('Thank you for your message! We will be in touch.', 'success');
-        //     }
-        // });
+        fetch('/contactForm', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                name: this.state.contactName,
+                email: this.state.contactEmail,
+                message: this.state.contactMessage
+            })
+        })
+        .then((response) => response.json())
+        .then((responseJson) => {
+            if (responseJson.success) {
+                this.setState({formSent: true})
+            }
+            else this.setState({formSent: false})
+        })
+        .catch((error) => {
+            console.error(error);
+        });
     }
     render() {
         return (

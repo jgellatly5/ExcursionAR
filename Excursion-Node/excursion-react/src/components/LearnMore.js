@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-// import { Link } from 'react-router';
+import { Link } from 'react-router';
 import { Jumbotron, Button } from 'react-bootstrap';
-// import { LinkContainer } from 'react-router-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
 
 class LearnMore extends Component{
     render() {
@@ -72,7 +72,7 @@ class LearnMore extends Component{
                 <hr/>*/}
                 <div className="getstarted">
                     <h2>If I am a sponsor (advertiser), how do I register?</h2>
-                    <p>To get started, Sign up for a user account.
+                    <p>To get started, <Link to="/signup">Sign up</Link> for a user account.
                     Please check that you are an sponsor, you will be routed to a special online form
                     to fill out information for the company or entity you represent. Your online dashboard will display your advertisement
                     history, the price/view that was set for the advertisement, the current budget for the project and the max daily budget per daily,
@@ -99,11 +99,11 @@ class LearnMore extends Component{
                     <Jumbotron className="contactfooter">
                         <h1>Still have questions?</h1>
                         <p>
-                            {/*<LinkContainer to="/contact">
+                            <LinkContainer to="/contact">
                                 <Button bsStyle="primary" className="contactbutton hvr-grow">
                                     Contact Us
                                 </Button>
-                            </LinkContainer>*/}
+                            </LinkContainer>
                         </p>
                     </Jumbotron>
                 </div>
