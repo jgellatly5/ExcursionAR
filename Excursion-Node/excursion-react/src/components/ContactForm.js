@@ -23,12 +23,6 @@ class ContactForm extends Component {
         browserHistory.push('/');
     }
     handleSendMessage() {
-        const message = {
-            name: this.state.contactName,
-            email: this.state.contactEmail,
-            message: this.state.contactMessage
-        };
-
         fetch('/contactForm', {
             method: 'POST',
             headers: {
