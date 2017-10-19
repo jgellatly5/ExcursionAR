@@ -4,6 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var config = require('./nodemailerConfig');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
@@ -38,36 +39,46 @@ app.post('/sdkForm', (req, res) => {
             refer: req.body.refer || null,
             message: req.body.message || null
         }));
-    }, 1000)
+    }, 1000);
 
-    console.log('you posted: Name: ' + req.body.name + ', Email: ' + req.body.email);
     var nodemailer = require('nodemailer');
     var transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
-            user: 'jgellatly5@gmail.com',
-            pass: 'beloteca1992'
+            user: config.mailUser,
+            pass: config.mailPass
         }
     });
 
+    // transporter.sendMail({
+    //     from: 'contact@excursion-ar.com',
+    //     to: 'jgellatly5@gmail.com',
+    //     subject: 'Message',
+    //     text: 'I hope this message gets through!',
+    // });
+
+    // let transporter = nodemailer.createTransport({
+    //     host: 'excursion-ar.com',
+    //     port: 465,
+    //     secure: true, // upgrade later with STARTTLS
+    //     auth: {
+    //         user: 'contact@excursion-ar.com',
+    //         pass: 'Excursion123'
+    //     }
+    // });
+
     var mailOptions = {
-        from: 'jordan.gellatly@excursion-ar.com',
+        from: '"Excursion" contact@excursion-ar.com',
         to: req.body.email,
         subject: 'Beta Registration Confirmation',
         text: `Thank you for signing up for the Excursion SDK. We will notify you when the beta will be ready to release.
             - Excursion`
     }
 
-    transporter.sendMail(mailOptions, function(error, info){
-        if (error) {
-            console.log(error);
-        } else {
-            console.log('Email sent: ' + info.response);
-        }
-    });
+    transporter.sendMail(mailOptions);
 
     var mailOptions2 = {
-        from: 'jordan.gellatly@excursion-ar.com',
+        from: 'contact@excursion-ar.com',
         to: 'contact@excursion-ar.com',
         subject: `${req.body.name} wants to sign up for the SDK!`,
         text: `
@@ -80,13 +91,7 @@ app.post('/sdkForm', (req, res) => {
             Message: ${req.body.message}`
     }
 
-    transporter.sendMail(mailOptions2, function(error, info){
-        if (error) {
-            console.log(error);
-        } else {
-            console.log('Email sent: ' + info.response);
-        }
-    });
+    // transporter.sendMail(mailOptions2);
 });
 
 app.post('/contactForm', (req, res) => {
