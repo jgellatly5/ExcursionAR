@@ -27,7 +27,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'excursion-react/build')));
 
 app.use('/', index);
 
@@ -136,8 +136,12 @@ app.post('/adForm', (req, res) => {
     transporter.sendMail(adInfo);
 });
 
+app.get('/*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, '..', 'excursion-react/build', 'index.html'));
+});
+
 app.get('*', (req, res) => {
-  res.sendFile(path.resolve(__dirname, '..', 'build', 'index.html'));
+  res.sendFile(path.resolve(__dirname, '..', 'excursion-react/build', 'index.html'));
 });
 
 // catch 404 and forward to error handler
