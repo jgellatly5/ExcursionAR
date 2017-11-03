@@ -16,6 +16,11 @@ service: Excursion-Serverless
 # You can pin your service to only deploy with a specific Serverless version
 # Check out our docs for more details
 # frameworkVersion: "=X.X.X"
+plugins:
+    - serverless-webpack
+
+custom:
+  webpackIncludeModules: true
 
 provider:
   name: aws
@@ -90,6 +95,11 @@ functions:
 #    Define function environment variables here
 #    environment:
 #      variable2: value2
+
+    email:
+        handler: email.main
+        events:
+            
 
 # you can add CloudFormation resource templates here
 #resources:
