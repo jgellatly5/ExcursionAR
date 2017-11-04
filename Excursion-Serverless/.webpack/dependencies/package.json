@@ -1,0 +1,9 @@
+{
+  "name": "Excursion-Serverless",
+  "version": "1.0.0",
+  "description": "Packaged externals for Excursion-Serverless",
+  "private": true,
+  "dependencies": {
+    "babel-runtime": "^6.26.0"
+  }
+}
