@@ -42,11 +42,13 @@ class Home extends Component{
         };
     }
     handleDevForm() {
-        fetch('https://y6hi8l2vy1.execute-api.us-east-1.amazonaws.com/dev/sendSdkEmail', {
+        fetch('https://ns8ytd9vbl.execute-api.us-east-1.amazonaws.com/dev/sendSdkEmail', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin' : 'http://localhost:3000',
+                'Access-Control-Request-Headers' : '*'
             },
             body: JSON.stringify({
                 name: this.state.devName,

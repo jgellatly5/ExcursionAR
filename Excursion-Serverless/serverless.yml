@@ -57,8 +57,16 @@ functions:
             path: sendSdkEmail
             method: post
             cors:
-                origin:
-                    -'*'
+                origins:
+                    - 'http://localhost:3000'
+                headers:
+                  - MY_CUSTOM_HEADER
+                  - Content-Type
+                  - X-Amz-Date
+                  - Authorization
+                  - X-Api-Key
+                  - X-Amz-Security-Token
+    allowCredentials: false
 
   sendContactEmail:
     handler: handler.sendContactEmail
@@ -67,8 +75,16 @@ functions:
             path: sendContactEmail
             method: post
             cors:
-                origin:
-                    -'*'
+                origins:
+                    - 'http://localhost:3000'
+                headers:
+                  - MY_CUSTOM_HEADER
+                  - Content-Type
+                  - X-Amz-Date
+                  - Authorization
+                  - X-Api-Key
+                  - X-Amz-Security-Token
+    allowCredentials: false
 
   sendAdEmail:
     handler: handler.sendAdEmail
@@ -77,5 +93,13 @@ functions:
             path: sendAdEmail
             method: post
             cors:
-                origin:
-                    -'*'
+                origins:
+                    - 'http://localhost:3000'
+                headers:
+                  - MY_CUSTOM_HEADER
+                  - Content-Type
+                  - X-Amz-Date
+                  - Authorization
+                  - X-Api-Key
+                  - X-Amz-Security-Token
+    allowCredentials: false

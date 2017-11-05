@@ -3915,12 +3915,6 @@ var transporter = nodemailer.createTransport({
   }
 });
 
-var responseHeaders = {
-  'Content-Type': 'application/json',
-  'Access-Control-Allow-Origin': '*', // Required for CORS support to work
-  'Access-Control-Allow-Credentials': true // Required for cookies, authorization headers with HTTPS
-};
-
 module.exports.hello = function (event, context, callback) {
   var response = {
     statusCode: 200,
@@ -3936,6 +3930,12 @@ module.exports.hello = function (event, context, callback) {
 module.exports.sendSdkEmail = function (event, context, callback) {
   var response = {
     statusCode: 200,
+    headers: {
+      'Access-Control-Allow-Origin': 'http://localhost:3000', // Required for CORS support to work
+      'Access-Control-Allow-Credentials': 'true',
+      'Access-Control-Allow-Methods': 'POST,OPTIONS',
+      'Access-Control-Allow-Headers': 'Access-Control-Allow-Headers, Origin, Accept, X-Requested-With, Content-Type, Access-Control-Request-Headers'
+    },
     body: (0, _stringify2.default)({
       message: 'This is the send SDK email function',
       input: event
