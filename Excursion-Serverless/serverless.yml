@@ -58,9 +58,9 @@ functions:
             method: post
             cors:
                 origins:
-                    - 'http://localhost:3000'
+                    - '*'
                 headers:
-                  - MY_CUSTOM_HEADER
+                  - Access-Control-Allow-Origin
                   - Content-Type
                   - X-Amz-Date
                   - Authorization
@@ -76,9 +76,9 @@ functions:
             method: post
             cors:
                 origins:
-                    - 'http://localhost:3000'
+                    - '*'
                 headers:
-                  - MY_CUSTOM_HEADER
+                  - Access-Control-Allow-Origin
                   - Content-Type
                   - X-Amz-Date
                   - Authorization
@@ -94,9 +94,9 @@ functions:
             method: post
             cors:
                 origins:
-                    - 'http://localhost:3000'
+                    - '*'
                 headers:
-                  - MY_CUSTOM_HEADER
+                  - Access-Control-Allow-Origin
                   - Content-Type
                   - X-Amz-Date
                   - Authorization

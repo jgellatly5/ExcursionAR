@@ -24,10 +24,10 @@ module.exports.sendSdkEmail = (event, context, callback) => {
     const response = {
       statusCode: 200,
       headers: {
-          'Access-Control-Allow-Origin' : 'http://localhost:3000',        // Required for CORS support to work
-          'Access-Control-Allow-Credentials' : 'true',
+          'Access-Control-Allow-Origin' : '*',        // Required for CORS support to work
+          'Access-Control-Allow-Credentials' : true,
           'Access-Control-Allow-Methods' : 'POST,OPTIONS',
-          'Access-Control-Allow-Headers' : 'Access-Control-Allow-Headers, Origin, Accept, X-Requested-With, Content-Type, Access-Control-Request-Headers'
+          'Access-Control-Allow-Headers' : 'Access-Control-Allow-Headers, Access-Control-Allow-Origin, Accept, X-Requested-With, Content-Type, Access-Control-Request-Headers'
       },
       body: JSON.stringify({
         message: 'This is the send SDK email function',
@@ -35,23 +35,32 @@ module.exports.sendSdkEmail = (event, context, callback) => {
       }),
     };
 
-    const parsedBody = event['body'].split("&");
+    // const parsedBody = event['body'].split("&");
+    //
+    // const nameParse = parsedBody[0].split("=");
+    // const emailParse = parsedBody[1].split("=");
+    // const companyParse = parsedBody[2].split("=");
+    // const websiteParse = parsedBody[3].split("=");
+    // const storeLinkParse = parsedBody[4].split("=");
+    // const referParse = parsedBody[5].split("=");
+    // const messageParse = parsedBody[6].split("=");
+    //
+    // const name = decodeURIComponent(nameParse[1]);
+    // const email = decodeURIComponent(emailParse[1]);
+    // const company = decodeURIComponent(companyParse[1]);
+    // const website = decodeURIComponent(websiteParse[1]);
+    // const storeLink = decodeURIComponent(storeLinkParse[1]);
+    // const refer = decodeURIComponent(referParse[1]);
+    // const message = decodeURIComponent(messageParse[1]);
 
-    const nameParse = parsedBody[0].split("=");
-    const emailParse = parsedBody[1].split("=");
-    const companyParse = parsedBody[2].split("=");
-    const websiteParse = parsedBody[3].split("=");
-    const storeLinkParse = parsedBody[4].split("=");
-    const referParse = parsedBody[5].split("=");
-    const messageParse = parsedBody[6].split("=");
-
-    const name = decodeURIComponent(nameParse[1]);
-    const email = decodeURIComponent(emailParse[1]);
-    const company = decodeURIComponent(companyParse[1]);
-    const website = decodeURIComponent(websiteParse[1]);
-    const storeLink = decodeURIComponent(storeLinkParse[1]);
-    const refer = decodeURIComponent(referParse[1]);
-    const message = decodeURIComponent(messageParse[1]);
+    const parsedBody = JSON.parse(event['body']);
+    const name = parsedBody.name;
+    const email = parsedBody.email;
+    const company = parsedBody.companyName;
+    const website = parsedBody.website;
+    const storeLink = parsedBody.storeLink;
+    const refer = parsedBody.refer;
+    const message = parsedBody.message;
 
     var sdkReply = {
         from: '"Excursion" contact@excursion-ar.com',
