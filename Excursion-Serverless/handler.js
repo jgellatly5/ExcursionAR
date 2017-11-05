@@ -8,18 +8,6 @@ var transporter = nodemailer.createTransport({
     }
 });
 
-module.exports.hello = (event, context, callback) => {
-  const response = {
-    statusCode: 200,
-    body: JSON.stringify({
-      message: 'Go Serverless v1.0! Your function executed successfully!',
-      input: event,
-    }),
-  };
-
-  callback(null, response);
-};
-
 module.exports.sendSdkEmail = (event, context, callback) => {
     const response = {
       statusCode: 200,
@@ -30,7 +18,7 @@ module.exports.sendSdkEmail = (event, context, callback) => {
           'Access-Control-Allow-Headers' : 'Access-Control-Allow-Headers, Access-Control-Allow-Origin, Accept, X-Requested-With, Content-Type, Access-Control-Request-Headers'
       },
       body: JSON.stringify({
-        message: 'This is the send SDK email function',
+        message: 'Sending SDK email',
         input: event,
       }),
     };
@@ -91,13 +79,33 @@ module.exports.sendSdkEmail = (event, context, callback) => {
 };
 
 module.exports.sendContactEmail = (event, context, callback) => {
-  const response = {
-    statusCode: 200,
-    body: JSON.stringify({
-      message: 'Go Serverless v1.0! Your function executed successfully!',
-      input: event,
-    }),
-  };
+    const response = {
+      statusCode: 200,
+      headers: {
+          'Access-Control-Allow-Origin' : '*',        // Required for CORS support to work
+          'Access-Control-Allow-Credentials' : true,
+          'Access-Control-Allow-Methods' : 'POST,OPTIONS',
+          'Access-Control-Allow-Headers' : 'Access-Control-Allow-Headers, Access-Control-Allow-Origin, Accept, X-Requested-With, Content-Type, Access-Control-Request-Headers'
+      },
+      body: JSON.stringify({
+        message: 'Sending Contact email',
+        input: event,
+      }),
+    };
+
+    const parsedBody = JSON.parse(event['body']);
+    const name = parsedBody.name;
+    const email = parsedBody.email;
+    const message = parsedBody.message;
+
+    var contactInfo = {
+        from: '"Excursion" contact@excursion-ar.com',
+        to: 'contact@excursion-ar.com',
+        subject: `${name} ${email} sent a message!`,
+        text: message
+    }
+
+    transporter.sendMail(contactInfo);
 
   callback(null, response);
 
@@ -106,13 +114,54 @@ module.exports.sendContactEmail = (event, context, callback) => {
 };
 
 module.exports.sendAdEmail = (event, context, callback) => {
-  const response = {
-    statusCode: 200,
-    body: JSON.stringify({
-      message: 'Go Serverless v1.0! Your function executed successfully!',
-      input: event,
-    }),
-  };
+    const response = {
+      statusCode: 200,
+      headers: {
+          'Access-Control-Allow-Origin' : '*',        // Required for CORS support to work
+          'Access-Control-Allow-Credentials' : true,
+          'Access-Control-Allow-Methods' : 'POST,OPTIONS',
+          'Access-Control-Allow-Headers' : 'Access-Control-Allow-Headers, Access-Control-Allow-Origin, Accept, X-Requested-With, Content-Type, Access-Control-Request-Headers'
+      },
+      body: JSON.stringify({
+        message: 'Sending Ad signup email',
+        input: event,
+      }),
+    };
+
+    const parsedBody = JSON.parse(event['body']);
+    const name = parsedBody.name;
+    const email = parsedBody.email;
+    const company = parsedBody.company;
+    const website = parsedBody.website;
+    const refer = parsedBody.referral;
+    const phone = parsedBody.phone;
+    // const industry = parsedBody.industry;
+
+    var adReply = {
+        from: '"Excursion" contact@excursion-ar.com',
+        to: email,
+        subject: 'Excursion Ad Portal Confirmation',
+        text: `Thank you for signing up for the Excursion Ad Portal. We will notify you when we are finished building the web app.
+                - Excursion`
+    }
+
+    transporter.sendMail(adReply);
+
+    var adInfo = {
+        from: '"Excursion" contact@excursion-ar.com',
+        to: 'contact@excursion-ar.com',
+        subject: `${name} wants to sign up to the Ad Portal!`,
+        text:`
+            Name: ${name},
+            Email: ${email},
+            Company: ${company},
+            Website: ${website},
+            Referral: ${refer},
+            Phone: ${phone}`
+            // Industry: ${industry}`
+    }
+
+    transporter.sendMail(adInfo);
 
   callback(null, response);
 

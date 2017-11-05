@@ -3908,115 +3908,157 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var nodemailer = __webpack_require__(24);
 var transporter = nodemailer.createTransport({
-  service: 'gmail',
-  auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS
-  }
+    service: 'gmail',
+    auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS
+    }
 });
 
-module.exports.hello = function (event, context, callback) {
-  var response = {
-    statusCode: 200,
-    body: (0, _stringify2.default)({
-      message: 'Go Serverless v1.0! Your function executed successfully!',
-      input: event
-    })
-  };
-
-  callback(null, response);
-};
-
 module.exports.sendSdkEmail = function (event, context, callback) {
-  var response = {
-    statusCode: 200,
-    headers: {
-      'Access-Control-Allow-Origin': '*', // Required for CORS support to work
-      'Access-Control-Allow-Credentials': true,
-      'Access-Control-Allow-Methods': 'POST,OPTIONS',
-      'Access-Control-Allow-Headers': 'Access-Control-Allow-Headers, Access-Control-Allow-Origin, Accept, X-Requested-With, Content-Type, Access-Control-Request-Headers'
-    },
-    body: (0, _stringify2.default)({
-      message: 'This is the send SDK email function',
-      input: event
-    })
-  };
+    var response = {
+        statusCode: 200,
+        headers: {
+            'Access-Control-Allow-Origin': '*', // Required for CORS support to work
+            'Access-Control-Allow-Credentials': true,
+            'Access-Control-Allow-Methods': 'POST,OPTIONS',
+            'Access-Control-Allow-Headers': 'Access-Control-Allow-Headers, Access-Control-Allow-Origin, Accept, X-Requested-With, Content-Type, Access-Control-Request-Headers'
+        },
+        body: (0, _stringify2.default)({
+            message: 'Sending SDK email',
+            input: event
+        })
+    };
 
-  // const parsedBody = event['body'].split("&");
-  //
-  // const nameParse = parsedBody[0].split("=");
-  // const emailParse = parsedBody[1].split("=");
-  // const companyParse = parsedBody[2].split("=");
-  // const websiteParse = parsedBody[3].split("=");
-  // const storeLinkParse = parsedBody[4].split("=");
-  // const referParse = parsedBody[5].split("=");
-  // const messageParse = parsedBody[6].split("=");
-  //
-  // const name = decodeURIComponent(nameParse[1]);
-  // const email = decodeURIComponent(emailParse[1]);
-  // const company = decodeURIComponent(companyParse[1]);
-  // const website = decodeURIComponent(websiteParse[1]);
-  // const storeLink = decodeURIComponent(storeLinkParse[1]);
-  // const refer = decodeURIComponent(referParse[1]);
-  // const message = decodeURIComponent(messageParse[1]);
+    // const parsedBody = event['body'].split("&");
+    //
+    // const nameParse = parsedBody[0].split("=");
+    // const emailParse = parsedBody[1].split("=");
+    // const companyParse = parsedBody[2].split("=");
+    // const websiteParse = parsedBody[3].split("=");
+    // const storeLinkParse = parsedBody[4].split("=");
+    // const referParse = parsedBody[5].split("=");
+    // const messageParse = parsedBody[6].split("=");
+    //
+    // const name = decodeURIComponent(nameParse[1]);
+    // const email = decodeURIComponent(emailParse[1]);
+    // const company = decodeURIComponent(companyParse[1]);
+    // const website = decodeURIComponent(websiteParse[1]);
+    // const storeLink = decodeURIComponent(storeLinkParse[1]);
+    // const refer = decodeURIComponent(referParse[1]);
+    // const message = decodeURIComponent(messageParse[1]);
 
-  var parsedBody = JSON.parse(event['body']);
-  var name = parsedBody.name;
-  var email = parsedBody.email;
-  var company = parsedBody.companyName;
-  var website = parsedBody.website;
-  var storeLink = parsedBody.storeLink;
-  var refer = parsedBody.refer;
-  var message = parsedBody.message;
+    var parsedBody = JSON.parse(event['body']);
+    var name = parsedBody.name;
+    var email = parsedBody.email;
+    var company = parsedBody.companyName;
+    var website = parsedBody.website;
+    var storeLink = parsedBody.storeLink;
+    var refer = parsedBody.refer;
+    var message = parsedBody.message;
 
-  var sdkReply = {
-    from: '"Excursion" contact@excursion-ar.com',
-    to: email,
-    subject: 'Beta Registration Confirmation',
-    text: 'Thank you for signing up for the Excursion SDK. We will notify you when the beta will be ready to release.\n            - Excursion'
-  };
-  transporter.sendMail(sdkReply);
+    var sdkReply = {
+        from: '"Excursion" contact@excursion-ar.com',
+        to: email,
+        subject: 'Beta Registration Confirmation',
+        text: 'Thank you for signing up for the Excursion SDK. We will notify you when the beta will be ready to release.\n            - Excursion'
+    };
+    transporter.sendMail(sdkReply);
 
-  var sdkInfo = {
-    from: '"Excursion" contact@excursion-ar.com',
-    to: 'contact@excursion-ar.com',
-    subject: name + ' wants to sign up for the SDK!',
-    text: '\n          Name: ' + name + ',\n          Email: ' + email + ',\n          Company: ' + company + ',\n          Website: ' + website + ',\n          StoreLink: ' + storeLink + ',\n          Referral: ' + refer + ',\n          Message: ' + message
-  };
+    var sdkInfo = {
+        from: '"Excursion" contact@excursion-ar.com',
+        to: 'contact@excursion-ar.com',
+        subject: name + ' wants to sign up for the SDK!',
+        text: '\n          Name: ' + name + ',\n          Email: ' + email + ',\n          Company: ' + company + ',\n          Website: ' + website + ',\n          StoreLink: ' + storeLink + ',\n          Referral: ' + refer + ',\n          Message: ' + message
+    };
 
-  transporter.sendMail(sdkInfo);
+    transporter.sendMail(sdkInfo);
 
-  callback(null, response);
+    callback(null, response);
 };
 
 module.exports.sendContactEmail = function (event, context, callback) {
-  var response = {
-    statusCode: 200,
-    body: (0, _stringify2.default)({
-      message: 'Go Serverless v1.0! Your function executed successfully!',
-      input: event
-    })
-  };
+    var response = {
+        statusCode: 200,
+        headers: {
+            'Access-Control-Allow-Origin': '*', // Required for CORS support to work
+            'Access-Control-Allow-Credentials': true,
+            'Access-Control-Allow-Methods': 'POST,OPTIONS',
+            'Access-Control-Allow-Headers': 'Access-Control-Allow-Headers, Access-Control-Allow-Origin, Accept, X-Requested-With, Content-Type, Access-Control-Request-Headers'
+        },
+        body: (0, _stringify2.default)({
+            message: 'Sending Contact email',
+            input: event
+        })
+    };
 
-  callback(null, response);
+    var parsedBody = JSON.parse(event['body']);
+    var name = parsedBody.name;
+    var email = parsedBody.email;
+    var message = parsedBody.message;
 
-  // Use this code if you don't use the http event with the LAMBDA-PROXY integration
-  // callback(null, { message: 'Go Serverless v1.0! Your function executed successfully!', event });
+    var contactInfo = {
+        from: '"Excursion" contact@excursion-ar.com',
+        to: 'contact@excursion-ar.com',
+        subject: name + ' ' + email + ' sent a message!',
+        text: message
+    };
+
+    transporter.sendMail(contactInfo);
+
+    callback(null, response);
+
+    // Use this code if you don't use the http event with the LAMBDA-PROXY integration
+    // callback(null, { message: 'Go Serverless v1.0! Your function executed successfully!', event });
 };
 
 module.exports.sendAdEmail = function (event, context, callback) {
-  var response = {
-    statusCode: 200,
-    body: (0, _stringify2.default)({
-      message: 'Go Serverless v1.0! Your function executed successfully!',
-      input: event
-    })
-  };
+    var response = {
+        statusCode: 200,
+        headers: {
+            'Access-Control-Allow-Origin': '*', // Required for CORS support to work
+            'Access-Control-Allow-Credentials': true,
+            'Access-Control-Allow-Methods': 'POST,OPTIONS',
+            'Access-Control-Allow-Headers': 'Access-Control-Allow-Headers, Access-Control-Allow-Origin, Accept, X-Requested-With, Content-Type, Access-Control-Request-Headers'
+        },
+        body: (0, _stringify2.default)({
+            message: 'Sending Ad signup email',
+            input: event
+        })
+    };
 
-  callback(null, response);
+    var parsedBody = JSON.parse(event['body']);
+    var name = parsedBody.name;
+    var email = parsedBody.email;
+    var company = parsedBody.company;
+    var website = parsedBody.website;
+    var refer = parsedBody.referral;
+    var phone = parsedBody.phone;
+    // const industry = parsedBody.industry;
 
-  // Use this code if you don't use the http event with the LAMBDA-PROXY integration
-  // callback(null, { message: 'Go Serverless v1.0! Your function executed successfully!', event });
+    var adReply = {
+        from: '"Excursion" contact@excursion-ar.com',
+        to: email,
+        subject: 'Excursion Ad Portal Confirmation',
+        text: 'Thank you for signing up for the Excursion Ad Portal. We will notify you when we are finished building the web app.\n                - Excursion'
+    };
+
+    transporter.sendMail(adReply);
+
+    var adInfo = {
+        from: '"Excursion" contact@excursion-ar.com',
+        to: 'contact@excursion-ar.com',
+        subject: name + ' wants to sign up to the Ad Portal!',
+        text: '\n            Name: ' + name + ',\n            Email: ' + email + ',\n            Company: ' + company + ',\n            Website: ' + website + ',\n            Referral: ' + refer + ',\n            Phone: ' + phone
+        // Industry: ${industry}`
+    };
+
+    transporter.sendMail(adInfo);
+
+    callback(null, response);
+
+    // Use this code if you don't use the http event with the LAMBDA-PROXY integration
+    // callback(null, { message: 'Go Serverless v1.0! Your function executed successfully!', event });
 };
 
 /***/ }),

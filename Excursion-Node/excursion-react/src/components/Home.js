@@ -42,18 +42,6 @@ class Home extends Component{
         };
     }
     handleDevForm() {
-        const body1 = JSON.stringify({
-            name: this.state.devName,
-            email: this.state.devEmail,
-            companyName: this.state.devCompany,
-            website: this.state.devWebsite,
-            storeLink: this.state.devStoreLink,
-            refer: this.state.devRefer,
-            message: this.state.devMessage
-        });
-        console.log(body1);
-        const body2 = JSON.parse(body1);
-        console.log(body2.name);
         fetch('https://ns8ytd9vbl.execute-api.us-east-1.amazonaws.com/dev/sendSdkEmail', {
             method: 'POST',
             headers: {

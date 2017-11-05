@@ -23,11 +23,13 @@ class ContactForm extends Component {
         browserHistory.push('/');
     }
     handleSendMessage() {
-        fetch('/contactForm', {
+        fetch('https://ns8ytd9vbl.execute-api.us-east-1.amazonaws.com/dev/sendContactEmail', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin' : '*',
+                'Access-Control-Request-Headers' : '*'
             },
             body: JSON.stringify({
                 name: this.state.contactName,
@@ -67,6 +69,7 @@ class ContactForm extends Component {
                                             name="contactName"
                                             className="form-control"
                                             placeholder="Enter your Name"
+                                            required
                                         />
                                     </div>
 
@@ -79,6 +82,7 @@ class ContactForm extends Component {
                                             name="contactEmail"
                                             className="form-control"
                                             placeholder="Enter your Email"
+                                            required
                                         />
                                     </div>
 
@@ -91,6 +95,7 @@ class ContactForm extends Component {
                                             name="contactMessage"
                                             className="form-control contactmessage"
                                             placeholder="Ask us anything..."
+                                            required
                                         />
                                     </div>
 
