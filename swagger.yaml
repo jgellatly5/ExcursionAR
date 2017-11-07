@@ -24,7 +24,7 @@ tags:
 schemes:
   - http
 paths:
-  /sponsor:
+  '/sponsor':
     post:
       tags:
         - sponsor
@@ -48,140 +48,140 @@ paths:
             $ref: '#/definitions/createUserResponse'
         '405':
           description: Invalid input
-  '/sponsor/{userId}':
-    put:
-      tags:
-        - sponsor
-      summary: Update a Sponsor's information
-      description: This updates a Sponsor's business information.
-      operationId: updateSponsor
-      consumes:
-        - application/json
-      produces:
-        - application/json
-      parameters:
-        - in: path
-          name: userId
-          description: Unique ID of Sponsor User
-          required: true
-          type: integer
-          format: int64
-        - in: body
-          name: body
-          schema:
-            $ref: '#/definitions/modifyUserRequest'
-          required: true
-      responses:
-        '200':
-          description: Sponsor updated successfully
-          schema:
-            $ref: '#/definitions/modifyUserResponse'
-        '400':
-          description: Invalid ID supplied
-        '404':
-          description: User not found
-        '405':
-          description: Validation exception
-    get:
-      tags:
-        - sponsor
-      summary: Retrieve a Sponsor's information
-      description: This gets information about the Sponsor.
-      operationId: getSponsor
-      consumes:
-        - application/json
-      produces:
-        - application/json
-      parameters:
-        - in: path
-          name: userId
-          description: Unique ID of Sponsor User
-          required: true
-          type: integer
-          format: int64
-        - in: query
-          name: username
-          description: Username of Sponsor User
-          required: true
-          type: string
-        - in: query
-          name: email
-          description: Email of Sponsor User
-          required: true
-          type: string
-      responses:
-        '200':
-          description: Sponsor retrieved successfully
-          schema:
-            $ref: '#/definitions/getUserResponse'
-        '400':
-          description: Invalid ID supplied
-        '404':
-          description: User not found
-        '405':
-          description: Validation exception
-    delete:
-      tags:
-        - sponsor
-      summary: Deletes a Sponsor user
-      description: This deletes the account of the Sponsor.
-      operationId: deleteSponsor
-      produces:
-        - application/json
-      parameters:
-        - name: userId
-          in: path
-          description: Sponsor ID to delete
-          required: true
-          type: integer
-          format: int64
-        - in: body
-          name: body
-          schema:
-            $ref: '#/definitions/deleteUserRequest'
-          required: true
-      responses:
-        '200':
-          description: Sponsor deleted successfully
-          schema:
-            $ref: '#/definitions/deleteUserResponse'
-        '400':
-          description: Invalid ID supplied
-        '404':
-          description: Ad not found
-    post:
-      tags:
-        - sponsor
-      summary: Add a new advertisement to Sponsor
-      description: This creates a new ad for the Sponsor.
-      operationId: createAd
-      consumes:
-        - application/json
-      produces:
-        - application/json
-      parameters:
-        - in: path
-          name: userId
-          description: Unique ID of Sponsor User
-          required: true
-          type: integer
-          format: int64
-        - in: body
-          name: body
-          schema:
-            $ref: '#/definitions/createAdRequest'
-          required: true
-      responses:
-        '200':
-          description: Ad created successfully
-          schema:
-            $ref: '#/definitions/createAdResponse'
-        '400':
-          description: Invalid ID supplied
-        '404':
-          description: Ad not found
-        '405':
-          description: Invalid input
+  # '/sponsor/{userId}':
+  #   put:
+  #     tags:
+  #       - sponsor
+  #     summary: Update a Sponsor's information
+  #     description: This updates a Sponsor's business information.
+  #     operationId: updateSponsor
+  #     consumes:
+  #       - application/json
+  #     produces:
+  #       - application/json
+  #     parameters:
+  #       - in: path
+  #         name: userId
+  #         description: Unique ID of Sponsor User
+  #         required: true
+  #         type: integer
+  #         format: int64
+  #       - in: body
+  #         name: body
+  #         schema:
+  #           $ref: '#/definitions/modifyUserRequest'
+  #         required: true
+  #     responses:
+  #       '200':
+  #         description: Sponsor updated successfully
+  #         schema:
+  #           $ref: '#/definitions/modifyUserResponse'
+  #       '400':
+  #         description: Invalid ID supplied
+  #       '404':
+  #         description: User not found
+  #       '405':
+  #         description: Validation exception
+  #   get:
+  #     tags:
+  #       - sponsor
+  #     summary: Retrieve a Sponsor's information
+  #     description: This gets information about the Sponsor.
+  #     operationId: getSponsor
+  #     consumes:
+  #       - application/json
+  #     produces:
+  #       - application/json
+  #     parameters:
+  #       - in: path
+  #         name: userId
+  #         description: Unique ID of Sponsor User
+  #         required: true
+  #         type: integer
+  #         format: int64
+  #       - in: query
+  #         name: username
+  #         description: Username of Sponsor User
+  #         required: true
+  #         type: string
+  #       - in: query
+  #         name: email
+  #         description: Email of Sponsor User
+  #         required: true
+  #         type: string
+  #     responses:
+  #       '200':
+  #         description: Sponsor retrieved successfully
+  #         schema:
+  #           $ref: '#/definitions/getUserResponse'
+  #       '400':
+  #         description: Invalid ID supplied
+  #       '404':
+  #         description: User not found
+  #       '405':
+  #         description: Validation exception
+  #   delete:
+  #     tags:
+  #       - sponsor
+  #     summary: Deletes a Sponsor user
+  #     description: This deletes the account of the Sponsor.
+  #     operationId: deleteSponsor
+  #     produces:
+  #       - application/json
+  #     parameters:
+  #       - name: userId
+  #         in: path
+  #         description: Sponsor ID to delete
+  #         required: true
+  #         type: integer
+  #         format: int64
+  #       - in: body
+  #         name: body
+  #         schema:
+  #           $ref: '#/definitions/deleteUserRequest'
+  #         required: true
+  #     responses:
+  #       '200':
+  #         description: Sponsor deleted successfully
+  #         schema:
+  #           $ref: '#/definitions/deleteUserResponse'
+  #       '400':
+  #         description: Invalid ID supplied
+  #       '404':
+  #         description: Ad not found
+  #   post:
+  #     tags:
+  #       - sponsor
+  #     summary: Add a new advertisement to Sponsor
+  #     description: This creates a new ad for the Sponsor.
+  #     operationId: createAd
+  #     consumes:
+  #       - application/json
+  #     produces:
+  #       - application/json
+  #     parameters:
+  #       - in: path
+  #         name: userId
+  #         description: Unique ID of Sponsor User
+  #         required: true
+  #         type: integer
+  #         format: int64
+  #       - in: body
+  #         name: body
+  #         schema:
+  #           $ref: '#/definitions/createAdRequest'
+  #         required: true
+  #     responses:
+  #       '200':
+  #         description: Ad created successfully
+  #         schema:
+  #           $ref: '#/definitions/createAdResponse'
+  #       '400':
+  #         description: Invalid ID supplied
+  #       '404':
+  #         description: Ad not found
+  #       '405':
+  #         description: Invalid input
   # '/sponsor/{userId}/{adId}':
   #   get:
   #     tags:
@@ -297,7 +297,7 @@ paths:
   #         description: Invalid ID supplied
   #       '404':
   #         description: Ad not found
-  /publisher:
+  '/publisher':
     post:
       tags:
         - publisher
