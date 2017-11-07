@@ -5,7 +5,7 @@ info:
     app. To be discreet, there is a distinction betweeen the Sponsor user and
     the Publisher user. They will have separate DynamoDB tables to be put into.
     Once configured on AWS, this tool can be used to test curl calls to the API
-    endpoints. 
+    endpoints.
   version: 1.0.1
   title: Excursion Web API
   termsOfService: 'http://swagger.io/terms/'
@@ -271,6 +271,12 @@ paths:
       produces:
         - application/json
       parameters:
+        - in: path
+          name: userId
+          description: Unique ID of Sponsor User
+          required: true
+          type: integer
+          format: int64
         - name: adId
           in: path
           description: Ad ID to delete
