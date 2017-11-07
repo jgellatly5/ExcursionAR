@@ -182,121 +182,121 @@ paths:
           description: Ad not found
         '405':
           description: Invalid input
-  '/sponsor/{userId}/{adId}':
-    get:
-      tags:
-        - sponsor
-      summary: Retreive advertisement by ID
-      description: This gets a specific ad from the Sponsor.
-      operationId: getAdById
-      produces:
-        - application/json
-      parameters:
-        - in: path
-          name: userId
-          description: Unique ID of Sponsor User
-          required: true
-          type: integer
-          format: int64
-        - name: adId
-          in: path
-          description: Unique ID of Advertisement
-          required: true
-          type: integer
-          format: int64
-        - in: query
-          name: name
-          description: Name of Advertisement
-          required: true
-          type: string
-        - in: query
-          name: url
-          description: Asset URL of Advertisement
-          required: true
-          type: string
-      responses:
-        '200':
-          description: Ad retrieved successfully
-          schema:
-            $ref: '#/definitions/getAdResponse'
-        '400':
-          description: Invalid ID supplied
-        '404':
-          description: Ad not found
-    put:
-      tags:
-        - sponsor
-      summary: Updates sponsor advertisement
-      description: This updates an ad for the Sponsor.
-      operationId: updateAd
-      consumes:
-        - application/json
-      produces:
-        - application/json
-      parameters:
-        - in: path
-          name: userId
-          description: Unique ID of Sponsor User
-          required: true
-          type: integer
-          format: int64
-        - name: adId
-          in: path
-          description: ID of ad that needs to be updated
-          required: true
-          type: integer
-          format: int64
-        - in: body
-          name: body
-          schema:
-            $ref: '#/definitions/modifyAdRequest'
-          required: true
-      responses:
-        '200':
-          description: Ad updated successfully
-          schema:
-            $ref: '#/definitions/modifyAdResponse'
-        '400':
-          description: Invalid ID supplied
-        '404':
-          description: Ad not found
-        '405':
-          description: Invalid input
-    # delete:
-    #   tags:
-    #     - sponsor
-    #   summary: Deletes an ad
-    #   description: This deletes the ad of a Sponsor.
-    #   operationId: deleteAd
-    #   produces:
-    #     - application/json
-    #   parameters:
-    #     - in: path
-    #       name: userId
-    #       description: Unique ID of Sponsor User
-    #       required: true
-    #       type: integer
-    #       format: int64
-    #     - name: adId
-    #       in: path
-    #       description: Ad ID to delete
-    #       required: true
-    #       type: integer
-    #       format: int64
-    #     - in: body
-    #       name: body
-    #       schema:
-    #         $ref: '#/definitions/deleteAdRequest'
-    #       required: true
-    #   responses:
-    #     '200':
-    #       description: Ad deleted successfully
-    #       schema:
-    #         $ref: '#/definitions/deleteAdResponse'
-    #     '400':
-    #       description: Invalid ID supplied
-    #     '404':
-    #       description: Ad not found
+  # '/sponsor/{userId}/{adId}':
+  #   get:
+  #     tags:
+  #       - sponsor
+  #     summary: Retreive advertisement by ID
+  #     description: This gets a specific ad from the Sponsor.
+  #     operationId: getAdById
+  #     produces:
+  #       - application/json
+  #     parameters:
+  #       - in: path
+  #         name: userId
+  #         description: Unique ID of Sponsor User
+  #         required: true
+  #         type: integer
+  #         format: int64
+  #       - name: adId
+  #         in: path
+  #         description: Unique ID of Advertisement
+  #         required: true
+  #         type: integer
+  #         format: int64
+  #       - in: query
+  #         name: name
+  #         description: Name of Advertisement
+  #         required: true
+  #         type: string
+  #       - in: query
+  #         name: url
+  #         description: Asset URL of Advertisement
+  #         required: true
+  #         type: string
+  #     responses:
+  #       '200':
+  #         description: Ad retrieved successfully
+  #         schema:
+  #           $ref: '#/definitions/getAdResponse'
+  #       '400':
+  #         description: Invalid ID supplied
+  #       '404':
+  #         description: Ad not found
+  #   put:
+  #     tags:
+  #       - sponsor
+  #     summary: Updates sponsor advertisement
+  #     description: This updates an ad for the Sponsor.
+  #     operationId: updateAd
+  #     consumes:
+  #       - application/json
+  #     produces:
+  #       - application/json
+  #     parameters:
+  #       - in: path
+  #         name: userId
+  #         description: Unique ID of Sponsor User
+  #         required: true
+  #         type: integer
+  #         format: int64
+  #       - name: adId
+  #         in: path
+  #         description: ID of ad that needs to be updated
+  #         required: true
+  #         type: integer
+  #         format: int64
+  #       - in: body
+  #         name: body
+  #         schema:
+  #           $ref: '#/definitions/modifyAdRequest'
+  #         required: true
+  #     responses:
+  #       '200':
+  #         description: Ad updated successfully
+  #         schema:
+  #           $ref: '#/definitions/modifyAdResponse'
+  #       '400':
+  #         description: Invalid ID supplied
+  #       '404':
+  #         description: Ad not found
+  #       '405':
+  #         description: Invalid input
+  #   delete:
+  #     tags:
+  #       - sponsor
+  #     summary: Deletes an ad
+  #     description: This deletes the ad of a Sponsor.
+  #     operationId: deleteAd
+  #     produces:
+  #       - application/json
+  #     parameters:
+  #       - in: path
+  #         name: userId
+  #         description: Unique ID of Sponsor User
+  #         required: true
+  #         type: integer
+  #         format: int64
+  #       - name: adId
+  #         in: path
+  #         description: Ad ID to delete
+  #         required: true
+  #         type: integer
+  #         format: int64
+  #       - in: body
+  #         name: body
+  #         schema:
+  #           $ref: '#/definitions/deleteAdRequest'
+  #         required: true
+  #     responses:
+  #       '200':
+  #         description: Ad deleted successfully
+  #         schema:
+  #           $ref: '#/definitions/deleteAdResponse'
+  #       '400':
+  #         description: Invalid ID supplied
+  #       '404':
+  #         description: Ad not found
   /publisher:
     post:
       tags:
