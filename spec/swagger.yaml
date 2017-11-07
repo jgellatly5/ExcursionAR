@@ -1,0 +1,734 @@
+swagger: '2.0'
+info:
+  description: >-
+    This is an example of the API that will be used to persist data in the Web
+    app. To be discreet, there is a distinction betweeen the Sponsor user and
+    the Publisher user. They will have separate DynamoDB tables to be put into.
+    Once configured on AWS, this tool can be used to test curl calls to the API
+    endpoints. 
+  version: 1.0.1
+  title: Excursion Web API
+  termsOfService: 'http://swagger.io/terms/'
+  contact:
+    email: jgellatly5@gmail.com
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+host: excursion-ar.com
+basePath: /api
+tags:
+  - name: sponsor
+    description: APIs regarding Sponsors
+  - name: publisher
+    description: APIs regarding Publishers
+schemes:
+  - http
+paths:
+  /sponsor:
+    post:
+      tags:
+        - sponsor
+      summary: Add a new user to the Sponsor Table
+      description: This creates a new sponsor user.
+      operationId: createSponsor
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/createUserRequest'
+          required: true
+      responses:
+        '200':
+          description: Sponsor created successfully
+          schema:
+            $ref: '#/definitions/createUserResponse'
+        '405':
+          description: Invalid input
+  '/sponsor/{userId}':
+    put:
+      tags:
+        - sponsor
+      summary: Update a Sponsor's information
+      description: This updates a Sponsor's business information.
+      operationId: updateSponsor
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: userId
+          description: Unique ID of Sponsor User
+          required: true
+          type: integer
+          format: int64
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/modifyUserRequest'
+          required: true
+      responses:
+        '200':
+          description: Sponsor updated successfully
+          schema:
+            $ref: '#/definitions/modifyUserResponse'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: User not found
+        '405':
+          description: Validation exception
+    get:
+      tags:
+        - sponsor
+      summary: Retrieve a Sponsor's information
+      description: This gets information about the Sponsor.
+      operationId: getSponsor
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: userId
+          description: Unique ID of Sponsor User
+          required: true
+          type: integer
+          format: int64
+        - in: query
+          name: username
+          description: Username of Sponsor User
+          required: true
+          type: string
+        - in: query
+          name: email
+          description: Email of Sponsor User
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Sponsor retrieved successfully
+          schema:
+            $ref: '#/definitions/getUserResponse'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: User not found
+        '405':
+          description: Validation exception
+    delete:
+      tags:
+        - sponsor
+      summary: Deletes a Sponsor user
+      description: This deletes the account of the Sponsor.
+      operationId: deleteSponsor
+      produces:
+        - application/json
+      parameters:
+        - name: userId
+          in: path
+          description: Sponsor ID to delete
+          required: true
+          type: integer
+          format: int64
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/deleteUserRequest'
+          required: true
+      responses:
+        '200':
+          description: Sponsor deleted successfully
+          schema:
+            $ref: '#/definitions/deleteUserResponse'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Ad not found
+    post:
+      tags:
+        - sponsor
+      summary: Add a new advertisement to Sponsor
+      description: This creates a new ad for the Sponsor.
+      operationId: createAd
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: userId
+          description: Unique ID of Sponsor User
+          required: true
+          type: integer
+          format: int64
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/createAdRequest'
+          required: true
+      responses:
+        '200':
+          description: Ad created successfully
+          schema:
+            $ref: '#/definitions/createAdResponse'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Ad not found
+        '405':
+          description: Invalid input
+  '/sponsor/{userId}/{adId}':
+    get:
+      tags:
+        - sponsor
+      summary: Retreive advertisement by ID
+      description: This gets a specific ad from the Sponsor.
+      operationId: getAdById
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: userId
+          description: Unique ID of Sponsor User
+          required: true
+          type: integer
+          format: int64
+        - name: adId
+          in: path
+          description: Unique ID of Advertisement
+          required: true
+          type: integer
+          format: int64
+        - in: query
+          name: name
+          description: Name of Advertisement
+          required: true
+          type: string
+        - in: query
+          name: url
+          description: Asset URL of Advertisement
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Ad retrieved successfully
+          schema:
+            $ref: '#/definitions/getAdResponse'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Ad not found
+    put:
+      tags:
+        - sponsor
+      summary: Updates sponsor advertisement
+      description: This updates an ad for the Sponsor.
+      operationId: updateAd
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: userId
+          description: Unique ID of Sponsor User
+          required: true
+          type: integer
+          format: int64
+        - name: adId
+          in: path
+          description: ID of ad that needs to be updated
+          required: true
+          type: integer
+          format: int64
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/modifyAdRequest'
+          required: true
+      responses:
+        '200':
+          description: Ad updated successfully
+          schema:
+            $ref: '#/definitions/modifyAdResponse'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Ad not found
+        '405':
+          description: Invalid input
+    delete:
+      tags:
+        - sponsor
+      summary: Deletes an ad
+      description: This deletes the ad of a Sponsor.
+      operationId: deleteAd
+      produces:
+        - application/json
+      parameters:
+        - name: adId
+          in: path
+          description: Ad ID to delete
+          required: true
+          type: integer
+          format: int64
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/deleteAdRequest'
+          required: true
+      responses:
+        '200':
+          description: Ad deleted successfully
+          schema:
+            $ref: '#/definitions/deleteAdResponse'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Ad not found
+  /publisher:
+    post:
+      tags:
+        - publisher
+      summary: Add a new user to the Publisher table.
+      description: This creates a new publisher user.
+      operationId: createPublisher
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/createUserRequest'
+          required: true
+      responses:
+        '200':
+          description: Publisher created successfully
+          schema:
+            $ref: '#/definitions/createUserResponse'
+        '405':
+          description: Invalid input
+  '/publisher/{userId}':
+    put:
+      tags:
+        - publisher
+      summary: Update a Publisher's information
+      description: This updates a Publisher's business information.
+      operationId: updatePublisher
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: userId
+          description: Unique ID of Publisher User
+          required: true
+          type: integer
+          format: int64
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/modifyUserRequest'
+          required: true
+      responses:
+        '200':
+          description: Publisher updated successfully
+          schema:
+            $ref: '#/definitions/modifyUserResponse'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: User not found
+        '405':
+          description: Validation exception
+    get:
+      tags:
+        - publisher
+      summary: Retrieve a Publisher's information
+      description: This gets information about the Publisher.
+      operationId: getPublisher
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: userId
+          description: Unique ID of Publisher User
+          required: true
+          type: integer
+          format: int64
+        - in: query
+          name: username
+          description: Username of Developer User
+          required: true
+          type: string
+        - in: query
+          name: email
+          description: Email of Developer User
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Publisher retrieved successfully
+          schema:
+            $ref: '#/definitions/getUserResponse'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: User not found
+        '405':
+          description: Validation exception
+    delete:
+      tags:
+        - publisher
+      summary: Deletes a Publisher user
+      description: This deletes the account of the Publisher.
+      operationId: deletePublisher
+      produces:
+        - application/json
+      parameters:
+        - name: userId
+          in: path
+          description: Publisher ID to delete
+          required: true
+          type: integer
+          format: int64
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/deleteUserRequest'
+          required: true
+      responses:
+        '200':
+          description: Publisher deleted successfully
+          schema:
+            $ref: '#/definitions/deleteUserResponse'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Ad not found
+definitions:
+  createUserRequest:
+    type: object
+    properties:
+      username:
+        type: string
+        example: jgellatly5
+      firstName:
+        type: string
+        example: Jordan
+      lastName:
+        type: string
+        example: Gellatly
+      email:
+        type: string
+        example: jgellatly5@gmail.com
+      password:
+        type: string
+        example: XXXXX
+      phone:
+        type: string
+        example: 1-800-555-5555
+      userStatus:
+        type: integer
+        format: int32
+        example: 0
+        description: User Status
+  createUserResponse:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+        example: 1001
+      username:
+        type: string
+        example: jgellatly5
+      firstName:
+        type: string
+        example: Jordan
+      lastName:
+        type: string
+        example: Gellatly
+      email:
+        type: string
+        example: jgellatly5@gmail.com
+      password:
+        type: string
+        example: XXXXX
+      phone:
+        type: string
+        example: 1-800-555-5555
+      userStatus:
+        type: integer
+        format: int32
+        example: 0
+        description: User Status
+  modifyUserRequest:
+    type: object
+    properties:
+      username:
+        type: string
+        example: jgellatly5
+      firstName:
+        type: string
+        example: Jordan
+      lastName:
+        type: string
+        example: Gellatly
+      email:
+        type: string
+        example: jgellatly5@gmail.com
+      password:
+        type: string
+        example: XXXXX
+      phone:
+        type: string
+        example: 1-800-555-5555
+      userStatus:
+        type: integer
+        format: int32
+        example: 0
+        description: User Status
+  modifyUserResponse:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+        example: 1001
+      username:
+        type: string
+        example: jgellatly5
+      firstName:
+        type: string
+        example: Jordan
+      lastName:
+        type: string
+        example: Gellatly
+      email:
+        type: string
+        example: jgellatly5@gmail.com
+      password:
+        type: string
+        example: XXXXX
+      phone:
+        type: string
+        example: 1-800-555-5555
+      userStatus:
+        type: integer
+        format: int32
+        example: 0
+        description: User Status
+  getUserResponse:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+        example: 1001
+      username:
+        type: string
+        example: jgellatly5
+      firstName:
+        type: string
+        example: Jordan
+      lastName:
+        type: string
+        example: Gellatly
+      email:
+        type: string
+        example: jgellatly5@gmail.com
+      password:
+        type: string
+        example: XXXXX
+      phone:
+        type: string
+        example: 1-800-555-5555
+      userStatus:
+        type: integer
+        format: int32
+        example: 0
+        description: User Status
+  deleteUserRequest:
+    type: object
+    properties:
+      username:
+        type: string
+        example: jgellatly5
+      email:
+        type: string
+        example: jgellatly5@gmail.com
+      password:
+        type: string
+        example: XXXXX
+  deleteUserResponse:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+        example: 1001
+      username:
+        type: string
+        example: jgellatly5
+      email:
+        type: string
+        example: jgellatly5@gmail.com
+  createAdRequest:
+    type: object
+    properties:
+      name:
+        type: string
+        example: polar bear coke
+      assetUrl:
+        type: string
+        example: 'http://polarbearcoke.com'
+      context:
+        type: integer
+        example: 0
+      anim:
+        type: string
+        example: static
+      genre:
+        type: string
+        example: outdoor-game
+      goal:
+        type: string
+        example: name-brand
+  createAdResponse:
+    type: object
+    properties:
+      id:
+        type: integer
+        example: 10001
+      name:
+        type: string
+        example: polar bear coke
+      assetUrl:
+        type: string
+        example: 'http://polarbearcoke.com'
+      context:
+        type: integer
+        example: 0
+      anim:
+        type: string
+        example: static
+      genre:
+        type: string
+        example: outdoor-game
+      goal:
+        type: string
+        example: name-brand
+  getAdResponse:
+    type: object
+    properties:
+      id:
+        type: integer
+        example: 10001
+      name:
+        type: string
+        example: polar bear coke
+      assetUrl:
+        type: string
+        example: 'http://polarbearcoke.com'
+      context:
+        type: integer
+        example: 0
+      anim:
+        type: string
+        example: static
+      genre:
+        type: string
+        example: outdoor-game
+      goal:
+        type: string
+        example: name-brand
+  modifyAdRequest:
+    type: object
+    properties:
+      name:
+        type: string
+        example: polar bear coke
+      assetUrl:
+        type: string
+        example: 'http://polarbearcoke.com'
+      context:
+        type: integer
+        example: 0
+      anim:
+        type: string
+        example: static
+      genre:
+        type: string
+        example: outdoor-game
+      goal:
+        type: string
+        example: name-brand
+  modifyAdResponse:
+    type: object
+    properties:
+      id:
+        type: integer
+        example: 10001
+      name:
+        type: string
+        example: polar bear coke
+      assetUrl:
+        type: string
+        example: 'http://polarbearcoke.com'
+      context:
+        type: integer
+        example: 0
+      anim:
+        type: string
+        example: static
+      genre:
+        type: string
+        example: outdoor-game
+      goal:
+        type: string
+        example: name-brand
+  deleteAdRequest:
+    type: object
+    properties:
+      id:
+        type: integer
+        example: 10001
+      name:
+        type: string
+        example: polar bear coke
+      assetUrl:
+        type: string
+        example: 'http://polarbearcoke.com'
+      username:
+        type: string
+        example: jgellatly5
+      email:
+        type: string
+        example: jgellatly5@gmail.com
+      password:
+        type: string
+        example: XXXXX
+  deleteAdResponse:
+    type: object
+    properties:
+      id:
+        type: integer
+        example: 10001
+      name:
+        type: string
+        example: polar bear coke
+      assetUrl:
+        type: string
+        example: 'http://polarbearcoke.com'
+externalDocs:
+  description: Find out more about Swagger
+  url: 'http://swagger.io'
