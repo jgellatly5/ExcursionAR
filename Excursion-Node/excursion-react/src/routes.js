@@ -19,9 +19,9 @@ const Routes = (props) => (
             <Route path="/learnMore" component={LearnMore} />
             <Route path="/contact" component={ContactForm} />
             <Route path="/signup" component={TempSignup} />
-            <Route path="/screen_1_0" component={Screen_1_0} />
-            <Route path="/screen_1_1" component={Screen_1_1} />
         </Route>
+        <Route path="/screen_1_0" component={Screen_1_0} />
+        <Route path="/screen_1_1" component={Screen_1_1} />
         <Route path="*" component={NotFound} />
     </Router>
 );
