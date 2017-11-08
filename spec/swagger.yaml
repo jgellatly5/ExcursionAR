@@ -5,7 +5,7 @@ info:
     app. To be discreet, there is a distinction betweeen the Sponsor user and
     the Publisher user. They will have separate DynamoDB tables to be put into.
     Once configured on AWS, this tool can be used to test curl calls to the API
-    endpoints. 
+    endpoints.
   version: 1.0.1
   title: Excursion Web API
   termsOfService: 'http://swagger.io/terms/'
@@ -24,7 +24,7 @@ tags:
 schemes:
   - http
 paths:
-  /sponsor:
+  '/sponsor':
     post:
       tags:
         - sponsor
@@ -126,6 +126,8 @@ paths:
       summary: Deletes a Sponsor user
       description: This deletes the account of the Sponsor.
       operationId: deleteSponsor
+      consumes:
+        - application/json
       produces:
         - application/json
       parameters:
@@ -189,6 +191,8 @@ paths:
       summary: Retreive advertisement by ID
       description: This gets a specific ad from the Sponsor.
       operationId: getAdById
+      consumes:
+        - application/json
       produces:
         - application/json
       parameters:
@@ -268,9 +272,17 @@ paths:
       summary: Deletes an ad
       description: This deletes the ad of a Sponsor.
       operationId: deleteAd
+      consumes:
+        - application/json
       produces:
         - application/json
       parameters:
+        - in: path
+          name: userId
+          description: Unique ID of Sponsor User
+          required: true
+          type: integer
+          format: int64
         - name: adId
           in: path
           description: Ad ID to delete
@@ -291,13 +303,15 @@ paths:
           description: Invalid ID supplied
         '404':
           description: Ad not found
-  /publisher:
+  '/publisher':
     post:
       tags:
         - publisher
       summary: Add a new user to the Publisher table.
       description: This creates a new publisher user.
       operationId: createPublisher
+      consumes:
+        - application/json
       produces:
         - application/json
       parameters:
@@ -391,6 +405,8 @@ paths:
       summary: Deletes a Publisher user
       description: This deletes the account of the Publisher.
       operationId: deletePublisher
+      consumes:
+        - application/json
       produces:
         - application/json
       parameters:
