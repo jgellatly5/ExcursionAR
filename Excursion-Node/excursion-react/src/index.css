@@ -795,6 +795,17 @@ table {
 	box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 2px 4px 0 rgba(0,0,0,0.12), 0 1px 3px 0 rgba(0,0,0,0.2);
 }
 
+/*Screen 1.1*/
+.ad-signup {
+    background: url(./sign_up_background_for_all.png);
+    background-size: cover;
+    font-family: Rubik;
+    text-align: left;
+    color: white;
+}
+
+
+
 /*#c7f7f9*/
 /*#00bcd4*/
 /* responsive design */
