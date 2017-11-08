@@ -773,6 +773,10 @@ table {
 	line-height: 22px;
 }
 
+.choose-path-panel .path {
+    margin-top: 50px;
+}
+
 .choose-path-panel .desc {
     text-align: left;
     margin-left: 25%;
