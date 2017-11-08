@@ -834,6 +834,7 @@ table {
     text-align: left;
     margin-left: 10%;
     padding-bottom: 0px;
+    margin-bottom: 50px;
 }
 
 .ad-signup form {
@@ -844,6 +845,25 @@ table {
     text-align: left;
     margin-left: 10%;
     padding-bottom: 0px;
+}
+
+.ad-signup label {
+	color: #161162;
+	font-size: 18px;
+	line-height: 22px;
+    font-weight: 400;
+}
+
+.ad-signup .btn {
+    /*margin-left: 75%;*/
+    position: absolute;
+    right: 0;
+    margin-right: 25%;
+    background-color: #8F8FBA;
+    border-radius: 2px;
+    padding-left: 40px;
+    padding-right: 40px;
+	box-shadow: 0 0 2px 0 rgba(0,0,0,0.14), 0 2px 2px 0 rgba(0,0,0,0.12), 0 1px 3px 0 rgba(0,0,0,0.2);
 }
 
 /*#c7f7f9*/
