@@ -42,11 +42,13 @@ class Home extends Component{
         };
     }
     handleDevForm() {
-        fetch('/sdkForm', {
+        fetch('https://ns8ytd9vbl.execute-api.us-east-1.amazonaws.com/dev/sendSdkEmail', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin' : '*',
+                'Access-Control-Request-Headers' : '*'
             },
             body: JSON.stringify({
                 name: this.state.devName,
@@ -201,6 +203,7 @@ class Home extends Component{
                                             name="devName"
                                             className="form-control"
                                             placeholder="Enter your Name"
+                                            required
                                         />
                                     </div>
 
@@ -213,6 +216,7 @@ class Home extends Component{
                                             name="devEmail"
                                             className="form-control"
                                             placeholder="Enter your Email"
+                                            required
                                         />
                                     </div>
 
@@ -225,6 +229,7 @@ class Home extends Component{
                                             name="devCompany"
                                             className="form-control"
                                             placeholder="Enter Company Name"
+                                            required
                                         />
                                     </div>
 
@@ -237,6 +242,7 @@ class Home extends Component{
                                             name="devWebsite"
                                             className="form-control"
                                             placeholder="http://"
+                                            required
                                         />
                                     </div>
 
@@ -249,6 +255,7 @@ class Home extends Component{
                                             name="devStoreLink"
                                             className="form-control"
                                             placeholder="http://"
+                                            required
                                         />
                                     </div>
 
@@ -261,6 +268,7 @@ class Home extends Component{
                                             name="devRefer"
                                             className="form-control"
                                             placeholder="Referral?"
+                                            required
                                         />
                                     </div>
 
@@ -273,6 +281,7 @@ class Home extends Component{
                                             name="devMessage"
                                             className="form-control"
                                             placeholder="Tell us about yourself..."
+                                            required
                                         />
                                     </div>
 

@@ -23,18 +23,20 @@ class TempSignup extends Component {
         browserHistory.push('/');
     }
     handleSendMessage() {
-        fetch('/adForm', {
+        fetch('https://ns8ytd9vbl.execute-api.us-east-1.amazonaws.com/dev/sendAdEmail', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin' : '*',
+                'Access-Control-Request-Headers' : '*'
             },
             body: JSON.stringify({
                 name: this.state.contactName,
                 email: this.state.contactEmail,
                 phone: this.state.phoneNumber,
                 company: this.state.companyName,
-                industry: this.state.industry,
+                // industry: this.state.industry,
                 website: this.state.website,
                 referral: this.state.referral
             })
@@ -70,6 +72,7 @@ class TempSignup extends Component {
                                     name="contactName"
                                     className="form-control"
                                     placeholder="Enter your Name"
+                                    required
                                 />
                             </div>
 
@@ -82,6 +85,7 @@ class TempSignup extends Component {
                                     name="companyName"
                                     className="form-control"
                                     placeholder="Enter Company Name"
+                                    required
                                 />
                             </div>
 
@@ -94,6 +98,7 @@ class TempSignup extends Component {
                                     name="phoneNumber"
                                     className="form-control"
                                     placeholder="Enter Phone Number"
+                                    required
                                 />
                             </div>
 
@@ -106,6 +111,7 @@ class TempSignup extends Component {
                                     name="contactEmail"
                                     className="form-control"
                                     placeholder="Enter your Email"
+                                    required
                                 />
                             </div>
                         </div>
@@ -139,6 +145,7 @@ class TempSignup extends Component {
                                     name="website"
                                     className="form-control"
                                     placeholder="http://"
+                                    required
                                 />
                             </div>
 
@@ -151,6 +158,7 @@ class TempSignup extends Component {
                                     name="referral"
                                     className="form-control"
                                     placeholder="Referral?"
+                                    required
                                 />
                             </div>
 
