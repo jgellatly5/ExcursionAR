@@ -797,8 +797,8 @@ table {
 
 /*Screen 1.1*/
 .ad-signup {
-    background: url(./sign_up_background_for_all.png);
-    background-size: cover;
+    /*background: url(./sign_up_background_for_all.png);*/
+    /*background-size: cover;*/
     font-family: Rubik;
     text-align: left;
     color: white;
@@ -814,6 +814,10 @@ table {
     padding-top: 20px;
     margin-top: 100px;
     margin-bottom: 100px;
+}
+
+.ad-signup .panel-body {
+    margin-bottom: 120px;
 }
 
 .ad-signup h1 {
@@ -835,6 +839,7 @@ table {
     margin-left: 10%;
     padding-bottom: 0px;
     margin-bottom: 50px;
+    margin-top: -10px;
 }
 
 .ad-signup form {
@@ -852,6 +857,12 @@ table {
 	font-size: 18px;
 	line-height: 22px;
     font-weight: 400;
+}
+
+.ad-signup .form-control {
+	border: 1px solid #1E1E75;
+    width: 150%;
+    height: 50px;
 }
 
 .ad-signup .btn {
