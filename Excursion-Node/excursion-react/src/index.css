@@ -729,12 +729,49 @@ table {
 .choose-path {
     background: transparent;
     font-family: Rubik;
+    text-align: left;
+    color: white;
 }
 
 .choose-path h1 {
-    text-align: left;
-    color: white;
     margin-left: 10%;
+    font-size: 48px;
+    font-weight: 500;
+    line-height: 57px;
+}
+
+.choose-path p {
+    margin-left: 10%;
+    color: #3AB1FF;
+    font-size: 18px;
+    line-height: 22px;
+}
+
+.choose-path-panel {
+    margin-top: 50px;
+    width: 30%;
+}
+
+.choose-path-panel .panel-body {
+    background-color: #16056A;
+	/*height: 48.24%;
+	width: 31.94%;*/
+	border: 2px solid #44C0FF;
+	border-radius: 4px;
+	box-shadow: 0 6px 10px 0 rgba(0,0,0,0.14), 0 1px 18px 0 rgba(0,0,0,0.12), 0 3px 5px 0 rgba(0,0,0,0.2);
+}
+
+.choose-path-panel p {
+    margin-left: 0%;
+    text-align: center;
+	color: #FFFFFF;
+	font-size: 18px;
+	font-weight: 500;
+	line-height: 22px;
+}
+
+.choose-path-button {
+    font-size: 18px;
 }
 
 /*#c7f7f9*/
