@@ -61,14 +61,14 @@ class Screen_1_1 extends Component{
                                     type="password"
                                     name="password"
                                     className="form-control"
+                                    id="last"
                                 />
                             </div>
 
                             <div className="form-group">
-                                <button className="btn btn-info btn-lg">
+                                <button className="btn btn-lg">
                                     Next
                                 </button>
-                                {/*<Link className="signup" to="/login">Login to Excursion</Link>*/}
                             </div>
                         </form>
                     </div>

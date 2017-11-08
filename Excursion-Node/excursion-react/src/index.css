@@ -806,11 +806,10 @@ table {
 
 .ad-signup-panel {
     height: 500px;
-    width: 75%;
     border-radius: 4px;
     background-color: #FFFFFF;
-    margin-left: 10%;
-    margin-right: 20%;
+    margin-left: 6%;
+    margin-right: 6%;
     padding-top: 20px;
     margin-top: 100px;
     margin-bottom: 100px;
@@ -818,6 +817,7 @@ table {
 
 .ad-signup .panel-body {
     margin-bottom: 120px;
+    padding-top: 50px;
 }
 
 .ad-signup h1 {
@@ -865,11 +865,16 @@ table {
     height: 50px;
 }
 
+.ad-signup #last {
+	margin-bottom: 40px;
+}
+
 .ad-signup .btn {
-    /*margin-left: 75%;*/
     position: absolute;
+    color: white;
     right: 0;
-    margin-right: 25%;
+    margin-right: 10%;
+    margin-top: 20px;
     background-color: #8F8FBA;
     border-radius: 2px;
     padding-left: 40px;
