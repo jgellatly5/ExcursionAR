@@ -4,7 +4,7 @@
     "importedSpec": "swagger.yaml",
     "name": "Excursion Web App",
     "repo": "ambujpunn/Excursion_Web_Node",
-    "splitSpec": true,
+    "splitSpec": false,
     "samples": true,
     "installSwaggerUI": true
   }
