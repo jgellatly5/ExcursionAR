@@ -21,6 +21,7 @@ class Screen_1_0 extends Component{
                         <Col xs={6}>
                             <Panel className="choose-path-panel">
                                 <p>I want to advertise my business.</p>
+                                <p className="desc">Excursion rocks!</p>
                                 <Button bsStyle="info" onClick={this.openDev} className="choose-path-button hvr-grow">
                                     Let{`'`}s Get Started
                                 </Button>
@@ -29,6 +30,7 @@ class Screen_1_0 extends Component{
                         <Col xs={6} className="choose-path-panel">
                             <Panel>
                                 <p>I want to monetize my business.</p>
+                                <p className="desc">Excursion rocks!</p>
                                 <Button bsStyle="info" onClick={this.openDev} className="choose-path-button hvr-grow">
                                     Let{`'`}s Get Started
                                 </Button>

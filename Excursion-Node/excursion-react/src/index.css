@@ -1,6 +1,7 @@
 /* main css */
 body {
     background: url(./sign_up_start_background.png);
+    background-size: cover;
     font-family: Lato;
     color: black;
 }
@@ -738,6 +739,7 @@ table {
     font-size: 48px;
     font-weight: 500;
     line-height: 57px;
+    padding-top: 50px;
 }
 
 .choose-path p {
@@ -749,13 +751,14 @@ table {
 
 .choose-path-panel {
     margin-top: 50px;
-    width: 30%;
+    margin-bottom: 300px;
 }
 
 .choose-path-panel .panel-body {
     background-color: #16056A;
 	/*height: 48.24%;
 	width: 31.94%;*/
+    height: 500px;
 	border: 2px solid #44C0FF;
 	border-radius: 4px;
 	box-shadow: 0 6px 10px 0 rgba(0,0,0,0.14), 0 1px 18px 0 rgba(0,0,0,0.12), 0 3px 5px 0 rgba(0,0,0,0.2);
@@ -770,8 +773,22 @@ table {
 	line-height: 22px;
 }
 
+.choose-path-panel .desc {
+    text-align: left;
+    margin-left: 25%;
+    color: #C7C7C7;
+    line-height: 22px;
+    margin-top: 26px;
+    margin-bottom: 41px;
+}
+
 .choose-path-button {
     font-size: 18px;
+	height: 50px;
+	line-height: 22px;
+    border-radius: 4px;
+	background-color: #44C0FF;
+	box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 2px 4px 0 rgba(0,0,0,0.12), 0 1px 3px 0 rgba(0,0,0,0.2);
 }
 
 /*#c7f7f9*/
