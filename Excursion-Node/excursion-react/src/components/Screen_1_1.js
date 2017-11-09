@@ -13,11 +13,11 @@ class Screen_1_1 extends Component{
     }
     render() {
         return (
-            <div>
+            <div className="ad-signup-container">
                 <div className="ad-signup">
                     <Panel className="ad-signup-panel">
                     <h1>Let{`'`}s Get Started</h1>
-                    <p>Create Your Account</p>
+                    <p>Create your account.</p>
                     <div>
                         <form onSubmit={this.onSubmit}>
                             <div className="form-group">

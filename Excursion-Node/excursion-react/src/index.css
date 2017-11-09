@@ -1,7 +1,9 @@
 /* main css */
 body {
-    background: url(./sign_up_start_background.png);
-    background-size: cover;
+    /*background: url(./sign_up_start_background.png);*/
+    background: url(./sign_up_background_for_all.png) no-repeat;
+    background-color: rgb(26, 26, 123);
+    /*background-size: cover;*/
     font-family: Lato;
     color: black;
 }
@@ -797,11 +799,17 @@ table {
 
 /*Screen 1.1*/
 .ad-signup {
-    /*background: url(./sign_up_background_for_all.png);*/
     /*background-size: cover;*/
     font-family: Rubik;
     text-align: left;
     color: white;
+}
+
+.ad-signup-container {
+    /*background: url(./sign_up_background_for_all.png);*/
+    height: 900px;
+    width: 1300px;
+    margin: 100px auto;
 }
 
 .ad-signup-panel {
@@ -811,8 +819,8 @@ table {
     margin-left: 6%;
     margin-right: 6%;
     padding-top: 20px;
-    margin-top: 100px;
-    margin-bottom: 100px;
+    /*margin-top: 100px;*/
+    /*margin-bottom: 100px;*/
 }
 
 .ad-signup .panel-body {
