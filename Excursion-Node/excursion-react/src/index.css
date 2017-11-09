@@ -1,6 +1,7 @@
 /* main css */
 body {
-    background: url(./sign_up_start_background.png);
+    /*background: url(./sign_up_start_background.png);*/
+    background-color: white;
     background-size: cover;
     font-family: Lato;
     color: black;
@@ -733,7 +734,8 @@ table {
 }
 
 .choose-path {
-    background: transparent;
+    background: url(./sign_up_start_background.png);
+    /*background: transparent;*/
     font-family: Rubik;
     text-align: left;
     color: white;
