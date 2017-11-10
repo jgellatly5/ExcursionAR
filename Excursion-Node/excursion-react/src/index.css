@@ -17,7 +17,14 @@ body {
     width: 100%;
     background-size: cover;
     background-color: #fff;
-    /*transition: opacity 1s ease-in-out;*/
+    opacity: 0;
+    transition: opacity 1s ease-out;
+
+}
+
+#headerwrap:hover {
+    opacity: 1;
+    transition: opacity 1s ease-in;
 }
 
 #picturewrap {
