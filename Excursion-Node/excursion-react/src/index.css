@@ -896,6 +896,10 @@ table {
     display: none;
 }
 
+.move-in-from-right {
+    transform: translateX(-100px);
+    transition: transform 2s ease-in;
+}
 
 /*#c7f7f9*/
 /*#00bcd4*/
