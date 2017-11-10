@@ -7,14 +7,23 @@ class Screen_1_1 extends Component{
     constructor(props) {
         super(props);
         this.state = {
-
+            screen1_1: 'visible',
+            screen1_2: 'hidden'
         }
         this.baseState = this.state;
+        this.toggleHidden = this.toggleHidden.bind(this);
+    }
+    toggleHidden(e) {
+        e.preventDefault();
+        this.setState({
+            screen1_1: 'hidden',
+            screen1_2: 'visible'
+        });
     }
     render() {
         return (
             <div className="ad-signup-container">
-                <div id="hidden" className="ad-signup">
+                <div id={this.state.screen1_1} className="ad-signup">
                     <Panel className="ad-signup-panel">
                     <h1>Let{`'`}s Get Started</h1>
                     <p>Create your account.</p>
@@ -66,7 +75,7 @@ class Screen_1_1 extends Component{
                             </div>
 
                             <div className="form-group">
-                                <button className="btn btn-lg">
+                                <button className="btn btn-lg" onClick={this.toggleHidden}>
                                     Next
                                 </button>
                             </div>
@@ -74,7 +83,7 @@ class Screen_1_1 extends Component{
                     </div>
                     </Panel>
                 </div>
-                <div className="ad-signup">
+                <div id={this.state.screen1_2} className="ad-signup">
                     <Panel className="ad-signup-panel">
                     <h1>What is your business?</h1>
                     <p>Fill out information about your business.</p>
