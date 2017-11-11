@@ -14,7 +14,7 @@ import AppLayout from './components/AppLayout';
 const Routes = (props) => (
     <Router history={browserHistory}>
         <Route path="/" component={AppLayout}>
-            <IndexRoute path="/" component={Home} />
+            <IndexRoute component={Home} />
             <Route path="/getStarted" component={GetStarted} />
             <Route path="/learnMore" component={LearnMore} />
             <Route path="/contact" component={ContactForm} />
