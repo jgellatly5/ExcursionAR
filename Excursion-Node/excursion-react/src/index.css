@@ -897,10 +897,10 @@ table {
 }
 
 .move-in-from-right {
-    transform-origin: 0 500px;
+    /*transform-origin: 0 500px;*/
     /*left: 500px;*/
-    transform: translateX(-500px);
-    transition: transform 1s ease-in;
+    /*transform: translateX(-500px);*/
+    /*transition: transform 1s ease-in;*/
 }
 
 /*#c7f7f9*/

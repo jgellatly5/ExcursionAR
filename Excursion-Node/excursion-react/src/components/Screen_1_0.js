@@ -1,16 +1,8 @@
 import React, { Component } from 'react';
-import {Grid, Row, Col, Panel, Jumbotron, Button, Modal, FormGroup, ControlLabel, FormControl} from 'react-bootstrap';
-import { Link } from 'react-router';
+import {Grid, Row, Col, Panel, Button} from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 
 class Screen_1_0 extends Component{
-    constructor(props) {
-        super(props);
-        this.state = {
-
-        }
-        this.baseState = this.state;
-    }
     render() {
         return (
             <div className="choose-path">
@@ -24,7 +16,7 @@ class Screen_1_0 extends Component{
                                 <p className="path">I want to advertise my business.</p>
                                 <p className="desc">Excursion rocks!</p>
                                 <LinkContainer to="/screen_1_1">
-                                    <Button bsStyle="info" onClick={this.openDev} className="choose-path-button hvr-grow">
+                                    <Button bsStyle="info" className="choose-path-button hvr-grow">
                                         Let{`'`}s Get Started
                                     </Button>
                                 </LinkContainer>
@@ -36,7 +28,7 @@ class Screen_1_0 extends Component{
                                 <p className="path">I want to monetize my business.</p>
                                 <p className="desc">Excursion rocks!</p>
                                 <LinkContainer to="/screen_1_1">
-                                    <Button bsStyle="info" onClick={this.openDev} className="choose-path-button hvr-grow">
+                                    <Button bsStyle="info" className="choose-path-button hvr-grow">
                                         Let{`'`}s Get Started
                                     </Button>
                                 </LinkContainer>
