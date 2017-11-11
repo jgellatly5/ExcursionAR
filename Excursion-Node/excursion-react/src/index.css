@@ -897,8 +897,10 @@ table {
 }
 
 .move-in-from-right {
-    transform: translateX(-100px);
-    transition: transform 2s ease-in;
+    transform-origin: 0 500px;
+    /*left: 500px;*/
+    transform: translateX(-500px);
+    transition: transform 1s ease-in;
 }
 
 /*#c7f7f9*/
