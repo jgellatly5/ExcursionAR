@@ -1,11 +1,22 @@
-import React from 'react';
-import Navigation from './Navigation';
+import React, { Component } from 'react';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+
+// class SponsorSignupLayout extends Component {
+//     render() {
+//         const page = this.props.location.pathname.substr(1);
+//     }
+// }
+const page = 1;
 
 const SponsorSignupLayout = ({ children }) => (
     <div>
-        <div>
-            { children }
-        </div>
+        <ReactCSSTransitionGroup
+            transitionName="sponsor"
+            transitionEnterTimeout={1000}
+            transitionLeaveTimeout={1000}
+        >
+            {React.cloneElement(this.props.children, {key: page})}
+        </ReactCSSTransitionGroup>
     </div>
 );
 
