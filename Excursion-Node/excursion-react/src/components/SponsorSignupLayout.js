@@ -6,7 +6,7 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 //         const page = this.props.location.pathname.substr(1);
 //     }
 // }
-const page = 1;
+const page = this.props.location.pathname.substr(1);
 
 const SponsorSignupLayout = ({ children }) => (
     <div>
@@ -15,7 +15,7 @@ const SponsorSignupLayout = ({ children }) => (
             transitionEnterTimeout={1000}
             transitionLeaveTimeout={1000}
         >
-            {React.cloneElement(this.props.children, {key: page})}
+            {children, {key: page}}
         </ReactCSSTransitionGroup>
     </div>
 );
