@@ -909,7 +909,7 @@ table {
 
 .sponsor-enter.sponsor-enter-active {
   transform: translate(0%);
-  transition: transform 1000ms ease-in-out;
+  transition: transform 2000ms ease-in-out;
 }
 
 .sponsor-leave {
@@ -918,7 +918,7 @@ table {
 
 .sponsor-leave.sponsor-leave-active {
   transform: translate(-100%);
-  transition: transform 1000ms ease-in-out;
+  transition: transform 2000ms ease-in-out;
 }
 
 /*#c7f7f9*/

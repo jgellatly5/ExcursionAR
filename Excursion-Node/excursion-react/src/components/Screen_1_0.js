@@ -3,7 +3,15 @@ import {Grid, Row, Col, Panel, Button} from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 
 class Screen_1_0 extends Component{
+    constructor(props) {
+        super(props);
+        this.handleChange = this.handleChange.bind(this);
+    }
+    handleChange(e) {
+        this.props.onActiveStateChange();
+    }
     render() {
+        const isActive = this.props.isActive;
         return (
             <div className="choose-path">
                 <h1>Welcome to Excursion</h1>
@@ -15,7 +23,7 @@ class Screen_1_0 extends Component{
                                 <i className="fa fa-clock-o big gradient-icon" aria-hidden="true"></i>
                                 <p className="path">I want to advertise my business.</p>
                                 <p className="desc">Excursion rocks!</p>
-                                <Button bsStyle="info" className="choose-path-button hvr-grow">
+                                <Button bsStyle="info" className="choose-path-button hvr-grow" onClick={this.props.handler}>
                                     Let{`'`}s Get Started
                                 </Button>
                             </Panel>
