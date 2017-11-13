@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import Screen_1_0 from "./Screen_1_0";
 import Screen_1_1 from "./Screen_1_1";
+import Screen_1_2 from "./Screen_1_2";
 
 class SponsorSignupLayout extends Component {
     constructor(props) {
@@ -14,10 +15,14 @@ class SponsorSignupLayout extends Component {
     handleScreenChange(e, num) {
         console.log("Handler being called already");
         console.log(num);
+        e.preventDefault();
         let newScreen = "";
         switch(num) {
             case 1:
-                newScreen = <Screen_1_1 key={num} handler={this.handleScreenChange(2)}/>;
+                newScreen = <Screen_1_1 key={num} handler={this.handleScreenChange}/>;
+                break;
+            case 2:
+                newScreen = <Screen_1_2 key={num} handler={this.handleScreenChange}/>;
                 break;
             default:
                 break;

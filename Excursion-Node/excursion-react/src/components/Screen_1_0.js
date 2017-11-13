@@ -1,20 +1,9 @@
 import React, { Component } from 'react';
 import {Grid, Row, Col, Panel, Button} from 'react-bootstrap';
-import { LinkContainer } from 'react-router-bootstrap';
 
 class Screen_1_0 extends Component{
-    constructor(props) {
-        super(props);
-        this.handleChange = this.handleChange.bind(this);
-        this.state = {
-            screen: 0
-        }
-    }
-    handleChange(e) {
-        this.props.onActiveStateChange();
-    }
     render() {
-        const isActive = this.props.isActive;
+        const nextScreen = 1;
         return (
             <div className="choose-path">
                 <h1>Welcome to Excursion</h1>
@@ -26,7 +15,7 @@ class Screen_1_0 extends Component{
                                 <i className="fa fa-clock-o big gradient-icon" aria-hidden="true"></i>
                                 <p className="path">I want to advertise my business.</p>
                                 <p className="desc">Excursion rocks!</p>
-                                <Button bsStyle="info" className="choose-path-button hvr-grow" onClick={(e) => this.props.handler(e, 1)}>
+                                <Button bsStyle="info" className="choose-path-button hvr-grow" onClick={(e) => this.props.handler(e, nextScreen)}>
                                     Let{`'`}s Get Started
                                 </Button>
                             </Panel>

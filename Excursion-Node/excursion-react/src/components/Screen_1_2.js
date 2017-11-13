@@ -6,23 +6,11 @@ import { LinkContainer } from 'react-router-bootstrap';
 class Screen_1_2 extends Component{
     constructor(props) {
         super(props);
-        this.state = {
-            screen1_1: 'visible',
-            screen1_2: 'hidden',
-            anim: ''
-        }
+        this.state = {};
         this.baseState = this.state;
-        this.toggleHidden = this.toggleHidden.bind(this);
-    }
-    toggleHidden(e) {
-        e.preventDefault();
-        this.setState({
-            screen1_1: 'hidden',
-            screen1_2: 'visible',
-            anim: 'move-in-from-right'
-        });
     }
     render() {
+        const newScreen = 3;
         return (
             <div className="ad-signup-container">
                 <div id={this.state.screen1_2} className={'ad-signup' + ' ' + this.state.anim}>

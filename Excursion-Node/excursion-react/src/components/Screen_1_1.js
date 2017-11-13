@@ -1,29 +1,14 @@
 import React, { Component } from 'react';
-import {Grid, Row, Col, Panel, Button, Form, FormGroup, ControlLabel, FormControl} from 'react-bootstrap';
-import { Link } from 'react-router';
-import { LinkContainer } from 'react-router-bootstrap';
-import Screen_1_2 from './Screen_1_2';
+import { Panel } from 'react-bootstrap';
 
 class Screen_1_1 extends Component{
     constructor(props) {
         super(props);
-        this.state = {
-            screen1_1: 'visible',
-            screen1_2: 'hidden',
-            anim: ''
-        }
+        this.state = {};
         this.baseState = this.state;
-        this.toggleHidden = this.toggleHidden.bind(this);
-    }
-    toggleHidden(e) {
-        e.preventDefault();
-        this.setState({
-            screen1_1: 'hidden',
-            screen1_2: 'visible',
-            anim: 'move-in-from-right'
-        });
     }
     render() {
+        const nextScreen = 2;
         return (
             <div className="ad-signup-container">
                 <div id={this.state.screen1_1} className="ad-signup">
@@ -78,7 +63,7 @@ class Screen_1_1 extends Component{
                             </div>
 
                             <div className="form-group">
-                                <button className="btn btn-lg" onClick={this.toggleHidden}>
+                                <button className="btn btn-lg" onClick={(e) => this.props.handler(e, nextScreen)}>
                                     Next
                                 </button>
                             </div>
