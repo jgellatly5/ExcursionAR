@@ -763,6 +763,16 @@ table {
     line-height: 22px;
 }
 
+.choose-path img {
+    border: 2px solid #44C0FF;
+    border-radius: 50%;
+    border-width: medium;
+    padding: 30px;
+    background-clip: border-box;
+    height: 150px;
+    width: 150px;
+}
+
 .choose-path-panel {
     margin-top: 50px;
     margin-bottom: 300px;
@@ -772,7 +782,15 @@ table {
     background-color: #16056A;
 	/*height: 48.24%;
 	width: 31.94%;*/
+    padding-top: 50px;
     height: 500px;
+    border: none;
+	/*border: 2px solid #44C0FF;*/
+	border-radius: 4px;
+	box-shadow: 0 6px 10px 0 rgba(0,0,0,0.14), 0 1px 18px 0 rgba(0,0,0,0.12), 0 3px 5px 0 rgba(0,0,0,0.2);
+}
+
+.choose-path-panel:hover .panel-body:hover {
 	border: 2px solid #44C0FF;
 	border-radius: 4px;
 	box-shadow: 0 6px 10px 0 rgba(0,0,0,0.14), 0 1px 18px 0 rgba(0,0,0,0.12), 0 3px 5px 0 rgba(0,0,0,0.2);
