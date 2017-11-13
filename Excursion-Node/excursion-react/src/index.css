@@ -892,16 +892,7 @@ table {
 }
 
 /*Screen 1.2*/
-#hidden {
-    display: none;
-}
 
-.move-in-from-right {
-    /*transform-origin: 0 500px;*/
-    /*left: 500px;*/
-    /*transform: translateX(-500px);*/
-    /*transition: transform 1s ease-in;*/
-}
 
 .sponsor-enter {
   transform: translate(100%);
