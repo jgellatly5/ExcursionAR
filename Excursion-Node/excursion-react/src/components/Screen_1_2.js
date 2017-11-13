@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import {Grid, Row, Col, Panel, Button, Form, FormGroup, ControlLabel, FormControl} from 'react-bootstrap';
-import { Link } from 'react-router';
-import { LinkContainer } from 'react-router-bootstrap';
+import { Panel } from 'react-bootstrap';
 
 class Screen_1_2 extends Component{
     constructor(props) {
@@ -10,7 +8,7 @@ class Screen_1_2 extends Component{
         this.baseState = this.state;
     }
     render() {
-        const newScreen = 3;
+        const nextScreen = 3;
         return (
             <div className="ad-signup-container">
                 <div id={this.state.screen1_2} className={'ad-signup' + ' ' + this.state.anim}>

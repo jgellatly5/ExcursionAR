@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { IndexLink, Link } from 'react-router';
 import { Navbar, Nav, NavItem} from 'react-bootstrap';
 import { IndexLinkContainer, LinkContainer } from 'react-router-bootstrap';
 
