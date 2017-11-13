@@ -19,9 +19,14 @@ class SponsorSignupLayout extends Component {
             mounted: true
         });
     }
+    componentWillUnmount() {
+        this.setState({
+            newMounted: true
+        });
+    }
     handleScreenChange(e, num) {
         e.preventDefault();
-        this.setState({ mounted: false, newMounted: true })
+        this.setState({ mounted: false })
         let newScreen = "";
         switch(num) {
             case 1:
@@ -40,8 +45,6 @@ class SponsorSignupLayout extends Component {
     render() {
         let child;
         if (this.state.mounted) {
-            child = this.state.screen;
-        } else if (this.state.newMounted) {
             child = this.state.screen;
         }
         return(
