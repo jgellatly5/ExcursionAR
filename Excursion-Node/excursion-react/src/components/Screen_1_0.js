@@ -6,6 +6,9 @@ class Screen_1_0 extends Component{
     constructor(props) {
         super(props);
         this.handleChange = this.handleChange.bind(this);
+        this.state = {
+            screen: 0
+        }
     }
     handleChange(e) {
         this.props.onActiveStateChange();
@@ -23,7 +26,7 @@ class Screen_1_0 extends Component{
                                 <i className="fa fa-clock-o big gradient-icon" aria-hidden="true"></i>
                                 <p className="path">I want to advertise my business.</p>
                                 <p className="desc">Excursion rocks!</p>
-                                <Button bsStyle="info" className="choose-path-button hvr-grow" onClick={this.props.handler}>
+                                <Button bsStyle="info" className="choose-path-button hvr-grow" onClick={(e) => this.props.handler(e, 1)}>
                                     Let{`'`}s Get Started
                                 </Button>
                             </Panel>

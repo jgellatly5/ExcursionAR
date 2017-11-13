@@ -11,10 +11,19 @@ class SponsorSignupLayout extends Component {
             screen: <Screen_1_0 key="0" handler={this.handleScreenChange}/>
         };
     }
-    handleScreenChange(e) {
-        e.preventDefault();
+    handleScreenChange(e, num) {
+        console.log("Handler being called already");
+        console.log(num);
+        let newScreen = "";
+        switch(num) {
+            case 1:
+                newScreen = <Screen_1_1 key={num} handler={this.handleScreenChange(2)}/>;
+                break;
+            default:
+                break;
+        }
         this.setState({
-            screen: <Screen_1_1 key="1" handler={this.handleScreenChange}/>
+            screen: newScreen
         });
     }
     render() {
