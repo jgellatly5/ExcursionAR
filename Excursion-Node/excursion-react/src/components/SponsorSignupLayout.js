@@ -13,8 +13,6 @@ class SponsorSignupLayout extends Component {
         };
     }
     handleScreenChange(e, num) {
-        console.log("Handler being called already");
-        console.log(num);
         e.preventDefault();
         let newScreen = "";
         switch(num) {
@@ -32,9 +30,6 @@ class SponsorSignupLayout extends Component {
         });
     }
     render() {
-        // const children = this.props.children;
-        // const screen = <Screen_1_0 />;
-        // const names = ['Jake', 'Jon', 'Thruster'];
         return(
             <div>
                 <ReactCSSTransitionGroup
