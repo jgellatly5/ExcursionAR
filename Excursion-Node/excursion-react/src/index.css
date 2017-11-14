@@ -771,6 +771,9 @@ table {
     background-clip: border-box;
     height: 150px;
     width: 150px;
+    /*background-image: url("./screen_1_0_advertising_icon.svg");
+    background-size: cover;
+    background-position: center;*/
 }
 
 .choose-path-panel {
