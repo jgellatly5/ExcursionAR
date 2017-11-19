@@ -20,7 +20,7 @@ class Screen_1_0 extends Component{
                     <Grid>
                         <Row>
                             <Col xs={6}>
-                                <Panel className="choose-path-panel">
+                                <Panel className="choose-path-panel hover-reveal">
                                     <img src={require("../screen_1_0_advertising_icon.svg")}/>
                                     <p className="path">I want to advertise my business.</p>
                                     <p className="desc">Excursion rocks!</p>
