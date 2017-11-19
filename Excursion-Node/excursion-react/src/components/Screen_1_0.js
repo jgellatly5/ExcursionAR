@@ -21,7 +21,7 @@ class Screen_1_0 extends Component{
                         <Row>
                             <Col xs={6}>
                                 <Panel className="choose-path-panel">
-                                    <img src={require("../screen_1_0_advertising_icon.svg")}/>
+                                    <img src={require("../blank.png")} className="icon-speaker"/>
                                     <p className="path">I want to advertise my business.</p>
                                     <p className="desc">Excursion rocks!</p>
                                     <Button bsStyle="info" onClick={this.openDev} className="choose-path-button hvr-grow">
@@ -31,7 +31,7 @@ class Screen_1_0 extends Component{
                             </Col>
                             <Col xs={6} className="choose-path-panel">
                                 <Panel>
-                                    <img src={require("../screen_1_0_monetize_icon.svg")}/>
+                                    <img src={require("../blank.png")} className="icon-phone"/>
                                     <p className="path">I want to monetize my business.</p>
                                     <p className="desc">Excursion rocks!</p>
                                     <Button bsStyle="info" onClick={this.openDev} className="choose-path-button hvr-grow">
