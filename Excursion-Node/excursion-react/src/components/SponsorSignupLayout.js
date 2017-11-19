@@ -10,31 +10,23 @@ class SponsorSignupLayout extends Component {
         this.handleScreenChange = this.handleScreenChange.bind(this);
         this.state = {
             screen: <Screen_1_0 key="0" handler={this.handleScreenChange}/>,
-            mounted: false,
-            newMounted: false
+            isScreenChanging: false
         };
     }
     componentDidMount() {
         this.setState({
-            mounted: true
+            isScreenChanging: true
         });
-    }
-    componentWillUnmount() {
-        this.setState({
-            newMounted: true
-        });
+        console.log("Component just mounted");
     }
     handleScreenChange(e, num) {
         e.preventDefault();
         // Uncommenting causes the full animation to work for one slide, but does not let other slides appear
-        // this.setState({ mounted: false });
+        // this.setState({ isScreenChanging: false });
         let newScreen = "";
-        console.log("The input was " + num);
         switch(num) {
             case 1:
                 newScreen = <Screen_1_1 key={num} handler={this.handleScreenChange}/>;
-                console.log("We are in the switch and the input was " + num);
-                console.log(newScreen);
                 break;
             case 2:
                 newScreen = <Screen_1_2 key={num} handler={this.handleScreenChange}/>;
@@ -43,19 +35,12 @@ class SponsorSignupLayout extends Component {
                 break;
         }
         this.setState({
-            screen: newScreen,
-            mounted: false
-        }, function() {
-            this.render;
-            console.log("Calling this.render");
+            screen: newScreen
         });
-        console.log("we are in handleScreenChange function");
-        console.log(this.state.screen);
-        console.log(this.state.mounted);
     }
     render() {
         let child;
-        if (this.state.mounted) {
+        if (this.state.isScreenChanging) {
             child = this.state.screen;
         }
         return(
