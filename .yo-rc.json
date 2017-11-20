@@ -1,0 +1,11 @@
+{
+  "generator-openapi-repo": {
+    "importExistingSpec": true,
+    "importedSpec": "swagger.yaml",
+    "name": "Excursion Web App",
+    "repo": "ambujpunn/Excursion_Web_Node",
+    "splitSpec": false,
+    "samples": true,
+    "installSwaggerUI": true
+  }
+}

@@ -38,7 +38,7 @@ class Navigation extends Component{
                             <NavItem eventKey={ 4 } className="hvr-underline-from-left-white">Contact</NavItem>
                         </LinkContainer>
                         <LinkContainer to="/signup">
-                            <NavItem eventKey={ 5 } className="hvr-underline-from-left-white">Sponsor Signup</NavItem>
+                            <NavItem eventKey={ 5 } className="hvr-underline-from-left-white">Signup</NavItem>
                         </LinkContainer>
                     </Nav>
                     {/*<Nav pullRight>
