@@ -2,7 +2,6 @@ import React from 'react';
 import { render } from 'react-dom';
 import { Router, Route, browserHistory, IndexRoute } from 'react-router';
 import Home from './components/Home';
-import TempSignup from './components/TempSignup';
 import NotFound from './components/NotFound';
 import GetStarted from './components/GetStarted';
 import LearnMore from './components/LearnMore';
@@ -17,9 +16,8 @@ const Routes = (props) => (
             <Route path="/getStarted" component={GetStarted} />
             <Route path="/learnMore" component={LearnMore} />
             <Route path="/contact" component={ContactForm} />
-            <Route path="/signup" component={TempSignup} />
         </Route>
-        <Route path="/screen_1_0" component={Screen_1_0} />
+        <Route path="/signup" component={Screen_1_0} />
         <Route path="*" component={NotFound} />
     </Router>
 );
