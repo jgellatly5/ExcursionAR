@@ -3,7 +3,7 @@ import {Grid, Row, Col, Panel, Button, Form, FormGroup, ControlLabel, FormContro
 import { Link } from 'react-router';
 import { LinkContainer } from 'react-router-bootstrap';
 
-class Screen_1_1 extends Component{
+class SponsorForm extends Component{
     constructor(props) {
         super(props);
         this.state = {
@@ -28,6 +28,7 @@ class Screen_1_1 extends Component{
                                     type="text"
                                     name="firstName"
                                     className="form-control"
+                                    required
                                 />
                             </div>
 
@@ -39,6 +40,7 @@ class Screen_1_1 extends Component{
                                     type="text"
                                     name="lastName"
                                     className="form-control"
+                                    required
                                 />
                             </div>
 
@@ -47,9 +49,10 @@ class Screen_1_1 extends Component{
                                 <input
                                     value={this.state.email}
                                     onChange={this.onChange}
-                                    type="text"
+                                    type="email"
                                     name="email"
                                     className="form-control"
+                                    required
                                 />
                             </div>
 
@@ -62,6 +65,7 @@ class Screen_1_1 extends Component{
                                     name="password"
                                     className="form-control"
                                     id="last"
+                                    required
                                 />
                             </div>
 
@@ -79,4 +83,4 @@ class Screen_1_1 extends Component{
     }
 };
 
-export default Screen_1_1;
+export default SponsorForm;

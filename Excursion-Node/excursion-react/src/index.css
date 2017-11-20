@@ -1,9 +1,7 @@
 /* main css */
 body {
-    /*background: url(./sign_up_start_background.png);*/
     background: url(./sign_up_background_for_all.png) no-repeat;
     background-color: #fff;
-    /*background-size: cover;*/
     font-family: Lato;
     color: black;
 }
@@ -17,15 +15,7 @@ body {
     width: 100%;
     background-size: cover;
     background-color: #fff;
-    /*opacity: 0;
-    transition: opacity 1s ease-out;*/
 }
-
-/*#headerwrap:hover {
-    opacity: 1;
-    transition: opacity 1s ease-in;
-    background-color: #fff;
-}*/
 
 .jumbotron {
     margin-bottom: 0px;
@@ -815,7 +805,6 @@ table {
 }
 
 .ad-signup-container {
-    /*background: url(./sign_up_background_for_all.png);*/
     height: 900px;
     width: 1300px;
     margin: 100px auto;
@@ -827,8 +816,6 @@ table {
     background-color: #FFFFFF;
     margin-left: 6%;
     margin-right: 6%;
-    /*margin-top: 100px;*/
-    /*margin-bottom: 100px;*/
 }
 
 .ad-signup .panel-body {
@@ -870,20 +857,20 @@ table {
 }
 
 .ad-signup label {
-	color: #161162;
-	font-size: 18px;
-	line-height: 22px;
+    color: #161162;
+    font-size: 18px;
+    line-height: 22px;
     font-weight: 400;
 }
 
 .ad-signup .form-control {
-	border: 1px solid #1E1E75;
+    border: 1px solid #1E1E75;
     width: 150%;
     height: 50px;
 }
 
 .ad-signup #last {
-	margin-bottom: 40px;
+    margin-bottom: 40px;
 }
 
 .ad-signup .btn {
@@ -896,7 +883,7 @@ table {
     border-radius: 2px;
     padding-left: 40px;
     padding-right: 40px;
-	box-shadow: 0 0 2px 0 rgba(0,0,0,0.14), 0 2px 2px 0 rgba(0,0,0,0.12), 0 1px 3px 0 rgba(0,0,0,0.2);
+    box-shadow: 0 0 2px 0 rgba(0,0,0,0.14), 0 2px 2px 0 rgba(0,0,0,0.12), 0 1px 3px 0 rgba(0,0,0,0.2);
 }
 
 /*#c7f7f9*/

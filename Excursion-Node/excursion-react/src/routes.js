@@ -6,8 +6,8 @@ import NotFound from './components/NotFound';
 import GetStarted from './components/GetStarted';
 import LearnMore from './components/LearnMore';
 import ContactForm from './components/ContactForm';
-import Screen_1_0 from './components/Screen_1_0';
-import Screen_1_1 from './components/Screen_1_1';
+import Signup from './components/Signup';
+import SponsorForm from './components/SponsorForm';
 import AppLayout from './components/AppLayout';
 
 const Routes = (props) => (
@@ -18,8 +18,8 @@ const Routes = (props) => (
             <Route path="/learnMore" component={LearnMore} />
             <Route path="/contact" component={ContactForm} />
         </Route>
-        <Route path="/signup" component={Screen_1_0} />
-        <Route path="/sponsor" component={Screen_1_1} />
+        <Route path="/signup" component={Signup} />
+        <Route path="/sponsor" component={SponsorForm} />
         <Route path="*" component={NotFound} />
     </Router>
 );
