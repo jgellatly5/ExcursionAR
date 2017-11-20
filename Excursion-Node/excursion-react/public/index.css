@@ -8,6 +8,10 @@ body {
     color: black;
 }
 
+.test {
+    /*nothing*/
+}
+
 #headerwrap {
     background: url("./excursion-logo.jpg") no-repeat center top;
     /*margin-top: -50px;*/

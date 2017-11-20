@@ -30,7 +30,7 @@ class LearnMore extends Component{
                 <div className="getstarted">
                     <p>Features of Excursion include:</p>
                     <ul>
-                        <li>publisher Portal for API key management</li>
+                        <li>Publisher Portal for API key management</li>
                         <li>SDK for easy integration within AR applications</li>
                         <li>Advertisement dashboard and ad tracking system</li>
                     </ul>
@@ -81,8 +81,7 @@ class LearnMore extends Component{
                 <hr/>
                 <div className="getstarted">
                     <h2>If I am a publisher (developer), how do I register?</h2>
-                    <p>We currently are in development of the SDK and are taking registration requests
-                    for the publishers who are interested in testing the Excursion beta. When the SDK is ready, you will be routed to the developer portal dashboard.
+                    <p>We currently are in development of the SDK and are taking <Link to="/">registration requests</Link> for the publishers who are interested in testing the Excursion beta. When the SDK is ready, you will be routed to the developer portal dashboard.
                     Here you can access which apps are registered with Excursion, which API keys are
                     currently active, and the amount of money generated from your applications.</p>
                 </div>
@@ -91,9 +90,7 @@ class LearnMore extends Component{
                     <h2>Is Excursion free to use?</h2>
                     <p>Yes! We do not charge sponsors to register with the platform or publishers to use the SDK.
                     Money is only involved when a sponsor sets their budget, chooses their cost-per-impression, and
-                    the resulting ad is viewed by the user. Our current revenue share model is 60-40 where the publisher
-                    receives 60% of the generated revenue and Excursion receives the rest. The publisher gets paid, the
-                    sponsor successfully captures the user, the user continues engaging with the app and everyone is happy!</p>
+                    the resulting ad is viewed by the user. More details to come soon! Feel free to <Link to="/contact">Contact Us</Link> if you have any specific questions.</p>
                 </div>
                 <div className="greywrap">
                     <Jumbotron className="contactfooter">

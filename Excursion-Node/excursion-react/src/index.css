@@ -2,7 +2,7 @@
 body {
     /*background: url(./sign_up_start_background.png);*/
     background: url(./sign_up_background_for_all.png) no-repeat;
-    background-color: rgb(26, 26, 123);
+    background-color: #fff;
     /*background-size: cover;*/
     font-family: Lato;
     color: black;
@@ -10,7 +10,6 @@ body {
 
 #headerwrap {
     background: url("./excursion-logo.jpg") no-repeat center top;
-    /*margin-top: -50px;*/
     padding-top: 120px;
     text-align: center;
     background-position: center center;
@@ -18,18 +17,15 @@ body {
     width: 100%;
     background-size: cover;
     background-color: #fff;
-    /*transition: opacity 1s ease-in-out;*/
+    /*opacity: 0;
+    transition: opacity 1s ease-out;*/
 }
 
-#picturewrap {
-    /*background: url("./ExcursionWebPhoto.jpg") no-repeat center top;*/
-    padding-top: 120px;
-    text-align: center;
-    background-position: center center;
-    min-height: 650px;
-    width: 100%;
-    background-size: cover;
-}
+/*#headerwrap:hover {
+    opacity: 1;
+    transition: opacity 1s ease-in;
+    background-color: #fff;
+}*/
 
 .jumbotron {
     margin-bottom: 0px;
@@ -202,24 +198,17 @@ h4 {
 .modal-body {
     background-color: #094977;
 }
-.modal-header {
+.modal-header, .modal-para {
     text-align: center;
 }
-.modalhead {
+.modalhead, .modal-footer {
     background-color: #0e76bd;
 }
-.modal-footer {
-    background-color: #0e76bd;
-}
-.modal-para {
-    text-align: center;
-}
-.form-control {
+
+.form-control, button {
     box-shadow: 0 4px 2px -2px grey;
 }
-button {
-    box-shadow: 0 4px 2px -2px grey;
-}
+
 .col-xs-4 {
     height: 165px;
     padding-bottom: 10px;
@@ -237,10 +226,6 @@ button {
     background-color: #fff;
     color: black;
 }
-
-/*.container, .row {
-    width: 100%;
-}*/
 
 h4 {
     font-weight: bold;
@@ -288,7 +273,6 @@ h4 {
 }
 
 .altbg {
-    /*background: url("/images/watchbg.gif") no-repeat center top;*/
     background-color: black;
     padding-top: 120px;
     background-position: center center;
@@ -423,60 +407,13 @@ table {
     padding-left: 10px;
 }
 
-.altbg:hover .fade {
-    margin-top: 200px;
-    font-size: 55px;
-    text-align: center;
-
-    -webkit-animation: fadein 8s; /* Safari, Chrome and Opera > 12.1 */
-       -moz-animation: fadein 8s; /* Firefox < 16 */
-        -ms-animation: fadein 8s; /* Internet Explorer */
-         -o-animation: fadein 8s; /* Opera < 12.1 */
-            animation: fadein 8s;
-}
-
-@keyframes fadein {
-    from { opacity: 0; }
-    to   { opacity: 1; }
-}
-
-/* Firefox < 16 */
-@-moz-keyframes fadein {
-    from { opacity: 0; }
-    to   { opacity: 1; }
-}
-
-/* Safari, Chrome and Opera > 12.1 */
-@-webkit-keyframes fadein {
-    from { opacity: 0; }
-    to   { opacity: 1; }
-}
-
-/* Internet Explorer */
-@-ms-keyframes fadein {
-    from { opacity: 0; }
-    to   { opacity: 1; }
-}
-
-/* Opera < 12.1 */
-@-o-keyframes fadein {
-    from { opacity: 0; }
-    to   { opacity: 1; }
-}
-
 /*SDK form*/
 .modal-body label {
     font-size: 14px;
 }
 
-
 /* Panels Home Page*/
-.first p {
-    font-size: 20px;
-    color: #58585a;
-}
-
-.second p {
+.first p, .second p {
     font-size: 20px;
     color: #58585a;
 }
@@ -574,24 +511,9 @@ table {
     font-size: 23px;
 }
 
-.contactsend {
+.contactsend, .contactsend:hover {
     background-color: #0e76bd;
     border-color: #0e76bd;
-}
-
-.contactsend:hover {
-    background-color: #0e76bd;
-    border-color: #0e76bd;
-}
-
-.contactphoto {
-    background: url("/images/nasa-43566.jpg") no-repeat center top;
-    padding-top: 120px;
-    text-align: center;
-    background-position: center center;
-    min-height: 650px;
-    width: 100%;
-    background-size: cover;
 }
 
 .contactform {
@@ -615,7 +537,6 @@ table {
     width: 100%;
     margin-right: 0%;
 }
-
 
 /*Signup Page*/
 .jumbotron h2 {
@@ -728,16 +649,79 @@ table {
     right: 0;
 }
 
+.hvr-border-fade {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px transparent;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: box-shadow;
+  transition-property: box-shadow;
+  box-shadow: inset 0 0 0 4px #e1e1e1, 0 0 1px transparent;
+  /* Hack to improve aliasing on mobile/tablet devices */
+}
+.hvr-border-fade:hover, .hvr-border-fade:focus, .hvr-border-fade:active {
+  box-shadow: inset 0 0 0 4px #2098D1, 0 0 1px transparent;
+  /* Hack to improve aliasing on mobile/tablet devices */
+}
+
+.hvr-reveal {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px transparent;
+  position: relative;
+  overflow: hidden;
+}
+.hvr-reveal:before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  border-color: #2098D1;
+  border-style: solid;
+  border-width: 0;
+  -webkit-transition-property: border-width;
+  transition-property: border-width;
+  -webkit-transition-duration: 0.1s;
+  transition-duration: 0.1s;
+  -webkit-transition-timing-function: ease-out;
+  transition-timing-function: ease-out;
+}
+.hvr-reveal:hover:before, .hvr-reveal:focus:before, .hvr-reveal:active:before {
+  -webkit-transform: translateY(0);
+  transform: translateY(0);
+  border-width: 4px;
+}
+
 /*Screen 1.0*/
+.container {
+    width: 960px;
+    margin: 0 auto;
+}
+
 .choose-path {
-    background: transparent;
+    background: url(./sign_up_start_background.png);
+    /*background: transparent;*/
     font-family: Rubik;
     text-align: left;
     color: white;
 }
 
+.choose-path .panel {
+    border: 0;
+    border-radius: 4px;
+    box-shadow: 0 6px 10px 0 rgba(0,0,0,0.14), 0 1px 18px 0 rgba(0,0,0,0.12), 0 3px 5px 0 rgba(0,0,0,0.2);
+}
+
 .choose-path h1 {
-    margin-left: 10%;
+    margin-left: 2%;
     font-size: 48px;
     font-weight: 500;
     line-height: 57px;
@@ -745,10 +729,31 @@ table {
 }
 
 .choose-path p {
-    margin-left: 10%;
+    margin-left: 2%;
     color: #3AB1FF;
     font-size: 18px;
     line-height: 22px;
+}
+
+.choose-path img {
+    border-radius: 50%;
+    border-width: medium;
+    padding: 30px;
+    background-clip: border-box;
+    height: 150px;
+    width: 150px;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.icon-speaker {
+    background-image: url("./screen_1_0_advertising_icon.svg");
+    border: 2px solid #44C0FF;
+}
+
+.icon-phone {
+    background-image: url("./screen_1_0_monetize_icon.svg");
+    border: 2px solid white;
 }
 
 .choose-path-panel {
@@ -758,12 +763,16 @@ table {
 
 .choose-path-panel .panel-body {
     background-color: #16056A;
-	/*height: 48.24%;
-	width: 31.94%;*/
+    padding-top: 50px;
     height: 500px;
+    border: none;
+}
+
+.choose-path-panel:hover .panel-body:hover {
 	border: 2px solid #44C0FF;
-	border-radius: 4px;
-	box-shadow: 0 6px 10px 0 rgba(0,0,0,0.14), 0 1px 18px 0 rgba(0,0,0,0.12), 0 3px 5px 0 rgba(0,0,0,0.2);
+    border-radius: 4px;
+    padding-top: 50px;
+    margin: -2px;
 }
 
 .choose-path-panel p {
@@ -781,7 +790,7 @@ table {
 
 .choose-path-panel .desc {
     text-align: left;
-    margin-left: 25%;
+    margin-left: 20%;
     color: #C7C7C7;
     line-height: 22px;
     margin-top: 26px;
@@ -818,7 +827,6 @@ table {
     background-color: #FFFFFF;
     margin-left: 6%;
     margin-right: 6%;
-    padding-top: 20px;
     /*margin-top: 100px;*/
     /*margin-bottom: 100px;*/
 }
@@ -826,6 +834,7 @@ table {
 .ad-signup .panel-body {
     margin-bottom: 120px;
     padding-top: 50px;
+    box-shadow: 0 6px 10px 0 rgba(0,0,0,0.14), 0 1px 18px 0 rgba(0,0,0,0.12), 0 3px 5px 0 rgba(0,0,0,0.2);
 }
 
 .ad-signup h1 {
