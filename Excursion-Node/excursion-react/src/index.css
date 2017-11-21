@@ -796,6 +796,10 @@ table {
 	box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 2px 4px 0 rgba(0,0,0,0.12), 0 1px 3px 0 rgba(0,0,0,0.2);
 }
 
+.choose-path-panel a {
+    padding-top: 12px;
+}
+
 /*Screen 1.1*/
 .ad-signup {
     /*background-size: cover;*/
@@ -886,8 +890,8 @@ table {
 }
 
 .ad-signup .btn.active {
-    border: 2px solid #44C0FF;
-    background-color: #44C0FF;
+    border: 2px solid #1E1E75;
+    background-color: #1E1E75;
     border-radius: 2px;
     box-shadow: 0 0 2px 0 rgba(0,0,0,0.14), 0 2px 2px 0 rgba(0,0,0,0.12), 0 1px 3px 0 rgba(0,0,0,0.2);
 }
