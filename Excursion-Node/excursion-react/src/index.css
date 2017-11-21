@@ -1,8 +1,7 @@
 /* main css */
 body {
-    /*background: url(./sign_up_start_background.png);*/
-    background-color: white;
-    background-size: cover;
+    background: url(./sign_up_background_for_all.png) no-repeat;
+    background-color: #fff;
     font-family: Lato;
     color: black;
 }
@@ -16,13 +15,6 @@ body {
     width: 100%;
     background-size: cover;
     background-color: #fff;
-    opacity: 0;
-    transition: opacity 1s ease-out;
-}
-
-#headerwrap:hover {
-    opacity: 1;
-    transition: opacity 1s ease-in;
 }
 
 .jumbotron {
@@ -802,6 +794,107 @@ table {
     border-radius: 4px;
 	background-color: #44C0FF;
 	box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 2px 4px 0 rgba(0,0,0,0.12), 0 1px 3px 0 rgba(0,0,0,0.2);
+}
+
+.choose-path-panel a {
+    padding-top: 12px;
+}
+
+/*Screen 1.1*/
+.ad-signup {
+    /*background-size: cover;*/
+    font-family: Rubik;
+    text-align: left;
+    color: white;
+}
+
+.ad-signup-container {
+    height: 900px;
+    width: 1300px;
+    margin: 100px auto;
+}
+
+.ad-signup-panel {
+    height: 500px;
+    border-radius: 4px;
+    background-color: #FFFFFF;
+    margin-left: 6%;
+    margin-right: 6%;
+}
+
+.ad-signup .panel-body {
+    margin-bottom: 120px;
+    padding-top: 50px;
+    box-shadow: 0 6px 10px 0 rgba(0,0,0,0.14), 0 1px 18px 0 rgba(0,0,0,0.12), 0 3px 5px 0 rgba(0,0,0,0.2);
+}
+
+.ad-signup h1 {
+    color: #161162;
+    font-size: 48px;
+    line-height: 57px;
+    font-weight: 400;
+    text-align: left;
+    margin-left: 10%;
+    padding-bottom: 0px;
+}
+
+.ad-signup p {
+    color: #747474;
+    font-size: 18px;
+    line-height: 22px;
+    font-weight: 400;
+    text-align: left;
+    margin-left: 10%;
+    padding-bottom: 0px;
+    margin-bottom: 50px;
+    margin-top: -10px;
+}
+
+.ad-signup form {
+    color: ##161162;
+    font-size: 18px;
+    line-height: 22px;
+    font-weight: 400;
+    text-align: left;
+    margin-left: 10%;
+    padding-bottom: 0px;
+}
+
+.ad-signup label {
+    color: #161162;
+    font-size: 18px;
+    line-height: 22px;
+    font-weight: 400;
+}
+
+.ad-signup .form-control {
+    border: 1px solid #1E1E75;
+    width: 150%;
+    height: 50px;
+}
+
+.ad-signup #last {
+    margin-bottom: 40px;
+}
+
+.ad-signup .btn {
+    cursor: default;
+    color: white;
+    right: 0;
+    margin-left: 200%;
+    margin-top: 20px;
+    background-color: #8F8FBA;
+    border-radius: 2px;
+    padding-left: 40px;
+    padding-right: 40px;
+    box-shadow: 0 0 2px 0 rgba(0,0,0,0.14), 0 2px 2px 0 rgba(0,0,0,0.12), 0 1px 3px 0 rgba(0,0,0,0.2);
+}
+
+.ad-signup .btn.active {
+    border: 2px solid #1E1E75;
+    background-color: #1E1E75;
+    border-radius: 2px;
+    box-shadow: 0 0 2px 0 rgba(0,0,0,0.14), 0 2px 2px 0 rgba(0,0,0,0.12), 0 1px 3px 0 rgba(0,0,0,0.2);
 }
 
 /*#c7f7f9*/

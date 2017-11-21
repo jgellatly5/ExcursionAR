@@ -1,8 +1,8 @@
 {
-  "main.css": "static/css/main.73abac6a.css",
-  "main.css.map": "static/css/main.73abac6a.css.map",
-  "main.js": "static/js/main.6729f24f.js",
-  "main.js.map": "static/js/main.6729f24f.js.map",
+  "main.css": "static/css/main.7329cce3.css",
+  "main.css.map": "static/css/main.7329cce3.css.map",
+  "main.js": "static/js/main.004a00aa.js",
+  "main.js.map": "static/js/main.004a00aa.js.map",
   "static\\media\\ExcursionGif.gif": "static/media/ExcursionGif.881563d6.gif",
   "static\\media\\excursion-logo.jpg": "static/media/excursion-logo.7026c150.jpg",
   "static\\media\\glyphicons-halflings-regular.eot": "static/media/glyphicons-halflings-regular.f4769f9b.eot",
@@ -12,5 +12,6 @@
   "static\\media\\glyphicons-halflings-regular.woff2": "static/media/glyphicons-halflings-regular.448c34a5.woff2",
   "static\\media\\screen_1_0_advertising_icon.svg": "static/media/screen_1_0_advertising_icon.91056010.svg",
   "static\\media\\screen_1_0_monetize_icon.svg": "static/media/screen_1_0_monetize_icon.50f48248.svg",
+  "static\\media\\sign_up_background_for_all.png": "static/media/sign_up_background_for_all.8fbc2b4c.png",
   "static\\media\\sign_up_start_background.png": "static/media/sign_up_start_background.d390406b.png"
 }

@@ -3,7 +3,7 @@ import {Grid, Row, Col, Panel, Jumbotron, Button, Modal, FormGroup, ControlLabel
 import { Link } from 'react-router';
 import { LinkContainer } from 'react-router-bootstrap';
 
-class Screen_1_0 extends Component{
+class Signup extends Component{
     constructor(props) {
         super(props);
         this.state = {
@@ -24,9 +24,11 @@ class Screen_1_0 extends Component{
                                     <img src={require("../blank.png")} className="icon-speaker"/>
                                     <p className="path">I want to advertise my business.</p>
                                     <p className="desc">Excursion rocks!</p>
-                                    <Button bsStyle="info" onClick={this.openDev} className="choose-path-button hvr-grow">
-                                        Let{`'`}s Get Started
-                                    </Button>
+                                    <LinkContainer to="/sponsor">
+                                        <Button bsStyle="info" onClick={this.openDev} className="choose-path-button hvr-grow">
+                                            Let{`'`}s Get Started
+                                        </Button>
+                                    </LinkContainer>
                                 </Panel>
                             </Col>
                             <Col xs={6} className="choose-path-panel">
@@ -47,4 +49,4 @@ class Screen_1_0 extends Component{
     }
 };
 
-export default Screen_1_0;
+export default Signup;
