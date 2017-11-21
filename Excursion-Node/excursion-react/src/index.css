@@ -878,6 +878,7 @@ table {
 }
 
 .ad-signup .btn {
+    cursor: default;
     color: white;
     right: 0;
     margin-left: 200%;

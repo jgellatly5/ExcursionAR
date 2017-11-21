@@ -7,18 +7,32 @@ class SponsorForm extends Component{
     constructor(props) {
         super(props);
         this.state = {
-            active: 'btn btn-lg'
+            firstName: '',
+            lastName: '',
+            email: '',
+            password: ''
         }
         this.baseState = this.state;
         this.onChange = this.onChange.bind(this);
     }
     onChange(e) {
         this.setState({ [e.target.name]: e.target.value });
-        if (this.state.firstName != undefined && this.state.lastName != undefined && this.state.email != undefined && this.state.password != undefined) {
-            this.setState({
-                active: 'btn btn-lg active hvr-grow'
-            });
+        let button = this.refs.button;
+        let firstName = this.firstNameInput.value;
+        let lastName = this.lastNameInput.value;
+        let email = this.emailInput.value;
+        let password = this.passwordInput.value;
+        if (firstName !== '' && lastName !== '' && email !== '' && password !== '') {
+            button.classList.add('active', 'hvr-grow');
+            button.removeAttribute('disabled');
+        } else {
+            button.classList.remove('active', 'hvr-grow');
+            button.setAttribute('disabled','disabled');
         }
+    }
+    componentDidMount() {
+        let button = this.refs.button;
+        button.setAttribute('disabled','disabled');
     }
     render() {
         return (
@@ -37,6 +51,7 @@ class SponsorForm extends Component{
                                     type="text"
                                     name="firstName"
                                     className="form-control"
+                                    ref={(input) => { this.firstNameInput = input }}
                                     required
                                 />
                             </div>
@@ -49,6 +64,7 @@ class SponsorForm extends Component{
                                     type="text"
                                     name="lastName"
                                     className="form-control"
+                                    ref={(input) => { this.lastNameInput = input }}
                                     required
                                 />
                             </div>
@@ -61,7 +77,7 @@ class SponsorForm extends Component{
                                     type="email"
                                     name="email"
                                     className="form-control"
-                                    title="Please enter a valid email address."
+                                    ref={(input) => { this.emailInput = input }}
                                     required
                                 />
                             </div>
@@ -74,13 +90,14 @@ class SponsorForm extends Component{
                                     type="password"
                                     name="password"
                                     className="form-control"
+                                    ref={(input) => { this.passwordInput = input }}
                                     id="last"
                                     required
                                 />
                             </div>
 
                             <div className="form-group">
-                                <button className={this.state.active}>
+                                <button className="btn btn-lg" ref="button">
                                     Next
                                 </button>
                             </div>
