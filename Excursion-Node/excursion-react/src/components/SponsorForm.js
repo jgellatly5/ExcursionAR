@@ -7,9 +7,15 @@ class SponsorForm extends Component{
     constructor(props) {
         super(props);
         this.state = {
-
+            active: 'btn btn-lg'
         }
         this.baseState = this.state;
+        this.onChange = this.onChange.bind(this);
+    }
+    onChange() {
+        this.setState({
+            active: 'btn btn-lg active'
+        });
     }
     render() {
         return (
@@ -24,7 +30,6 @@ class SponsorForm extends Component{
                                 <label className="control-label">First Name</label>
                                 <input
                                     value={this.state.firstName}
-                                    onChange={this.onChange}
                                     type="text"
                                     name="firstName"
                                     className="form-control"
@@ -36,7 +41,6 @@ class SponsorForm extends Component{
                                 <label className="control-label">Last Name</label>
                                 <input
                                     value={this.state.lastName}
-                                    onChange={this.onChange}
                                     type="text"
                                     name="lastName"
                                     className="form-control"
@@ -48,7 +52,6 @@ class SponsorForm extends Component{
                                 <label className="control-label">Email</label>
                                 <input
                                     value={this.state.email}
-                                    onChange={this.onChange}
                                     type="email"
                                     name="email"
                                     className="form-control"
@@ -70,7 +73,7 @@ class SponsorForm extends Component{
                             </div>
 
                             <div className="form-group">
-                                <button className="btn btn-lg">
+                                <button className={this.state.active}>
                                     Next
                                 </button>
                             </div>
