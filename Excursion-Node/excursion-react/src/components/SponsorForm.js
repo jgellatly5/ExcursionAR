@@ -7,7 +7,13 @@ class SponsorForm extends Component{
     constructor(props) {
         super(props);
         this.state = {
-            active: 'btn btn-lg'
+            active: 'btn btn-lg',
+            email: '',
+            password: '',
+            formErrors: {email: '', password: ''},
+            emailValid: false,
+            passwordValid: false,
+            formValid: false
         }
         this.baseState = this.state;
         this.onChange = this.onChange.bind(this);
