@@ -12,10 +12,13 @@ class SponsorForm extends Component{
         this.baseState = this.state;
         this.onChange = this.onChange.bind(this);
     }
-    onChange() {
-        this.setState({
-            active: 'btn btn-lg active'
-        });
+    onChange(e) {
+        this.setState({ [e.target.name]: e.target.value });
+        if (this.state.firstName != undefined && this.state.lastName != undefined && this.state.email != undefined && this.state.password != undefined) {
+            this.setState({
+                active: 'btn btn-lg active hvr-grow'
+            });
+        }
     }
     render() {
         return (
@@ -30,6 +33,7 @@ class SponsorForm extends Component{
                                 <label className="control-label">First Name</label>
                                 <input
                                     value={this.state.firstName}
+                                    onChange={this.onChange}
                                     type="text"
                                     name="firstName"
                                     className="form-control"
@@ -41,6 +45,7 @@ class SponsorForm extends Component{
                                 <label className="control-label">Last Name</label>
                                 <input
                                     value={this.state.lastName}
+                                    onChange={this.onChange}
                                     type="text"
                                     name="lastName"
                                     className="form-control"
@@ -52,6 +57,7 @@ class SponsorForm extends Component{
                                 <label className="control-label">Email</label>
                                 <input
                                     value={this.state.email}
+                                    onChange={this.onChange}
                                     type="email"
                                     name="email"
                                     className="form-control"
