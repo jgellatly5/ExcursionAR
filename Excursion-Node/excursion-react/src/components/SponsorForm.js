@@ -61,6 +61,7 @@ class SponsorForm extends Component{
                                     type="email"
                                     name="email"
                                     className="form-control"
+                                    title="Please enter a valid email address."
                                     required
                                 />
                             </div>
