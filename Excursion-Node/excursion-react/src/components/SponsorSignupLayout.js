@@ -17,7 +17,6 @@ class SponsorSignupLayout extends Component {
         this.setState({
             isScreenChanging: true
         });
-        console.log("Component just mounted");
     }
     // componentDidUpdate(prevProps, prevState) {
     //     // if (prevState == this.state.isScreenChanging) {
@@ -35,7 +34,7 @@ class SponsorSignupLayout extends Component {
     handleScreenChange(e, num) {
         e.preventDefault();
         // Uncommenting causes the full animation to work for one slide, but does not let other slides appear
-        this.setState({ isScreenChanging: false });
+        // this.setState({ isScreenChanging: false });
         let newScreen = "";
         switch(num) {
             case 1:
