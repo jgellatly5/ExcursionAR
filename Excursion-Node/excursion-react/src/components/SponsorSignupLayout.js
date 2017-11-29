@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import Screen_1_0 from "./Screen_1_0";
-import Screen_1_1 from "./Screen_1_1";
+import Signup from "./Signup";
+import SponsorForm from "./SponsorForm";
 import Screen_1_2 from "./Screen_1_2";
 
 class SponsorSignupLayout extends Component {
@@ -9,7 +9,7 @@ class SponsorSignupLayout extends Component {
         super(props);
         this.handleScreenChange = this.handleScreenChange.bind(this);
         this.state = {
-            screen: <Screen_1_0 key="0" handler={this.handleScreenChange}/>,
+            screen: <Signup key="0" handler={this.handleScreenChange}/>,
             isScreenChanging: false
         };
     }
@@ -38,7 +38,7 @@ class SponsorSignupLayout extends Component {
         let newScreen = "";
         switch(num) {
             case 1:
-                newScreen = <Screen_1_1 key={num} handler={this.handleScreenChange}/>;
+                newScreen = <SponsorForm key={num} handler={this.handleScreenChange}/>;
                 break;
             case 2:
                 newScreen = <Screen_1_2 key={num} handler={this.handleScreenChange}/>;
