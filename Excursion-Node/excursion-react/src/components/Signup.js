@@ -4,7 +4,6 @@ import { LinkContainer } from 'react-router-bootstrap';
 
 class Signup extends Component{
     render() {
-        const nextScreen = 1;
         return (
             <div className="choose-path">
                 <div className="container">

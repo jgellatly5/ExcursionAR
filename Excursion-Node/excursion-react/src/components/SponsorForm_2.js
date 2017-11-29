@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Panel } from 'react-bootstrap';
 
-class Screen_1_2 extends Component{
+class SponsorForm_2 extends Component{
     constructor(props) {
         super(props);
         this.state = {};
@@ -76,4 +76,4 @@ class Screen_1_2 extends Component{
     }
 };
 
-export default Screen_1_2;
+export default SponsorForm_2;

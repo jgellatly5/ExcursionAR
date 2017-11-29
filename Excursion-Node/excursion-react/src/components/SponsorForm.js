@@ -33,7 +33,7 @@ class SponsorForm extends Component{
         button.setAttribute('disabled','disabled');
     }
     render() {
-        const nextScreen = 2;
+        const nextScreen = 1;
         return (
             <div className="ad-signup-container">
                 <div id={this.state.screen1_1} className="ad-signup">
