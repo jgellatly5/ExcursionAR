@@ -63,7 +63,7 @@ class SponsorForm_2 extends Component{
                             </div>
 
                             <div className="form-group">
-                                <button className="btn btn-lg">
+                                <button className="btn btn-lg" ref="button" onClick={(e) => this.props.handler(e, nextScreen)}>
                                     Next
                                 </button>
                             </div>

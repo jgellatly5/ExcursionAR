@@ -21,7 +21,7 @@ const Routes = (props) => (
         </Route>
         <Route path="/signup" component={Signup} />
         <Route path="/sponsor" component={SponsorSignupLayout}>
-            <Route component={SponsorForm} />
+            <IndexRoute component={SponsorForm} />
             <Route component={SponsorForm_2} />
         </Route>
         <Route path="*" component={NotFound} />
