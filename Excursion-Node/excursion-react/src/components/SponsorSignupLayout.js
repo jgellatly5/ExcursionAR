@@ -35,10 +35,8 @@ class SponsorSignupLayout extends Component {
         // Uncommenting causes the full animation to work for one slide, but does not let other slides appear
         this.setState({ isScreenChanging: false });
         let newScreen;
-        console.log(num);
         switch(num) {
             case 1:
-                // newScreen = <SponsorForm_2 key={num} handler={this.handleScreenChange}/>;
                 newScreen = num;
                 break;
             default:
@@ -49,10 +47,6 @@ class SponsorSignupLayout extends Component {
         });
     }
     render() {
-        // let child = this.props.children;
-        // let child = this.handleScreenChange;
-        // let segment = "0";
-        // let newForm = <SponsorForm key="0" handler={this.handleScreenChange}/>
         let child;
         // if (this.state.isScreenChanging) {
         //     child = newForm;

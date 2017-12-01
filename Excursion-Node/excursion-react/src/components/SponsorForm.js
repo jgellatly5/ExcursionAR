@@ -12,9 +12,9 @@ class SponsorForm extends Component{
         }
         this.baseState = this.state;
         this.onChange = this.onChange.bind(this);
+        this.endScreen = this.endScreen.bind(this);
     }
     onChange(e) {
-        // e.preventDefault();
         this.setState({ [e.target.name]: e.target.value });
         let button = this.refs.button;
         let firstName = this.firstNameInput.value;
@@ -24,18 +24,28 @@ class SponsorForm extends Component{
         if (firstName !== '' && lastName !== '' && email !== '' && password !== '') {
             button.classList.add('active', 'hvr-grow');
             button.removeAttribute('disabled');
-            const nextScreen = 1;
-            this.props.handler(e, nextScreen);
+            // this.endScreen;
+            // const nextScreen = 1;
+            // this.props.handler(e, nextScreen);
         } else {
             button.classList.remove('active', 'hvr-grow');
             button.setAttribute('disabled','disabled');
         }
+    }
+    endScreen(e) {
+        // setTimeout((e) => {
+        //     const nextScreen = 1;
+        //     this.props.handler(e, nextScreen);
+        // }, 2000);
+        const nextScreen = 1;
+        this.props.handler(e, nextScreen);
     }
     componentDidMount() {
         let button = this.refs.button;
         button.setAttribute('disabled','disabled');
     }
     render() {
+        // const nextScreen = 1;
         return (
             <div className="ad-signup-container">
                 <div id={this.state.screen1_1} className="ad-signup">
@@ -98,7 +108,7 @@ class SponsorForm extends Component{
                             </div>
 
                             <div className="form-group">
-                                <button className="btn btn-lg" ref="button" onClick={this.onChange}>
+                                <button className="btn btn-lg" ref="button" onClick={this.endScreen}>
                                     Next
                                 </button>
                             </div>
