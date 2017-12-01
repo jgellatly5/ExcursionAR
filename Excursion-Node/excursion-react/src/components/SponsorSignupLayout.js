@@ -17,19 +17,6 @@ class SponsorSignupLayout extends Component {
             isScreenChanging: true
         });
     }
-    // componentDidUpdate(prevProps, prevState) {
-    //     // if (prevState == this.state.isScreenChanging) {
-    //     //     child = this.state.screen;
-    //     // }
-    //     console.log("Before - isScreenChanging: " + this.state.isScreenChanging);
-    //     if (!this.state.isScreenChanging) {
-    //         this.setState({
-    //             isScreenChanging: true
-    //         });
-    //     }
-    //     console.log("After - isScreenChanging: " + this.state.isScreenChanging);
-    //     console.log("Component is updating");
-    // }
     handleScreenChange(e, num) {
         e.preventDefault();
         // Uncommenting causes the full animation to work for one slide, but does not let other slides appear
@@ -48,10 +35,6 @@ class SponsorSignupLayout extends Component {
     }
     render() {
         let child;
-        // if (this.state.isScreenChanging) {
-        //     child = newForm;
-        //     console.log(child);
-        // }
         switch(this.state.screen) {
             case 0:
                 if (this.state.isScreenChanging) {
