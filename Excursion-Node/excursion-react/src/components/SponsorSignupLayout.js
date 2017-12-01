@@ -8,7 +8,7 @@ class SponsorSignupLayout extends Component {
         super(props);
         this.handleScreenChange = this.handleScreenChange.bind(this);
         this.state = {
-            screen: <SponsorForm key="0" handler={this.handleScreenChange}/>,
+            screen: 0,
             isScreenChanging: false
         };
     }
@@ -33,12 +33,13 @@ class SponsorSignupLayout extends Component {
     handleScreenChange(e, num) {
         e.preventDefault();
         // Uncommenting causes the full animation to work for one slide, but does not let other slides appear
-        // this.setState({ isScreenChanging: false });
-        let newScreen = "";
+        this.setState({ isScreenChanging: false });
+        let newScreen;
         console.log(num);
         switch(num) {
             case 1:
-                newScreen = <SponsorForm_2 key={num} handler={this.handleScreenChange}/>;
+                // newScreen = <SponsorForm_2 key={num} handler={this.handleScreenChange}/>;
+                newScreen = num;
                 break;
             default:
                 break;
@@ -51,11 +52,23 @@ class SponsorSignupLayout extends Component {
         // let child = this.props.children;
         // let child = this.handleScreenChange;
         // let segment = "0";
-        // let SponsorForm = <SponsorForm key="0" handler={this.handleScreenChange}/>
+        // let newForm = <SponsorForm key="0" handler={this.handleScreenChange}/>
         let child;
-        if (this.state.isScreenChanging) {
-            child = this.state.screen;
-            // child = this.refs.currentScreen;
+        // if (this.state.isScreenChanging) {
+        //     child = newForm;
+        //     console.log(child);
+        // }
+        switch(this.state.screen) {
+            case 0:
+                if (this.state.isScreenChanging) {
+                    child = <SponsorForm key={this.state.screen} handler={this.handleScreenChange}/>;
+                }
+                break;
+            case 1:
+                child = <SponsorForm_2 key={this.state.screen} handler={this.handleScreenChange}/>;
+                break;
+            default:
+                break;
         }
         return(
             <div>
