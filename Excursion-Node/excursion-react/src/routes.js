@@ -8,6 +8,7 @@ import ContactForm from './components/ContactForm';
 import Signup from './components/Signup';
 import SponsorForm from './components/SponsorForm';
 import SponsorForm_2 from './components/SponsorForm_2';
+import ChooseService from './components/ChooseService';
 import AppLayout from './components/AppLayout';
 import SponsorSignupLayout from './components/SponsorSignupLayout';
 
@@ -24,6 +25,7 @@ const Routes = (props) => (
             <IndexRoute component={SponsorForm} />
             <Route component={SponsorForm_2} />
         </Route>
+        <Route path="/test" component={ChooseService} />
         <Route path="*" component={NotFound} />
     </Router>
 );
