@@ -904,7 +904,14 @@ table {
     color: white;
 }
 
+.choose-service-container {
+    height: 0px;
+    width: 1300px;
+    margin: 100px auto;
+}
+
 .choose-service .panel {
+    width: 350px;
     border: 0;
     border-radius: 4px;
     box-shadow: 0 6px 10px 0 rgba(0,0,0,0.14), 0 1px 18px 0 rgba(0,0,0,0.12), 0 3px 5px 0 rgba(0,0,0,0.2);
@@ -930,14 +937,34 @@ table {
     border-width: medium;
     padding: 30px;
     background-clip: border-box;
-    height: 150px;
-    width: 150px;
+    height: 100px;
+    width: 100px;
     background-position: center;
     background-repeat: no-repeat;
+    margin-top: -15px;
 }
 
-.choose-service .btn {
-    margin-left: 180%;
+.bottom-form {
+    margin-bottom: -60px;
+}
+
+.bottom-form .btn {
+    margin-left: 0%;
+}
+
+.bottom-form .back {
+    margin-left: 68%;
+    margin-right: 10px;
+    height: 50px;
+    width: 142px;
+    color: #161162;
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 21px;
+    border: 1px solid #1E1E75;
+    border-radius: 2px;
+    background-color: #FFFFFF;
+    box-shadow: 0 0 2px 0 rgba(0,0,0,0.14), 0 2px 2px 0 rgba(0,0,0,0.12), 0 1px 3px 0 rgba(0,0,0,0.2);
 }
 
 .icon-speaker {
@@ -958,6 +985,8 @@ table {
     background-color: #16056A;
     padding-top: 50px;
     border: none;
+    margin-bottom: 70px;
+    padding-bottom: 30px;
 }
 
 .choose-service-panel:hover .panel-body:hover {
@@ -981,12 +1010,10 @@ table {
 }
 
 .choose-service-panel .desc {
-    text-align: left;
-    margin-left: 20%;
     color: #C7C7C7;
     line-height: 22px;
     margin-top: 0px;
-    margin-bottom: 0px;
+    margin-bottom: 10px;
 }
 
 .choose-service-button {
@@ -1000,6 +1027,40 @@ table {
 
 .choose-service-panel a {
     padding-top: 12px;
+}
+
+.icon-confetti {
+    background-image: url("./screen_1_0_free_icon.svg");
+    border: 2px solid #44C0FF;
+}
+
+.icon-dollar {
+    background-image: url("./screen_1_0_premium_icon.svg");
+    border: 2px solid white;
+}
+
+.ad-signup .top {
+    margin-bottom: 0px;
+    margin-left: 12%;
+}
+
+.container-services {
+    width: 900px;
+    margin: auto;
+}
+
+.header-service {
+    color: #FFFFFF;
+    font-family: Rubik;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 28px;
+    margin-top: 29px;
+    margin-bottom: 25px;
+}
+
+.ad-signup .top-header {
+    margin-left: 12%;
 }
 
 /*React CSS Transition Group*/
