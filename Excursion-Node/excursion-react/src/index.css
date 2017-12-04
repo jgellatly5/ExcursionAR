@@ -690,7 +690,7 @@ table {
   border-width: 4px;
 }
 
-/*Screen 1.0*/
+/*Signup*/
 .container {
     width: 960px;
     margin: 0 auto;
@@ -800,13 +800,11 @@ table {
     padding-top: 12px;
 }
 
-/*Screen 1.1*/
+/*SponsorForm, SponsorForm_2*/
 .ad-signup {
-    /*background-size: cover;*/
     font-family: Rubik;
     text-align: left;
     color: white;
-    /*display: none;*/
 }
 
 .ad-signup-container {
@@ -898,9 +896,113 @@ table {
     box-shadow: 0 0 2px 0 rgba(0,0,0,0.14), 0 2px 2px 0 rgba(0,0,0,0.12), 0 1px 3px 0 rgba(0,0,0,0.2);
 }
 
-/*Screen 1.2*/
+/*ChooseService*/
 
+.choose-service {
+    font-family: Rubik;
+    text-align: left;
+    color: white;
+}
 
+.choose-service .panel {
+    border: 0;
+    border-radius: 4px;
+    box-shadow: 0 6px 10px 0 rgba(0,0,0,0.14), 0 1px 18px 0 rgba(0,0,0,0.12), 0 3px 5px 0 rgba(0,0,0,0.2);
+}
+
+.choose-service h1 {
+    margin-left: 2%;
+    font-size: 48px;
+    font-weight: 500;
+    line-height: 57px;
+    padding-top: 50px;
+}
+
+.choose-service p {
+    margin-left: 2%;
+    color: #3AB1FF;
+    font-size: 18px;
+    line-height: 22px;
+}
+
+.choose-service img {
+    border-radius: 50%;
+    border-width: medium;
+    padding: 30px;
+    background-clip: border-box;
+    height: 150px;
+    width: 150px;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.choose-service .btn {
+    margin-left: 180%;
+}
+
+.icon-speaker {
+    background-image: url("./screen_1_0_advertising_icon.svg");
+    border: 2px solid #44C0FF;
+}
+
+.icon-phone {
+    background-image: url("./screen_1_0_monetize_icon.svg");
+    border: 2px solid white;
+}
+
+.choose-service-panel {
+    margin-top: 50px;
+}
+
+.choose-service-panel .panel-body {
+    background-color: #16056A;
+    padding-top: 50px;
+    border: none;
+}
+
+.choose-service-panel:hover .panel-body:hover {
+	border: 2px solid #44C0FF;
+    border-radius: 4px;
+    padding-top: 50px;
+    margin: -2px;
+}
+
+.choose-service-panel p {
+    margin-left: 0%;
+    text-align: center;
+	color: #FFFFFF;
+	font-size: 18px;
+	font-weight: 500;
+	line-height: 22px;
+}
+
+.choose-service-panel .path {
+    margin-top: 50px;
+}
+
+.choose-service-panel .desc {
+    text-align: left;
+    margin-left: 20%;
+    color: #C7C7C7;
+    line-height: 22px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.choose-service-button {
+    font-size: 18px;
+	height: 50px;
+	line-height: 22px;
+    border-radius: 4px;
+	background-color: #44C0FF;
+	box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 2px 4px 0 rgba(0,0,0,0.12), 0 1px 3px 0 rgba(0,0,0,0.2);
+}
+
+.choose-service-panel a {
+    padding-top: 12px;
+}
+
+/*React CSS Transition Group*/
 .sponsor-enter {
   transform: translate(100%);
 }
