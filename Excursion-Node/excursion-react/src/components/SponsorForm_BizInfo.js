@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Panel, Tooltip, OverlayTrigger } from 'react-bootstrap';
 
-class SponsorForm_2 extends Component{
+class SponsorForm_BizInfo extends Component{
     constructor(props) {
         super(props);
         this.state = {
@@ -31,7 +31,7 @@ class SponsorForm_2 extends Component{
     endScreen(e) {
         let website = this.websiteInput.value;
         if (website.includes(".")) {
-            const nextScreen = 2;
+            let nextScreen = this.props.screenId + 1;
             this.props.handler(e, nextScreen);
         }
     }
@@ -127,4 +127,4 @@ class SponsorForm_2 extends Component{
     }
 };
 
-export default SponsorForm_2;
+export default SponsorForm_BizInfo;
