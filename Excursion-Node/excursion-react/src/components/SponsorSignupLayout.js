@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import SponsorForm from "./SponsorForm";
-import SponsorForm_2 from "./SponsorForm_2";
-import ChooseService from "./ChooseService";
+import SponsorForm_BusinessInformation from "./SponsorForm_BusinessInformation";
 
 class SponsorSignupLayout extends Component {
     constructor(props) {
@@ -20,11 +19,16 @@ class SponsorSignupLayout extends Component {
     }
     handleScreenChange(e, num) {
         e.preventDefault();
-        // Uncommenting causes the full animation to work for one slide, but does not let other slides appear
-        let newScreen = num;
+        let newScreen;
+        switch(num) {
+            case 1:
+                newScreen = num;
+                break;
+            default:
+                break;
+        }
         this.setState({
-            screen: newScreen,
-            isScreenChanging: false
+            screen: newScreen
         });
     }
     render() {
@@ -32,14 +36,11 @@ class SponsorSignupLayout extends Component {
         switch(this.state.screen) {
             case 0:
                 if (this.state.isScreenChanging) {
-                    child = <SponsorForm key={this.state.screen} handler={this.handleScreenChange}/>;
+                    child = <SponsorForm screenId={this.state.screen} handler={this.handleScreenChange}/>;
                 }
                 break;
             case 1:
-                child = <SponsorForm_2 key={this.state.screen} handler={this.handleScreenChange}/>;
-                break;
-            case 2:
-                child = <ChooseService key={this.state.screen} handler={this.handleScreenChange}/>;
+                child = <SponsorForm_BusinessInformation screenId={this.state.screen} handler={this.handleScreenChange}/>;
                 break;
             default:
                 break;
