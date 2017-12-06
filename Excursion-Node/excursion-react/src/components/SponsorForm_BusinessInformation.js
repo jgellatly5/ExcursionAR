@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Panel, Tooltip, OverlayTrigger } from 'react-bootstrap';
 
-class BusinessInformation extends Component{
+class SponsorForm_BusinessInformation extends Component{
     constructor(props) {
         super(props);
         this.state = {
@@ -127,4 +127,4 @@ class BusinessInformation extends Component{
     }
 };
 
-export default BusinessInformation;
+export default SponsorForm_BusinessInformation;

@@ -7,7 +7,7 @@ import LearnMore from './components/LearnMore';
 import ContactForm from './components/ContactForm';
 import Signup from './components/Signup';
 import SponsorForm from './components/SponsorForm';
-import BusinessInformation from './components/BusinessInformation';
+import SponsorForm_BusinessInformation from './components/SponsorForm_BusinessInformation';
 import AppLayout from './components/AppLayout';
 import SponsorSignupLayout from './components/SponsorSignupLayout';
 
@@ -22,7 +22,7 @@ const Routes = (props) => (
         <Route path="/signup" component={Signup} />
         <Route path="/sponsor" component={SponsorSignupLayout}>
             <IndexRoute component={SponsorForm} />
-            <Route component={BusinessInformation} />
+            <Route component={SponsorForm_BusinessInformation} />
         </Route>
         <Route path="*" component={NotFound} />
     </Router>
