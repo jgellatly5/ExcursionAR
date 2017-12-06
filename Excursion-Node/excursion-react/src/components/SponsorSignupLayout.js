@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import SponsorForm from "./SponsorForm";
-import SponsorForm_BizInfo from "./SponsorForm_BizInfo";
+import BusinessInformation from "./BusinessInformation";
 
 class SponsorSignupLayout extends Component {
     constructor(props) {
@@ -40,7 +40,7 @@ class SponsorSignupLayout extends Component {
                 }
                 break;
             case 1:
-                child = <SponsorForm_BizInfo screenId={this.state.screen} handler={this.handleScreenChange}/>;
+                child = <BusinessInformation screenId={this.state.screen} handler={this.handleScreenChange}/>;
                 break;
             default:
                 break;
