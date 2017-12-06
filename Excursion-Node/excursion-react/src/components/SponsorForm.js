@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import {Grid, Row, Col, Panel, Button, Form, FormGroup, ControlLabel, FormControl} from 'react-bootstrap';
-import { Link } from 'react-router';
-import { LinkContainer } from 'react-router-bootstrap';
+import { Panel } from 'react-bootstrap';
 
 class SponsorForm extends Component{
     constructor(props) {
@@ -12,8 +10,8 @@ class SponsorForm extends Component{
             email: '',
             password: ''
         }
-        this.baseState = this.state;
         this.onChange = this.onChange.bind(this);
+        this.endScreen = this.endScreen.bind(this);
     }
     onChange(e) {
         this.setState({ [e.target.name]: e.target.value });
@@ -30,6 +28,13 @@ class SponsorForm extends Component{
             button.setAttribute('disabled','disabled');
         }
     }
+    endScreen(e) {
+        let email = this.emailInput.value;
+        if (email.includes("@")) {
+            let nextScreen = this.props.screenId + 1;
+            this.props.handler(e, nextScreen);
+        }
+    }
     componentDidMount() {
         let button = this.refs.button;
         button.setAttribute('disabled','disabled');
@@ -42,7 +47,7 @@ class SponsorForm extends Component{
                     <h1>Let{`'`}s Get Started</h1>
                     <p>Create your account.</p>
                     <div>
-                        <form onSubmit={this.onSubmit}>
+                        <form>
                             <div className="form-group">
                                 <label className="control-label">First Name</label>
                                 <input
@@ -97,7 +102,7 @@ class SponsorForm extends Component{
                             </div>
 
                             <div className="form-group">
-                                <button className="btn btn-lg" ref="button">
+                                <button className="btn btn-lg" ref="button" onClick={this.endScreen}>
                                     Next
                                 </button>
                             </div>

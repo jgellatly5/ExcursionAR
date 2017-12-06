@@ -806,6 +806,7 @@ table {
     font-family: Rubik;
     text-align: left;
     color: white;
+    /*display: none;*/
 }
 
 .ad-signup-container {
@@ -895,6 +896,27 @@ table {
     background-color: #1E1E75;
     border-radius: 2px;
     box-shadow: 0 0 2px 0 rgba(0,0,0,0.14), 0 2px 2px 0 rgba(0,0,0,0.12), 0 1px 3px 0 rgba(0,0,0,0.2);
+}
+
+/*Screen 1.2*/
+
+
+.sponsor-enter {
+  transform: translate(100%);
+}
+
+.sponsor-enter.sponsor-enter-active {
+  transform: translate(0%);
+  transition: transform 2000ms ease-in-out;
+}
+
+.sponsor-leave {
+  transform: translate(0%);
+}
+
+.sponsor-leave.sponsor-leave-active {
+  transform: translate(-100%);
+  transition: transform 2000ms ease-in-out;
 }
 
 /*#c7f7f9*/

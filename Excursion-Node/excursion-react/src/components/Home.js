@@ -1,45 +1,27 @@
 import React, { Component } from 'react';
-import {Grid, Row, Col, Panel, Jumbotron, Button, Modal, FormGroup, ControlLabel, FormControl} from 'react-bootstrap';
-import { Link } from 'react-router';
+import {Grid, Row, Col, Panel, Jumbotron, Button, Modal} from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 
 class Home extends Component{
     constructor(props) {
         super(props);
         this.state = {
-            showContact: false,
             showDev: false
         }
         this.baseState = this.state;
         this.close = this.close.bind(this);
-        this.openContact = this.openContact.bind(this);
         this.openDev = this.openDev.bind(this);
-        this.onSubmitContact = this.onSubmitContact.bind(this);
         this.onSubmitDev = this.onSubmitDev.bind(this);
         this.onChange = this.onChange.bind(this);
-        this.handleSendMessage = this.handleSendMessage.bind(this);
         this.handleDevForm = this.handleDevForm.bind(this);
     }
     onChange(e) {
         this.setState({ [e.target.name]: e.target.value });
     }
-    onSubmitContact(e) {
-        e.preventDefault();
-        this.handleSendMessage();
-        console.log("submitted contact");
-        this.setState(this.baseState);
-    }
     onSubmitDev(e) {
         e.preventDefault();
         this.handleDevForm();
         this.setState(this.baseState);
-    }
-    handleSendMessage() {
-        const message = {
-            name: this.state.contactName,
-            email: this.state.contactEmail,
-            message: this.state.contactMessage
-        };
     }
     handleDevForm() {
         fetch('https://ns8ytd9vbl.execute-api.us-east-1.amazonaws.com/dev/sendSdkEmail', {
@@ -72,10 +54,7 @@ class Home extends Component{
         });
     }
     close() {
-        this.setState({showContact: false, showDev: false});
-    }
-    openContact() {
-        this.setState({showContact: true});
+        this.setState({showDev: false});
     }
     openDev() {
         this.setState({showDev: true});
@@ -95,62 +74,6 @@ class Home extends Component{
                             </LinkContainer>
                         </p>
                     </Jumbotron>
-                    <Modal show={this.state.showContact} onHide={this.close}>
-                        <Modal.Header closeButton className="modalhead">
-                            <Modal.Title>Contact Us</Modal.Title>
-                        </Modal.Header>
-                        <Modal.Body>
-                            <h4 className="modal-header">We would like to hear from you!</h4>
-                            <p className="modal-para">Reach out to us about incorporating Excursion into your next project.</p>
-
-                            <form onSubmit={this.onSubmitContact} id="contact">
-                                <div className="form-group">
-                                    <label className="control-label"><i className="fa fa-user" aria-hidden="true"></i> Name</label>
-                                    <input
-                                        value={this.state.contactName}
-                                        onChange={this.onChange}
-                                        type="text"
-                                        name="contactName"
-                                        className="form-control"
-                                        placeholder="Enter your Name"
-                                    />
-                                </div>
-
-                                <div className="form-group">
-                                    <label className="control-label"><i className="fa fa-envelope" aria-hidden="true"></i> Email</label>
-                                    <input
-                                        value={this.state.contactEmail}
-                                        onChange={this.onChange}
-                                        type="email"
-                                        name="contactEmail"
-                                        className="form-control"
-                                        placeholder="Enter your Email"
-                                    />
-                                </div>
-
-                                <div className="form-group">
-                                    <label className="control-label">Message</label>
-                                    <textarea
-                                        value={this.state.contactMessage}
-                                        onChange={this.onChange}
-                                        type="text"
-                                        name="contactMessage"
-                                        className="form-control"
-                                        placeholder="Ask us anything..."
-                                    />
-                                </div>
-
-                                <div className="form-group">
-                                    <button className="contactsend btn btn-info btn-lg hvr-bounce-in">
-                                        Submit
-                                    </button>
-                                </div>
-                            </form>
-                        </Modal.Body>
-                        <Modal.Footer>
-                            <Button onClick={this.close}>Close</Button>
-                        </Modal.Footer>
-                    </Modal>
                 </div>
                 <div>
                     <div className="greywrap first">
