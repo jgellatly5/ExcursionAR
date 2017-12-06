@@ -1,8 +1,18 @@
 import React, { Component } from 'react';
-import {Grid, Row, Col, Panel, Button} from 'react-bootstrap';
-import { LinkContainer } from 'react-router-bootstrap';
+import {Grid, Row, Col, Panel} from 'react-bootstrap';
 
 class ChooseService extends Component{
+    constructor(props) {
+        super(props);
+        this.onSelect = this.onSelect.bind(this);
+    }
+    onSelect() {
+        let card = this.refs.card;
+        let button = this.refs.button;
+        console.log(card.classList);
+        console.log(button.classList);
+        // card.classList.add('active');
+    }
     render() {
         return (
             <div className="choose-service-container">
@@ -14,7 +24,7 @@ class ChooseService extends Component{
                         <Grid>
                             <Row>
                                 <Col xs={6}>
-                                    <Panel className="choose-service-panel">
+                                    <Panel className="choose-service-panel" ref="card" onClick={this.onSelect}>
                                         <img src={require("../blank.png")} className="icon-confetti"/>
                                         <h3 className="header-service">Free</h3>
                                         <p className="desc">I am addicted to Chinese food</p>
@@ -22,8 +32,8 @@ class ChooseService extends Component{
                                         <p className="desc">I am addicted to Chinese food</p>
                                     </Panel>
                                 </Col>
-                                <Col xs={6} className="choose-service-panel">
-                                    <Panel>
+                                <Col xs={6}>
+                                    <Panel className="choose-service-panel" ref="card2" onClick={this.onSelect}>
                                         <img src={require("../blank.png")} className="icon-dollar"/>
                                         <h3 className="header-service">Premium</h3>
                                         <p className="desc">I am addicted to Chinese food</p>
@@ -35,7 +45,7 @@ class ChooseService extends Component{
                         </Grid>
                     </div>
                     <div className="bottom-form">
-                        <button className="btn btn-lg back" ref="button" onClick={this.endScreen}>
+                        <button className="btn btn-lg back hvr-grow" ref="button" onClick={this.endScreen}>
                             Back
                         </button>
                         <button className="btn btn-lg next" ref="button" onClick={this.endScreen}>
