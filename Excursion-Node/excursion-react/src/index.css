@@ -996,7 +996,7 @@ table {
     margin: -2px;
 }
 
-.choose-service-panel:visited .panel-body:visited {
+.make-border {
 	border: 2px solid #44C0FF;
     border-radius: 4px;
     padding-top: 50px;
