@@ -26,7 +26,6 @@ const Routes = (props) => (
             <Route component={SponsorForm_BusinessInformation} />
             <Route component={ChooseService} />
         </Route>
-        <Route path="/test" component={ChooseService} />
         <Route path="*" component={NotFound} />
     </Router>
 );
