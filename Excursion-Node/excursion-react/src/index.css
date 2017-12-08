@@ -954,7 +954,7 @@ table {
 
 .bottom-form .back {
     margin-left: 68%;
-    margin-right: 10px;
+    margin-right: 14px;
     height: 50px;
     width: 142px;
     color: #161162;
@@ -965,6 +965,10 @@ table {
     border-radius: 2px;
     background-color: #FFFFFF;
     box-shadow: 0 0 2px 0 rgba(0,0,0,0.14), 0 2px 2px 0 rgba(0,0,0,0.12), 0 1px 3px 0 rgba(0,0,0,0.2);
+}
+
+.bottom-form .back.stable {
+    margin-right: 12px;
 }
 
 .icon-speaker {
@@ -993,14 +997,22 @@ table {
 	border: 2px solid #44C0FF;
     border-radius: 4px;
     padding-top: 50px;
-    margin: -2px;
+    margin: -4px;
 }
 
-.make-border {
+.choose-service-panel.active .panel-body {
 	border: 2px solid #44C0FF;
     border-radius: 4px;
     padding-top: 50px;
     margin: -2px;
+}
+
+.choose-service-panel.active:hover .panel-body:hover {
+    margin: -2px;
+}
+
+.choose-service-panel:hover.unactive .panel-body:hover {
+	margin-bottom: 70px;
 }
 
 .choose-service-panel p {
