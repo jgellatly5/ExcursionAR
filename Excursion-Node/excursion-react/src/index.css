@@ -2,6 +2,7 @@
 body {
     background: url(./sign_up_background_for_all.png) no-repeat;
     background-color: #fff;
+    /*background-size: cover;*/
     font-family: Lato;
     color: black;
 }
@@ -698,7 +699,7 @@ table {
 
 .choose-path {
     background: url(./sign_up_start_background.png);
-    /*background: transparent;*/
+    background-size: cover;
     font-family: Rubik;
     text-align: left;
     color: white;
@@ -1115,6 +1116,11 @@ table {
 /*#c7f7f9*/
 /*#00bcd4*/
 /* responsive design */
+@media (min-width: 1400px) {
+    body, .choose-path {
+        background-size: cover;
+    } 
+}
 @media (max-width: 667px) {
     #headerwrap {
         min-height: 400px;
