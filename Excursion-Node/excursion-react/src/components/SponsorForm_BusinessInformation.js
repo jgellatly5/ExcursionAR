@@ -40,21 +40,25 @@ class SponsorForm_BusinessInformation extends Component{
     formatNumber() {
         let phoneNumber = this.phoneNumberInput.value,
         r = /(\D+)/g,
-        npa = '',
-        nxx = '',
-        last4 = '';
+        areaCode = '',
+        firstDigits = '',
+        lastDigits = '';
         if (phoneNumber !== '') {
+            // every input is required to be a number by the r expression
             phoneNumber = phoneNumber.replace(r, '');
-            npa = phoneNumber.substr(0, 4);
-            if (npa.length == 4) {
-                npa = npa.substr(0, 3) + '-' + npa.charAt(3);
+            // areaCode waits for length of string to reach 4 characters, then adds hyphen in between character 3 and 4
+            areaCode = phoneNumber.substr(0, 4);
+            if (areaCode.length == 4) {
+                areaCode = areaCode.substr(0, 3) + '-' + areaCode.charAt(3);
             }
-            nxx = phoneNumber.substr(4, 3);
-            if (nxx.length == 3) {
-                nxx = nxx.substr(0, 2) + '-' + nxx.charAt(2);
+            // firstDigits start at the 5th character of the whole string, waits for length to reach 3 characters, then adds hyphen in between character 2 and 3
+            firstDigits = phoneNumber.substr(4, 3);
+            if (firstDigits.length == 3) {
+                firstDigits = firstDigits.substr(0, 2) + '-' + firstDigits.charAt(2);
             }
-            last4 = phoneNumber.substr(7, 3);
-            phoneNumber = npa + nxx + last4;
+            // lastDigits start at the 8th character of the whole string, and ends string after adding 3 more characters
+            lastDigits = phoneNumber.substr(7, 3);
+            phoneNumber = areaCode + firstDigits + lastDigits;
             this.setState({
                 phoneNumber: phoneNumber
             });
