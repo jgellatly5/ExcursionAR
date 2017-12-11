@@ -38,8 +38,8 @@ class SponsorForm_BusinessInformation extends Component{
         }
     }
     formatNumber() {
-        let phoneNumber = this.phoneNumberInput.value;
-        let r = /(\D+)/g,
+        let phoneNumber = this.phoneNumberInput.value,
+        r = /(\D+)/g,
         npa = '',
         nxx = '',
         last4 = '';
