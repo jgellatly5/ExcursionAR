@@ -12,8 +12,10 @@ class SponsorForm_BusinessInformation extends Component{
         };
         this.onChange = this.onChange.bind(this);
         this.endScreen = this.endScreen.bind(this);
+        this.formatNumber = this.formatNumber.bind(this);
     }
     onChange(e) {
+        e.preventDefault();
         this.setState({ [e.target.name]: e.target.value });
         let button = this.refs.button;
         let companyName = this.companyNameInput.value;
@@ -35,6 +37,33 @@ class SponsorForm_BusinessInformation extends Component{
             this.props.handler(e, nextScreen);
         }
     }
+    formatNumber() {
+        let phoneNumber = this.phoneNumberInput.value,
+        r = /(\D+)/g,
+        areaCode = '',
+        firstDigits = '',
+        lastDigits = '';
+        if (phoneNumber !== '') {
+            // every input is required to be a number by the r expression
+            phoneNumber = phoneNumber.replace(r, '');
+            // areaCode waits for length of string to reach 4 characters, then adds hyphen in between character 3 and 4
+            areaCode = phoneNumber.substr(0, 4);
+            if (areaCode.length == 4) {
+                areaCode = areaCode.substr(0, 3) + '-' + areaCode.charAt(3);
+            }
+            // firstDigits start at the 5th character of the whole string, waits for length to reach 3 characters, then adds hyphen in between character 2 and 3
+            firstDigits = phoneNumber.substr(4, 3);
+            if (firstDigits.length == 3) {
+                firstDigits = firstDigits.substr(0, 2) + '-' + firstDigits.charAt(2);
+            }
+            // lastDigits start at the 8th character of the whole string, and ends string after adding 3 more characters
+            lastDigits = phoneNumber.substr(7, 3);
+            phoneNumber = areaCode + firstDigits + lastDigits;
+            this.setState({
+                phoneNumber: phoneNumber
+            });
+        }
+    }
     componentDidMount() {
         let button = this.refs.button;
         button.setAttribute('disabled','disabled');
@@ -44,7 +73,7 @@ class SponsorForm_BusinessInformation extends Component{
             <Tooltip id="tooltip">Format: 000-000-0000</Tooltip>
         );
         const tooltip_url = (
-            <Tooltip id="tooltip">Format: "http://"</Tooltip>
+            <Tooltip id="tooltip">Format: "https:// or http://"</Tooltip>
         );
         return (
             <div className="ad-signup-container">
@@ -53,7 +82,7 @@ class SponsorForm_BusinessInformation extends Component{
                     <h1>What is your business?</h1>
                     <p>Fill out information about your business.</p>
                     <div>
-                        <form onSubmit={this.onSubmit}>
+                        <form>
                             <div className="form-group">
                                 <label className="control-label">Company Name</label>
                                 <input
@@ -88,8 +117,9 @@ class SponsorForm_BusinessInformation extends Component{
                                         onChange={this.onChange}
                                         type="tel"
                                         name="phoneNumber"
-                                        pattern='\d{3}[\-]\d{3}[\-]\d{4}'
                                         className="form-control"
+                                        pattern='\d{3}[\-]\d{3}[\-]\d{4}'
+                                        onKeyUp={this.formatNumber}
                                         ref={(input) => { this.phoneNumberInput = input }}
                                         required
                                     />

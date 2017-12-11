@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import SponsorForm from "./SponsorForm";
 import SponsorForm_BusinessInformation from "./SponsorForm_BusinessInformation";
+import ChooseService from './ChooseService';
 
 class SponsorSignupLayout extends Component {
     constructor(props) {
@@ -17,16 +18,8 @@ class SponsorSignupLayout extends Component {
             isScreenChanging: true
         });
     }
-    handleScreenChange(e, num) {
+    handleScreenChange(e, newScreen) {
         e.preventDefault();
-        let newScreen;
-        switch(num) {
-            case 1:
-                newScreen = num;
-                break;
-            default:
-                break;
-        }
         this.setState({
             screen: newScreen
         });
@@ -41,6 +34,9 @@ class SponsorSignupLayout extends Component {
                 break;
             case 1:
                 child = <SponsorForm_BusinessInformation screenId={this.state.screen} handler={this.handleScreenChange}/>;
+                break;
+            case 2:
+                child = <ChooseService screenId={this.state.screen} handler={this.handleScreenChange}/>;
                 break;
             default:
                 break;
