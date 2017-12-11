@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Panel, Tooltip, OverlayTrigger } from 'react-bootstrap';
+import { Grid, Row, Col, Panel } from 'react-bootstrap';
 
 class Freemium_AdInfo extends Component{
     constructor(props) {
@@ -37,8 +37,8 @@ class Freemium_AdInfo extends Component{
         }
     }
     componentDidMount() {
-        let button = this.refs.button;
-        button.setAttribute('disabled','disabled');
+        let buttonNext = this.refs.buttonNext;
+        buttonNext.setAttribute('disabled','disabled');
     }
     render() {
         return (
@@ -83,41 +83,58 @@ class Freemium_AdInfo extends Component{
 
                             <div className="form-group">
                                 <label className="control-label">App Environment</label>
+                                <br/>
                                 <input
                                     value={this.state.environment}
                                     type="radio"
-                                    name="indoor"
-                                    className="form-control"
+                                    name="environment"
                                     ref={(input) => { this.websiteInput = input }}
                                     required
                                 />
+                                Indoor
                                 <input
                                     value={this.state.environment}
                                     type="radio"
-                                    name="outdoor"
-                                    className="form-control"
+                                    name="environment"
                                     ref={(input) => { this.websiteInput = input }}
                                     required
                                 />
+                                Outdoor
                             </div>
 
-                            <div className="form-group">
+                            <div className="form-group freemium-path">
                                 <label className="control-label">Type of Ad</label>
-                                <input
-                                    value={this.state.adType}
-                                    onChange={this.onChange}
-                                    type="url"
-                                    name="website"
-                                    pattern='^https?://'
-                                    className="form-control"
-                                    ref={(input) => { this.websiteInput = input }}
-                                    required
-                                    id="last"
-                                />
+                                <Grid>
+                                    <Row>
+                                        <Col xs={3}>
+                                            <Panel className="freemium-path-panel">
+                                                Type 1
+                                            </Panel>
+                                        </Col>
+                                        <Col xs={3}>
+                                            <Panel className="freemium-path-panel">
+                                                Type 2
+                                            </Panel>
+                                        </Col>
+                                        <Col xs={3}>
+                                            <Panel className="freemium-path-panel">
+                                                Type 3
+                                            </Panel>
+                                        </Col>
+                                        <Col xs={3}>
+                                            <Panel className="freemium-path-panel">
+                                                Type 4
+                                            </Panel>
+                                        </Col>
+                                    </Row>
+                                </Grid>
                             </div>
 
-                            <div className="form-group">
-                                <button className="btn btn-lg" ref="button" onClick={this.endScreen}>
+                            <div className="bottom-form">
+                                <button className="btn btn-lg back hvr-grow" ref="buttonBack" onClick={this.lastScreen}>
+                                    Back
+                                </button>
+                                <button className="btn btn-lg next" ref="buttonNext" onClick={this.endScreen}>
                                     Next
                                 </button>
                             </div>

@@ -1093,6 +1093,29 @@ table {
     transform: scale(0.15, 0.15);
 }
 
+/*Freemium Path*/
+.freemium-path .panel {
+    /*width: 350px;*/
+    border: 0;
+    border-radius: 4px;
+    box-shadow: 0 6px 10px 0 rgba(0,0,0,0.14), 0 1px 18px 0 rgba(0,0,0,0.12), 0 3px 5px 0 rgba(0,0,0,0.2);
+}
+
+.freemium-path-panel .panel-body {
+    background-color: #FFFFFF;
+    padding-top: 50px;
+    border: none;
+    margin-bottom: 70px;
+}
+
+.freemium-path-panel:hover .panel-body:hover {
+	border: 2px solid #44C0FF;
+    border-radius: 4px;
+    padding-top: 50px;
+    margin: -4px;
+}
+
+
 /*React CSS Transition Group*/
 .sponsor-enter {
   transform: translate(100%);
