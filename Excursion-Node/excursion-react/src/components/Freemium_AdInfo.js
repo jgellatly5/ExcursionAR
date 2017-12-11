@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid, Row, Col, Panel } from 'react-bootstrap';
+import { Grid, Row, Col, Panel, FormGroup, ControlLabel, FormControl } from 'react-bootstrap';
 
 class Freemium_AdInfo extends Component{
     constructor(props) {
@@ -67,19 +67,13 @@ class Freemium_AdInfo extends Component{
                                 />
                             </div>
 
-                            <div className="form-group">
-                                <label className="control-label">Genre</label>
-                                    <input
-                                        value={this.state.genre}
-                                        onChange={this.onChange}
-                                        type="tel"
-                                        name="phoneNumber"
-                                        pattern='\d{3}[\-]\d{3}[\-]\d{4}'
-                                        className="form-control"
-                                        ref={(input) => { this.phoneNumberInput = input }}
-                                        required
-                                    />
-                            </div>
+                            <FormGroup controlId="formControlsSelect">
+                                <ControlLabel>Genre</ControlLabel>
+                                <FormControl componentClass="select" placeholder="Technology">
+                                    <option value="technology">Technology</option>
+                                    <option value="other">...</option>
+                                </FormControl>
+                            </FormGroup>
 
                             <div className="form-group">
                                 <label className="control-label">App Environment</label>
@@ -129,16 +123,15 @@ class Freemium_AdInfo extends Component{
                                     </Row>
                                 </Grid>
                             </div>
-
-                            <div className="bottom-form">
-                                <button className="btn btn-lg back hvr-grow" ref="buttonBack" onClick={this.lastScreen}>
-                                    Back
-                                </button>
-                                <button className="btn btn-lg next" ref="buttonNext" onClick={this.endScreen}>
-                                    Next
-                                </button>
-                            </div>
                         </form>
+                        <div className="bottom-form">
+                            <button className="btn btn-lg back hvr-grow" ref="buttonBack" onClick={this.lastScreen}>
+                                Back
+                            </button>
+                            <button className="btn btn-lg next" ref="buttonNext" onClick={this.endScreen}>
+                                Next
+                            </button>
+                        </div>
                     </div>
                     </Panel>
                 </div>
