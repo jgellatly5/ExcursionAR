@@ -31,7 +31,6 @@ class SponsorForm_BusinessInformation extends Component{
         }
     }
     endScreen(e) {
-        e.preventDefault();
         let website = this.websiteInput.value;
         if (website.includes(".")) {
             let nextScreen = this.props.screenId + 1;
@@ -109,6 +108,7 @@ class SponsorForm_BusinessInformation extends Component{
                                         type="tel"
                                         name="phoneNumber"
                                         className="form-control"
+                                        pattern='\d{3}[\-]\d{3}[\-]\d{4}'
                                         onKeyUp={this.formatNumber}
                                         ref={(input) => { this.phoneNumberInput = input }}
                                         required
