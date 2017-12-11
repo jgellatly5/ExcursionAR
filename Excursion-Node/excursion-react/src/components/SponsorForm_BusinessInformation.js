@@ -12,8 +12,10 @@ class SponsorForm_BusinessInformation extends Component{
         };
         this.onChange = this.onChange.bind(this);
         this.endScreen = this.endScreen.bind(this);
+        this.formatNumber = this.formatNumber.bind(this);
     }
     onChange(e) {
+        e.preventDefault();
         this.setState({ [e.target.name]: e.target.value });
         let button = this.refs.button;
         let companyName = this.companyNameInput.value;
@@ -29,10 +31,28 @@ class SponsorForm_BusinessInformation extends Component{
         }
     }
     endScreen(e) {
+        e.preventDefault();
         let website = this.websiteInput.value;
         if (website.includes(".")) {
             let nextScreen = this.props.screenId + 1;
             this.props.handler(e, nextScreen);
+        }
+    }
+    formatNumber() {
+        let phoneNumber = this.phoneNumberInput.value;
+        let r = /(\D+)/g,
+        npa = '',
+        nxx = '',
+        last4 = '';
+        if (phoneNumber !== '') {
+            phoneNumber = phoneNumber.replace(r, '');
+            npa = phoneNumber.substr(0, 3);
+            nxx = phoneNumber.substr(3, 3);
+            last4 = phoneNumber.substr(6, 4);
+            phoneNumber = npa + '-' + nxx + '-' + last4;
+            this.setState({
+                phoneNumber: phoneNumber
+            });
         }
     }
     componentDidMount() {
@@ -44,7 +64,7 @@ class SponsorForm_BusinessInformation extends Component{
             <Tooltip id="tooltip">Format: 000-000-0000</Tooltip>
         );
         const tooltip_url = (
-            <Tooltip id="tooltip">Format: "http://"</Tooltip>
+            <Tooltip id="tooltip">Format: "https:// or http://"</Tooltip>
         );
         return (
             <div className="ad-signup-container">
@@ -53,7 +73,7 @@ class SponsorForm_BusinessInformation extends Component{
                     <h1>What is your business?</h1>
                     <p>Fill out information about your business.</p>
                     <div>
-                        <form onSubmit={this.onSubmit}>
+                        <form>
                             <div className="form-group">
                                 <label className="control-label">Company Name</label>
                                 <input
@@ -88,8 +108,8 @@ class SponsorForm_BusinessInformation extends Component{
                                         onChange={this.onChange}
                                         type="tel"
                                         name="phoneNumber"
-                                        pattern='\d{3}[\-]\d{3}[\-]\d{4}'
                                         className="form-control"
+                                        onKeyUp={this.formatNumber}
                                         ref={(input) => { this.phoneNumberInput = input }}
                                         required
                                     />
