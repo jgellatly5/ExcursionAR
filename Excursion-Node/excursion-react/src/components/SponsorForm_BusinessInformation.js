@@ -45,16 +45,17 @@ class SponsorForm_BusinessInformation extends Component{
         last4 = '';
         if (phoneNumber !== '') {
             phoneNumber = phoneNumber.replace(r, '');
-            npa = phoneNumber.substr(0, 3);
-            if (npa.length == 3) {
-                npa = npa + '-';
+            npa = phoneNumber.substr(0, 4);
+            if (npa.length == 4) {
+                npa = npa.substr(0, 3) + '-' + npa.charAt(3);
             }
-            nxx = phoneNumber.substr(3, 3);
-            if (nxx.length == 3) {
-                nxx = nxx + '-';
+            nxx = phoneNumber.substr(4, 2);
+            if (nxx.length == 2) {
+                nxx = nxx.substr(0, 3) + '-' + nxx.charAt(3);
             }
             last4 = phoneNumber.substr(6, 4);
             phoneNumber = npa + nxx + last4;
+            // phoneNumber = npa + nxx;
             this.setState({
                 phoneNumber: phoneNumber
             });
