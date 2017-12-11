@@ -49,13 +49,12 @@ class SponsorForm_BusinessInformation extends Component{
             if (npa.length == 4) {
                 npa = npa.substr(0, 3) + '-' + npa.charAt(3);
             }
-            nxx = phoneNumber.substr(4, 2);
-            if (nxx.length == 2) {
-                nxx = nxx.substr(0, 3) + '-' + nxx.charAt(3);
+            nxx = phoneNumber.substr(4, 3);
+            if (nxx.length == 3) {
+                nxx = nxx.substr(0, 2) + '-' + nxx.charAt(2);
             }
-            last4 = phoneNumber.substr(6, 4);
+            last4 = phoneNumber.substr(7, 3);
             phoneNumber = npa + nxx + last4;
-            // phoneNumber = npa + nxx;
             this.setState({
                 phoneNumber: phoneNumber
             });
