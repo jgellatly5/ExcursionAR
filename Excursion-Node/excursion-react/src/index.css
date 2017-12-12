@@ -1107,6 +1107,7 @@ table {
     padding-top: 50px;
     border: none;
     margin-bottom: 70px;
+    height: 250px;
 }
 
 .freemium-path-panel:hover .panel-body:hover {
@@ -1116,6 +1117,74 @@ table {
     margin: -4px;
 }
 
+.scroll {
+    overflow-y: scroll;
+}
+
+.ad-signup .ad-type {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    color: #3F3E3E;
+    font-weight: 700;
+    line-height: 22px;
+}
+
+input[type="radio"] {
+    -webkit-appearance: none;
+    margin-right: 20px;
+    margin-left: 20px;
+    margin-bottom: 2px;
+    color: #3F3E3E;
+    transform: scale(3);
+    border: 1px solid #1E1E75;
+    border-radius: 50%;
+    outline: none;
+    width: 10px;
+    height: 10px;
+}
+
+input[type='radio']:hover {
+  box-shadow:0 0 5px 0px #1E1E75 inset;
+}
+
+input[type='radio']:before {
+  content: '';
+  display: block;
+  width: 60%;
+  height: 60%;
+  margin: 20% auto;
+  border-radius: 80%;
+}
+
+input[type='radio']:checked:before {
+  background: #1E1E75;
+}
+
+.radio-buttons {
+    color: #3F3E3E;
+    margin-bottom: 30px;
+}
+
+#environment {
+    margin-bottom: 30px;
+}
+
+.freemium-path-panel h4 {
+    color: #44C0FF;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 22px;
+}
+
+.freemium-path-panel p {
+    color: #3F3E3E;
+    font-size: 14px;
+    line-height: 17px;
+    text-align: left;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 13px;
+}
 
 /*React CSS Transition Group*/
 .sponsor-enter {
@@ -1142,7 +1211,7 @@ table {
 @media (min-width: 1400px) {
     body, .choose-path {
         background-size: cover;
-    } 
+    }
 }
 @media (max-width: 667px) {
     #headerwrap {

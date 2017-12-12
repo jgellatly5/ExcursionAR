@@ -44,14 +44,14 @@ class Freemium_AdInfo extends Component{
         return (
             <div className="ad-signup-container">
                 <div className="ad-signup">
-                    <Panel className="ad-signup-panel">
+                    <Panel className="ad-signup-panel scroll">
                     <h1>Time to set up your ad</h1>
                     <p>Choose what ad you would like to use on our platform.</p>
                     <div>
                         <form onSubmit={this.onSubmit}>
                             <div className="form-group">
                                 <label className="control-label">Ad Type</label>
-                                <p>Freemium</p>
+                                <p className="ad-type">Freemium</p>
                             </div>
 
                             <div className="form-group">
@@ -75,8 +75,8 @@ class Freemium_AdInfo extends Component{
                                 </FormControl>
                             </FormGroup>
 
-                            <div className="form-group">
-                                <label className="control-label">App Environment</label>
+                            <div className="form-group radio-buttons">
+                                <label className="control-label" id="environment">App Environment</label>
                                 <br/>
                                 <input
                                     value={this.state.environment}
@@ -102,22 +102,28 @@ class Freemium_AdInfo extends Component{
                                     <Row>
                                         <Col xs={3}>
                                             <Panel className="freemium-path-panel">
-                                                Type 1
+                                                <h4>Type 1</h4>
+                                                <p>Anyway you want it, thats the way you need it. Anyway you want it.
+                                                She loves to laugh, she loves to sing. She does everything.</p>
                                             </Panel>
                                         </Col>
                                         <Col xs={3}>
                                             <Panel className="freemium-path-panel">
-                                                Type 2
+                                                <h4>Type 2</h4>
+                                                <p>When the lights go down in the city and the sun shines on the bay.
+                                                Oh I want to be there in my city Oh oo woah oo oahooo.</p>
                                             </Panel>
                                         </Col>
                                         <Col xs={3}>
                                             <Panel className="freemium-path-panel">
-                                                Type 3
+                                                <h4>Type 3</h4>
+                                                <p>Dont stop believing hold on to that feeling. Streetlights, people.</p>
                                             </Panel>
                                         </Col>
                                         <Col xs={3}>
                                             <Panel className="freemium-path-panel">
-                                                Type 4
+                                                <h4>Type 4</h4>
+                                                <p>The wheel in the sky keeps on turning.</p>
                                             </Panel>
                                         </Col>
                                     </Row>
