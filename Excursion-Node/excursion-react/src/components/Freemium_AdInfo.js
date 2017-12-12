@@ -43,7 +43,7 @@ class Freemium_AdInfo extends Component{
     render() {
         return (
             <div className="ad-signup-container">
-                <div className="ad-signup">
+                <div className="ad-signup" id="fix-margin">
                     <Panel className="ad-signup-panel scroll">
                     <h1>Time to set up your ad</h1>
                     <p>Choose what ad you would like to use on our platform.</p>
@@ -69,7 +69,7 @@ class Freemium_AdInfo extends Component{
 
                             <FormGroup controlId="formControlsSelect">
                                 <ControlLabel>Genre</ControlLabel>
-                                <FormControl componentClass="select" placeholder="Technology">
+                                <FormControl componentClass="select" placeholder="Technology" >
                                     <option value="technology">Technology</option>
                                     <option value="other">...</option>
                                 </FormControl>

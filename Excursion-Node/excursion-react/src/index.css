@@ -815,7 +815,7 @@ table {
 }
 
 .ad-signup-panel {
-    height: 500px;
+    height: 900px;
     border-radius: 4px;
     background-color: #FFFFFF;
     margin-left: 6%;
@@ -1112,15 +1112,18 @@ table {
     box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 2px 4px 0 rgba(0,0,0,0.12), 0 1px 3px 0 rgba(0,0,0,0.2);
 }
 
-.freemium-path-panel:hover .panel-body:hover {
-	border: 2px solid #44C0FF;
-    border-radius: 4px;
-    padding-top: 50px;
-    margin: -2px;
+#fix-margin .panel-body {
+	margin-bottom: 0px;
 }
 
 .scroll {
     overflow-y: scroll;
+}
+
+.ad-signup .panel-body {
+    margin-bottom: 120px;
+    padding-top: 50px;
+    box-shadow: 0 6px 10px 0 rgba(0,0,0,0.14), 0 1px 18px 0 rgba(0,0,0,0.12), 0 3px 5px 0 rgba(0,0,0,0.2);
 }
 
 .ad-signup .ad-type {
@@ -1193,6 +1196,17 @@ input[type='radio']:checked:before {
     height: 60px;
     width: 60px;
     border-radius: 80%;
+}
+
+.ad-signup-panel::-webkit-scrollbar {
+    width: 10px;
+
+}
+
+.ad-signup-panel::-webkit-scrollbar-thumb {
+  background-color: #878787;
+  outline: 1px solid slategrey;
+  border-radius: 5px;
 }
 
 /*React CSS Transition Group*/
