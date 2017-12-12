@@ -102,26 +102,28 @@ class Freemium_AdInfo extends Component{
                                     <Row>
                                         <Col xs={3}>
                                             <Panel className="freemium-path-panel">
+                                                <img src={require("../blank.png")}/>
                                                 <h4>Type 1</h4>
-                                                <p>Anyway you want it, thats the way you need it. Anyway you want it.
-                                                She loves to laugh, she loves to sing. She does everything.</p>
+                                                <p>Anyway you want it, thats the way you need it. Anyway you want it.</p>
                                             </Panel>
                                         </Col>
                                         <Col xs={3}>
                                             <Panel className="freemium-path-panel">
+                                                <img src={require("../blank.png")}/>
                                                 <h4>Type 2</h4>
-                                                <p>When the lights go down in the city and the sun shines on the bay.
-                                                Oh I want to be there in my city Oh oo woah oo oahooo.</p>
+                                                <p>When the lights go down in the city and the sun shines on the bay.</p>
                                             </Panel>
                                         </Col>
                                         <Col xs={3}>
                                             <Panel className="freemium-path-panel">
+                                                <img src={require("../blank.png")}/>
                                                 <h4>Type 3</h4>
                                                 <p>Dont stop believing hold on to that feeling. Streetlights, people.</p>
                                             </Panel>
                                         </Col>
                                         <Col xs={3}>
                                             <Panel className="freemium-path-panel">
+                                                <img src={require("../blank.png")}/>
                                                 <h4>Type 4</h4>
                                                 <p>The wheel in the sky keeps on turning.</p>
                                             </Panel>

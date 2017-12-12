@@ -1108,13 +1108,15 @@ table {
     border: none;
     margin-bottom: 70px;
     height: 250px;
+    border-radius: 4px;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 2px 4px 0 rgba(0,0,0,0.12), 0 1px 3px 0 rgba(0,0,0,0.2);
 }
 
 .freemium-path-panel:hover .panel-body:hover {
 	border: 2px solid #44C0FF;
     border-radius: 4px;
     padding-top: 50px;
-    margin: -4px;
+    margin: -2px;
 }
 
 .scroll {
@@ -1184,6 +1186,13 @@ input[type='radio']:checked:before {
     margin-left: 20px;
     margin-right: 20px;
     margin-top: 13px;
+}
+
+.freemium-path-panel .panel-body img{
+    background-color: #d8d8d8;
+    height: 60px;
+    width: 60px;
+    border-radius: 80%;
 }
 
 /*React CSS Transition Group*/
