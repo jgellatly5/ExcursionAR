@@ -5,36 +5,68 @@ class Freemium_AdInfo extends Component{
     constructor(props) {
         super(props);
         this.state = {
-            adType: '',
+            adType: 'freemium',
             adName: '',
-            genre: '',
             appEnvironment: '',
-            website: ''
+            adFormat: ''
         };
         this.onChange = this.onChange.bind(this);
+        this.onSelectType1 = this.onSelectType1.bind(this);
+        this.onSelectType2 = this.onSelectType2.bind(this);
+        this.onSelectType3 = this.onSelectType3.bind(this);
+        this.onSelectType4 = this.onSelectType4.bind(this);
         this.endScreen = this.endScreen.bind(this);
     }
     onChange(e) {
         this.setState({ [e.target.name]: e.target.value });
-        let button = this.refs.button;
-        let companyName = this.companyNameInput.value;
-        let industry = this.industryInput.value;
-        let phoneNumber = this.phoneNumberInput.value;
-        let website = this.websiteInput.value;
-        if (companyName !== '' && industry !== '' && phoneNumber !== '' && website !== '') {
-            button.classList.add('active', 'hvr-grow');
-            button.removeAttribute('disabled');
+        let buttonNext = this.refs.buttonNext;
+        let adName = this.adNameInput.value;
+        let genre = this.genreInput.value;
+        let environment = this.state.appEnvironment;
+        // let type1 = this.refs.type1;
+        // let type2 = this.refs.type2;
+        // let type3 = this.refs.type3;
+        // let type4 = this.refs.type4;
+        let adFormat = this.state.adFormat;
+        if (adName !== '' && genre !== '' && environment !== '' && adFormat !== '') {
+            buttonNext.classList.add('active', 'hvr-grow');
+            buttonNext.removeAttribute('disabled');
         } else {
-            button.classList.remove('active', 'hvr-grow');
-            button.setAttribute('disabled','disabled');
+            buttonNext.classList.remove('active', 'hvr-grow');
+            buttonNext.setAttribute('disabled','disabled');
         }
     }
+    onSelectType1(e) {
+        e.preventDefault();
+        this.setState({
+            adFormat: 'type1'
+        });
+        console.log(this.state.adFormat);
+    }
+    onSelectType2(e) {
+        e.preventDefault();
+        this.setState({
+            adFormat: 'type2'
+        });
+        console.log(this.state.adFormat);
+    }
+    onSelectType3(e) {
+        e.preventDefault();
+        this.setState({
+            adFormat: 'type3'
+        });
+        console.log(this.state.adFormat);
+    }
+    onSelectType4(e) {
+        e.preventDefault();
+        this.setState({
+            adFormat: 'type4'
+        });
+        console.log(this.state.adFormat);
+    }
     endScreen(e) {
-        let website = this.websiteInput.value;
-        if (website.includes(".")) {
-            let nextScreen = this.props.screenId + 1;
-            this.props.handler(e, nextScreen);
-        }
+        let nextScreen = this.props.screenId + 1;
+        this.props.handler(e, nextScreen);
     }
     componentDidMount() {
         let buttonNext = this.refs.buttonNext;
@@ -48,7 +80,7 @@ class Freemium_AdInfo extends Component{
                     <h1>Time to set up your ad</h1>
                     <p>Choose what ad you would like to use on our platform.</p>
                     <div>
-                        <form onSubmit={this.onSubmit}>
+                        <form>
                             <div className="form-group">
                                 <label className="control-label">Ad Type</label>
                                 <p className="ad-type">Freemium</p>
@@ -62,16 +94,17 @@ class Freemium_AdInfo extends Component{
                                     type="text"
                                     name="adName"
                                     className="form-control"
-                                    ref={(input) => { this.industryInput = input }}
+                                    ref={(input) => { this.adNameInput = input }}
                                     required
                                 />
                             </div>
 
                             <FormGroup controlId="formControlsSelect">
                                 <ControlLabel>Genre</ControlLabel>
-                                <FormControl componentClass="select" placeholder="Technology" >
-                                    <option value="technology">Technology</option>
-                                    <option value="other">...</option>
+                                <FormControl componentClass="select" placeholder="..." onChange={this.onChange} inputRef={ref => { this.genreInput = ref; }} value={this.state.genre}>
+                                    <option value="other" >...</option>
+                                    <option value="technology" >Technology</option>
+                                    <option value="finance" >Finance</option>
                                 </FormControl>
                             </FormGroup>
 
@@ -79,50 +112,52 @@ class Freemium_AdInfo extends Component{
                                 <label className="control-label" id="environment">App Environment</label>
                                 <br/>
                                 <input
-                                    value={this.state.environment}
+                                    value="indoor"
                                     type="radio"
-                                    name="environment"
-                                    ref={(input) => { this.websiteInput = input }}
+                                    name="appEnvironment"
+                                    onChange={this.onChange}
+                                    ref={(input) => { this.environmentInput = input }}
                                     required
                                 />
                                 Indoor
                                 <input
-                                    value={this.state.environment}
+                                    value="outdoor"
                                     type="radio"
-                                    name="environment"
-                                    ref={(input) => { this.websiteInput = input }}
+                                    name="appEnvironment"
+                                    onChange={this.onChange}
+                                    ref={(input) => { this.environmentInput = input }}
                                     required
                                 />
                                 Outdoor
                             </div>
 
                             <div className="form-group freemium-path">
-                                <label className="control-label">Type of Ad</label>
+                                <label className="control-label" id="lastElement">Type of Ad</label>
                                 <Grid>
                                     <Row>
                                         <Col xs={3}>
-                                            <Panel className="freemium-path-panel">
+                                            <Panel className="freemium-path-panel" onClick={this.onSelectType1}>
                                                 <img src={require("../blank.png")}/>
                                                 <h4>Type 1</h4>
                                                 <p>Anyway you want it, thats the way you need it. Anyway you want it.</p>
                                             </Panel>
                                         </Col>
                                         <Col xs={3}>
-                                            <Panel className="freemium-path-panel">
+                                            <Panel className="freemium-path-panel" onClick={this.onSelectType2}>
                                                 <img src={require("../blank.png")}/>
                                                 <h4>Type 2</h4>
                                                 <p>When the lights go down in the city and the sun shines on the bay.</p>
                                             </Panel>
                                         </Col>
                                         <Col xs={3}>
-                                            <Panel className="freemium-path-panel">
+                                            <Panel className="freemium-path-panel" onClick={this.onSelectType3}>
                                                 <img src={require("../blank.png")}/>
                                                 <h4>Type 3</h4>
                                                 <p>Dont stop believing hold on to that feeling. Streetlights, people.</p>
                                             </Panel>
                                         </Col>
                                         <Col xs={3}>
-                                            <Panel className="freemium-path-panel">
+                                            <Panel className="freemium-path-panel" onClick={this.onSelectType4}>
                                                 <img src={require("../blank.png")}/>
                                                 <h4>Type 4</h4>
                                                 <p>The wheel in the sky keeps on turning.</p>

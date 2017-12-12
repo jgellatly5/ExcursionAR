@@ -1112,6 +1112,11 @@ table {
     box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 2px 4px 0 rgba(0,0,0,0.12), 0 1px 3px 0 rgba(0,0,0,0.2);
 }
 
+.freemium-path-panel:hover .panel-body:hover {
+    border: 2px solid #4CC1FC;
+    margin: -2px;
+}
+
 #fix-margin .panel-body {
 	margin-bottom: 0px;
 }
@@ -1207,6 +1212,10 @@ input[type='radio']:checked:before {
   background-color: #878787;
   outline: 1px solid slategrey;
   border-radius: 5px;
+}
+
+#lastElement {
+    margin-bottom: 15px;
 }
 
 /*React CSS Transition Group*/
