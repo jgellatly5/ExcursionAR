@@ -123,10 +123,13 @@ class Freemium_AdInfo extends Component{
 
                             <FormGroup controlId="formControlsSelect">
                                 <ControlLabel>Genre</ControlLabel>
-                                <FormControl componentClass="select" placeholder="..." onChange={this.onChange} inputRef={ref => { this.genreInput = ref; }} value={this.state.genre}>
+                                <FormControl componentClass="select" id="formatSelector" placeholder="..." onChange={this.onChange} inputRef={ref => { this.genreInput = ref; }} value={this.state.genre}>
                                     <option value="other" >...</option>
                                     <option value="technology" >Technology</option>
                                     <option value="finance" >Finance</option>
+                                    <option value="retail" >Retail</option>
+                                    <option value="entertainment" >Entertainment</option>
+                                    <option value="restaurant" >Restaurant</option>
                                 </FormControl>
                             </FormGroup>
 
@@ -158,7 +161,7 @@ class Freemium_AdInfo extends Component{
                                 <Grid>
                                     <Row>
                                         <Col xs={3}>
-                                            <Panel className={this.state.insertType1Class} onClick={this.onSelectType1} eventKey="type1">
+                                            <Panel className={this.state.insertType1Class} onClick={this.onSelectType1}>
                                                 <img src={require("../blank.png")}/>
                                                 <h4>Type 1</h4>
                                                 <p>Anyway you want it, thats the way you need it. Anyway you want it.</p>
@@ -182,7 +185,7 @@ class Freemium_AdInfo extends Component{
                                             <Panel className={this.state.insertType4Class} onClick={this.onSelectType4}>
                                                 <img src={require("../blank.png")}/>
                                                 <h4>Type 4</h4>
-                                                <p>The wheel in the sky keeps on turning.</p>
+                                                <p>The wheel in the sky keeps on turning. I dont know where Ill be tomorrow.</p>
                                             </Panel>
                                         </Col>
                                     </Row>
