@@ -1239,6 +1239,22 @@ input[type='radio']:checked:before {
     margin-bottom: 15px;
 }
 
+/*Premium Path*/
+.premium-path-panel .panel-body {
+    border: 3px dashed #1E1E75;
+    box-shadow: none;
+}
+
+.premium-path-panel p {
+    text-align: center;
+    margin-left: 0;
+    color: #182133;
+}
+
+.premium-path-panel.path {
+    display: none;
+}
+
 /*React CSS Transition Group*/
 .sponsor-enter {
     transform: translate(100%);
