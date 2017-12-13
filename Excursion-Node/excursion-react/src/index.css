@@ -1012,8 +1012,8 @@ table {
     margin: -2px;
 }
 
-.choose-service-panel:hover.unactive .panel-body:hover {
-    margin-bottom: 70px;
+.choose-service-panel.unactive:hover .panel-body:hover {
+    margin-bottom: 120px;
 }
 
 .choose-service-panel p {
@@ -1139,10 +1139,6 @@ table {
 .freemium-path-panel.active:hover .panel-body:hover {
     margin: -2px;
 }
-
-/*.freemium-path-panel:hover.unactive .panel-body:hover {
-    margin-bottom: 70px;
-}*/
 
 .scroll {
     overflow-y: scroll;

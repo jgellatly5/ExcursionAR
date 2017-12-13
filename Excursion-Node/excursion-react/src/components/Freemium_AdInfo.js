@@ -123,7 +123,7 @@ class Freemium_AdInfo extends Component{
 
                             <FormGroup controlId="formControlsSelect">
                                 <ControlLabel>Genre</ControlLabel>
-                                <FormControl componentClass="select" id="formatSelector" placeholder="..." onChange={this.onChange} inputRef={ref => { this.genreInput = ref; }} value={this.state.genre}>
+                                <FormControl componentClass="select" placeholder="..." onChange={this.onChange} inputRef={ref => { this.genreInput = ref; }} value={this.state.genre}>
                                     <option value="other" >...</option>
                                     <option value="technology" >Technology</option>
                                     <option value="finance" >Finance</option>

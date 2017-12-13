@@ -3,6 +3,7 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import SponsorForm from "./SponsorForm";
 import SponsorForm_BusinessInformation from "./SponsorForm_BusinessInformation";
 import ChooseService from './ChooseService';
+import Freemium_AdInfo from './Freemium_AdInfo';
 
 class SponsorSignupLayout extends Component {
     constructor(props) {
@@ -37,6 +38,9 @@ class SponsorSignupLayout extends Component {
                 break;
             case 2:
                 child = <ChooseService screenId={this.state.screen} handler={this.handleScreenChange}/>;
+                break;
+            case 3:
+                child = <Freemium_AdInfo screenId={this.state.screen} handler={this.handleScreenChange}/>;
                 break;
             default:
                 break;
