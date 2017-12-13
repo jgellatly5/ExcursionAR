@@ -8,13 +8,18 @@ class Freemium_AdInfo extends Component{
             adType: 'freemium',
             adName: '',
             appEnvironment: '',
-            adFormat: ''
+            adFormat: '',
+            insertType1Class: 'freemium-path-panel',
+            insertType2Class: 'freemium-path-panel',
+            insertType3Class: 'freemium-path-panel',
+            insertType4Class: 'freemium-path-panel'
         };
         this.onChange = this.onChange.bind(this);
         this.onSelectType1 = this.onSelectType1.bind(this);
         this.onSelectType2 = this.onSelectType2.bind(this);
         this.onSelectType3 = this.onSelectType3.bind(this);
         this.onSelectType4 = this.onSelectType4.bind(this);
+        this.lastScreen = this.lastScreen.bind(this);
         this.endScreen = this.endScreen.bind(this);
     }
     onChange(e) {
@@ -22,13 +27,10 @@ class Freemium_AdInfo extends Component{
         let buttonNext = this.refs.buttonNext;
         let adName = this.adNameInput.value;
         let genre = this.genreInput.value;
-        let environment = this.state.appEnvironment;
-        // let type1 = this.refs.type1;
-        // let type2 = this.refs.type2;
-        // let type3 = this.refs.type3;
-        // let type4 = this.refs.type4;
+        let outdoorEnv = this.outdoorEnvInput.value;
+        let indoorEnv = this.indoorEnvInput.value;
         let adFormat = this.state.adFormat;
-        if (adName !== '' && genre !== '' && environment !== '' && adFormat !== '') {
+        if (adName !== '' && genre !== '' && (indoorEnv !== '' || outdoorEnv !== '') && adFormat !== '') {
             buttonNext.classList.add('active', 'hvr-grow');
             buttonNext.removeAttribute('disabled');
         } else {
@@ -39,30 +41,50 @@ class Freemium_AdInfo extends Component{
     onSelectType1(e) {
         e.preventDefault();
         this.setState({
-            adFormat: 'type1'
+            adFormat: 'type1',
+            insertType1Class: 'freemium-path-panel active',
+            insertType2Class: 'freemium-path-panel',
+            insertType3Class: 'freemium-path-panel',
+            insertType4Class: 'freemium-path-panel'
         });
-        console.log(this.state.adFormat);
+        this.onChange(e);
     }
     onSelectType2(e) {
         e.preventDefault();
         this.setState({
-            adFormat: 'type2'
+            adFormat: 'type2',
+            insertType1Class: 'freemium-path-panel',
+            insertType2Class: 'freemium-path-panel active',
+            insertType3Class: 'freemium-path-panel',
+            insertType4Class: 'freemium-path-panel'
         });
-        console.log(this.state.adFormat);
+        this.onChange(e);
     }
     onSelectType3(e) {
         e.preventDefault();
         this.setState({
-            adFormat: 'type3'
+            adFormat: 'type3',
+            insertType1Class: 'freemium-path-panel',
+            insertType2Class: 'freemium-path-panel',
+            insertType3Class: 'freemium-path-panel active',
+            insertType4Class: 'freemium-path-panel'
         });
-        console.log(this.state.adFormat);
+        this.onChange(e);
     }
     onSelectType4(e) {
         e.preventDefault();
         this.setState({
-            adFormat: 'type4'
+            adFormat: 'type4',
+            insertType1Class: 'freemium-path-panel',
+            insertType2Class: 'freemium-path-panel',
+            insertType3Class: 'freemium-path-panel',
+            insertType4Class: 'freemium-path-panel active'
         });
-        console.log(this.state.adFormat);
+        this.onChange(e);
+    }
+    lastScreen(e) {
+        let nextScreen = this.props.screenId - 1;
+        this.props.handler(e, nextScreen);
     }
     endScreen(e) {
         let nextScreen = this.props.screenId + 1;
@@ -116,7 +138,7 @@ class Freemium_AdInfo extends Component{
                                     type="radio"
                                     name="appEnvironment"
                                     onChange={this.onChange}
-                                    ref={(input) => { this.environmentInput = input }}
+                                    ref={(input) => { this.indoorEnvInput = input }}
                                     required
                                 />
                                 Indoor
@@ -125,7 +147,7 @@ class Freemium_AdInfo extends Component{
                                     type="radio"
                                     name="appEnvironment"
                                     onChange={this.onChange}
-                                    ref={(input) => { this.environmentInput = input }}
+                                    ref={(input) => { this.outdoorEnvInput = input }}
                                     required
                                 />
                                 Outdoor
@@ -136,28 +158,28 @@ class Freemium_AdInfo extends Component{
                                 <Grid>
                                     <Row>
                                         <Col xs={3}>
-                                            <Panel className="freemium-path-panel" onClick={this.onSelectType1}>
+                                            <Panel className={this.state.insertType1Class} onClick={this.onSelectType1} eventKey="type1">
                                                 <img src={require("../blank.png")}/>
                                                 <h4>Type 1</h4>
                                                 <p>Anyway you want it, thats the way you need it. Anyway you want it.</p>
                                             </Panel>
                                         </Col>
                                         <Col xs={3}>
-                                            <Panel className="freemium-path-panel" onClick={this.onSelectType2}>
+                                            <Panel className={this.state.insertType2Class} onClick={this.onSelectType2}>
                                                 <img src={require("../blank.png")}/>
                                                 <h4>Type 2</h4>
                                                 <p>When the lights go down in the city and the sun shines on the bay.</p>
                                             </Panel>
                                         </Col>
                                         <Col xs={3}>
-                                            <Panel className="freemium-path-panel" onClick={this.onSelectType3}>
+                                            <Panel className={this.state.insertType3Class} onClick={this.onSelectType3}>
                                                 <img src={require("../blank.png")}/>
                                                 <h4>Type 3</h4>
                                                 <p>Dont stop believing hold on to that feeling. Streetlights, people.</p>
                                             </Panel>
                                         </Col>
                                         <Col xs={3}>
-                                            <Panel className="freemium-path-panel" onClick={this.onSelectType4}>
+                                            <Panel className={this.state.insertType4Class} onClick={this.onSelectType4}>
                                                 <img src={require("../blank.png")}/>
                                                 <h4>Type 4</h4>
                                                 <p>The wheel in the sky keeps on turning.</p>

@@ -1121,6 +1121,21 @@ table {
 	margin-bottom: 0px;
 }
 
+.freemium-path-panel.active .panel-body {
+    border: 2px solid #44C0FF;
+    border-radius: 4px;
+    padding-top: 50px;
+    margin: -2px;
+}
+
+.freemium-path-panel.active:hover .panel-body:hover {
+    margin: -2px;
+}
+
+/*.freemium-path-panel:hover.unactive .panel-body:hover {
+    margin-bottom: 70px;
+}*/
+
 .scroll {
     overflow-y: scroll;
 }
