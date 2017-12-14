@@ -26,8 +26,8 @@ const Routes = (props) => (
             <IndexRoute component={SponsorForm} />
             <Route component={SponsorForm_BusinessInformation} />
             <Route component={ChooseService} />
-            <Route component={Freemium_AdInfo} />
         </Route>
+        <Route path="/test" component={Freemium_AdInfo} />
         <Route path="*" component={NotFound} />
     </Router>
 );
