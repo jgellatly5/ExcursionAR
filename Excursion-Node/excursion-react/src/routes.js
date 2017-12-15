@@ -8,7 +8,6 @@ import ContactForm from './components/ContactForm';
 import Signup from './components/Signup';
 import SponsorForm from './components/SponsorForm';
 import SponsorForm_BusinessInformation from './components/SponsorForm_BusinessInformation';
-import ChooseService from './components/ChooseService';
 import Freemium_AdInfo from './components/Freemium_AdInfo';
 import AppLayout from './components/AppLayout';
 import SponsorSignupLayout from './components/SponsorSignupLayout';
@@ -25,9 +24,8 @@ const Routes = (props) => (
         <Route path="/sponsor" component={SponsorSignupLayout}>
             <IndexRoute component={SponsorForm} />
             <Route component={SponsorForm_BusinessInformation} />
-            <Route component={ChooseService} />
+            <Route component={Freemium_AdInfo} />
         </Route>
-        <Route path="/test" component={Freemium_AdInfo} />
         <Route path="*" component={NotFound} />
     </Router>
 );
