@@ -10,7 +10,7 @@ import SponsorForm from './components/SponsorForm';
 import SponsorForm_BusinessInformation from './components/SponsorForm_BusinessInformation';
 import ChooseService from './components/ChooseService';
 import Freemium_AdInfo from './components/Freemium_AdInfo';
-import Premium_AdInfo from './components/Premium_AdInfo';
+import SetBudget from './components/SetBudget';
 import AppLayout from './components/AppLayout';
 import SponsorSignupLayout from './components/SponsorSignupLayout';
 
@@ -29,7 +29,7 @@ const Routes = (props) => (
             <Route component={ChooseService} />
             <Route component={Freemium_AdInfo} />
         </Route>
-        <Route path="/test" component={Premium_AdInfo} />
+        <Route path="/test" component={SetBudget} />
         <Route path="*" component={NotFound} />
     </Router>
 );

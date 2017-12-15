@@ -1255,6 +1255,20 @@ input[type='radio']:checked:before {
     display: none;
 }
 
+/* Set Budget */
+.set-budget-panel {
+    height: 770px;
+    border-radius: 4px;
+    background-color: #FFFFFF;
+    margin-left: 6%;
+    margin-right: 6%;
+    box-shadow: 0 6px 10px 0 rgba(0,0,0,0.14), 0 1px 18px 0 rgba(0,0,0,0.12), 0 3px 5px 0 rgba(0,0,0,0.2);
+}
+
+#fix-padding .panel-body {
+    padding-bottom: 470px;
+}
+
 /*React CSS Transition Group*/
 .sponsor-enter {
     transform: translate(100%);
