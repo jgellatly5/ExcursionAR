@@ -8,9 +8,9 @@ class Freemium_AdInfo extends Component{
             adType: 'freemium',
             insertStaticClass: 'freemium-path-panel',
             insertDynamicClass: 'freemium-path-panel',
-            insertInteractiveClass: 'freemium-path-panel',
-            insertNativeClass: 'freemium-path-panel'
+            insertInteractiveClass: 'freemium-path-panel'
         };
+        this.adFormat = 0;
         this.onChange = this.onChange.bind(this);
         this.onSelectStatic = this.onSelectStatic.bind(this);
         this.onSelectDynamic = this.onSelectDynamic.bind(this);
@@ -18,19 +18,14 @@ class Freemium_AdInfo extends Component{
         this.lastScreen = this.lastScreen.bind(this);
         this.endScreen = this.endScreen.bind(this);
     }
-    onChange(adFormat, e) {
+    onChange(e) {
         let buttonNext = this.refs.buttonNext;
         let adName = this.adNameInput.value;
         let genre = this.genreInput.value;
-        let isFormatChosen;
-        if (adFormat == 1 || adFormat == 2 || adFormat == 3) {
-            isFormatChosen = true;
-        }
-        if (adName !== '' && genre !== '' && isFormatChosen) {
-
+        let adFormat = this.adFormat;
+        if (adName !== '' && genre !== '' && adFormat != '0') {
             buttonNext.classList.add('active', 'hvr-grow');
             buttonNext.removeAttribute('disabled');
-            isFormatChosen = false;
         } else {
             buttonNext.classList.remove('active', 'hvr-grow');
             buttonNext.setAttribute('disabled','disabled');
@@ -38,36 +33,36 @@ class Freemium_AdInfo extends Component{
     }
     onSelectStatic(e) {
         e.preventDefault();
-        let staticAd = this.refs.staticAd.props.eventKey;
+        this.adFormat = this.refs.staticAd.props.eventKey;
         this.setState({
             adFormat: 'static',
             insertStaticClass: 'freemium-path-panel active',
             insertDynamicClass: 'freemium-path-panel',
             insertInteractiveClass: 'freemium-path-panel'
         });
-        this.onChange(staticAd, e);
+        this.onChange(e);
     }
     onSelectDynamic(e) {
         e.preventDefault();
-        let dynamicAd = this.refs.dynamicAd.props.eventKey;
+        this.adFormat = this.refs.dynamicAd.props.eventKey;
         this.setState({
             adFormat: 'dynamic',
             insertStaticClass: 'freemium-path-panel',
             insertDynamicClass: 'freemium-path-panel active',
             insertInteractiveClass: 'freemium-path-panel'
         });
-        this.onChange(dynamicAd, e);
+        this.onChange(e);
     }
     onSelectInteractive(e) {
         e.preventDefault();
-        let interactiveAd = this.refs.interactiveAd.props.eventKey;
+        this.adFormat = this.refs.interactiveAd.props.eventKey;
         this.setState({
             adFormat: 'interactive',
             insertStaticClass: 'freemium-path-panel',
             insertDynamicClass: 'freemium-path-panel',
             insertInteractiveClass: 'freemium-path-panel active'
         });
-        this.onChange(interactiveAd, e);
+        this.onChange(e);
     }
     lastScreen(e) {
         let nextScreen = this.props.screenId - 1;
