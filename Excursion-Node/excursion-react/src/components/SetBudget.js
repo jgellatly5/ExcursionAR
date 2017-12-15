@@ -1,24 +1,15 @@
 import React, { Component } from 'react';
-import { Grid, Row, Col, Panel, FormGroup, ControlLabel, FormControl } from 'react-bootstrap';
+import { Grid, Row, Col, Panel } from 'react-bootstrap';
+import Slider, { Range } from 'rc-slider';
+import 'rc-slider/assets/index.css';
 
 class SetBudget extends Component{
     constructor(props) {
         super(props);
         this.state = {
-            adType: 'freemium',
-            adName: '',
-            appEnvironment: '',
-            adFormat: '',
-            insertType1Class: 'freemium-path-panel',
-            insertType2Class: 'freemium-path-panel',
-            insertType3Class: 'freemium-path-panel',
-            insertType4Class: 'freemium-path-panel'
+
         };
         this.onChange = this.onChange.bind(this);
-        this.onSelectType1 = this.onSelectType1.bind(this);
-        this.onSelectType2 = this.onSelectType2.bind(this);
-        this.onSelectType3 = this.onSelectType3.bind(this);
-        this.onSelectType4 = this.onSelectType4.bind(this);
         this.lastScreen = this.lastScreen.bind(this);
         this.endScreen = this.endScreen.bind(this);
     }
@@ -37,50 +28,6 @@ class SetBudget extends Component{
             buttonNext.classList.remove('active', 'hvr-grow');
             buttonNext.setAttribute('disabled','disabled');
         }
-    }
-    onSelectType1(e) {
-        e.preventDefault();
-        this.setState({
-            adFormat: 'type1',
-            insertType1Class: 'freemium-path-panel active',
-            insertType2Class: 'freemium-path-panel',
-            insertType3Class: 'freemium-path-panel',
-            insertType4Class: 'freemium-path-panel'
-        });
-        this.onChange(e);
-    }
-    onSelectType2(e) {
-        e.preventDefault();
-        this.setState({
-            adFormat: 'type2',
-            insertType1Class: 'freemium-path-panel',
-            insertType2Class: 'freemium-path-panel active',
-            insertType3Class: 'freemium-path-panel',
-            insertType4Class: 'freemium-path-panel'
-        });
-        this.onChange(e);
-    }
-    onSelectType3(e) {
-        e.preventDefault();
-        this.setState({
-            adFormat: 'type3',
-            insertType1Class: 'freemium-path-panel',
-            insertType2Class: 'freemium-path-panel',
-            insertType3Class: 'freemium-path-panel active',
-            insertType4Class: 'freemium-path-panel'
-        });
-        this.onChange(e);
-    }
-    onSelectType4(e) {
-        e.preventDefault();
-        this.setState({
-            adFormat: 'type4',
-            insertType1Class: 'freemium-path-panel',
-            insertType2Class: 'freemium-path-panel',
-            insertType3Class: 'freemium-path-panel',
-            insertType4Class: 'freemium-path-panel active'
-        });
-        this.onChange(e);
     }
     lastScreen(e) {
         let nextScreen = this.props.screenId - 1;
@@ -105,6 +52,7 @@ class SetBudget extends Component{
                         <form>
                             <div className="form-group">
                                 <label className="control-label">Budget Amount</label>
+                                <Slider />
                                 <p className="ad-type">$0</p>
                             </div>
                         </form>
