@@ -3,6 +3,7 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import SponsorForm from "./SponsorForm";
 import SponsorForm_BusinessInformation from "./SponsorForm_BusinessInformation";
 import ChooseService from './ChooseService';
+import Freemium_AdInfo from './Freemium_AdInfo';
 
 class SponsorSignupLayout extends Component {
     constructor(props) {
@@ -35,8 +36,12 @@ class SponsorSignupLayout extends Component {
             case 1:
                 child = <SponsorForm_BusinessInformation screenId={this.state.screen} handler={this.handleScreenChange}/>;
                 break;
+            // This case will be released when sponsor can choose between freemium or premium membership
+            // case 2:
+            //     child = <ChooseService screenId={this.state.screen} handler={this.handleScreenChange}/>;
+            //     break;
             case 2:
-                child = <ChooseService screenId={this.state.screen} handler={this.handleScreenChange}/>;
+                child = <Freemium_AdInfo screenId={this.state.screen} handler={this.handleScreenChange}/>;
                 break;
             default:
                 break;
