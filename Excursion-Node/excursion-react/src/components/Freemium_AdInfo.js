@@ -85,7 +85,8 @@ class Freemium_AdInfo extends Component{
                     <p>Choose what ad you would like to use on our platform.</p>
                     <div>
                         <form>
-                            {/*<div className="form-group">
+                            {/* //We are currently offering only one type of tier for sponsors, ad type will be necessary when we begin offering premium services
+                                <div className="form-group">
                                 <label className="control-label">Ad Type</label>
                                 <p className="ad-type">Freemium</p>
                             </div>*/}
@@ -137,7 +138,7 @@ class Freemium_AdInfo extends Component{
                                             <Panel className={this.state.insertInteractiveClass} onClick={this.onSelectInteractive} ref="interactiveAd" eventKey="3">
                                                 <img src={require("../blank.png")}/>
                                                 <h4>Interactive</h4>
-                                                <p>The ad provides in-app rewards or extends the normal user experience. Example: applied discount at a restaurant</p>
+                                                <p>The ad provides in-app rewards or extends the normal user experience.</p>
                                             </Panel>
                                         </Col>
                                     </Row>
