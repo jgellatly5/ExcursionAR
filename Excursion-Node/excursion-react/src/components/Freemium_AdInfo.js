@@ -6,31 +6,24 @@ class Freemium_AdInfo extends Component{
         super(props);
         this.state = {
             adType: 'freemium',
-            adName: '',
-            appEnvironment: '',
-            adFormat: '',
-            insertType1Class: 'freemium-path-panel',
-            insertType2Class: 'freemium-path-panel',
-            insertType3Class: 'freemium-path-panel',
-            insertType4Class: 'freemium-path-panel'
+            insertStaticClass: 'freemium-path-panel',
+            insertDynamicClass: 'freemium-path-panel',
+            insertInteractiveClass: 'freemium-path-panel'
         };
+        this.adFormat = 0;
         this.onChange = this.onChange.bind(this);
-        this.onSelectType1 = this.onSelectType1.bind(this);
-        this.onSelectType2 = this.onSelectType2.bind(this);
-        this.onSelectType3 = this.onSelectType3.bind(this);
-        this.onSelectType4 = this.onSelectType4.bind(this);
+        this.onSelectStatic = this.onSelectStatic.bind(this);
+        this.onSelectDynamic = this.onSelectDynamic.bind(this);
+        this.onSelectInteractive = this.onSelectInteractive.bind(this);
         this.lastScreen = this.lastScreen.bind(this);
         this.endScreen = this.endScreen.bind(this);
     }
     onChange(e) {
-        this.setState({ [e.target.name]: e.target.value });
         let buttonNext = this.refs.buttonNext;
         let adName = this.adNameInput.value;
         let genre = this.genreInput.value;
-        let outdoorEnv = this.outdoorEnvInput.value;
-        let indoorEnv = this.indoorEnvInput.value;
-        let adFormat = this.state.adFormat;
-        if (adName !== '' && genre !== '' && (indoorEnv !== '' || outdoorEnv !== '') && adFormat !== '') {
+        let adFormat = this.adFormat;
+        if (adName !== '' && genre !== '' && adFormat != '0') {
             buttonNext.classList.add('active', 'hvr-grow');
             buttonNext.removeAttribute('disabled');
         } else {
@@ -38,47 +31,36 @@ class Freemium_AdInfo extends Component{
             buttonNext.setAttribute('disabled','disabled');
         }
     }
-    onSelectType1(e) {
+    onSelectStatic(e) {
         e.preventDefault();
+        this.adFormat = this.refs.staticAd.props.eventKey;
         this.setState({
-            adFormat: 'type1',
-            insertType1Class: 'freemium-path-panel active',
-            insertType2Class: 'freemium-path-panel',
-            insertType3Class: 'freemium-path-panel',
-            insertType4Class: 'freemium-path-panel'
+            adFormat: 'static',
+            insertStaticClass: 'freemium-path-panel active',
+            insertDynamicClass: 'freemium-path-panel',
+            insertInteractiveClass: 'freemium-path-panel'
         });
         this.onChange(e);
     }
-    onSelectType2(e) {
+    onSelectDynamic(e) {
         e.preventDefault();
+        this.adFormat = this.refs.dynamicAd.props.eventKey;
         this.setState({
-            adFormat: 'type2',
-            insertType1Class: 'freemium-path-panel',
-            insertType2Class: 'freemium-path-panel active',
-            insertType3Class: 'freemium-path-panel',
-            insertType4Class: 'freemium-path-panel'
+            adFormat: 'dynamic',
+            insertStaticClass: 'freemium-path-panel',
+            insertDynamicClass: 'freemium-path-panel active',
+            insertInteractiveClass: 'freemium-path-panel'
         });
         this.onChange(e);
     }
-    onSelectType3(e) {
+    onSelectInteractive(e) {
         e.preventDefault();
+        this.adFormat = this.refs.interactiveAd.props.eventKey;
         this.setState({
-            adFormat: 'type3',
-            insertType1Class: 'freemium-path-panel',
-            insertType2Class: 'freemium-path-panel',
-            insertType3Class: 'freemium-path-panel active',
-            insertType4Class: 'freemium-path-panel'
-        });
-        this.onChange(e);
-    }
-    onSelectType4(e) {
-        e.preventDefault();
-        this.setState({
-            adFormat: 'type4',
-            insertType1Class: 'freemium-path-panel',
-            insertType2Class: 'freemium-path-panel',
-            insertType3Class: 'freemium-path-panel',
-            insertType4Class: 'freemium-path-panel active'
+            adFormat: 'interactive',
+            insertStaticClass: 'freemium-path-panel',
+            insertDynamicClass: 'freemium-path-panel',
+            insertInteractiveClass: 'freemium-path-panel active'
         });
         this.onChange(e);
     }
@@ -98,15 +80,16 @@ class Freemium_AdInfo extends Component{
         return (
             <div className="ad-signup-container">
                 <div className="ad-signup" id="fix-margin">
-                    <Panel className="ad-signup-panel scroll">
+                    <Panel className="ad-signup-panel">
                     <h1>Time to set up your ad</h1>
                     <p>Choose what ad you would like to use on our platform.</p>
                     <div>
                         <form>
-                            <div className="form-group">
+                            {/* //We are currently offering only one type of tier for sponsors, ad type will be necessary when we begin offering premium services
+                                <div className="form-group">
                                 <label className="control-label">Ad Type</label>
                                 <p className="ad-type">Freemium</p>
-                            </div>
+                            </div>*/}
 
                             <div className="form-group">
                                 <label className="control-label">Ad Name</label>
@@ -123,69 +106,39 @@ class Freemium_AdInfo extends Component{
 
                             <FormGroup controlId="formControlsSelect">
                                 <ControlLabel>Genre</ControlLabel>
-                                <FormControl componentClass="select" placeholder="..." onChange={this.onChange} inputRef={ref => { this.genreInput = ref; }} value={this.state.genre}>
-                                    <option value="other" >...</option>
+                                <FormControl componentClass="select" onChange={this.onChange} inputRef={ref => { this.genreInput = ref; }} value={this.state.genre} required>
                                     <option value="technology" >Technology</option>
                                     <option value="finance" >Finance</option>
                                     <option value="retail" >Retail</option>
                                     <option value="entertainment" >Entertainment</option>
                                     <option value="restaurant" >Restaurant</option>
+                                    <option value="other" >Other...</option>
                                 </FormControl>
                             </FormGroup>
-
-                            <div className="form-group radio-buttons">
-                                <label className="control-label" id="environment">App Environment</label>
-                                <br/>
-                                <input
-                                    value="indoor"
-                                    type="radio"
-                                    name="appEnvironment"
-                                    onChange={this.onChange}
-                                    ref={(input) => { this.indoorEnvInput = input }}
-                                    required
-                                />
-                                Indoor
-                                <input
-                                    value="outdoor"
-                                    type="radio"
-                                    name="appEnvironment"
-                                    onChange={this.onChange}
-                                    ref={(input) => { this.outdoorEnvInput = input }}
-                                    required
-                                />
-                                Outdoor
-                            </div>
 
                             <div className="form-group freemium-path">
                                 <label className="control-label" id="lastElement">Type of Ad</label>
                                 <Grid>
                                     <Row>
-                                        <Col xs={3}>
-                                            <Panel className={this.state.insertType1Class} onClick={this.onSelectType1}>
+                                        <Col xs={4}>
+                                            <Panel className={this.state.insertStaticClass} onClick={this.onSelectStatic} ref="staticAd" eventKey="1">
                                                 <img src={require("../blank.png")}/>
-                                                <h4>Type 1</h4>
-                                                <p>Anyway you want it, thats the way you need it. Anyway you want it.</p>
+                                                <h4>Static</h4>
+                                                <p>The ad remains in a fixed position. Example: TV screen or potted plant</p>
                                             </Panel>
                                         </Col>
-                                        <Col xs={3}>
-                                            <Panel className={this.state.insertType2Class} onClick={this.onSelectType2}>
+                                        <Col xs={4}>
+                                            <Panel className={this.state.insertDynamicClass} onClick={this.onSelectDynamic} ref="dynamicAd" eventKey="2">
                                                 <img src={require("../blank.png")}/>
-                                                <h4>Type 2</h4>
-                                                <p>When the lights go down in the city and the sun shines on the bay.</p>
+                                                <h4>Dynamic</h4>
+                                                <p>The ad moves across the screen or contains an animation. Example: plane or rocket</p>
                                             </Panel>
                                         </Col>
-                                        <Col xs={3}>
-                                            <Panel className={this.state.insertType3Class} onClick={this.onSelectType3}>
+                                        <Col xs={4}>
+                                            <Panel className={this.state.insertInteractiveClass} onClick={this.onSelectInteractive} ref="interactiveAd" eventKey="3">
                                                 <img src={require("../blank.png")}/>
-                                                <h4>Type 3</h4>
-                                                <p>Dont stop believing hold on to that feeling. Streetlights, people.</p>
-                                            </Panel>
-                                        </Col>
-                                        <Col xs={3}>
-                                            <Panel className={this.state.insertType4Class} onClick={this.onSelectType4}>
-                                                <img src={require("../blank.png")}/>
-                                                <h4>Type 4</h4>
-                                                <p>The wheel in the sky keeps on turning. I dont know where Ill be tomorrow.</p>
+                                                <h4>Interactive</h4>
+                                                <p>The ad provides in-app rewards or extends the normal user experience.</p>
                                             </Panel>
                                         </Col>
                                     </Row>

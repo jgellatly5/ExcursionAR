@@ -36,10 +36,11 @@ class SponsorSignupLayout extends Component {
             case 1:
                 child = <SponsorForm_BusinessInformation screenId={this.state.screen} handler={this.handleScreenChange}/>;
                 break;
+            // This case will be released when sponsor can choose between freemium or premium membership
+            // case 2:
+            //     child = <ChooseService screenId={this.state.screen} handler={this.handleScreenChange}/>;
+            //     break;
             case 2:
-                child = <ChooseService screenId={this.state.screen} handler={this.handleScreenChange}/>;
-                break;
-            case 3:
                 child = <Freemium_AdInfo screenId={this.state.screen} handler={this.handleScreenChange}/>;
                 break;
             default:
