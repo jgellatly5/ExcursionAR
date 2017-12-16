@@ -13,17 +13,19 @@ class SetBudget extends Component{
         this.state = {
             monthlyBudget: ''
         }
+        this.monthlyBudget = 500;
+        this.dailyBudget = 0;
         this.onChange = this.onChange.bind(this);
+        // this.onBudget = this.onBudget.bind(this);
         this.onAfterChange = this.onAfterChange.bind(this);
         this.lastScreen = this.lastScreen.bind(this);
         this.endScreen = this.endScreen.bind(this);
     }
     onChange(value) {
         let buttonNext = this.refs.buttonNext;
-        // let monthlyBudget = value * 30;
-        // this.setState({
-        //     monthlyBudget: monthlyBudget
-        // });
+        this.dailyBudget = value;
+        this.monthlyBudget = value * 30;
+        console.log(this.monthlyBudget);
         if (value != 0) {
             buttonNext.classList.add('active', 'hvr-grow');
             buttonNext.removeAttribute('disabled');
@@ -32,11 +34,14 @@ class SetBudget extends Component{
             buttonNext.setAttribute('disabled','disabled');
         }
     }
-    onAfterChange(value) {
-        let monthlyBudget = value * 30
+    onAfterChange() {
+        let monthlyBudget = this.monthlyBudget;
         this.setState({
             monthlyBudget: monthlyBudget
         });
+    }
+    onUpdate(){
+        return this.monthlyBudget;
     }
     lastScreen(e) {
         let nextScreen = this.props.screenId - 1;
@@ -65,12 +70,16 @@ class SetBudget extends Component{
                                 <SliderWithTooltip
                                     min={0}
                                     max={500}
+                                    defaultValue={this.dailyBudget}
                                     tipFormatter={budgetFormatter}
                                     tipProps={{ overlayClassName: 'budgetTooltip', prefixCls: 'budgetTooltip' }}
                                     trackStyle={{ backgroundColor: '#1E1E75', height: 10 }}
                                     railStyle={{ backgroundColor: '#D8D8D8', height: 10 }}
                                     onChange={this.onChange}
                                     onAfterChange={this.onAfterChange}
+                                    ref="slider"
+                                    monthlyBudget={this.monthlyBudget}
+                                    onBudget={this.onBudget}
                                 />
                                 <div className="min-and-max"><p className="min">$0</p><p className="max">$500</p></div>
                                 <div className="month-est"><p>Around ${this.state.monthlyBudget} per month</p></div>
