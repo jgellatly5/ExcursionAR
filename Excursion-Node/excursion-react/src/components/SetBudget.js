@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import { Grid, Row, Col, Panel } from 'react-bootstrap';
-import Slider, { Range } from 'rc-slider';
+import Slider, { Range, createSliderWithTooltip } from 'rc-slider';
 import 'rc-slider/assets/index.css';
+
+function budgetFormatter(v) {
+    return `$${v} per day`;
+}
 
 class SetBudget extends Component{
     constructor(props) {
@@ -14,14 +18,8 @@ class SetBudget extends Component{
         this.endScreen = this.endScreen.bind(this);
     }
     onChange(e) {
-        this.setState({ [e.target.name]: e.target.value });
         let buttonNext = this.refs.buttonNext;
-        let adName = this.adNameInput.value;
-        let genre = this.genreInput.value;
-        let outdoorEnv = this.outdoorEnvInput.value;
-        let indoorEnv = this.indoorEnvInput.value;
-        let adFormat = this.state.adFormat;
-        if (adName !== '' && genre !== '' && (indoorEnv !== '' || outdoorEnv !== '') && adFormat !== '') {
+        if (buttonNext) {
             buttonNext.classList.add('active', 'hvr-grow');
             buttonNext.removeAttribute('disabled');
         } else {
@@ -42,6 +40,7 @@ class SetBudget extends Component{
         buttonNext.setAttribute('disabled','disabled');
     }
     render() {
+        const SliderWithTooltip = createSliderWithTooltip(Slider);
         return (
             <div className="ad-signup-container">
                 <div className="ad-signup" id="fix-padding">
@@ -52,8 +51,15 @@ class SetBudget extends Component{
                         <form>
                             <div className="form-group">
                                 <label className="control-label">Budget Amount</label>
-                                <Slider />
-                                <p className="ad-type">$0</p>
+                                <SliderWithTooltip
+                                    tipFormatter={budgetFormatter}
+                                    tipProps={{ overlayClassName: 'budgetTooltip', prefixCls: 'budgetTooltip' }}
+                                    defaultValue={30}
+                                    trackStyle={{ backgroundColor: '#1E1E75', height: 10 }}
+                                    railStyle={{ backgroundColor: '#D8D8D8', height: 10 }}
+                                    onChange={this.onChange}
+                                />
+                                <div className="min-and-max"><p className="min">$0</p><p className="max">$5000</p></div>
                             </div>
                         </form>
                         <div className="bottom-form">

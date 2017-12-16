@@ -1270,6 +1270,67 @@ input[type='radio']:checked:before {
     padding-bottom: 470px;
 }
 
+.set-budget-panel label {
+    margin-bottom: 15px;
+}
+
+.budgetTooltip {
+    background-color: #1E1E75;
+    font-family: Rubik;
+    font-size: 14px;
+    line-height: 17px;
+    width: 115px;
+    text-align: center;
+    color: white;
+    padding-bottom: 10px;
+    height: 45.55px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+.budgetTooltip-inner {
+    padding-top: 15px;
+}
+
+.min-and-max .min {
+    margin-left: 0px;
+}
+
+.min-and-max .max {
+    margin-left: 90%;
+}
+
+.min-and-max p {
+    display: inline;
+}
+
+.min-and-max {
+    margin-top: 10px;
+}
+
+.rc-slider-handle {
+    background-color: #1E1E75;
+    border: 1px solid #1E1E75;
+    height: 20px;
+    width: 20px;
+}
+
+.rc-slider-handle:hover {
+    border-color: #1E1E75;
+}
+
+.rc-slider-handle:active {
+    box-shadow: #1E1E75;
+}
+
+.rc-slider-tooltip {
+    color: #1E1E75;
+}
+
+.rc-slider {
+    margin-top: 35px;
+}
+
 /*React CSS Transition Group*/
 .sponsor-enter {
     transform: translate(100%);
