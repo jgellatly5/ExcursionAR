@@ -52,6 +52,8 @@ class SetBudget extends Component{
                             <div className="form-group">
                                 <label className="control-label">Budget Amount</label>
                                 <SliderWithTooltip
+                                    min={0}
+                                    max={5000}
                                     tipFormatter={budgetFormatter}
                                     tipProps={{ overlayClassName: 'budgetTooltip', prefixCls: 'budgetTooltip' }}
                                     defaultValue={30}
@@ -60,6 +62,8 @@ class SetBudget extends Component{
                                     onChange={this.onChange}
                                 />
                                 <div className="min-and-max"><p className="min">$0</p><p className="max">$5000</p></div>
+                                <div className="month-est"><p>Around ${750} per month</p></div>
+                                <hr className="budget" />
                             </div>
                         </form>
                         <div className="bottom-form">
