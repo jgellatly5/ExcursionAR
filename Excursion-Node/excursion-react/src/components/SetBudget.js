@@ -11,21 +11,32 @@ class SetBudget extends Component{
     constructor(props) {
         super(props);
         this.state = {
-
-        };
+            monthlyBudget: ''
+        }
         this.onChange = this.onChange.bind(this);
+        this.onAfterChange = this.onAfterChange.bind(this);
         this.lastScreen = this.lastScreen.bind(this);
         this.endScreen = this.endScreen.bind(this);
     }
-    onChange(e) {
+    onChange(value) {
         let buttonNext = this.refs.buttonNext;
-        if (buttonNext) {
+        // let monthlyBudget = value * 30;
+        // this.setState({
+        //     monthlyBudget: monthlyBudget
+        // });
+        if (value != 0) {
             buttonNext.classList.add('active', 'hvr-grow');
             buttonNext.removeAttribute('disabled');
         } else {
             buttonNext.classList.remove('active', 'hvr-grow');
             buttonNext.setAttribute('disabled','disabled');
         }
+    }
+    onAfterChange(value) {
+        let monthlyBudget = value * 30
+        this.setState({
+            monthlyBudget: monthlyBudget
+        });
     }
     lastScreen(e) {
         let nextScreen = this.props.screenId - 1;
@@ -53,16 +64,16 @@ class SetBudget extends Component{
                                 <label className="control-label">Budget Amount</label>
                                 <SliderWithTooltip
                                     min={0}
-                                    max={5000}
+                                    max={500}
                                     tipFormatter={budgetFormatter}
                                     tipProps={{ overlayClassName: 'budgetTooltip', prefixCls: 'budgetTooltip' }}
-                                    defaultValue={30}
                                     trackStyle={{ backgroundColor: '#1E1E75', height: 10 }}
                                     railStyle={{ backgroundColor: '#D8D8D8', height: 10 }}
                                     onChange={this.onChange}
+                                    onAfterChange={this.onAfterChange}
                                 />
-                                <div className="min-and-max"><p className="min">$0</p><p className="max">$5000</p></div>
-                                <div className="month-est"><p>Around ${750} per month</p></div>
+                                <div className="min-and-max"><p className="min">$0</p><p className="max">$500</p></div>
+                                <div className="month-est"><p>Around ${this.state.monthlyBudget} per month</p></div>
                                 <hr className="budget" />
                             </div>
                         </form>
