@@ -1258,7 +1258,7 @@ input[type='radio']:checked:before {
 
 /* Set Budget */
 .set-budget-panel {
-    height: 770px;
+    height: 580px;
     border-radius: 4px;
     background-color: #FFFFFF;
     margin-left: 6%;
@@ -1266,9 +1266,11 @@ input[type='radio']:checked:before {
     box-shadow: 0 6px 10px 0 rgba(0,0,0,0.14), 0 1px 18px 0 rgba(0,0,0,0.12), 0 3px 5px 0 rgba(0,0,0,0.2);
 }
 
-#fix-padding .panel-body {
-    padding-bottom: 470px;
+.fix-margin {
+    margin-left: 30px;
+    margin-top: 10px;
 }
+
 
 .set-budget-panel label {
     margin-bottom: 15px;
@@ -1307,6 +1309,7 @@ input[type='radio']:checked:before {
 
 .min-and-max {
     margin-top: 10px;
+    width: 570px;
 }
 
 .month-est p {
@@ -1328,6 +1331,15 @@ input[type='radio']:checked:before {
     height: 3px;
 }
 
+.set-budget-panel .bottom-form {
+    margin-top: 100px;
+}
+
+.rc-slider {
+    width: 550px;
+    margin-top: 35px;
+}
+
 .rc-slider-handle {
     background-color: #1E1E75;
     border: 1px solid #1E1E75;
@@ -1346,10 +1358,6 @@ input[type='radio']:checked:before {
 
 .rc-slider-tooltip {
     color: #1E1E75;
-}
-
-.rc-slider {
-    margin-top: 35px;
 }
 
 /*React CSS Transition Group*/
