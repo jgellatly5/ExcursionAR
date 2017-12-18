@@ -11,6 +11,7 @@ import SponsorForm_BusinessInformation from './components/SponsorForm_BusinessIn
 // import ChooseService from './components/ChooseService'; //ChooseService component is unncessary until premium memberships are introduced
 import Freemium_AdInfo from './components/Freemium_AdInfo';
 import SetBudget from './components/SetBudget';
+import ReviewInfo from './components/ReviewInfo';
 import AppLayout from './components/AppLayout';
 import SponsorSignupLayout from './components/SponsorSignupLayout';
 
@@ -30,6 +31,7 @@ const Routes = (props) => (
             <Route component={Freemium_AdInfo} />
             <Route component={SetBudget} />
         </Route>
+        <Route path="/test" component={ReviewInfo} />
         <Route path="*" component={NotFound} />
     </Router>
 );
