@@ -37,6 +37,8 @@ class SetBudget extends Component{
         this.setState({
             monthlyBudget: monthlyBudget
         });
+        // console.log(this.refs.line.style.width);
+        console.log(this.refs.words);
     }
     lastScreen(e) {
         let nextScreen = this.props.screenId - 1;
@@ -52,6 +54,9 @@ class SetBudget extends Component{
     }
     render() {
         const SliderWithTooltip = createSliderWithTooltip(Slider);
+        const lineStyle = {
+            width: `${this.dailyBudget/10}%`
+        }
         return (
             <div className="ad-signup-container">
                 <div className="ad-signup" id="fix-padding">
@@ -74,8 +79,8 @@ class SetBudget extends Component{
                                         onAfterChange={this.onAfterChange}
                                     />
                                     <div className="min-and-max"><p className="min">$0</p><p className="max">$500</p></div>
-                                    <div className="month-est"><p>Around ${this.state.monthlyBudget} per month</p></div>
-                                    <hr className="budget" />
+                                    <div className="month-est" style={lineStyle} ref="words"><p>Around ${this.monthlyBudget} per month</p></div>
+                                    <hr className="budget" style={lineStyle} ref="line"/>
                                 </div>
                             </form>
                         </div>
