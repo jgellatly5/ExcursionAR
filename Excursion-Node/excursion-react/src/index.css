@@ -1360,6 +1360,11 @@ input[type='radio']:checked:before {
     color: #1E1E75;
 }
 
+/*Review Ad*/
+.form-group img {
+    width: 500px;
+}
+
 /*React CSS Transition Group*/
 .sponsor-enter {
     transform: translate(100%);

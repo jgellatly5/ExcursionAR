@@ -85,65 +85,37 @@ class ReviewInfo extends Component{
                     <p>Review your ad and your settings</p>
                     <div>
                         <form>
-                            {/* //We are currently offering only one type of tier for sponsors, ad type will be necessary when we begin offering premium services
-                                <div className="form-group">
-                                <label className="control-label">Ad Type</label>
-                                <p className="ad-type">Freemium</p>
-                            </div>*/}
+                            <Grid>
+                                <Row>
+                                    <Col xs={6}>
+                                        <div className="form-group">
+                                            <label className="control-label">Ad Preview</label>
+                                            <img src={require("../phonePreview.png")}/>
+                                        </div>
+                                    </Col>
+                                    <Col xs={6}>
+                                        <div className="form-group">
+                                            <label className="control-label">Company/Product Name</label>
+                                            <p className="ad-type">Hooli</p>
+                                        </div>
 
-                            <div className="form-group">
-                                <label className="control-label">Ad Name</label>
-                                <input
-                                    value={this.state.adName}
-                                    onChange={this.onChange}
-                                    type="text"
-                                    name="adName"
-                                    className="form-control"
-                                    ref={(input) => { this.adNameInput = input }}
-                                    required
-                                />
-                            </div>
+                                        <div className="form-group">
+                                            <label className="control-label">Ad Type</label>
+                                            <p className="ad-type">Freemium</p>
+                                        </div>
 
-                            <FormGroup controlId="formControlsSelect">
-                                <ControlLabel>Genre</ControlLabel>
-                                <FormControl componentClass="select" onChange={this.onChange} inputRef={ref => { this.genreInput = ref; }} value={this.state.genre} required>
-                                    <option value="technology" >Technology</option>
-                                    <option value="finance" >Finance</option>
-                                    <option value="retail" >Retail</option>
-                                    <option value="entertainment" >Entertainment</option>
-                                    <option value="restaurant" >Restaurant</option>
-                                    <option value="other" >Other...</option>
-                                </FormControl>
-                            </FormGroup>
+                                        <div className="form-group">
+                                            <label className="control-label">App Environment</label>
+                                            <p className="ad-type">Indoors</p>
+                                        </div>
 
-                            <div className="form-group freemium-path">
-                                <label className="control-label" id="lastElement">Type of Ad</label>
-                                <Grid>
-                                    <Row>
-                                        <Col xs={4}>
-                                            <Panel className={this.state.insertStaticClass} onClick={this.onSelectStatic} ref="staticAd" eventKey="1">
-                                                <img src={require("../blank.png")}/>
-                                                <h4>Static</h4>
-                                                <p>The ad remains in a fixed position. Example: TV screen or potted plant</p>
-                                            </Panel>
-                                        </Col>
-                                        <Col xs={4}>
-                                            <Panel className={this.state.insertDynamicClass} onClick={this.onSelectDynamic} ref="dynamicAd" eventKey="2">
-                                                <img src={require("../blank.png")}/>
-                                                <h4>Dynamic</h4>
-                                                <p>The ad moves across the screen or contains an animation. Example: plane or rocket</p>
-                                            </Panel>
-                                        </Col>
-                                        <Col xs={4}>
-                                            <Panel className={this.state.insertInteractiveClass} onClick={this.onSelectInteractive} ref="interactiveAd" eventKey="3">
-                                                <img src={require("../blank.png")}/>
-                                                <h4>Interactive</h4>
-                                                <p>The ad provides in-app rewards or extends the normal user experience.</p>
-                                            </Panel>
-                                        </Col>
-                                    </Row>
-                                </Grid>
-                            </div>
+                                        <div className="form-group">
+                                            <label className="control-label">Budget Amount</label>
+                                            <p className="ad-type">$25 per day</p>
+                                        </div>
+                                    </Col>
+                                </Row>
+                            </Grid>
                         </form>
                         <div className="bottom-form">
                             <button className="btn btn-lg back hvr-grow" ref="buttonBack" onClick={this.lastScreen}>
