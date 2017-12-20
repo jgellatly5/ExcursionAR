@@ -32,6 +32,7 @@ class SetBudget extends Component{
             buttonNext.classList.remove('active', 'hvr-grow');
             buttonNext.setAttribute('disabled','disabled');
         }
+        console.log(value);
     }
     onAfterChange() {
         let monthlyBudget = this.monthlyBudget;
