@@ -28,9 +28,8 @@ const Routes = (props) => (
             <Route component={SponsorForm_BusinessInformation} />
             {/*<Route component={ChooseService} /> //Not needed until further notice*/}
             <Route component={Freemium_AdInfo} />
-
+            <Route component={SetBudget} />
         </Route>
-        <Route path="/test" component={SetBudget} />
         <Route path="*" component={NotFound} />
     </Router>
 );
