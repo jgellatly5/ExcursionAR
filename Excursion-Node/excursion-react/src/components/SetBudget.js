@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 import { Panel } from 'react-bootstrap';
 import Slider, { Range, createSliderWithTooltip } from 'rc-slider';
 import 'rc-slider/assets/index.css';
@@ -37,8 +38,8 @@ class SetBudget extends Component{
         this.setState({
             monthlyBudget: monthlyBudget
         });
-        // console.log(this.refs.line.style.width);
-        console.log(this.refs.words);
+        let slider = this.refs.slider;
+        console.log(slider.value);
     }
     lastScreen(e) {
         let nextScreen = this.props.screenId - 1;
@@ -54,9 +55,6 @@ class SetBudget extends Component{
     }
     render() {
         const SliderWithTooltip = createSliderWithTooltip(Slider);
-        const lineStyle = {
-            width: `${this.dailyBudget/10}%`
-        }
         return (
             <div className="ad-signup-container">
                 <div className="ad-signup" id="fix-padding">
@@ -77,10 +75,10 @@ class SetBudget extends Component{
                                         railStyle={{ backgroundColor: '#D8D8D8', height: 10 }}
                                         onChange={this.onChange}
                                         onAfterChange={this.onAfterChange}
+                                        ref="slider"
                                     />
                                     <div className="min-and-max"><p className="min">$0</p><p className="max">$500</p></div>
-                                    <div className="month-est" style={lineStyle} ref="words"><p>Around ${this.monthlyBudget} per month</p></div>
-                                    <hr className="budget" style={lineStyle} ref="line"/>
+                                    <div className="month-est hvr-underline-from-left-blue"><p>Around ${this.monthlyBudget} per month</p></div>
                                 </div>
                             </form>
                         </div>
