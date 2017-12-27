@@ -1110,7 +1110,6 @@ table {
 
 /*Freemium Path*/
 .freemium-path .panel {
-    /*width: 350px;*/
     border: 0;
     border-radius: 4px;
     box-shadow: 0 6px 10px 0 rgba(0,0,0,0.14), 0 1px 18px 0 rgba(0,0,0,0.12), 0 3px 5px 0 rgba(0,0,0,0.2);
@@ -1120,6 +1119,7 @@ table {
     width: 900px;
 }
 
+/*This is for drop down selection button*/
 /*#formatSelector {
     background: url(http://i62.tinypic.com/15xvbd5.png) no-repeat scroll right;
 }*/
@@ -1374,6 +1374,27 @@ input[type='radio']:checked:before {
 /*Review Ad*/
 .form-group img {
     width: 500px;
+    margin-left: -150px;
+}
+
+.review-ad-container {
+    margin-right: 100px;
+    margin-left: 100px;
+}
+
+.review-ad-bottom {
+    margin-top: -80px;
+}
+
+.looks-great {
+    width: 142px;
+    margin: 0 auto;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.looks-great-text {
+    text-align: center;
 }
 
 /*React CSS Transition Group*/
