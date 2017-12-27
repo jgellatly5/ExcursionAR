@@ -79,6 +79,7 @@ class SetBudget extends Component{
                                         ref="slider"
                                     />
                                     <div className="min-and-max"><p className="min">$0</p><p className="max">$500</p></div>
+                                    {/*TODO: Monthly budget text should update reactively like daily budget slider*/}
                                     <div className="month-est hvr-underline-from-left-blue"><p>Around ${this.monthlyBudget} per month</p></div>
                                 </div>
                             </form>
