@@ -640,6 +640,17 @@ table {
     right: 0;
 }
 
+.hvr-underline-from-left-blue {
+    display: inline-block;
+    vertical-align: middle;
+    -webkit-transform: perspective(1px) translateZ(0);
+    transform: perspective(1px) translateZ(0);
+    box-shadow: 0 0 1px transparent;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 2px solid #161162;
+}
+
 .hvr-border-fade {
     display: inline-block;
     vertical-align: middle;
@@ -1238,6 +1249,126 @@ input[type='radio']:checked:before {
 
 #lastElement {
     margin-bottom: 15px;
+}
+
+/*Premium Path*/
+.premium-path-panel .panel-body {
+    border: 3px dashed #1E1E75;
+    box-shadow: none;
+}
+
+.premium-path-panel p {
+    text-align: center;
+    margin-left: 0;
+    color: #182133;
+}
+
+.premium-path-panel.path {
+    display: none;
+}
+
+/* Set Budget */
+.set-budget-panel {
+    height: 580px;
+    border-radius: 4px;
+    background-color: #FFFFFF;
+    margin-left: 6%;
+    margin-right: 6%;
+    box-shadow: 0 6px 10px 0 rgba(0,0,0,0.14), 0 1px 18px 0 rgba(0,0,0,0.12), 0 3px 5px 0 rgba(0,0,0,0.2);
+}
+
+.fix-margin {
+    margin-left: 30px;
+    margin-top: 10px;
+}
+
+
+.set-budget-panel label {
+    margin-bottom: 15px;
+}
+
+.budgetTooltip {
+    background-color: #1E1E75;
+    font-family: Rubik;
+    font-size: 14px;
+    line-height: 17px;
+    width: 115px;
+    text-align: center;
+    color: white;
+    padding-bottom: 10px;
+    height: 45.55px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    border-radius: 4px;
+}
+
+.budgetTooltip-inner {
+    padding-top: 15px;
+}
+
+.min-and-max .min {
+    margin-left: 0px;
+}
+
+.min-and-max .max {
+    margin-left: 90%;
+}
+
+.min-and-max p {
+    display: inline;
+}
+
+.min-and-max {
+    margin-top: 10px;
+    width: 570px;
+}
+
+.month-est p {
+    color: #161162;
+    font-family: Rubik;
+    font-size: 14px;
+    line-height: 17px;
+    margin-left: 0%;
+    margin-top: 3%;
+    margin-bottom: 0;
+}
+
+.budget {
+    background: #1E1E75;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    width: 154px;
+    margin-left: 0%;
+    height: 3px;
+}
+
+.set-budget-panel .bottom-form {
+    margin-top: 100px;
+}
+
+.rc-slider {
+    width: 550px;
+    margin-top: 35px;
+}
+
+.rc-slider-handle {
+    background-color: #1E1E75;
+    border: 1px solid #1E1E75;
+    height: 20px;
+    width: 20px;
+}
+
+.rc-slider-handle:hover {
+    border-color: #1E1E75;
+}
+
+.rc-slider-handle:active {
+    border-color: #1E1E75;
+    box-shadow: 0 0 5px #1E1E75;
+}
+
+.rc-slider-tooltip {
+    color: #1E1E75;
 }
 
 /*React CSS Transition Group*/

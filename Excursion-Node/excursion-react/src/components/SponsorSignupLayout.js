@@ -4,6 +4,7 @@ import SponsorForm from "./SponsorForm";
 import SponsorForm_BusinessInformation from "./SponsorForm_BusinessInformation";
 import ChooseService from './ChooseService';
 import Freemium_AdInfo from './Freemium_AdInfo';
+import SetBudget from './SetBudget';
 
 class SponsorSignupLayout extends Component {
     constructor(props) {
@@ -42,6 +43,9 @@ class SponsorSignupLayout extends Component {
             //     break;
             case 2:
                 child = <Freemium_AdInfo screenId={this.state.screen} handler={this.handleScreenChange}/>;
+                break;
+            case 3:
+                child = <SetBudget screenId={this.state.screen} handler={this.handleScreenChange}/>;
                 break;
             default:
                 break;
