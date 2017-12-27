@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 import { Panel } from 'react-bootstrap';
 import Slider, { Range, createSliderWithTooltip } from 'rc-slider';
 import 'rc-slider/assets/index.css';
@@ -31,12 +32,15 @@ class SetBudget extends Component{
             buttonNext.classList.remove('active', 'hvr-grow');
             buttonNext.setAttribute('disabled','disabled');
         }
+        console.log(value);
     }
     onAfterChange() {
         let monthlyBudget = this.monthlyBudget;
         this.setState({
             monthlyBudget: monthlyBudget
         });
+        let slider = this.refs.slider;
+        console.log(slider.value);
     }
     lastScreen(e) {
         let nextScreen = this.props.screenId - 1;
@@ -72,10 +76,11 @@ class SetBudget extends Component{
                                         railStyle={{ backgroundColor: '#D8D8D8', height: 10 }}
                                         onChange={this.onChange}
                                         onAfterChange={this.onAfterChange}
+                                        ref="slider"
                                     />
                                     <div className="min-and-max"><p className="min">$0</p><p className="max">$500</p></div>
-                                    <div className="month-est"><p>Around ${this.state.monthlyBudget} per month</p></div>
-                                    <hr className="budget" />
+                                    {/*TODO: Monthly budget text should update reactively like daily budget slider*/}
+                                    <div className="month-est hvr-underline-from-left-blue"><p>Around ${this.monthlyBudget} per month</p></div>
                                 </div>
                             </form>
                         </div>
