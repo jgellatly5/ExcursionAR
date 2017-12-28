@@ -11,8 +11,7 @@ class SponsorForm_BusinessInformation extends Component{
             website: this.props.website
         }
         this.onChange = this.onChange.bind(this);
-        this.lastScreen = this.lastScreen.bind(this);
-        this.endScreen = this.endScreen.bind(this);
+        this.changeScreen = this.changeScreen.bind(this);
         this.formatNumber = this.formatNumber.bind(this);
     }
     onChange(e) {
@@ -31,8 +30,13 @@ class SponsorForm_BusinessInformation extends Component{
             button.setAttribute('disabled','disabled');
         }
     }
-    lastScreen(e) {
-        let nextScreen = this.props.screenId - 1;
+    changeScreen(e) {
+        let nextScreen;
+        if (e.target.name == 'back') {
+            nextScreen = this.props.screenId - 1;
+        } else {
+            nextScreen = this.props.screenId + 1;
+        }
         let firstName = this.props.firstName;
         let lastName = this.props.lastName;
         let email = this.props.email;
@@ -46,24 +50,6 @@ class SponsorForm_BusinessInformation extends Component{
         let dailyBudget = this.props.dailyBudget;
         let monthlyBudget = this.props.monthlyBudget;
         this.props.handler(e, nextScreen, firstName, lastName, email, companyName, industry, phoneNumber, website, adName, genre, adFormat, dailyBudget, monthlyBudget);
-    }
-    endScreen(e) {
-        let website = this.websiteInput.value;
-        if (website.includes(".")) {
-            let nextScreen = this.props.screenId + 1;
-            let firstName = this.props.firstName;
-            let lastName = this.props.lastName;
-            let email = this.props.email;
-            let companyName = this.state.companyName;
-            let industry = this.state.industry;
-            let phoneNumber = this.state.phoneNumber;
-            let adName = this.props.adName;
-            let genre = this.props.genre;
-            let adFormat = this.props.adFormat;
-            let dailyBudget = this.props.dailyBudget;
-            let monthlyBudget = this.props.monthlyBudget;
-            this.props.handler(e, nextScreen, firstName, lastName, email, companyName, industry, phoneNumber, website, adName, genre, adFormat, dailyBudget, monthlyBudget);
-        }
     }
     formatNumber() {
         let phoneNumber = this.phoneNumberInput.value,
@@ -181,10 +167,10 @@ class SponsorForm_BusinessInformation extends Component{
                             </div>
                         </form>
                         <div className="bottom-form">
-                            <button className="btn btn-lg back hvr-grow" ref="buttonBack" onClick={this.lastScreen}>
+                            <button className="btn btn-lg back hvr-grow" name="back" onClick={this.changeScreen}>
                                 Back
                             </button>
-                            <button className="btn btn-lg next" ref="button" onClick={this.endScreen}>
+                            <button className="btn btn-lg next" ref="button" name="next" onClick={this.changeScreen}>
                                 Next
                             </button>
                         </div>

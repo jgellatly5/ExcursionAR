@@ -15,8 +15,7 @@ class SetBudget extends Component{
         this.dailyBudget = this.props.dailyBudget;
         this.onChange = this.onChange.bind(this);
         this.onAfterChange = this.onAfterChange.bind(this);
-        this.lastScreen = this.lastScreen.bind(this);
-        this.endScreen = this.endScreen.bind(this);
+        this.changeScreen = this.changeScreen.bind(this);
     }
     onChange(value) {
         let buttonNext = this.refs.buttonNext;
@@ -38,24 +37,13 @@ class SetBudget extends Component{
             dailyBudget: dailyBudget
         });
     }
-    lastScreen(e) {
-        let nextScreen = this.props.screenId - 1;
-        let firstName = this.props.firstName;
-        let lastName = this.props.lastName;
-        let email = this.props.email;
-        let companyName = this.props.companyName;
-        let industry = this.props.industry;
-        let phoneNumber = this.props.phoneNumber;
-        let website = this.props.website;
-        let adName = this.props.adName;
-        let genre = this.props.genre;
-        let adFormat = this.props.adFormat;
-        let dailyBudget = this.dailyBudget;
-        let monthlyBudget = this.monthlyBudget;
-        this.props.handler(e, nextScreen, firstName, lastName, email, companyName, industry, phoneNumber, website, adName, genre, adFormat, dailyBudget, monthlyBudget);
-    }
-    endScreen(e) {
-        let nextScreen = this.props.screenId + 1;
+    changeScreen(e) {
+        let nextScreen;
+        if (e.target.name == 'back') {
+            nextScreen = this.props.screenId - 1;
+        } else {
+            nextScreen = this.props.screenId + 1;
+        }
         let firstName = this.props.firstName;
         let lastName = this.props.lastName;
         let email = this.props.email;
@@ -110,10 +98,10 @@ class SetBudget extends Component{
                             </form>
                         </div>
                         <div className="bottom-form">
-                            <button className="btn btn-lg back hvr-grow" ref="buttonBack" onClick={this.lastScreen}>
+                            <button className="btn btn-lg back hvr-grow" ref="buttonBack" name="back" onClick={this.changeScreen}>
                                 Back
                             </button>
-                            <button className="btn btn-lg next" ref="buttonNext" onClick={this.endScreen}>
+                            <button className="btn btn-lg next" ref="buttonNext" name="next" onClick={this.changeScreen}>
                                 Next
                             </button>
                         </div>

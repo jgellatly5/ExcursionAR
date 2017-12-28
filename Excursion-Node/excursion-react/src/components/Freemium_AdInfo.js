@@ -17,8 +17,7 @@ class Freemium_AdInfo extends Component{
         this.onSelectStatic = this.onSelectStatic.bind(this);
         this.onSelectDynamic = this.onSelectDynamic.bind(this);
         this.onSelectInteractive = this.onSelectInteractive.bind(this);
-        this.lastScreen = this.lastScreen.bind(this);
-        this.endScreen = this.endScreen.bind(this);
+        this.changeScreen = this.changeScreen.bind(this);
     }
     onChange(e) {
         let buttonNext = this.refs.buttonNext;
@@ -70,24 +69,13 @@ class Freemium_AdInfo extends Component{
         });
         this.onChange(e);
     }
-    lastScreen(e) {
-        let nextScreen = this.props.screenId - 1;
-        let firstName = this.props.firstName;
-        let lastName = this.props.lastName;
-        let email = this.props.email;
-        let companyName = this.props.companyName;
-        let industry = this.props.industry;
-        let phoneNumber = this.props.phoneNumber;
-        let website = this.props.website;
-        let adName = this.state.adName;
-        let genre = this.state.genre;
-        let adFormat = this.state.adFormat;
-        let dailyBudget = this.props.dailyBudget;
-        let monthlyBudget = this.props.monthlyBudget;
-        this.props.handler(e, nextScreen, firstName, lastName, email, companyName, industry, phoneNumber, website, adName, genre, adFormat, dailyBudget, monthlyBudget);
-    }
-    endScreen(e) {
-        let nextScreen = this.props.screenId + 1;
+    changeScreen(e) {
+        let nextScreen;
+        if (e.target.name == 'back') {
+            nextScreen = this.props.screenId - 1;
+        } else {
+            nextScreen = this.props.screenId + 1;
+        }
         let firstName = this.props.firstName;
         let lastName = this.props.lastName;
         let email = this.props.email;
@@ -177,10 +165,10 @@ class Freemium_AdInfo extends Component{
                             </div>
                         </form>
                         <div className="bottom-form">
-                            <button className="btn btn-lg back hvr-grow" ref="buttonBack" onClick={this.lastScreen}>
+                            <button className="btn btn-lg back hvr-grow" ref="buttonBack" name="back" onClick={this.changeScreen}>
                                 Back
                             </button>
-                            <button className="btn btn-lg next" ref="buttonNext" onClick={this.endScreen}>
+                            <button className="btn btn-lg next" ref="buttonNext" name="next" onClick={this.changeScreen}>
                                 Next
                             </button>
                         </div>

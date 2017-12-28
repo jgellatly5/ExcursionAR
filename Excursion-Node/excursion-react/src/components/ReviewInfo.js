@@ -4,27 +4,15 @@ import { Grid, Row, Col, Panel } from 'react-bootstrap';
 class ReviewInfo extends Component{
     constructor(props) {
         super(props);
-        this.lastScreen = this.lastScreen.bind(this);
-        this.endScreen = this.endScreen.bind(this);
+        this.changeScreen = this.changeScreen.bind(this);
     }
-    lastScreen(e) {
-        let nextScreen = this.props.screenId - 1;
-        let firstName = this.props.firstName;
-        let lastName = this.props.lastName;
-        let email = this.props.email;
-        let companyName = this.props.companyName;
-        let industry = this.props.industry;
-        let phoneNumber = this.props.phoneNumber;
-        let website = this.props.website;
-        let adName = this.props.adName;
-        let genre = this.props.genre;
-        let adFormat = this.props.adFormat;
-        let dailyBudget = this.props.dailyBudget;
-        let monthlyBudget = this.props.monthlyBudget;
-        this.props.handler(e, nextScreen, firstName, lastName, email, companyName, industry, phoneNumber, website, adName, genre, adFormat, dailyBudget, monthlyBudget);
-    }
-    endScreen(e) {
-        let nextScreen = this.props.screenId + 1;
+    changeScreen(e) {
+        let nextScreen;
+        if (e.target.name == 'back') {
+            nextScreen = this.props.screenId - 1;
+        } else {
+            nextScreen = this.props.screenId + 1;
+        }
         let firstName = this.props.firstName;
         let lastName = this.props.lastName;
         let email = this.props.email;
@@ -107,10 +95,10 @@ class ReviewInfo extends Component{
                             </form>
                         </div>
                         <div className="bottom-form review-ad-bottom">
-                            <button className="btn btn-lg back hvr-grow" ref="buttonBack" onClick={this.lastScreen}>
+                            <button className="btn btn-lg back hvr-grow" ref="buttonBack" name="back" onClick={this.changeScreen}>
                                 Back
                             </button>
-                            <button className="btn btn-lg looks-great active hvr-grow" ref="buttonNext" onClick={this.endScreen}>
+                            <button className="btn btn-lg looks-great active hvr-grow" ref="buttonNext" name="next" onClick={this.changeScreen}>
                                 <div className="looks-great-text align-middle">Looks Great</div>
                             </button>
                         </div>
