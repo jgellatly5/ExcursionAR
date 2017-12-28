@@ -76,23 +76,53 @@ class Freemium_AdInfo extends Component{
         } else {
             nextScreen = this.props.screenId + 1;
         }
-        let firstName = this.props.firstName;
-        let lastName = this.props.lastName;
-        let email = this.props.email;
-        let companyName = this.props.companyName;
-        let industry = this.props.industry;
-        let phoneNumber = this.props.phoneNumber;
-        let website = this.props.website;
         let adName = this.state.adName;
         let genre = this.state.genre;
         let adFormat = this.state.adFormat;
-        let dailyBudget = this.props.dailyBudget;
-        let monthlyBudget = this.props.monthlyBudget;
-        this.props.handler(e, nextScreen, firstName, lastName, email, companyName, industry, phoneNumber, website, adName, genre, adFormat, dailyBudget, monthlyBudget);
+        this.props.handler(e, nextScreen, adName, genre, adFormat);
     }
     componentDidMount() {
+        let adName = this.props.adName;
+        let genre = this.props.genre;
         let buttonNext = this.refs.buttonNext;
-        buttonNext.setAttribute('disabled','disabled');
+        if (adName == undefined && genre == undefined && adFormat == undefined) {
+            buttonNext.setAttribute('disabled','disabled');
+        } else {
+            buttonNext.classList.add('active', 'hvr-grow');
+            buttonNext.removeAttribute('disabled');
+        }
+        let adFormat = this.props.adFormat;
+        if (adFormat == 'static') {
+            this.adFormat = this.refs.staticAd.props.eventKey;
+            this.setState({
+                adFormat: 'static',
+                insertStaticClass: 'freemium-path-panel active',
+                insertDynamicClass: 'freemium-path-panel',
+                insertInteractiveClass: 'freemium-path-panel'
+            });
+        } else if (adFormat == 'dynamic') {
+            this.adFormat = this.refs.dynamicAd.props.eventKey;
+            this.setState({
+                adFormat: 'dynamic',
+                insertStaticClass: 'freemium-path-panel',
+                insertDynamicClass: 'freemium-path-panel active',
+                insertInteractiveClass: 'freemium-path-panel'
+            });
+        } else if (adFormat == 'interactive') {
+            this.adFormat = this.refs.interactiveAd.props.eventKey;
+            this.setState({
+                adFormat: 'interactive',
+                insertStaticClass: 'freemium-path-panel',
+                insertDynamicClass: 'freemium-path-panel',
+                insertInteractiveClass: 'freemium-path-panel active'
+            });
+        } else {
+            this.setState({
+                insertStaticClass: 'freemium-path-panel',
+                insertDynamicClass: 'freemium-path-panel',
+                insertInteractiveClass: 'freemium-path-panel'
+            });
+        }
     }
     render() {
         return (
@@ -140,22 +170,22 @@ class Freemium_AdInfo extends Component{
                                 <Grid>
                                     <Row>
                                         <Col xs={4}>
-                                            <Panel className={this.state.insertStaticClass} onClick={this.onSelectStatic} ref="staticAd" eventKey="1">
-                                                <img src={require("../blank.png")}/>
+                                            <Panel className={this.state.insertStaticClass} onClick={this.onSelectStatic} ref="staticAd" eventKey="1" name="static">
+                                                <img src={require("../blank.png")} alt="blank"/>
                                                 <h4>Static</h4>
                                                 <p>The ad remains in a fixed position. Example: TV screen or potted plant</p>
                                             </Panel>
                                         </Col>
                                         <Col xs={4}>
-                                            <Panel className={this.state.insertDynamicClass} onClick={this.onSelectDynamic} ref="dynamicAd" eventKey="2">
-                                                <img src={require("../blank.png")}/>
+                                            <Panel className={this.state.insertDynamicClass} onClick={this.onSelectDynamic} ref="dynamicAd" eventKey="2" name="dynamic">
+                                                <img src={require("../blank.png")} alt="blank"/>
                                                 <h4>Dynamic</h4>
                                                 <p>The ad moves across the screen or contains an animation. Example: plane or rocket</p>
                                             </Panel>
                                         </Col>
                                         <Col xs={4}>
-                                            <Panel className={this.state.insertInteractiveClass} onClick={this.onSelectInteractive} ref="interactiveAd" eventKey="3">
-                                                <img src={require("../blank.png")}/>
+                                            <Panel className={this.state.insertInteractiveClass} onClick={this.onSelectInteractive} ref="interactiveAd" eventKey="3" name="interactive">
+                                                <img src={require("../blank.png")} alt="blank"/>
                                                 <h4>Interactive</h4>
                                                 <p>The ad provides in-app rewards or extends the normal user experience.</p>
                                             </Panel>

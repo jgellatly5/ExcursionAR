@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 import { Panel } from 'react-bootstrap';
-import Slider, { Range, createSliderWithTooltip } from 'rc-slider';
+import Slider, { createSliderWithTooltip } from 'rc-slider';
 import 'rc-slider/assets/index.css';
 
 function budgetFormatter(v) {
@@ -44,19 +43,9 @@ class SetBudget extends Component{
         } else {
             nextScreen = this.props.screenId + 1;
         }
-        let firstName = this.props.firstName;
-        let lastName = this.props.lastName;
-        let email = this.props.email;
-        let companyName = this.props.companyName;
-        let industry = this.props.industry;
-        let phoneNumber = this.props.phoneNumber;
-        let website = this.props.website;
-        let adName = this.props.adName;
-        let genre = this.props.genre;
-        let adFormat = this.props.adFormat;
         let dailyBudget = this.dailyBudget;
         let monthlyBudget = this.monthlyBudget;
-        this.props.handler(e, nextScreen, firstName, lastName, email, companyName, industry, phoneNumber, website, adName, genre, adFormat, dailyBudget, monthlyBudget);
+        this.props.handler(e, nextScreen, dailyBudget, monthlyBudget);
     }
     componentDidMount() {
         let buttonNext = this.refs.buttonNext;

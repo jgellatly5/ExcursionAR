@@ -37,19 +37,11 @@ class SponsorForm_BusinessInformation extends Component{
         } else {
             nextScreen = this.props.screenId + 1;
         }
-        let firstName = this.props.firstName;
-        let lastName = this.props.lastName;
-        let email = this.props.email;
         let companyName = this.state.companyName;
         let industry = this.state.industry;
         let phoneNumber = this.state.phoneNumber;
         let website = this.state.website;
-        let adName = this.props.adName;
-        let genre = this.props.genre;
-        let adFormat = this.props.adFormat;
-        let dailyBudget = this.props.dailyBudget;
-        let monthlyBudget = this.props.monthlyBudget;
-        this.props.handler(e, nextScreen, firstName, lastName, email, companyName, industry, phoneNumber, website, adName, genre, adFormat, dailyBudget, monthlyBudget);
+        this.props.handler(e, nextScreen, companyName, industry, phoneNumber, website);
     }
     formatNumber() {
         let phoneNumber = this.phoneNumberInput.value,

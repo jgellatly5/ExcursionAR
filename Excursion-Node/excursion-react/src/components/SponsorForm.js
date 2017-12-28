@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Panel } from 'react-bootstrap';
+import { Panel, Tooltip, OverlayTrigger } from 'react-bootstrap';
 
 class SponsorForm extends Component{
     constructor(props) {
@@ -20,7 +20,7 @@ class SponsorForm extends Component{
         let lastName = this.lastNameInput.value;
         let email = this.emailInput.value;
         let password = this.passwordInput.value;
-        if (firstName !== '' && lastName !== '' && email !== '' && password !== '') {
+        if (firstName !== '' && lastName !== '' && email !== '' && email.includes("@") && password !== '') {
             button.classList.add('active', 'hvr-grow');
             button.removeAttribute('disabled');
         } else {
@@ -34,16 +34,7 @@ class SponsorForm extends Component{
             let nextScreen = this.props.screenId + 1;
             let firstName = this.state.firstName;
             let lastName = this.state.lastName;
-            let companyName = this.props.companyName;
-            let industry = this.props.industry;
-            let phoneNumber = this.props.phoneNumber;
-            let website = this.props.website;
-            let adName = this.props.adName;
-            let genre = this.props.genre;
-            let adFormat = this.props.adFormat;
-            let dailyBudget = this.props.dailyBudget;
-            let monthlyBudget = this.props.monthlyBudget;
-            this.props.handler(e, nextScreen, firstName, lastName, email, companyName, industry, phoneNumber, website, adName, genre, adFormat, dailyBudget, monthlyBudget);
+            this.props.handler(e, nextScreen, firstName, lastName, email);
         }
     }
     componentDidMount() {
@@ -51,6 +42,9 @@ class SponsorForm extends Component{
         button.setAttribute('disabled','disabled');
     }
     render() {
+        const tooltip_email = (
+            <Tooltip id="tooltip">Must contain an @ symbol</Tooltip>
+        );
         return (
             <div className="ad-signup-container">
                 <div className="ad-signup">
@@ -87,15 +81,17 @@ class SponsorForm extends Component{
 
                             <div className="form-group">
                                 <label className="control-label">Email</label>
-                                <input
-                                    value={this.state.email}
-                                    onChange={this.onChange}
-                                    type="email"
-                                    name="email"
-                                    className="form-control"
-                                    ref={(input) => { this.emailInput = input }}
-                                    required
-                                />
+                                <OverlayTrigger placement="right" overlay={tooltip_email}>
+                                    <input
+                                        value={this.state.email}
+                                        onChange={this.onChange}
+                                        type="email"
+                                        name="email"
+                                        className="form-control"
+                                        ref={(input) => { this.emailInput = input }}
+                                        required
+                                    />
+                                </OverlayTrigger>
                             </div>
 
                             <div className="form-group">

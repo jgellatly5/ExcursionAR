@@ -13,19 +13,7 @@ class ReviewInfo extends Component{
         } else {
             nextScreen = this.props.screenId + 1;
         }
-        let firstName = this.props.firstName;
-        let lastName = this.props.lastName;
-        let email = this.props.email;
-        let companyName = this.props.companyName;
-        let industry = this.props.industry;
-        let phoneNumber = this.props.phoneNumber;
-        let website = this.props.website;
-        let adName = this.props.adName;
-        let genre = this.props.genre;
-        let adFormat = this.props.adFormat;
-        let dailyBudget = this.props.dailyBudget;
-        let monthlyBudget = this.props.monthlyBudget;
-        this.props.handler(e, nextScreen, firstName, lastName, email, companyName, industry, phoneNumber, website, adName, genre, adFormat, dailyBudget, monthlyBudget);
+        this.props.handler(e, nextScreen);
     }
     render() {
         return (
