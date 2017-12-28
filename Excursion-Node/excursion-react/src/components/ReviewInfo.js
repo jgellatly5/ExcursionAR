@@ -7,17 +7,17 @@ class ReviewInfo extends Component{
         this.state = {
 
         };
-        // this.lastScreen = this.lastScreen.bind(this);
-        // this.endScreen = this.endScreen.bind(this);
+        this.lastScreen = this.lastScreen.bind(this);
+        this.endScreen = this.endScreen.bind(this);
     }
-    // lastScreen(e) {
-    //     let nextScreen = this.props.screenId - 1;
-    //     this.props.handler(e, nextScreen);
-    // }
-    // endScreen(e) {
-    //     let nextScreen = this.props.screenId + 1;
-    //     this.props.handler(e, nextScreen);
-    // }
+    lastScreen(e) {
+        let nextScreen = this.props.screenId - 1;
+        this.props.handler(e, nextScreen);
+    }
+    endScreen(e) {
+        let nextScreen = this.props.screenId + 1;
+        this.props.handler(e, nextScreen);
+    }
     render() {
         return (
             <div className="ad-signup-container">
@@ -35,20 +35,25 @@ class ReviewInfo extends Component{
                                                 <img src={require("../phonePreview.png")}/>
                                             </div>
                                         </Col>
-                                        <Col xs={6}>
+                                        <Col xs={6} className="right-side-review">
                                             <div className="form-group">
                                                 <label className="control-label">Company/Product Name</label>
                                                 <p className="ad-type">Hooli</p>
                                             </div>
 
                                             <div className="form-group">
-                                                <label className="control-label">Ad Type</label>
-                                                <p className="ad-type">Freemium</p>
+                                                <label className="control-label">Ad Name</label>
+                                                <p className="ad-type">Hooli Nucleus Recruitment</p>
                                             </div>
 
                                             <div className="form-group">
-                                                <label className="control-label">App Environment</label>
-                                                <p className="ad-type">Indoors</p>
+                                                <label className="control-label">Genre</label>
+                                                <p className="ad-type">Tecnology</p>
+                                            </div>
+
+                                            <div className="form-group">
+                                                <label className="control-label">Format</label>
+                                                <p className="ad-type">Dynamic</p>
                                             </div>
 
                                             <div className="form-group">

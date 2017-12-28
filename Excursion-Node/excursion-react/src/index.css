@@ -1389,12 +1389,14 @@ input[type='radio']:checked:before {
 .looks-great {
     width: 142px;
     margin: 0 auto;
-    display: table-cell;
-    vertical-align: middle;
 }
 
 .looks-great-text {
-    text-align: center;
+    margin-left: -33%;
+}
+
+.right-side-review .form-group{
+    width: 100%;
 }
 
 /*React CSS Transition Group*/
