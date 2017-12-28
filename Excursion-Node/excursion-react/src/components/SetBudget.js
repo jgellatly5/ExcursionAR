@@ -72,7 +72,12 @@ class SetBudget extends Component{
     }
     componentDidMount() {
         let buttonNext = this.refs.buttonNext;
-        buttonNext.setAttribute('disabled','disabled');
+        if (this.dailyBudget == undefined) {
+            buttonNext.setAttribute('disabled','disabled');
+        } else {
+            buttonNext.classList.add('active', 'hvr-grow');
+            buttonNext.removeAttribute('disabled');
+        }
     }
     render() {
         const SliderWithTooltip = createSliderWithTooltip(Slider);

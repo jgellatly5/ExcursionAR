@@ -58,7 +58,7 @@ class SponsorSignupLayout extends Component {
                                 genre={this.state.genre}
                                 adFormat={this.state.adFormat}
                                 dailyBudget={this.state.dailyBudget}
-
+                                monthlyBudget={this.state.monthlyBudget}
                             />;
                 }
                 break;
@@ -77,6 +77,7 @@ class SponsorSignupLayout extends Component {
                             genre={this.state.genre}
                             adFormat={this.state.adFormat}
                             dailyBudget={this.state.dailyBudget}
+                            monthlyBudget={this.state.monthlyBudget}
                         />;
                 break;
             // This case will be released when sponsor can choose between freemium or premium membership
@@ -134,6 +135,7 @@ class SponsorSignupLayout extends Component {
                             genre={this.state.genre}
                             adFormat={this.state.adFormat}
                             dailyBudget={this.state.dailyBudget}
+                            monthlyBudget={this.state.monthlyBudget}
                         />;
                 break;
             default:

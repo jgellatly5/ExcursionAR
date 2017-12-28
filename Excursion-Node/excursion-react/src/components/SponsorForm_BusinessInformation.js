@@ -115,7 +115,7 @@ class SponsorForm_BusinessInformation extends Component{
         return (
             <div className="ad-signup-container">
                 <div className="ad-signup">
-                    <Panel className="ad-signup-panel">
+                    <Panel className="ad-signup-panel sponsor-form-two">
                     <h1>What is your business?</h1>
                     <p>Fill out information about your business.</p>
                     <div>
@@ -178,7 +178,7 @@ class SponsorForm_BusinessInformation extends Component{
                                     id="last"
                                 />
                                 </OverlayTrigger>
-                            </div>        
+                            </div>
                         </form>
                         <div className="bottom-form">
                             <button className="btn btn-lg back hvr-grow" ref="buttonBack" onClick={this.lastScreen}>

@@ -908,13 +908,17 @@ table {
 }
 
 .ad-signup-panel .bottom-form .btn{
-    margin-top: 90px;
     width: 142px;
 }
 
 .sponsor-form .bottom-form .btn{
     margin-top: 90px;
     margin-left: 81%;
+    width: 142px;
+}
+
+.sponsor-form-two .bottom-form .btn{
+    margin-top: 90px;
     width: 142px;
 }
 
@@ -1380,11 +1384,6 @@ input[type='radio']:checked:before {
 }
 
 /*Review Ad*/
-.form-group img {
-    width: 500px;
-    margin-left: -150px;
-}
-
 .review-ad-container {
     margin-right: 100px;
     margin-left: 100px;
