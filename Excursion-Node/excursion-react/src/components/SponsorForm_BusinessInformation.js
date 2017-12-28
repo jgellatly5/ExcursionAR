@@ -5,12 +5,13 @@ class SponsorForm_BusinessInformation extends Component{
     constructor(props) {
         super(props);
         this.state = {
-            companyName: '',
-            industry: '',
-            phoneNumber: '',
-            website: ''
-        };
+            companyName: this.props.companyName,
+            industry: this.props.industry,
+            phoneNumber: this.props.phoneNumber,
+            website: this.props.website
+        }
         this.onChange = this.onChange.bind(this);
+        this.lastScreen = this.lastScreen.bind(this);
         this.endScreen = this.endScreen.bind(this);
         this.formatNumber = this.formatNumber.bind(this);
     }
@@ -22,7 +23,7 @@ class SponsorForm_BusinessInformation extends Component{
         let industry = this.industryInput.value;
         let phoneNumber = this.phoneNumberInput.value;
         let website = this.websiteInput.value;
-        if (companyName !== '' && industry !== '' && phoneNumber !== '' && website !== '') {
+        if (companyName !== '' && industry !== '' && phoneNumber !== '' && phoneNumber.length > 11 && website !== '') {
             button.classList.add('active', 'hvr-grow');
             button.removeAttribute('disabled');
         } else {
@@ -30,16 +31,38 @@ class SponsorForm_BusinessInformation extends Component{
             button.setAttribute('disabled','disabled');
         }
     }
+    lastScreen(e) {
+        let nextScreen = this.props.screenId - 1;
+        let firstName = this.props.firstName;
+        let lastName = this.props.lastName;
+        let email = this.props.email;
+        let companyName = this.state.companyName;
+        let industry = this.state.industry;
+        let phoneNumber = this.state.phoneNumber;
+        let website = this.state.website;
+        let adName = this.props.adName;
+        let genre = this.props.genre;
+        let adFormat = this.props.adFormat;
+        let dailyBudget = this.props.dailyBudget;
+        let monthlyBudget = this.props.monthlyBudget;
+        this.props.handler(e, nextScreen, firstName, lastName, email, companyName, industry, phoneNumber, website, adName, genre, adFormat, dailyBudget, monthlyBudget);
+    }
     endScreen(e) {
         let website = this.websiteInput.value;
         if (website.includes(".")) {
             let nextScreen = this.props.screenId + 1;
-            let name = this.props.name;
+            let firstName = this.props.firstName;
+            let lastName = this.props.lastName;
             let email = this.props.email;
             let companyName = this.state.companyName;
             let industry = this.state.industry;
             let phoneNumber = this.state.phoneNumber;
-            this.props.handler(e, nextScreen, name, email, companyName, industry, phoneNumber, website);
+            let adName = this.props.adName;
+            let genre = this.props.genre;
+            let adFormat = this.props.adFormat;
+            let dailyBudget = this.props.dailyBudget;
+            let monthlyBudget = this.props.monthlyBudget;
+            this.props.handler(e, nextScreen, firstName, lastName, email, companyName, industry, phoneNumber, website, adName, genre, adFormat, dailyBudget, monthlyBudget);
         }
     }
     formatNumber() {
@@ -70,8 +93,17 @@ class SponsorForm_BusinessInformation extends Component{
         }
     }
     componentDidMount() {
+        let companyName = this.props.companyName;
+        let industry = this.props.industry;
+        let phoneNumber = this.props.phoneNumber;
+        let website = this.props.website;
         let button = this.refs.button;
-        button.setAttribute('disabled','disabled');
+        if (companyName == undefined || industry == undefined || phoneNumber == undefined || website == undefined) {
+            button.setAttribute('disabled','disabled');
+        } else {
+            button.classList.add('active', 'hvr-grow');
+            button.removeAttribute('disabled');
+        }
     }
     render() {
         const tooltip_phoneNumber = (
@@ -149,6 +181,9 @@ class SponsorForm_BusinessInformation extends Component{
                             </div>
 
                             <div className="form-group">
+                                <button className="btn btn-lg back hvr-grow" ref="buttonBack" onClick={this.lastScreen}>
+                                    Back
+                                </button>
                                 <button className="btn btn-lg" ref="button" onClick={this.endScreen}>
                                     Next
                                 </button>

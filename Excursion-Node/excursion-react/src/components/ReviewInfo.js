@@ -9,11 +9,35 @@ class ReviewInfo extends Component{
     }
     lastScreen(e) {
         let nextScreen = this.props.screenId - 1;
-        this.props.handler(e, nextScreen);
+        let firstName = this.props.firstName;
+        let lastName = this.props.lastName;
+        let email = this.props.email;
+        let companyName = this.props.companyName;
+        let industry = this.props.industry;
+        let phoneNumber = this.props.phoneNumber;
+        let website = this.props.website;
+        let adName = this.props.adName;
+        let genre = this.props.genre;
+        let adFormat = this.props.adFormat;
+        let dailyBudget = this.props.dailyBudget;
+        let monthlyBudget = this.props.monthlyBudget;
+        this.props.handler(e, nextScreen, firstName, lastName, email, companyName, industry, phoneNumber, website, adName, genre, adFormat, dailyBudget, monthlyBudget);
     }
     endScreen(e) {
         let nextScreen = this.props.screenId + 1;
-        this.props.handler(e, nextScreen);
+        let firstName = this.props.firstName;
+        let lastName = this.props.lastName;
+        let email = this.props.email;
+        let companyName = this.props.companyName;
+        let industry = this.props.industry;
+        let phoneNumber = this.props.phoneNumber;
+        let website = this.props.website;
+        let adName = this.props.adName;
+        let genre = this.props.genre;
+        let adFormat = this.props.adFormat;
+        let dailyBudget = this.props.dailyBudget;
+        let monthlyBudget = this.props.monthlyBudget;
+        this.props.handler(e, nextScreen, firstName, lastName, email, companyName, industry, phoneNumber, website, adName, genre, adFormat, dailyBudget, monthlyBudget);
     }
     render() {
         return (
@@ -29,7 +53,7 @@ class ReviewInfo extends Component{
                                         <Col xs={6} className="right-side-review">
                                             <div className="form-group">
                                                 <label className="control-label">Name</label>
-                                                <p className="ad-type">{this.props.name}</p>
+                                                <p className="ad-type">{this.props.firstName} {this.props.lastName}</p>
                                             </div>
 
                                             <div className="form-group">

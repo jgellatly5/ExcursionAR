@@ -5,9 +5,9 @@ class SponsorForm extends Component{
     constructor(props) {
         super(props);
         this.state = {
-            firstName: '',
-            lastName: '',
-            email: '',
+            firstName: this.props.firstName,
+            lastName: this.props.lastName,
+            email: this.props.email,
             password: ''
         }
         this.onChange = this.onChange.bind(this);
@@ -32,8 +32,18 @@ class SponsorForm extends Component{
         let email = this.emailInput.value;
         if (email.includes("@")) {
             let nextScreen = this.props.screenId + 1;
-            let name = `${this.state.firstName} ${this.state.lastName}`;
-            this.props.handler(e, nextScreen, name, email);
+            let firstName = this.state.firstName;
+            let lastName = this.state.lastName;
+            let companyName = this.props.companyName;
+            let industry = this.props.industry;
+            let phoneNumber = this.props.phoneNumber;
+            let website = this.props.website;
+            let adName = this.props.adName;
+            let genre = this.props.genre;
+            let adFormat = this.props.adFormat;
+            let dailyBudget = this.props.dailyBudget;
+            let monthlyBudget = this.props.monthlyBudget;
+            this.props.handler(e, nextScreen, firstName, lastName, email, companyName, industry, phoneNumber, website, adName, genre, adFormat, dailyBudget, monthlyBudget);
         }
     }
     componentDidMount() {

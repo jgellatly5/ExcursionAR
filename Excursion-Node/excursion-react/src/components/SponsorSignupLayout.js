@@ -13,14 +13,7 @@ class SponsorSignupLayout extends Component {
         this.handleScreenChange = this.handleScreenChange.bind(this);
         this.state = {
             screen: 0,
-            isScreenChanging: false,
-            name: '',
-            email: '',
-            companyName: '',
-            adName: '',
-            genre: '',
-            adFormat: '',
-            dailyBudget: 0
+            isScreenChanging: false
         };
     }
     componentDidMount() {
@@ -28,11 +21,12 @@ class SponsorSignupLayout extends Component {
             isScreenChanging: true
         });
     }
-    handleScreenChange(e, newScreen, name, email, companyName, industry, phoneNumber, website, adName, genre, adFormat, dailyBudget) {
+    handleScreenChange(e, newScreen, firstName, lastName, email, companyName, industry, phoneNumber, website, adName, genre, adFormat, dailyBudget, monthlyBudget) {
         e.preventDefault();
         this.setState({
             screen: newScreen,
-            name: name,
+            firstName: firstName,
+            lastName: lastName,
             email: email,
             companyName: companyName,
             industry: industry,
@@ -41,7 +35,8 @@ class SponsorSignupLayout extends Component {
             adName: adName,
             genre: genre,
             adFormat: adFormat,
-            dailyBudget: dailyBudget
+            dailyBudget: dailyBudget,
+            monthlyBudget: monthlyBudget
         });
     }
     render() {
@@ -52,6 +47,18 @@ class SponsorSignupLayout extends Component {
                     child = <SponsorForm
                                 screenId={this.state.screen}
                                 handler={this.handleScreenChange}
+                                firstName={this.state.firstName}
+                                lastName={this.state.lastName}
+                                email={this.state.email}
+                                companyName={this.state.companyName}
+                                industry={this.state.industry}
+                                phoneNumber={this.state.phoneNumber}
+                                website={this.state.website}
+                                adName={this.state.adName}
+                                genre={this.state.genre}
+                                adFormat={this.state.adFormat}
+                                dailyBudget={this.state.dailyBudget}
+
                             />;
                 }
                 break;
@@ -59,8 +66,17 @@ class SponsorSignupLayout extends Component {
                 child = <SponsorForm_BusinessInformation
                             screenId={this.state.screen}
                             handler={this.handleScreenChange}
-                            name={this.state.name}
+                            firstName={this.state.firstName}
+                            lastName={this.state.lastName}
                             email={this.state.email}
+                            companyName={this.state.companyName}
+                            industry={this.state.industry}
+                            phoneNumber={this.state.phoneNumber}
+                            website={this.state.website}
+                            adName={this.state.adName}
+                            genre={this.state.genre}
+                            adFormat={this.state.adFormat}
+                            dailyBudget={this.state.dailyBudget}
                         />;
                 break;
             // This case will be released when sponsor can choose between freemium or premium membership
@@ -71,19 +87,8 @@ class SponsorSignupLayout extends Component {
                 child = <Freemium_AdInfo
                             screenId={this.state.screen}
                             handler={this.handleScreenChange}
-                            name={this.state.name}
-                            email={this.state.email}
-                            companyName={this.state.companyName}
-                            industry={this.state.industry}
-                            phoneNumber={this.state.phoneNumber}
-                            website={this.state.website}
-                        />;
-                break;
-            case 3:
-                child = <SetBudget
-                            screenId={this.state.screen}
-                            handler={this.handleScreenChange}
-                            name={this.state.name}
+                            firstName={this.state.firstName}
+                            lastName={this.state.lastName}
                             email={this.state.email}
                             companyName={this.state.companyName}
                             industry={this.state.industry}
@@ -92,13 +97,34 @@ class SponsorSignupLayout extends Component {
                             adName={this.state.adName}
                             genre={this.state.genre}
                             adFormat={this.state.adFormat}
+                            dailyBudget={this.state.dailyBudget}
+                            monthlyBudget={this.state.monthlyBudget}
+                        />;
+                break;
+            case 3:
+                child = <SetBudget
+                            screenId={this.state.screen}
+                            handler={this.handleScreenChange}
+                            firstName={this.state.firstName}
+                            lastName={this.state.lastName}
+                            email={this.state.email}
+                            companyName={this.state.companyName}
+                            industry={this.state.industry}
+                            phoneNumber={this.state.phoneNumber}
+                            website={this.state.website}
+                            adName={this.state.adName}
+                            genre={this.state.genre}
+                            adFormat={this.state.adFormat}
+                            dailyBudget={this.state.dailyBudget}
+                            monthlyBudget={this.state.monthlyBudget}
                         />;
                 break;
             case 4:
                 child = <ReviewInfo
                             screenId={this.state.screen}
                             handler={this.handleScreenChange}
-                            name={this.state.name}
+                            firstName={this.state.firstName}
+                            lastName={this.state.lastName}
                             email={this.state.email}
                             companyName={this.state.companyName}
                             industry={this.state.industry}

@@ -5,6 +5,8 @@ class Freemium_AdInfo extends Component{
     constructor(props) {
         super(props);
         this.state = {
+            adName: this.props.adName,
+            genre: this.props.genre,
             adType: 'freemium',
             insertStaticClass: 'freemium-path-panel',
             insertDynamicClass: 'freemium-path-panel',
@@ -70,11 +72,8 @@ class Freemium_AdInfo extends Component{
     }
     lastScreen(e) {
         let nextScreen = this.props.screenId - 1;
-        this.props.handler(e, nextScreen);
-    }
-    endScreen(e) {
-        let nextScreen = this.props.screenId + 1;
-        let name = this.props.name;
+        let firstName = this.props.firstName;
+        let lastName = this.props.lastName;
         let email = this.props.email;
         let companyName = this.props.companyName;
         let industry = this.props.industry;
@@ -83,7 +82,25 @@ class Freemium_AdInfo extends Component{
         let adName = this.state.adName;
         let genre = this.state.genre;
         let adFormat = this.state.adFormat;
-        this.props.handler(e, nextScreen, name, email, companyName, industry, phoneNumber, website, adName, genre, adFormat);
+        let dailyBudget = this.props.dailyBudget;
+        let monthlyBudget = this.props.monthlyBudget;
+        this.props.handler(e, nextScreen, firstName, lastName, email, companyName, industry, phoneNumber, website, adName, genre, adFormat, dailyBudget, monthlyBudget);
+    }
+    endScreen(e) {
+        let nextScreen = this.props.screenId + 1;
+        let firstName = this.props.firstName;
+        let lastName = this.props.lastName;
+        let email = this.props.email;
+        let companyName = this.props.companyName;
+        let industry = this.props.industry;
+        let phoneNumber = this.props.phoneNumber;
+        let website = this.props.website;
+        let adName = this.state.adName;
+        let genre = this.state.genre;
+        let adFormat = this.state.adFormat;
+        let dailyBudget = this.props.dailyBudget;
+        let monthlyBudget = this.props.monthlyBudget;
+        this.props.handler(e, nextScreen, firstName, lastName, email, companyName, industry, phoneNumber, website, adName, genre, adFormat, dailyBudget, monthlyBudget);
     }
     componentDidMount() {
         let buttonNext = this.refs.buttonNext;
