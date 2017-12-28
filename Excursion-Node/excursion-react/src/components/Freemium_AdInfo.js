@@ -23,6 +23,10 @@ class Freemium_AdInfo extends Component{
         let adName = this.adNameInput.value;
         let genre = this.genreInput.value;
         let adFormat = this.adFormat;
+        this.setState({
+            adName: adName,
+            genre: genre
+        });
         if (adName !== '' && genre !== '' && adFormat != '0') {
             buttonNext.classList.add('active', 'hvr-grow');
             buttonNext.removeAttribute('disabled');
@@ -70,7 +74,11 @@ class Freemium_AdInfo extends Component{
     }
     endScreen(e) {
         let nextScreen = this.props.screenId + 1;
-        this.props.handler(e, nextScreen);
+        let companyName = this.props.companyName;
+        let adName = this.state.adName;
+        let genre = this.state.genre;
+        let adFormat = this.state.adFormat;
+        this.props.handler(e, nextScreen, companyName, adName, genre, adFormat);
     }
     componentDidMount() {
         let buttonNext = this.refs.buttonNext;

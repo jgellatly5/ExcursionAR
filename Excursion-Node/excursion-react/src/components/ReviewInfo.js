@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
-import { Grid, Row, Col, Panel, FormGroup, ControlLabel, FormControl } from 'react-bootstrap';
+import { Grid, Row, Col, Panel } from 'react-bootstrap';
 
 class ReviewInfo extends Component{
     constructor(props) {
         super(props);
-        this.state = {
-
-        };
         this.lastScreen = this.lastScreen.bind(this);
         this.endScreen = this.endScreen.bind(this);
     }
@@ -38,27 +35,27 @@ class ReviewInfo extends Component{
                                         <Col xs={6} className="right-side-review">
                                             <div className="form-group">
                                                 <label className="control-label">Company/Product Name</label>
-                                                <p className="ad-type">Hooli</p>
+                                                <p className="ad-type">{this.props.companyName}</p>
                                             </div>
 
                                             <div className="form-group">
                                                 <label className="control-label">Ad Name</label>
-                                                <p className="ad-type">Hooli Nucleus Recruitment</p>
+                                                <p className="ad-type">{this.props.adName}</p>
                                             </div>
 
                                             <div className="form-group">
                                                 <label className="control-label">Genre</label>
-                                                <p className="ad-type">Tecnology</p>
+                                                <p className="ad-type">{this.props.genre}</p>
                                             </div>
 
                                             <div className="form-group">
                                                 <label className="control-label">Format</label>
-                                                <p className="ad-type">Dynamic</p>
+                                                <p className="ad-type">{this.props.adFormat}</p>
                                             </div>
 
                                             <div className="form-group">
                                                 <label className="control-label">Budget Amount</label>
-                                                <p className="ad-type">$25 per day</p>
+                                                <p className="ad-type">${this.props.dailyBudget} per day</p>
                                             </div>
                                         </Col>
                                     </Row>

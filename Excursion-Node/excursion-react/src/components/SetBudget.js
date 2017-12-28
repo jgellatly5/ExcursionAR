@@ -32,15 +32,14 @@ class SetBudget extends Component{
             buttonNext.classList.remove('active', 'hvr-grow');
             buttonNext.setAttribute('disabled','disabled');
         }
-        console.log(value);
     }
     onAfterChange() {
         let monthlyBudget = this.monthlyBudget;
+        let dailyBudget = this.dailyBudget;
         this.setState({
-            monthlyBudget: monthlyBudget
+            monthlyBudget: monthlyBudget,
+            dailyBudget: dailyBudget
         });
-        let slider = this.refs.slider;
-        console.log(slider.value);
     }
     lastScreen(e) {
         let nextScreen = this.props.screenId - 1;
@@ -48,7 +47,12 @@ class SetBudget extends Component{
     }
     endScreen(e) {
         let nextScreen = this.props.screenId + 1;
-        this.props.handler(e, nextScreen);
+        let companyName = this.props.companyName;
+        let adName = this.props.adName;
+        let genre = this.props.genre;
+        let adFormat = this.props.adFormat;
+        let dailyBudget = this.state.dailyBudget;
+        this.props.handler(e, nextScreen, companyName, adName, genre, adFormat, dailyBudget);
     }
     componentDidMount() {
         let buttonNext = this.refs.buttonNext;
