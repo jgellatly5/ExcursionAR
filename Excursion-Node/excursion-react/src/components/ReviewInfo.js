@@ -21,15 +21,35 @@ class ReviewInfo extends Component{
                 <div className="ad-signup" id="fix-margin">
                     <Panel className="ad-signup-panel">
                         <div className="review-ad-container">
-                            <h1>Review your ad</h1>
+                            <h1>Review your information</h1>
                             <p>Review your ad and your settings</p>
                             <form>
                                 <Grid>
                                     <Row>
-                                        <Col xs={6}>
+                                        <Col xs={6} className="right-side-review">
                                             <div className="form-group">
-                                                <label className="control-label">Ad Preview</label>
-                                                <img src={require("../phonePreview.png")}/>
+                                                <label className="control-label">Name</label>
+                                                <p className="ad-type">{this.props.name}</p>
+                                            </div>
+
+                                            <div className="form-group">
+                                                <label className="control-label">Email</label>
+                                                <p className="ad-type">{this.props.email}</p>
+                                            </div>
+
+                                            <div className="form-group">
+                                                <label className="control-label">Industry</label>
+                                                <p className="ad-type">{this.props.industry}</p>
+                                            </div>
+
+                                            <div className="form-group">
+                                                <label className="control-label">Phone Number</label>
+                                                <p className="ad-type">{this.props.phoneNumber}</p>
+                                            </div>
+
+                                            <div className="form-group">
+                                                <label className="control-label">Website</label>
+                                                <p className="ad-type">{this.props.website}</p>
                                             </div>
                                         </Col>
                                         <Col xs={6} className="right-side-review">

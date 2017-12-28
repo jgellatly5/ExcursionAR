@@ -47,12 +47,17 @@ class SetBudget extends Component{
     }
     endScreen(e) {
         let nextScreen = this.props.screenId + 1;
+        let name = this.props.name;
+        let email = this.props.email;
         let companyName = this.props.companyName;
+        let industry = this.props.industry;
+        let phoneNumber = this.props.phoneNumber;
+        let website = this.props.website;
         let adName = this.props.adName;
         let genre = this.props.genre;
         let adFormat = this.props.adFormat;
         let dailyBudget = this.state.dailyBudget;
-        this.props.handler(e, nextScreen, companyName, adName, genre, adFormat, dailyBudget);
+        this.props.handler(e, nextScreen, name, email, companyName, industry, phoneNumber, website, adName, genre, adFormat, dailyBudget);
     }
     componentDidMount() {
         let buttonNext = this.refs.buttonNext;

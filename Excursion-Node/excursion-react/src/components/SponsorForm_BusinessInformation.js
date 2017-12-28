@@ -31,12 +31,15 @@ class SponsorForm_BusinessInformation extends Component{
         }
     }
     endScreen(e) {
-        let companyName = this.state.companyName;
         let website = this.websiteInput.value;
         if (website.includes(".")) {
             let nextScreen = this.props.screenId + 1;
-            this.props.handler(e, nextScreen, companyName);
-            console.log(companyName);
+            let name = this.props.name;
+            let email = this.props.email;
+            let companyName = this.state.companyName;
+            let industry = this.state.industry;
+            let phoneNumber = this.state.phoneNumber;
+            this.props.handler(e, nextScreen, name, email, companyName, industry, phoneNumber, website);
         }
     }
     formatNumber() {

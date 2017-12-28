@@ -32,7 +32,8 @@ class SponsorForm extends Component{
         let email = this.emailInput.value;
         if (email.includes("@")) {
             let nextScreen = this.props.screenId + 1;
-            this.props.handler(e, nextScreen);
+            let name = `${this.state.firstName} ${this.state.lastName}`;
+            this.props.handler(e, nextScreen, name, email);
         }
     }
     componentDidMount() {

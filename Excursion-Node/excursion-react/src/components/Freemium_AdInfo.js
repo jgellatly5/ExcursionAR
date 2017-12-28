@@ -74,11 +74,16 @@ class Freemium_AdInfo extends Component{
     }
     endScreen(e) {
         let nextScreen = this.props.screenId + 1;
+        let name = this.props.name;
+        let email = this.props.email;
         let companyName = this.props.companyName;
+        let industry = this.props.industry;
+        let phoneNumber = this.props.phoneNumber;
+        let website = this.props.website;
         let adName = this.state.adName;
         let genre = this.state.genre;
         let adFormat = this.state.adFormat;
-        this.props.handler(e, nextScreen, companyName, adName, genre, adFormat);
+        this.props.handler(e, nextScreen, name, email, companyName, industry, phoneNumber, website, adName, genre, adFormat);
     }
     componentDidMount() {
         let buttonNext = this.refs.buttonNext;
