@@ -178,17 +178,16 @@ class SponsorForm_BusinessInformation extends Component{
                                     id="last"
                                 />
                                 </OverlayTrigger>
-                            </div>
-
-                            <div className="form-group">
-                                <button className="btn btn-lg back hvr-grow" ref="buttonBack" onClick={this.lastScreen}>
-                                    Back
-                                </button>
-                                <button className="btn btn-lg" ref="button" onClick={this.endScreen}>
-                                    Next
-                                </button>
-                            </div>
+                            </div>        
                         </form>
+                        <div className="bottom-form">
+                            <button className="btn btn-lg back hvr-grow" ref="buttonBack" onClick={this.lastScreen}>
+                                Back
+                            </button>
+                            <button className="btn btn-lg next" ref="button" onClick={this.endScreen}>
+                                Next
+                            </button>
+                        </div>
                     </div>
                     </Panel>
                 </div>

@@ -13,7 +13,7 @@ class Signup extends Component{
                         <Row>
                             <Col xs={6}>
                                 <Panel className="choose-path-panel">
-                                    <img src={require("../blank.png")} className="icon-speaker"/>
+                                    <img src={require("../blank.png")} alt="sponsorSignup" className="icon-speaker"/>
                                     <p className="path">I want to advertise my business.</p>
                                     <p className="desc">Excursion rocks!</p>
                                     <LinkContainer to="/sponsor">
@@ -25,7 +25,7 @@ class Signup extends Component{
                             </Col>
                             <Col xs={6} className="choose-path-panel">
                                 <Panel>
-                                    <img src={require("../blank.png")} className="icon-phone"/>
+                                    <img src={require("../blank.png")} alt="publisherSignup" className="icon-phone"/>
                                     <p className="path">I want to monetize my business.</p>
                                     <p className="desc">Excursion rocks!</p>
                                     <Button bsStyle="info" className="choose-path-button hvr-grow">

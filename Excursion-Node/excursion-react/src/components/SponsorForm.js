@@ -54,7 +54,7 @@ class SponsorForm extends Component{
         return (
             <div className="ad-signup-container">
                 <div className="ad-signup">
-                    <Panel className="ad-signup-panel">
+                    <Panel className="ad-signup-panel sponsor-form">
                     <h1>Let{`'`}s Get Started</h1>
                     <p>Create your account.</p>
                     <div>
@@ -111,13 +111,12 @@ class SponsorForm extends Component{
                                     required
                                 />
                             </div>
-
-                            <div className="form-group">
-                                <button className="btn btn-lg" ref="button" onClick={this.endScreen}>
-                                    Next
-                                </button>
-                            </div>
                         </form>
+                        <div className="bottom-form">
+                            <button className="btn btn-lg" ref="button" onClick={this.endScreen}>
+                                Next
+                            </button>
+                        </div>
                     </div>
                     </Panel>
                 </div>
