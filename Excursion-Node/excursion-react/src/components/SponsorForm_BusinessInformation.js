@@ -22,7 +22,12 @@ class SponsorForm_BusinessInformation extends Component{
         let industry = this.industryInput.value;
         let phoneNumber = this.phoneNumberInput.value;
         let website = this.websiteInput.value;
-        if (companyName !== '' && industry !== '' && phoneNumber !== '' && phoneNumber.length > 11 && website !== '') {
+        // The website must use a protocol identifier (http, https) and it must be valid (be totally correct)
+        // Url must have at least a 2 character extension (.co)
+        // Url must have a character in between the protocol ID (http) and the extension (.co)
+        // This does NOT work for www extensions
+        let r = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/;
+        if (companyName !== '' && industry !== '' && phoneNumber !== '' && phoneNumber.length > 11 && website !== '' && r.test(website)) {
             button.classList.add('active', 'hvr-grow');
             button.removeAttribute('disabled');
         } else {
@@ -88,7 +93,7 @@ class SponsorForm_BusinessInformation extends Component{
             <Tooltip id="tooltip">Format: 000-000-0000</Tooltip>
         );
         const tooltip_url = (
-            <Tooltip id="tooltip">Format: "https:// or http://"</Tooltip>
+            <Tooltip id="tooltip">Must be a valid website</Tooltip>
         );
         return (
             <div className="ad-signup-container">
@@ -152,6 +157,7 @@ class SponsorForm_BusinessInformation extends Component{
                                     pattern='^https?://'
                                     className="form-control"
                                     ref={(input) => { this.websiteInput = input }}
+                                    onKeyUp={this.checkWebsite}
                                     required
                                     id="last"
                                 />

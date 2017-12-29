@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import { Grid, Row, Col, Panel } from 'react-bootstrap';
 
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
 class ReviewInfo extends Component{
     constructor(props) {
         super(props);
@@ -29,7 +33,7 @@ class ReviewInfo extends Component{
                                         <Col xs={6} className="right-side-review">
                                             <div className="form-group">
                                                 <label className="control-label">Name</label>
-                                                <p className="ad-type">{this.props.firstName} {this.props.lastName}</p>
+                                                <p className="ad-type">{capitalizeFirstLetter(this.props.firstName)} {capitalizeFirstLetter(this.props.lastName)}</p>
                                             </div>
 
                                             <div className="form-group">
@@ -39,7 +43,7 @@ class ReviewInfo extends Component{
 
                                             <div className="form-group">
                                                 <label className="control-label">Industry</label>
-                                                <p className="ad-type">{this.props.industry}</p>
+                                                <p className="ad-type">{capitalizeFirstLetter(this.props.industry)}</p>
                                             </div>
 
                                             <div className="form-group">
@@ -55,22 +59,22 @@ class ReviewInfo extends Component{
                                         <Col xs={6} className="right-side-review">
                                             <div className="form-group">
                                                 <label className="control-label">Company/Product Name</label>
-                                                <p className="ad-type">{this.props.companyName}</p>
+                                                <p className="ad-type">{capitalizeFirstLetter(this.props.companyName)}</p>
                                             </div>
 
                                             <div className="form-group">
                                                 <label className="control-label">Ad Name</label>
-                                                <p className="ad-type">{this.props.adName}</p>
+                                                <p className="ad-type">{capitalizeFirstLetter(this.props.adName)}</p>
                                             </div>
 
                                             <div className="form-group">
                                                 <label className="control-label">Genre</label>
-                                                <p className="ad-type">{this.props.genre}</p>
+                                                <p className="ad-type">{capitalizeFirstLetter(this.props.genre)}</p>
                                             </div>
 
                                             <div className="form-group">
                                                 <label className="control-label">Format</label>
-                                                <p className="ad-type">{this.props.adFormat}</p>
+                                                <p className="ad-type">{capitalizeFirstLetter(this.props.adFormat)}</p>
                                             </div>
 
                                             <div className="form-group">

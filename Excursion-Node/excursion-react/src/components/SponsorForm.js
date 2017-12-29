@@ -12,7 +12,6 @@ class SponsorForm extends Component{
         }
         this.onChange = this.onChange.bind(this);
         this.endScreen = this.endScreen.bind(this);
-        this.checkEmail = this.checkEmail.bind(this);
     }
     onChange(e) {
         this.setState({ [e.target.name]: e.target.value });
@@ -20,8 +19,11 @@ class SponsorForm extends Component{
         let firstName = this.firstNameInput.value;
         let lastName = this.lastNameInput.value;
         let email = this.emailInput.value;
+        // String must contain at least one character in front of the @ symbol, an @ symbol
+        // a character after the @ symbol, a ., and a character after the .
+        let r = /(\w+?@\w+?\x2E.+)/;
         let password = this.passwordInput.value;
-        if (firstName !== '' && lastName !== '' && email !== '' && email.includes("@") && password !== '' && password.length > 7) {
+        if (firstName !== '' && lastName !== '' && email !== '' && r.test(email) && password !== '' && password.length > 7) {
             button.classList.add('active', 'hvr-grow');
             button.removeAttribute('disabled');
         } else {
@@ -29,24 +31,12 @@ class SponsorForm extends Component{
             button.setAttribute('disabled','disabled');
         }
     }
-    checkEmail() {
-        let email = this.emailInput.value;
-        let r = /(\w+?@\w+?\x2E.+)/;
-        if (r.test(email)) {
-            console.log("valid");
-        } else {
-            console.log("not valid");
-        }
-    }
     endScreen(e) {
-        e.preventDefault();
-        let email = this.emailInput.value;
-        if (email.includes("@")) {
-            let nextScreen = this.props.screenId + 1;
-            let firstName = this.state.firstName;
-            let lastName = this.state.lastName;
-            this.props.handler(e, nextScreen, firstName, lastName, email);
-        }
+        let nextScreen = this.props.screenId + 1;
+        let firstName = this.state.firstName;
+        let lastName = this.state.lastName;
+        let email = this.state.email;
+        this.props.handler(e, nextScreen, firstName, lastName, email);
     }
     componentDidMount() {
         let button = this.refs.button;
@@ -103,7 +93,6 @@ class SponsorForm extends Component{
                                         name="email"
                                         className="form-control"
                                         ref={(input) => { this.emailInput = input }}
-                                        onKeyUp={this.checkEmail}
                                         required
                                     />
                                 </OverlayTrigger>
