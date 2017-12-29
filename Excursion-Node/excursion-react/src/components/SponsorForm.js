@@ -21,9 +21,9 @@ class SponsorForm extends Component{
         let email = this.emailInput.value;
         // String must contain at least one character in front of the @ symbol, an @ symbol
         // a character after the @ symbol, a ., and a character after the .
-        let r = /(\w+?@\w+?\x2E.+)/;
+        let regex = /(\w+?@\w+?\x2E.+)/;
         let password = this.passwordInput.value;
-        if (firstName !== '' && lastName !== '' && email !== '' && r.test(email) && password !== '' && password.length > 7) {
+        if (firstName !== '' && lastName !== '' && email !== '' && regex.test(email) && password !== '' && password.length > 7) {
             button.classList.add('active', 'hvr-grow');
             button.removeAttribute('disabled');
         } else {
@@ -83,6 +83,7 @@ class SponsorForm extends Component{
                                 />
                             </div>
 
+                            //TODO Extract this field for separate login validation
                             <div className="form-group">
                                 <label className="control-label">Email</label>
                                 <OverlayTrigger placement="right" overlay={tooltip_email}>
@@ -98,6 +99,7 @@ class SponsorForm extends Component{
                                 </OverlayTrigger>
                             </div>
 
+                            //TODO Extract this field for separate login validation and encryption
                             <div className="form-group">
                                 <label className="control-label">Password</label>
                                 <OverlayTrigger placement="right" overlay={tooltip_password}>
