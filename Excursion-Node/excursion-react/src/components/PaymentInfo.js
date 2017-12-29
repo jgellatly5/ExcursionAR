@@ -191,13 +191,119 @@ class PaymentInfo extends Component{
                                     required
                                 />
                             </div>
+
+                            <div className="form-group freemium-path">
+                                <Grid>
+                                    <Row>
+                                        <Col xs={4}>
+                                            <label className="control-label">Exp Date</label>
+                                            <input
+                                                value={this.state.cardNumber}
+                                                onChange={this.onChange}
+                                                type="text"
+                                                name="cardNumber"
+                                                className="form-control"
+                                                ref={(input) => { this.cardNumberInput = input }}
+                                                required
+                                            />
+                                        </Col>
+                                        <Col xs={4}>
+                                            <label className="control-label">CVV Number</label>
+                                            <input
+                                                value={this.state.cardNumber}
+                                                onChange={this.onChange}
+                                                type="text"
+                                                name="cardNumber"
+                                                className="form-control"
+                                                ref={(input) => { this.cardNumberInput = input }}
+                                                required
+                                            />
+                                        </Col>
+                                    </Row>
+                                </Grid>
+                            </div>
+                            <hr/>
+
+                            <div className="form-group">
+                                <label className="control-label">Billing Address</label>
+                                <input
+                                    value={this.state.cardNumber}
+                                    onChange={this.onChange}
+                                    type="text"
+                                    name="cardNumber"
+                                    className="form-control"
+                                    ref={(input) => { this.cardNumberInput = input }}
+                                    required
+                                />
+                                <input
+                                    value={this.state.cardNumber}
+                                    onChange={this.onChange}
+                                    type="text"
+                                    name="cardNumber"
+                                    className="form-control"
+                                    ref={(input) => { this.cardNumberInput = input }}
+                                    required
+                                />
+                            </div>
+
+                            <div className="form-group">
+                                <label className="control-label">City/Town</label>
+                                <input
+                                    value={this.state.cardNumber}
+                                    onChange={this.onChange}
+                                    type="text"
+                                    name="cardNumber"
+                                    className="form-control"
+                                    ref={(input) => { this.cardNumberInput = input }}
+                                    required
+                                />
+                            </div>
+
+                            <div className="form-group">
+                                <label className="control-label">Zip Code</label>
+                                <input
+                                    value={this.state.cardNumber}
+                                    onChange={this.onChange}
+                                    type="text"
+                                    name="cardNumber"
+                                    className="form-control"
+                                    ref={(input) => { this.cardNumberInput = input }}
+                                    required
+                                />
+                            </div>
+
+                            {/*TODO Change default drop down style button*/}
+                            <FormGroup controlId="formControlsSelect">
+                                <ControlLabel>State</ControlLabel>
+                                <FormControl componentClass="select" onChange={this.onChange} inputRef={ref => { this.genreInput = ref; }} value={this.state.genre} required>
+                                    <option value="technology" >Technology</option>
+                                    <option value="finance" >Finance</option>
+                                    <option value="retail" >Retail</option>
+                                    <option value="entertainment" >Entertainment</option>
+                                    <option value="restaurant" >Restaurant</option>
+                                    <option value="other" >Other...</option>
+                                </FormControl>
+                            </FormGroup>
+
+                            <div className="form-group radio-buttons">
+                                <input
+                                    value="indoor"
+                                    type="radio"
+                                    name="appEnvironment"
+                                    onChange={this.onChange}
+                                    ref={(input) => { this.indoorEnvInput = input }}
+                                    required
+                                />
+                                I agree to Excursion{`'`}s terms and conditions
+                            </div>
+
                         </form>
                         <div className="bottom-form">
                             <button className="btn btn-lg back hvr-grow" ref="buttonBack" name="back" onClick={this.changeScreen}>
                                 Back
                             </button>
                             <button className="btn btn-lg next" ref="buttonNext" name="next" onClick={this.changeScreen}>
-                                Next
+                                Done
                             </button>
                         </div>
                     </div>
