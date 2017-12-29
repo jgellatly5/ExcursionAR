@@ -26,8 +26,8 @@ class SponsorForm_BusinessInformation extends Component{
         // Url must have at least a 2 character extension (.co)
         // Url must have a character in between the protocol ID (http) and the extension (.co)
         // This does NOT work for www extensions
-        let r = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/;
-        if (companyName !== '' && industry !== '' && phoneNumber !== '' && phoneNumber.length > 11 && website !== '' && r.test(website)) {
+        let regex = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/;
+        if (companyName !== '' && industry !== '' && phoneNumber !== '' && phoneNumber.length > 11 && website !== '' && regex.test(website)) {
             button.classList.add('active', 'hvr-grow');
             button.removeAttribute('disabled');
         } else {
