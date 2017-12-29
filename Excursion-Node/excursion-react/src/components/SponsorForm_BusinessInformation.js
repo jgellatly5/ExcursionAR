@@ -5,13 +5,13 @@ class SponsorForm_BusinessInformation extends Component{
     constructor(props) {
         super(props);
         this.state = {
-            companyName: '',
-            industry: '',
-            phoneNumber: '',
-            website: ''
-        };
+            companyName: this.props.companyName,
+            industry: this.props.industry,
+            phoneNumber: this.props.phoneNumber,
+            website: this.props.website
+        }
         this.onChange = this.onChange.bind(this);
-        this.endScreen = this.endScreen.bind(this);
+        this.changeScreen = this.changeScreen.bind(this);
         this.formatNumber = this.formatNumber.bind(this);
     }
     onChange(e) {
@@ -22,7 +22,12 @@ class SponsorForm_BusinessInformation extends Component{
         let industry = this.industryInput.value;
         let phoneNumber = this.phoneNumberInput.value;
         let website = this.websiteInput.value;
-        if (companyName !== '' && industry !== '' && phoneNumber !== '' && website !== '') {
+        // The website must use a protocol identifier (http, https) and it must be valid (be totally correct)
+        // Url must have at least a 2 character extension (.co)
+        // Url must have a character in between the protocol ID (http) and the extension (.co)
+        // This does NOT work for www extensions
+        let regex = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/;
+        if (companyName !== '' && industry !== '' && phoneNumber !== '' && phoneNumber.length > 11 && website !== '' && regex.test(website)) {
             button.classList.add('active', 'hvr-grow');
             button.removeAttribute('disabled');
         } else {
@@ -30,12 +35,18 @@ class SponsorForm_BusinessInformation extends Component{
             button.setAttribute('disabled','disabled');
         }
     }
-    endScreen(e) {
-        let website = this.websiteInput.value;
-        if (website.includes(".")) {
-            let nextScreen = this.props.screenId + 1;
-            this.props.handler(e, nextScreen);
+    changeScreen(e) {
+        let nextScreen;
+        if (e.target.name == 'back') {
+            nextScreen = this.props.screenId - 1;
+        } else {
+            nextScreen = this.props.screenId + 1;
         }
+        let companyName = this.state.companyName;
+        let industry = this.state.industry;
+        let phoneNumber = this.state.phoneNumber;
+        let website = this.state.website;
+        this.props.handler(e, nextScreen, companyName, industry, phoneNumber, website);
     }
     formatNumber() {
         let phoneNumber = this.phoneNumberInput.value,
@@ -65,20 +76,29 @@ class SponsorForm_BusinessInformation extends Component{
         }
     }
     componentDidMount() {
+        let companyName = this.props.companyName;
+        let industry = this.props.industry;
+        let phoneNumber = this.props.phoneNumber;
+        let website = this.props.website;
         let button = this.refs.button;
-        button.setAttribute('disabled','disabled');
+        if (companyName == undefined || industry == undefined || phoneNumber == undefined || website == undefined) {
+            button.setAttribute('disabled','disabled');
+        } else {
+            button.classList.add('active', 'hvr-grow');
+            button.removeAttribute('disabled');
+        }
     }
     render() {
         const tooltip_phoneNumber = (
             <Tooltip id="tooltip">Format: 000-000-0000</Tooltip>
         );
         const tooltip_url = (
-            <Tooltip id="tooltip">Format: "https:// or http://"</Tooltip>
+            <Tooltip id="tooltip">Must be a valid website</Tooltip>
         );
         return (
             <div className="ad-signup-container">
                 <div className="ad-signup">
-                    <Panel className="ad-signup-panel">
+                    <Panel className="ad-signup-panel sponsor-form-two">
                     <h1>What is your business?</h1>
                     <p>Fill out information about your business.</p>
                     <div>
@@ -137,18 +157,21 @@ class SponsorForm_BusinessInformation extends Component{
                                     pattern='^https?://'
                                     className="form-control"
                                     ref={(input) => { this.websiteInput = input }}
+                                    onKeyUp={this.checkWebsite}
                                     required
                                     id="last"
                                 />
                                 </OverlayTrigger>
                             </div>
-
-                            <div className="form-group">
-                                <button className="btn btn-lg" ref="button" onClick={this.endScreen}>
-                                    Next
-                                </button>
-                            </div>
                         </form>
+                        <div className="bottom-form">
+                            <button className="btn btn-lg back hvr-grow" name="back" onClick={this.changeScreen}>
+                                Back
+                            </button>
+                            <button className="btn btn-lg next" ref="button" name="next" onClick={this.changeScreen}>
+                                Next
+                            </button>
+                        </div>
                     </div>
                     </Panel>
                 </div>

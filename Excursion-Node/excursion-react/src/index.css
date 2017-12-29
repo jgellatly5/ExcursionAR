@@ -903,11 +903,23 @@ table {
 }
 
 .ad-signup .btn.active {
-    /*border: 2px solid #1E1E75;*/
     background-color: #1E1E75;
     border-radius: 2px;
-    /*margin: -2px;*/
-    /*box-shadow: 0 0 2px 0 rgba(0,0,0,0.14), 0 2px 2px 0 rgba(0,0,0,0.12), 0 1px 3px 0 rgba(0,0,0,0.2);*/
+}
+
+.ad-signup-panel .bottom-form .btn{
+    width: 142px;
+}
+
+.sponsor-form .bottom-form .btn{
+    margin-top: 90px;
+    margin-left: 81%;
+    width: 142px;
+}
+
+.sponsor-form-two .bottom-form .btn{
+    margin-top: 90px;
+    width: 142px;
 }
 
 /*ChooseService*/
@@ -1110,7 +1122,6 @@ table {
 
 /*Freemium Path*/
 .freemium-path .panel {
-    /*width: 350px;*/
     border: 0;
     border-radius: 4px;
     box-shadow: 0 6px 10px 0 rgba(0,0,0,0.14), 0 1px 18px 0 rgba(0,0,0,0.12), 0 3px 5px 0 rgba(0,0,0,0.2);
@@ -1120,6 +1131,7 @@ table {
     width: 900px;
 }
 
+/*This is for drop down selection button*/
 /*#formatSelector {
     background: url(http://i62.tinypic.com/15xvbd5.png) no-repeat scroll right;
 }*/
@@ -1369,6 +1381,29 @@ input[type='radio']:checked:before {
 
 .rc-slider-tooltip {
     color: #1E1E75;
+}
+
+/*Review Ad*/
+.review-ad-container {
+    margin-right: 100px;
+    margin-left: 100px;
+}
+
+.review-ad-bottom {
+    margin-top: -80px;
+}
+
+.looks-great {
+    width: 142px;
+    margin: 0 auto;
+}
+
+.looks-great-text {
+    margin-left: -33%;
+}
+
+.right-side-review .form-group{
+    width: 100%;
 }
 
 /*React CSS Transition Group*/

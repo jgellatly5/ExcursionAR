@@ -5,6 +5,8 @@ class Freemium_AdInfo extends Component{
     constructor(props) {
         super(props);
         this.state = {
+            adName: this.props.adName,
+            genre: this.props.genre,
             adType: 'freemium',
             insertStaticClass: 'freemium-path-panel',
             insertDynamicClass: 'freemium-path-panel',
@@ -15,14 +17,17 @@ class Freemium_AdInfo extends Component{
         this.onSelectStatic = this.onSelectStatic.bind(this);
         this.onSelectDynamic = this.onSelectDynamic.bind(this);
         this.onSelectInteractive = this.onSelectInteractive.bind(this);
-        this.lastScreen = this.lastScreen.bind(this);
-        this.endScreen = this.endScreen.bind(this);
+        this.changeScreen = this.changeScreen.bind(this);
     }
     onChange(e) {
         let buttonNext = this.refs.buttonNext;
         let adName = this.adNameInput.value;
         let genre = this.genreInput.value;
         let adFormat = this.adFormat;
+        this.setState({
+            adName: adName,
+            genre: genre
+        });
         if (adName !== '' && genre !== '' && adFormat != '0') {
             buttonNext.classList.add('active', 'hvr-grow');
             buttonNext.removeAttribute('disabled');
@@ -64,17 +69,60 @@ class Freemium_AdInfo extends Component{
         });
         this.onChange(e);
     }
-    lastScreen(e) {
-        let nextScreen = this.props.screenId - 1;
-        this.props.handler(e, nextScreen);
-    }
-    endScreen(e) {
-        let nextScreen = this.props.screenId + 1;
-        this.props.handler(e, nextScreen);
+    changeScreen(e) {
+        let nextScreen;
+        if (e.target.name == 'back') {
+            nextScreen = this.props.screenId - 1;
+        } else {
+            nextScreen = this.props.screenId + 1;
+        }
+        let adName = this.state.adName;
+        let genre = this.state.genre;
+        let adFormat = this.state.adFormat;
+        this.props.handler(e, nextScreen, adName, genre, adFormat);
     }
     componentDidMount() {
+        let adName = this.props.adName;
+        let genre = this.props.genre;
         let buttonNext = this.refs.buttonNext;
-        buttonNext.setAttribute('disabled','disabled');
+        if (adName == undefined && genre == undefined && adFormat == undefined) {
+            buttonNext.setAttribute('disabled','disabled');
+        } else {
+            buttonNext.classList.add('active', 'hvr-grow');
+            buttonNext.removeAttribute('disabled');
+        }
+        let adFormat = this.props.adFormat;
+        if (adFormat == 'static') {
+            this.adFormat = this.refs.staticAd.props.eventKey;
+            this.setState({
+                adFormat: 'static',
+                insertStaticClass: 'freemium-path-panel active',
+                insertDynamicClass: 'freemium-path-panel',
+                insertInteractiveClass: 'freemium-path-panel'
+            });
+        } else if (adFormat == 'dynamic') {
+            this.adFormat = this.refs.dynamicAd.props.eventKey;
+            this.setState({
+                adFormat: 'dynamic',
+                insertStaticClass: 'freemium-path-panel',
+                insertDynamicClass: 'freemium-path-panel active',
+                insertInteractiveClass: 'freemium-path-panel'
+            });
+        } else if (adFormat == 'interactive') {
+            this.adFormat = this.refs.interactiveAd.props.eventKey;
+            this.setState({
+                adFormat: 'interactive',
+                insertStaticClass: 'freemium-path-panel',
+                insertDynamicClass: 'freemium-path-panel',
+                insertInteractiveClass: 'freemium-path-panel active'
+            });
+        } else {
+            this.setState({
+                insertStaticClass: 'freemium-path-panel',
+                insertDynamicClass: 'freemium-path-panel',
+                insertInteractiveClass: 'freemium-path-panel'
+            });
+        }
     }
     render() {
         return (
@@ -122,22 +170,22 @@ class Freemium_AdInfo extends Component{
                                 <Grid>
                                     <Row>
                                         <Col xs={4}>
-                                            <Panel className={this.state.insertStaticClass} onClick={this.onSelectStatic} ref="staticAd" eventKey="1">
-                                                <img src={require("../blank.png")}/>
+                                            <Panel className={this.state.insertStaticClass} onClick={this.onSelectStatic} ref="staticAd" eventKey="1" name="static">
+                                                <img src={require("../blank.png")} alt="blank"/>
                                                 <h4>Static</h4>
                                                 <p>The ad remains in a fixed position. Example: TV screen or potted plant</p>
                                             </Panel>
                                         </Col>
                                         <Col xs={4}>
-                                            <Panel className={this.state.insertDynamicClass} onClick={this.onSelectDynamic} ref="dynamicAd" eventKey="2">
-                                                <img src={require("../blank.png")}/>
+                                            <Panel className={this.state.insertDynamicClass} onClick={this.onSelectDynamic} ref="dynamicAd" eventKey="2" name="dynamic">
+                                                <img src={require("../blank.png")} alt="blank"/>
                                                 <h4>Dynamic</h4>
                                                 <p>The ad moves across the screen or contains an animation. Example: plane or rocket</p>
                                             </Panel>
                                         </Col>
                                         <Col xs={4}>
-                                            <Panel className={this.state.insertInteractiveClass} onClick={this.onSelectInteractive} ref="interactiveAd" eventKey="3">
-                                                <img src={require("../blank.png")}/>
+                                            <Panel className={this.state.insertInteractiveClass} onClick={this.onSelectInteractive} ref="interactiveAd" eventKey="3" name="interactive">
+                                                <img src={require("../blank.png")} alt="blank"/>
                                                 <h4>Interactive</h4>
                                                 <p>The ad provides in-app rewards or extends the normal user experience.</p>
                                             </Panel>
@@ -147,10 +195,10 @@ class Freemium_AdInfo extends Component{
                             </div>
                         </form>
                         <div className="bottom-form">
-                            <button className="btn btn-lg back hvr-grow" ref="buttonBack" onClick={this.lastScreen}>
+                            <button className="btn btn-lg back hvr-grow" ref="buttonBack" name="back" onClick={this.changeScreen}>
                                 Back
                             </button>
-                            <button className="btn btn-lg next" ref="buttonNext" onClick={this.endScreen}>
+                            <button className="btn btn-lg next" ref="buttonNext" name="next" onClick={this.changeScreen}>
                                 Next
                             </button>
                         </div>

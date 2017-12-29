@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 import { Panel } from 'react-bootstrap';
-import Slider, { Range, createSliderWithTooltip } from 'rc-slider';
+import Slider, { createSliderWithTooltip } from 'rc-slider';
 import 'rc-slider/assets/index.css';
 
 function budgetFormatter(v) {
@@ -11,15 +10,11 @@ function budgetFormatter(v) {
 class SetBudget extends Component{
     constructor(props) {
         super(props);
-        this.state = {
-            monthlyBudget: ''
-        }
-        this.monthlyBudget = 0;
-        this.dailyBudget = 0;
+        this.monthlyBudget = this.props.monthlyBudget;
+        this.dailyBudget = this.props.dailyBudget;
         this.onChange = this.onChange.bind(this);
         this.onAfterChange = this.onAfterChange.bind(this);
-        this.lastScreen = this.lastScreen.bind(this);
-        this.endScreen = this.endScreen.bind(this);
+        this.changeScreen = this.changeScreen.bind(this);
     }
     onChange(value) {
         let buttonNext = this.refs.buttonNext;
@@ -32,27 +27,34 @@ class SetBudget extends Component{
             buttonNext.classList.remove('active', 'hvr-grow');
             buttonNext.setAttribute('disabled','disabled');
         }
-        console.log(value);
     }
     onAfterChange() {
         let monthlyBudget = this.monthlyBudget;
+        let dailyBudget = this.dailyBudget;
         this.setState({
-            monthlyBudget: monthlyBudget
+            monthlyBudget: monthlyBudget,
+            dailyBudget: dailyBudget
         });
-        let slider = this.refs.slider;
-        console.log(slider.value);
     }
-    lastScreen(e) {
-        let nextScreen = this.props.screenId - 1;
-        this.props.handler(e, nextScreen);
-    }
-    endScreen(e) {
-        let nextScreen = this.props.screenId + 1;
-        this.props.handler(e, nextScreen);
+    changeScreen(e) {
+        let nextScreen;
+        if (e.target.name == 'back') {
+            nextScreen = this.props.screenId - 1;
+        } else {
+            nextScreen = this.props.screenId + 1;
+        }
+        let dailyBudget = this.dailyBudget;
+        let monthlyBudget = this.monthlyBudget;
+        this.props.handler(e, nextScreen, dailyBudget, monthlyBudget);
     }
     componentDidMount() {
         let buttonNext = this.refs.buttonNext;
-        buttonNext.setAttribute('disabled','disabled');
+        if (this.dailyBudget == undefined) {
+            buttonNext.setAttribute('disabled','disabled');
+        } else {
+            buttonNext.classList.add('active', 'hvr-grow');
+            buttonNext.removeAttribute('disabled');
+        }
     }
     render() {
         const SliderWithTooltip = createSliderWithTooltip(Slider);
@@ -85,10 +87,10 @@ class SetBudget extends Component{
                             </form>
                         </div>
                         <div className="bottom-form">
-                            <button className="btn btn-lg back hvr-grow" ref="buttonBack" onClick={this.lastScreen}>
+                            <button className="btn btn-lg back hvr-grow" ref="buttonBack" name="back" onClick={this.changeScreen}>
                                 Back
                             </button>
-                            <button className="btn btn-lg next" ref="buttonNext" onClick={this.endScreen}>
+                            <button className="btn btn-lg next" ref="buttonNext" name="next" onClick={this.changeScreen}>
                                 Next
                             </button>
                         </div>
