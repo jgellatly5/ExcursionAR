@@ -1319,10 +1319,16 @@ input[type='radio']:checked:before {
 .payment-hr {
     background: #1E1E75;
     height: 2px;
+    width: 75%;
+    margin-top: -50px;
 }
 
 .address-margin {
     margin-bottom: 20px;
+}
+
+.payment-method .col-xs-3 {
+    padding-left: 0px;
 }
 
 /*React CSS Transition Group*/

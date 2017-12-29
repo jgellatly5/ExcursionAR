@@ -13,6 +13,7 @@ class PaymentInfo extends Component{
         this.onSelectCreditCard = this.onSelectCreditCard.bind(this);
         this.onSelectPayPal = this.onSelectPayPal.bind(this);
         this.changeScreen = this.changeScreen.bind(this);
+        this.formatCardNumber = this.formatCardNumber.bind(this);
     }
     onChange(e) {
         let buttonNext = this.refs.buttonNext;
@@ -74,6 +75,13 @@ class PaymentInfo extends Component{
         let paymentType = this.state.paymentType;
         this.props.handler(e, nextScreen, cardName, cardType, paymentType);
     }
+    formatCardNumber() {
+        let cardNumber = this.cardNumberInput.value;
+        let regex = /(\D+)/g;
+        if (cardNumber !== '') {
+            cardNumber = cardNumber.replace(regex, '');
+        }
+    }
     componentDidMount() {
         let cardName = this.props.cardName;
         let cardType = this.props.cardType;
@@ -115,17 +123,17 @@ class PaymentInfo extends Component{
                     <p>Select a payment method</p>
                     <div>
                         <form>
-                            <div className="form-group">
+                            <div className="form-group payment-method">
                                 <label className="control-label" id="lastElement">Payment Method</label>
                                 <Grid>
                                     <Row>
-                                        <Col xs={4}>
+                                        <Col xs={3}>
                                             <Panel className={this.state.insertCreditCardClass} onClick={this.onSelectCreditCard} ref="creditCardCard" eventKey="1" name="creditCard">
                                                 <img className="credit-card" src={require("../blank.png")} alt="blank"/>
                                                 <h4>Credit Card</h4>
                                             </Panel>
                                         </Col>
-                                        <Col xs={4} className="pay-pal-card">
+                                        <Col xs={3} className="pay-pal-card">
                                             <Panel className={this.state.insertPayPalClass} onClick={this.onSelectPayPal} ref="payPalCard" eventKey="2" name="payPal">
                                                 <img src={require("../pay_pal.png")} alt="pay pal"/>
                                                 <h4>PayPal</h4>
@@ -141,6 +149,8 @@ class PaymentInfo extends Component{
                                 <FormControl componentClass="select" onChange={this.onChange} inputRef={ref => { this.cardTypeInput = ref; }} value={this.state.cardType} required>
                                     <option value="visa" >Visa</option>
                                     <option value="mastercard" >Mastercard</option>
+                                    <option value="discover" >Discover</option>
+                                    <option value="americanExpress" >American Express</option>
                                     <option value="other" >Other...</option>
                                 </FormControl>
                             </FormGroup>
@@ -163,9 +173,10 @@ class PaymentInfo extends Component{
                                 <input
                                     value={this.state.cardNumber}
                                     onChange={this.onChange}
-                                    type="text"
                                     name="cardNumber"
+                                    type="tel"
                                     className="form-control"
+                                    onKeyUp={this.formatCardNumber}
                                     ref={(input) => { this.cardNumberInput = input }}
                                     required
                                 />
@@ -258,12 +269,59 @@ class PaymentInfo extends Component{
                             <FormGroup controlId="formControlsSelect">
                                 <ControlLabel>State</ControlLabel>
                                 <FormControl componentClass="select" onChange={this.onChange} inputRef={ref => { this.stateInput = ref; }} value={this.state.stateAddress} required>
-                                    <option value="alabama" >Alabama</option>
-                                    <option value="arkansas" >Arkansas</option>
-                                    <option value="california" >California</option>
-                                    <option value="colorado" >Colorado</option>
-                                    <option value="delaware" >Delaware</option>
-                                    <option value="other" >Other...</option>
+                                    <option value="N/A">N/A</option>
+                        			<option value="AK">Alaska</option>
+                        			<option value="AL">Alabama</option>
+                        			<option value="AR">Arkansas</option>
+                        			<option value="AZ">Arizona</option>
+                        			<option value="CA">California</option>
+                        			<option value="CO">Colorado</option>
+                        			<option value="CT">Connecticut</option>
+                        			<option value="DC">District of Columbia</option>
+                        			<option value="DE">Delaware</option>
+                        			<option value="FL">Florida</option>
+                        			<option value="GA">Georgia</option>
+                        			<option value="HI">Hawaii</option>
+                        			<option value="IA">Iowa</option>
+                        			<option value="ID">Idaho</option>
+                        			<option value="IL">Illinois</option>
+                        			<option value="IN">Indiana</option>
+                        			<option value="KS">Kansas</option>
+                        			<option value="KY">Kentucky</option>
+                        			<option value="LA">Louisiana</option>
+                        			<option value="MA">Massachusetts</option>
+                        			<option value="MD">Maryland</option>
+                        			<option value="ME">Maine</option>
+                        			<option value="MI">Michigan</option>
+                        			<option value="MN">Minnesota</option>
+                        			<option value="MO">Missouri</option>
+                        			<option value="MS">Mississippi</option>
+                        			<option value="MT">Montana</option>
+                        			<option value="NC">North Carolina</option>
+                        			<option value="ND">North Dakota</option>
+                        			<option value="NE">Nebraska</option>
+                        			<option value="NH">New Hampshire</option>
+                        			<option value="NJ">New Jersey</option>
+                        			<option value="NM">New Mexico</option>
+                        			<option value="NV">Nevada</option>
+                        			<option value="NY">New York</option>
+                        			<option value="OH">Ohio</option>
+                        			<option value="OK">Oklahoma</option>
+                        			<option value="OR">Oregon</option>
+                        			<option value="PA">Pennsylvania</option>
+                        			<option value="PR">Puerto Rico</option>
+                        			<option value="RI">Rhode Island</option>
+                        			<option value="SC">South Carolina</option>
+                        			<option value="SD">South Dakota</option>
+                        			<option value="TN">Tennessee</option>
+                        			<option value="TX">Texas</option>
+                        			<option value="UT">Utah</option>
+                        			<option value="VA">Virginia</option>
+                        			<option value="VT">Vermont</option>
+                        			<option value="WA">Washington</option>
+                        			<option value="WI">Wisconsin</option>
+                        			<option value="WV">West Virginia</option>
+                        			<option value="WY">Wyoming</option>
                                 </FormControl>
                             </FormGroup>
 
