@@ -5,8 +5,8 @@ class PaymentInfo extends Component{
     constructor(props) {
         super(props);
         this.state = {
-            insertStaticClass: 'payment-info-panel',
-            insertDynamicClass: 'payment-info-panel'
+            insertCreditCardClass: 'payment-info-panel',
+            insertPayPalClass: 'payment-info-panel'
         };
         this.paymentType = 0;
         this.onChange = this.onChange.bind(this);
@@ -16,14 +16,25 @@ class PaymentInfo extends Component{
     }
     onChange(e) {
         let buttonNext = this.refs.buttonNext;
-        let adName = this.adNameInput.value;
-        let genre = this.cardTypeInput.value;
         let paymentType = this.paymentType;
-        this.setState({
-            adName: adName,
-            genre: genre
-        });
-        if (adName !== '' && genre !== '' && paymentType != '0') {
+        let cardType = this.cardTypeInput.value;
+        let cardName = this.cardNameInput.value;
+        let cardNumber = this.cardNumberInput.value;
+        let expDate = this.expDateInput.value;
+        let cvvNumber = this.cvvNumberInput.value;
+        let billingAddress = this.billingAddressInput.value;
+        let billingAddress2 = this.billingAddress2Input.value;
+        let city = this.cityInput.value;
+        let zipCode = this.zipCodeInput.value;
+        let stateAdress = this.stateInput.value;
+        let terms = this.termsInput.value;
+        // this.setState({
+        //     cardName: cardName,
+        //     cardType: cardType
+        // });
+        if (paymentType != '0' && cardType !== '' && cardName !== '' && cardNumber !== '' &&
+            expDate !== '' && cvvNumber !== '' && billingAddress !== '' && city !== '' &&
+            zipCode !== '' && stateAdress !== '' && terms !== '') {
             buttonNext.classList.add('active', 'hvr-grow');
             buttonNext.removeAttribute('disabled');
         } else {
@@ -33,21 +44,21 @@ class PaymentInfo extends Component{
     }
     onSelectCreditCard(e) {
         e.preventDefault();
-        this.paymentType = this.refs.staticAd.props.eventKey;
+        this.paymentType = this.refs.creditCardCard.props.eventKey;
         this.setState({
-            paymentType: 'static',
-            insertStaticClass: 'payment-info-panel active',
-            insertDynamicClass: 'payment-info-panel'
+            paymentType: 'creditCard',
+            insertCreditCardClass: 'payment-info-panel active',
+            insertPayPalClass: 'payment-info-panel'
         });
         this.onChange(e);
     }
     onSelectPayPal(e) {
         e.preventDefault();
-        this.paymentType = this.refs.dynamicAd.props.eventKey;
+        this.paymentType = this.refs.payPalCard.props.eventKey;
         this.setState({
-            paymentType: 'dynamic',
-            insertStaticClass: 'payment-info-panel',
-            insertDynamicClass: 'payment-info-panel active'
+            paymentType: 'payPal',
+            insertCreditCardClass: 'payment-info-panel',
+            insertPayPalClass: 'payment-info-panel active'
         });
         this.onChange(e);
     }
@@ -58,40 +69,40 @@ class PaymentInfo extends Component{
         } else {
             nextScreen = this.props.screenId + 1;
         }
-        let adName = this.state.adName;
-        let genre = this.state.genre;
+        let cardName = this.state.cardName;
+        let cardType = this.state.cardType;
         let paymentType = this.state.paymentType;
-        this.props.handler(e, nextScreen, adName, genre, paymentType);
+        this.props.handler(e, nextScreen, cardName, cardType, paymentType);
     }
     componentDidMount() {
-        let adName = this.props.adName;
-        let genre = this.props.genre;
+        let cardName = this.props.cardName;
+        let cardType = this.props.cardType;
         let buttonNext = this.refs.buttonNext;
-        if (adName == undefined && genre == undefined && paymentType == undefined) {
+        if (cardName == undefined && cardType == undefined && paymentType == undefined) {
             buttonNext.setAttribute('disabled','disabled');
         } else {
             buttonNext.classList.add('active', 'hvr-grow');
             buttonNext.removeAttribute('disabled');
         }
         let paymentType = this.props.paymentType;
-        if (paymentType == 'static') {
-            this.paymentType = this.refs.staticAd.props.eventKey;
+        if (paymentType == 'creditCard') {
+            this.paymentType = this.refs.creditCardCard.props.eventKey;
             this.setState({
-                paymentType: 'static',
-                insertStaticClass: 'payment-info-panel active',
-                insertDynamicClass: 'payment-info-panel'
+                paymentType: 'creditCard',
+                insertCreditCardClass: 'payment-info-panel active',
+                insertPayPalClass: 'payment-info-panel'
             });
-        } else if (paymentType == 'dynamic') {
-            this.paymentType = this.refs.dynamicAd.props.eventKey;
+        } else if (paymentType == 'payPal') {
+            this.paymentType = this.refs.payPalCard.props.eventKey;
             this.setState({
-                paymentType: 'dynamic',
-                insertStaticClass: 'payment-info-panel',
-                insertDynamicClass: 'payment-info-panel active'
+                paymentType: 'payPal',
+                insertCreditCardClass: 'payment-info-panel',
+                insertPayPalClass: 'payment-info-panel active'
             });
         } else {
             this.setState({
-                insertStaticClass: 'payment-info-panel',
-                insertDynamicClass: 'payment-info-panel'
+                insertCreditCardClass: 'payment-info-panel',
+                insertPayPalClass: 'payment-info-panel'
             });
         }
     }
@@ -109,13 +120,13 @@ class PaymentInfo extends Component{
                                 <Grid>
                                     <Row>
                                         <Col xs={4}>
-                                            <Panel className={this.state.insertStaticClass} onClick={this.onSelectCreditCard} ref="staticAd" eventKey="1" name="static">
+                                            <Panel className={this.state.insertCreditCardClass} onClick={this.onSelectCreditCard} ref="creditCardCard" eventKey="1" name="creditCard">
                                                 <img className="credit-card" src={require("../blank.png")} alt="blank"/>
                                                 <h4>Credit Card</h4>
                                             </Panel>
                                         </Col>
                                         <Col xs={4} className="pay-pal-card">
-                                            <Panel className={this.state.insertDynamicClass} onClick={this.onSelectPayPal} ref="dynamicAd" eventKey="2" name="dynamic">
+                                            <Panel className={this.state.insertPayPalClass} onClick={this.onSelectPayPal} ref="payPalCard" eventKey="2" name="payPal">
                                                 <img src={require("../pay_pal.png")} alt="pay pal"/>
                                                 <h4>PayPal</h4>
                                             </Panel>
@@ -160,7 +171,7 @@ class PaymentInfo extends Component{
                                 />
                             </div>
 
-                            <div className="form-group freemium-path">
+                            <div className="form-group payment-card-details">
                                 <Grid>
                                     <Row>
                                         <Col xs={4}>
@@ -170,7 +181,7 @@ class PaymentInfo extends Component{
                                                 onChange={this.onChange}
                                                 type="text"
                                                 name="expDate"
-                                                className="form-control"
+                                                className="form-control payment-exp"
                                                 ref={(input) => { this.expDateInput = input }}
                                                 required
                                             />
@@ -182,7 +193,7 @@ class PaymentInfo extends Component{
                                                 onChange={this.onChange}
                                                 type="text"
                                                 name="cvvNumber"
-                                                className="form-control"
+                                                className="form-control payment-exp"
                                                 ref={(input) => { this.cvvNumberInput = input }}
                                                 required
                                             />
@@ -190,7 +201,8 @@ class PaymentInfo extends Component{
                                     </Row>
                                 </Grid>
                             </div>
-                            <hr/>
+
+                            <hr className="payment-hr"/>
 
                             <div className="form-group">
                                 <label className="control-label">Billing Address</label>
@@ -199,8 +211,9 @@ class PaymentInfo extends Component{
                                     onChange={this.onChange}
                                     type="text"
                                     name="billingAddress"
-                                    className="form-control"
+                                    className="form-control address-margin"
                                     ref={(input) => { this.billingAddressInput = input }}
+                                    placeholder="12345 Street Name"
                                     required
                                 />
                                 <input
@@ -210,6 +223,7 @@ class PaymentInfo extends Component{
                                     name="billingAddress2"
                                     className="form-control"
                                     ref={(input) => { this.billingAddress2Input = input }}
+                                    placeholder="Apt 123"
                                     required
                                 />
                             </div>
@@ -253,7 +267,7 @@ class PaymentInfo extends Component{
                                 </FormControl>
                             </FormGroup>
 
-                            <div className="form-group radio-buttons">
+                            <div className="radio-buttons">
                                 <input
                                     value="true"
                                     type="radio"

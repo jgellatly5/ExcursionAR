@@ -1312,6 +1312,19 @@ input[type='radio']:checked:before {
     margin-top: -20px;
 }
 
+.payment-card-details .payment-exp {
+    width: 100%;
+}
+
+.payment-hr {
+    background: #1E1E75;
+    height: 2px;
+}
+
+.address-margin {
+    margin-bottom: 20px;
+}
+
 /*React CSS Transition Group*/
 .sponsor-enter {
     transform: translate(100%);
