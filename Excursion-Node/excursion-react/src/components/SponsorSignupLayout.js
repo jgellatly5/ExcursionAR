@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import SponsorForm from "./SponsorForm";
 import SponsorForm_BusinessInformation from "./SponsorForm_BusinessInformation";
-// import ChooseService from './ChooseService'; Not necessary until premium version is offered
+// Not necessary until premium version is offered
+// import ChooseService from './ChooseService'; 
 import Freemium_AdInfo from './Freemium_AdInfo';
 import SetBudget from './SetBudget';
 import ReviewInfo from './ReviewInfo';

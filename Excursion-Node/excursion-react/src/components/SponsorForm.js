@@ -12,6 +12,7 @@ class SponsorForm extends Component{
         }
         this.onChange = this.onChange.bind(this);
         this.endScreen = this.endScreen.bind(this);
+        this.checkEmail = this.checkEmail.bind(this);
     }
     onChange(e) {
         this.setState({ [e.target.name]: e.target.value });
@@ -20,7 +21,7 @@ class SponsorForm extends Component{
         let lastName = this.lastNameInput.value;
         let email = this.emailInput.value;
         let password = this.passwordInput.value;
-        if (firstName !== '' && lastName !== '' && email !== '' && email.includes("@") && password !== '') {
+        if (firstName !== '' && lastName !== '' && email !== '' && email.includes("@") && password !== '' && password.length > 7) {
             button.classList.add('active', 'hvr-grow');
             button.removeAttribute('disabled');
         } else {
@@ -28,7 +29,17 @@ class SponsorForm extends Component{
             button.setAttribute('disabled','disabled');
         }
     }
+    checkEmail() {
+        let email = this.emailInput.value;
+        let r = /(\w+?@\w+?\x2E.+)/;
+        if (r.test(email)) {
+            console.log("valid");
+        } else {
+            console.log("not valid");
+        }
+    }
     endScreen(e) {
+        e.preventDefault();
         let email = this.emailInput.value;
         if (email.includes("@")) {
             let nextScreen = this.props.screenId + 1;
@@ -43,7 +54,10 @@ class SponsorForm extends Component{
     }
     render() {
         const tooltip_email = (
-            <Tooltip id="tooltip">Must contain an @ symbol</Tooltip>
+            <Tooltip id="tooltip">Must be a valid email address</Tooltip>
+        );
+        const tooltip_password = (
+            <Tooltip id="tooltip">Must contain at least 8 characters</Tooltip>
         );
         return (
             <div className="ad-signup-container">
@@ -89,6 +103,7 @@ class SponsorForm extends Component{
                                         name="email"
                                         className="form-control"
                                         ref={(input) => { this.emailInput = input }}
+                                        onKeyUp={this.checkEmail}
                                         required
                                     />
                                 </OverlayTrigger>
@@ -96,16 +111,18 @@ class SponsorForm extends Component{
 
                             <div className="form-group">
                                 <label className="control-label">Password</label>
-                                <input
-                                    value={this.state.password}
-                                    onChange={this.onChange}
-                                    type="password"
-                                    name="password"
-                                    className="form-control"
-                                    ref={(input) => { this.passwordInput = input }}
-                                    id="last"
-                                    required
-                                />
+                                <OverlayTrigger placement="right" overlay={tooltip_password}>
+                                    <input
+                                        value={this.state.password}
+                                        onChange={this.onChange}
+                                        type="password"
+                                        name="password"
+                                        className="form-control"
+                                        ref={(input) => { this.passwordInput = input }}
+                                        id="last"
+                                        required
+                                    />
+                                </OverlayTrigger>
                             </div>
                         </form>
                         <div className="bottom-form">
