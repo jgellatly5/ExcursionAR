@@ -18,6 +18,7 @@ class PaymentInfo extends Component{
         this.formatExpDate = this.formatExpDate.bind(this);
         this.formatCvvNumber = this.formatCvvNumber.bind(this);
         this.formatZipCode = this.formatZipCode.bind(this);
+        this.terms = false;
     }
     onChange(e) {
         let buttonNext = this.refs.buttonNext;
@@ -32,12 +33,14 @@ class PaymentInfo extends Component{
         let city = this.cityInput.value;
         let zipCode = this.zipCodeInput.value;
         let stateAdress = this.stateInput.value;
-        let terms = this.termsInput.value;
-        console.log(terms);
+        let terms = this.terms;
+        if (e.target.name == 'termsAndConditions') {
+            terms = true;
+        }
         this.setState({ [e.target.name]: e.target.value });
-        if (paymentType != '0' && cardType !== '' && cardName !== '' && cardNumber !== '' &&
-            expDate !== '' && cvvNumber !== '' && billingAddress !== '' && city !== '' &&
-            zipCode !== '' && stateAdress !== '' && terms !== '') {
+        if (paymentType != '0' && cardType !== '' && cardName !== '' && cardNumber !== '' && !isNaN(cardNumber) &&
+            expDate !== '' && !isNaN(expDate) && cvvNumber !== '' && billingAddress !== '' && city !== '' &&
+            zipCode !== '' && !isNaN(zipCode) && stateAdress !== '' && terms) {
             buttonNext.classList.add('active', 'hvr-grow');
             buttonNext.removeAttribute('disabled');
         } else {
