@@ -1029,7 +1029,8 @@ table {
     background: url(http://i62.tinypic.com/15xvbd5.png) no-repeat scroll right;
 }*/
 
-.freemium-path-panel .panel-body, .payment-info-panel .panel-body {
+.freemium-path-panel .panel-body,
+.payment-info-panel .panel-body {
     background-color: #FFFFFF;
     padding-top: 50px;
     border: none;
@@ -1039,23 +1040,35 @@ table {
     box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 2px 4px 0 rgba(0,0,0,0.12), 0 1px 3px 0 rgba(0,0,0,0.2);
 }
 
-.freemium-path-panel:hover .panel-body:hover, .payment-info-panel:hover .panel-body:hover {
+.freemium-path-panel:hover .panel-body:hover {
     border: 2px solid #4CC1FC;
     margin: -2px;
+}
+
+.payment-info-panel:hover .panel-body:hover {
+    border: 2px solid #4CC1FC;
+    margin: -4px;
+}
+
+.payment-info-panel.active .panel-body{
+    border: 2px solid #44C0FF;
+    border-radius: 4px;
+    padding-top: 50px;
+    margin: -4px;
 }
 
 #fix-margin .panel-body {
     margin-bottom: 0px;
 }
 
-.freemium-path-panel.active .panel-body, .payment-info-panel.active .panel-body{
+.freemium-path-panel.active .panel-body{
     border: 2px solid #44C0FF;
     border-radius: 4px;
     padding-top: 50px;
     margin: -2px;
 }
 
-.freemium-path-panel.active:hover .panel-body:hover, .payment-info-panel.active:hover .panel-body:hover {
+.freemium-path-panel.active:hover .panel-body:hover {
     margin: -2px;
 }
 
@@ -1117,14 +1130,16 @@ input[type='radio']:checked:before {
     margin-bottom: 30px;
 }
 
-.freemium-path-panel h4, .payment-info-panel h4 {
+.freemium-path-panel h4,
+.payment-info-panel h4 {
     color: #44C0FF;
     font-size: 18px;
     font-weight: 500;
     line-height: 22px;
 }
 
-.freemium-path-panel p, .payment-info-panel p {
+.freemium-path-panel p,
+.payment-info-panel p {
     color: #3F3E3E;
     font-size: 14px;
     line-height: 17px;

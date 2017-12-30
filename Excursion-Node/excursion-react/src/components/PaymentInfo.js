@@ -16,6 +16,8 @@ class PaymentInfo extends Component{
         this.changeScreen = this.changeScreen.bind(this);
         this.formatCardNumber = this.formatCardNumber.bind(this);
         this.formatExpDate = this.formatExpDate.bind(this);
+        this.formatCvvNumber = this.formatCvvNumber.bind(this);
+        this.formatZipCode = this.formatZipCode.bind(this);
     }
     onChange(e) {
         let buttonNext = this.refs.buttonNext;
@@ -31,6 +33,7 @@ class PaymentInfo extends Component{
         let zipCode = this.zipCodeInput.value;
         let stateAdress = this.stateInput.value;
         let terms = this.termsInput.value;
+        console.log(terms);
         this.setState({ [e.target.name]: e.target.value });
         if (paymentType != '0' && cardType !== '' && cardName !== '' && cardNumber !== '' &&
             expDate !== '' && cvvNumber !== '' && billingAddress !== '' && city !== '' &&
@@ -97,9 +100,7 @@ class PaymentInfo extends Component{
             }
             fourthFour = cardNumber.substr(15,4);
             cardNumber = firstFour + secondFour + thirdFour + fourthFour;
-            this.setState({
-                cardNumber: cardNumber
-            });
+            this.setState({ cardNumber: cardNumber });
         }
     }
     formatExpDate() {
@@ -115,9 +116,29 @@ class PaymentInfo extends Component{
             year = expDate.substr(5,2);
             expDate = month + year;
         }
-        this.setState({
-            expDate: expDate
-        });
+        this.setState({ expDate: expDate });
+    }
+    formatCvvNumber() {
+        let cvvNumber = this.cvvNumberInput.value;
+        let regex = /[^\d]/g;
+        let threeDigits = '';
+        if (cvvNumber !== '') {
+            cvvNumber = cvvNumber.replace(regex, '');
+            threeDigits = cvvNumber.substr(0, 3);
+            cvvNumber = threeDigits;
+        }
+        this.setState({ cvvNumber: cvvNumber });
+    }
+    formatZipCode() {
+        let zipCode = this.zipCodeInput.value;
+        let regex = /[^\d]/g;
+        let fiveDigits = '';
+        if (zipCode !== '') {
+            zipCode = zipCode.replace(regex, '');
+            fiveDigits = zipCode.substr(0, 5);
+            zipCode = fiveDigits;
+        }
+        this.setState({ zipCode: zipCode });
     }
     componentDidMount() {
         let cardName = this.props.cardName;
@@ -243,6 +264,7 @@ class PaymentInfo extends Component{
                                                 type="text"
                                                 name="cvvNumber"
                                                 className="form-control payment-exp"
+                                                onKeyUp={this.formatCvvNumber}
                                                 ref={(input) => { this.cvvNumberInput = input }}
                                                 required
                                             />
@@ -298,6 +320,7 @@ class PaymentInfo extends Component{
                                     type="text"
                                     name="zipCode"
                                     className="form-control"
+                                    onKeyUp={this.formatZipCode}
                                     ref={(input) => { this.zipCodeInput = input }}
                                     required
                                 />
