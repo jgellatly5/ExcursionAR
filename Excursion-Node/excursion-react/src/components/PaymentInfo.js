@@ -80,7 +80,8 @@ class PaymentInfo extends Component{
     formatCardNumber() {
         let cardNumber = this.cardNumberInput.value;
         // let regex = /(\D+)/g;
-        let regex = /[A-Za-z]/g;
+        // let regex = /[A-Za-z]/g;
+        let regex = /[^\d ]/g;
         let firstFour = '';
         let secondFour = '';
         let thirdFour = '';
