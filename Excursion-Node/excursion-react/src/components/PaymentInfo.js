@@ -5,6 +5,7 @@ class PaymentInfo extends Component{
     constructor(props) {
         super(props);
         this.state = {
+            cardNumber: this.props.cardNumber,
             insertCreditCardClass: 'payment-info-panel',
             insertPayPalClass: 'payment-info-panel'
         };
@@ -33,6 +34,7 @@ class PaymentInfo extends Component{
         //     cardName: cardName,
         //     cardType: cardType
         // });
+        this.setState({ [e.target.name]: e.target.value });
         if (paymentType != '0' && cardType !== '' && cardName !== '' && cardNumber !== '' &&
             expDate !== '' && cvvNumber !== '' && billingAddress !== '' && city !== '' &&
             zipCode !== '' && stateAdress !== '' && terms !== '') {
@@ -77,9 +79,31 @@ class PaymentInfo extends Component{
     }
     formatCardNumber() {
         let cardNumber = this.cardNumberInput.value;
-        let regex = /(\D+)/g;
+        // let regex = /(\D+)/g;
+        let regex = /[A-Za-z]/g;
+        let firstFour = '';
+        let secondFour = '';
+        let thirdFour = '';
+        let fourthFour = '';
         if (cardNumber !== '') {
             cardNumber = cardNumber.replace(regex, '');
+            firstFour = cardNumber.substr(0,4);
+            if (firstFour.length == 4) {
+                firstFour = firstFour + ' ';
+            }
+            secondFour = cardNumber.substr(5,4);
+            if (secondFour.length == 4) {
+                secondFour = secondFour + ' ';
+            }
+            thirdFour = cardNumber.substr(10,4);
+            if (thirdFour.length == 4) {
+                thirdFour = thirdFour + ' ';
+            }
+            fourthFour = cardNumber.substr(15,4);
+            cardNumber = firstFour + secondFour + thirdFour + fourthFour;
+            this.setState({
+                cardNumber: cardNumber
+            });
         }
     }
     componentDidMount() {
@@ -174,8 +198,9 @@ class PaymentInfo extends Component{
                                     value={this.state.cardNumber}
                                     onChange={this.onChange}
                                     name="cardNumber"
-                                    type="tel"
+                                    type="text"
                                     className="form-control"
+                                    pattern='/[0-9]{4} {0,1}[0-9]{4} {0,1}[0-9]{4} {0,1}[0-9]{4}/'
                                     onKeyUp={this.formatCardNumber}
                                     ref={(input) => { this.cardNumberInput = input }}
                                     required

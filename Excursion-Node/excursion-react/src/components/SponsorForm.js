@@ -83,7 +83,7 @@ class SponsorForm extends Component{
                                 />
                             </div>
 
-                            //TODO Extract this field for separate login validation
+                            {/*TODO Extract this field for separate login validation*/}
                             <div className="form-group">
                                 <label className="control-label">Email</label>
                                 <OverlayTrigger placement="right" overlay={tooltip_email}>
@@ -99,7 +99,7 @@ class SponsorForm extends Component{
                                 </OverlayTrigger>
                             </div>
 
-                            //TODO Extract this field for separate login validation and encryption
+                            {/*TODO Extract this field for separate login validation*/}
                             <div className="form-group">
                                 <label className="control-label">Password</label>
                                 <OverlayTrigger placement="right" overlay={tooltip_password}>
