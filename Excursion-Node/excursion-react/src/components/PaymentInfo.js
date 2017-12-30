@@ -15,6 +15,7 @@ class PaymentInfo extends Component{
         this.onSelectPayPal = this.onSelectPayPal.bind(this);
         this.changeScreen = this.changeScreen.bind(this);
         this.formatCardNumber = this.formatCardNumber.bind(this);
+        this.formatExpDate = this.formatExpDate.bind(this);
     }
     onChange(e) {
         let buttonNext = this.refs.buttonNext;
@@ -30,10 +31,6 @@ class PaymentInfo extends Component{
         let zipCode = this.zipCodeInput.value;
         let stateAdress = this.stateInput.value;
         let terms = this.termsInput.value;
-        // this.setState({
-        //     cardName: cardName,
-        //     cardType: cardType
-        // });
         this.setState({ [e.target.name]: e.target.value });
         if (paymentType != '0' && cardType !== '' && cardName !== '' && cardNumber !== '' &&
             expDate !== '' && cvvNumber !== '' && billingAddress !== '' && city !== '' &&
@@ -79,16 +76,14 @@ class PaymentInfo extends Component{
     }
     formatCardNumber() {
         let cardNumber = this.cardNumberInput.value;
-        // let regex = /(\D+)/g;
-        // let regex = /[A-Za-z]/g;
+        // Regex includes any character excluding normal digits and spaces
         let regex = /[^\d ]/g;
-        let firstFour = '';
-        let secondFour = '';
-        let thirdFour = '';
-        let fourthFour = '';
+        let firstFour, secondFour, thirdFour, fourthFour = '';
         if (cardNumber !== '') {
+            // This essentially removes any character not a digit or a space from the input
             cardNumber = cardNumber.replace(regex, '');
             firstFour = cardNumber.substr(0,4);
+            // After the fourth character add a space
             if (firstFour.length == 4) {
                 firstFour = firstFour + ' ';
             }
@@ -106,6 +101,23 @@ class PaymentInfo extends Component{
                 cardNumber: cardNumber
             });
         }
+    }
+    formatExpDate() {
+        let expDate = this.expDateInput.value;
+        let regex = /[^\d /]/g;
+        let month, year = '';
+        if (expDate !== '') {
+            expDate = expDate.replace(regex, '');
+            month = expDate.substr(0,2);
+            if (month.length == 2) {
+                month = month + ' / ';
+            }
+            year = expDate.substr(5,2);
+            expDate = month + year;
+        }
+        this.setState({
+            expDate: expDate
+        });
     }
     componentDidMount() {
         let cardName = this.props.cardName;
@@ -201,7 +213,6 @@ class PaymentInfo extends Component{
                                     name="cardNumber"
                                     type="text"
                                     className="form-control"
-                                    pattern='/[0-9]{4} {0,1}[0-9]{4} {0,1}[0-9]{4} {0,1}[0-9]{4}/'
                                     onKeyUp={this.formatCardNumber}
                                     ref={(input) => { this.cardNumberInput = input }}
                                     required
@@ -219,6 +230,7 @@ class PaymentInfo extends Component{
                                                 type="text"
                                                 name="expDate"
                                                 className="form-control payment-exp"
+                                                onKeyUp={this.formatExpDate}
                                                 ref={(input) => { this.expDateInput = input }}
                                                 required
                                             />
