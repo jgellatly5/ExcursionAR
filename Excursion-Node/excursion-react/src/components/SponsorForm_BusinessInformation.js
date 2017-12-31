@@ -50,13 +50,13 @@ class SponsorForm_BusinessInformation extends Component{
     }
     formatNumber() {
         let phoneNumber = this.phoneNumberInput.value,
-        r = /(\D+)/g,
+        regex = /(\D+)/g,
         areaCode = '',
         firstDigits = '',
         lastDigits = '';
         if (phoneNumber !== '') {
             // every input is required to be a number by the r expression
-            phoneNumber = phoneNumber.replace(r, '');
+            phoneNumber = phoneNumber.replace(regex, '');
             // areaCode waits for length of string to reach 4 characters, then adds hyphen in between character 3 and 4
             areaCode = phoneNumber.substr(0, 4);
             if (areaCode.length == 4) {

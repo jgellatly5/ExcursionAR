@@ -18,7 +18,6 @@ class PaymentInfo extends Component{
         this.formatExpDate = this.formatExpDate.bind(this);
         this.formatCvvNumber = this.formatCvvNumber.bind(this);
         this.formatZipCode = this.formatZipCode.bind(this);
-        this.terms = false;
     }
     onChange(e) {
         let buttonNext = this.refs.buttonNext;
@@ -33,10 +32,7 @@ class PaymentInfo extends Component{
         let city = this.cityInput.value;
         let zipCode = this.zipCodeInput.value;
         let stateAdress = this.stateInput.value;
-        let terms = this.terms;
-        if (e.target.name == 'termsAndConditions') {
-            terms = true;
-        }
+        let terms = this.termsInput.checked;
         this.setState({ [e.target.name]: e.target.value });
         if (paymentType != '0' && cardType !== '' && cardName !== '' && cardNumber !== '' && !isNaN(cardNumber) &&
             expDate !== '' && !isNaN(expDate) && cvvNumber !== '' && billingAddress !== '' && city !== '' &&
@@ -117,9 +113,15 @@ class PaymentInfo extends Component{
                 month = month + ' / ';
             }
             year = expDate.substr(5,2);
+            if (expDate.length == 5) {
+                month = expDate.substr(0,2);
+            }
+            console.log("month: " + month);
+            console.log("year: " + year);
             expDate = month + year;
+            console.log(month.length);
+            this.setState({ expDate: expDate });
         }
-        this.setState({ expDate: expDate });
     }
     formatCvvNumber() {
         let cvvNumber = this.cvvNumberInput.value;
@@ -392,7 +394,7 @@ class PaymentInfo extends Component{
                             <div className="radio-buttons">
                                 <input
                                     value="true"
-                                    type="radio"
+                                    type="checkbox"
                                     name="termsAndConditions"
                                     onChange={this.onChange}
                                     ref={(input) => { this.termsInput = input }}
