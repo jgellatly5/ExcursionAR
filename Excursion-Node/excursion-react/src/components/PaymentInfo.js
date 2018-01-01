@@ -5,7 +5,6 @@ class PaymentInfo extends Component{
     constructor(props) {
         super(props);
         this.state = {
-            cardNumber: this.props.cardNumber,
             insertCreditCardClass: 'payment-info-panel',
             insertPayPalClass: 'payment-info-panel'
         };
@@ -71,8 +70,8 @@ class PaymentInfo extends Component{
         } else {
             nextScreen = this.props.screenId + 1;
         }
-        let cardName = this.state.cardName;
-        let cardType = this.state.cardType;
+        let cardName = this.cardNameInput.cardName;
+        let cardType = this.cardTypeInput.cardType;
         let paymentType = this.state.paymentType;
         this.props.handler(e, nextScreen, cardName, cardType, paymentType);
     }
