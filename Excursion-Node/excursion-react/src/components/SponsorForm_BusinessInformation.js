@@ -4,19 +4,11 @@ import { Panel, Tooltip, OverlayTrigger } from 'react-bootstrap';
 class SponsorForm_BusinessInformation extends Component{
     constructor(props) {
         super(props);
-        this.state = {
-            companyName: this.props.companyName,
-            industry: this.props.industry,
-            phoneNumber: this.props.phoneNumber,
-            website: this.props.website
-        }
         this.onChange = this.onChange.bind(this);
         this.changeScreen = this.changeScreen.bind(this);
         this.formatNumber = this.formatNumber.bind(this);
     }
     onChange(e) {
-        e.preventDefault();
-        this.setState({ [e.target.name]: e.target.value });
         let button = this.refs.button;
         let companyName = this.companyNameInput.value;
         let industry = this.industryInput.value;
@@ -42,10 +34,10 @@ class SponsorForm_BusinessInformation extends Component{
         } else {
             nextScreen = this.props.screenId + 1;
         }
-        let companyName = this.state.companyName;
-        let industry = this.state.industry;
-        let phoneNumber = this.state.phoneNumber;
-        let website = this.state.website;
+        let companyName = this.companyNameInput.value;
+        let industry = this.industryInput.value;
+        let phoneNumber = this.phoneNumberInput.value;
+        let website = this.websiteInput.value;
         this.props.handler(e, nextScreen, companyName, industry, phoneNumber, website);
     }
     formatNumber() {
@@ -70,9 +62,7 @@ class SponsorForm_BusinessInformation extends Component{
             // lastDigits start at the 8th character of the whole string, and ends string after adding 3 more characters
             lastDigits = phoneNumber.substr(7, 3);
             phoneNumber = areaCode + firstDigits + lastDigits;
-            this.setState({
-                phoneNumber: phoneNumber
-            });
+            this.phoneNumberInput.value = phoneNumber;
         }
     }
     componentDidMount() {
@@ -106,7 +96,7 @@ class SponsorForm_BusinessInformation extends Component{
                             <div className="form-group">
                                 <label className="control-label">Company Name</label>
                                 <input
-                                    value={this.state.companyName}
+                                    value={this.props.companyName}
                                     onChange={this.onChange}
                                     type="text"
                                     name="companyName"
@@ -119,7 +109,7 @@ class SponsorForm_BusinessInformation extends Component{
                             <div className="form-group">
                                 <label className="control-label">Industry</label>
                                 <input
-                                    value={this.state.industry}
+                                    value={this.props.industry}
                                     onChange={this.onChange}
                                     type="text"
                                     name="industry"
@@ -133,7 +123,7 @@ class SponsorForm_BusinessInformation extends Component{
                                 <label className="control-label">Phone Number</label>
                                 <OverlayTrigger placement="right" overlay={tooltip_phoneNumber}>
                                     <input
-                                        value={this.state.phoneNumber}
+                                        value={this.props.phoneNumber}
                                         onChange={this.onChange}
                                         type="tel"
                                         name="phoneNumber"
@@ -150,7 +140,7 @@ class SponsorForm_BusinessInformation extends Component{
                                 <label className="control-label">Website</label>
                                 <OverlayTrigger placement="right" overlay={tooltip_url}>
                                 <input
-                                    value={this.state.website}
+                                    value={this.props.website}
                                     onChange={this.onChange}
                                     type="url"
                                     name="website"

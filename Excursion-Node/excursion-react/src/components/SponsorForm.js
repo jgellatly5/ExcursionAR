@@ -4,26 +4,19 @@ import { Panel, Tooltip, OverlayTrigger } from 'react-bootstrap';
 class SponsorForm extends Component{
     constructor(props) {
         super(props);
-        this.state = {
-            firstName: this.props.firstName,
-            lastName: this.props.lastName,
-            email: this.props.email,
-            password: ''
-        }
         this.onChange = this.onChange.bind(this);
         this.endScreen = this.endScreen.bind(this);
     }
     onChange(e) {
-        this.setState({ [e.target.name]: e.target.value });
         let button = this.refs.button;
         let firstName = this.firstNameInput.value;
         let lastName = this.lastNameInput.value;
         let email = this.emailInput.value;
+        let password = this.passwordInput.value;
         // String must contain at least one character in front of the @ symbol, an @ symbol
         // a character after the @ symbol, a ., and a character after the .
         let regex = /(\w+?@\w+?\x2E.+)/;
-        let password = this.passwordInput.value;
-        if (firstName !== '' && lastName !== '' && email !== '' && regex.test(email) && password !== '' && password.length > 7) {
+        if (this.firstName !== '' && lastName !== '' && email !== '' && regex.test(email) && password !== '' && password.length > 7) {
             button.classList.add('active', 'hvr-grow');
             button.removeAttribute('disabled');
         } else {
@@ -33,9 +26,9 @@ class SponsorForm extends Component{
     }
     endScreen(e) {
         let nextScreen = this.props.screenId + 1;
-        let firstName = this.state.firstName;
-        let lastName = this.state.lastName;
-        let email = this.state.email;
+        let firstName = this.firstNameInput.value;
+        let lastName = this.lastNameInput.value;
+        let email = this.emailInput.value;
         this.props.handler(e, nextScreen, firstName, lastName, email);
     }
     componentDidMount() {
@@ -60,7 +53,7 @@ class SponsorForm extends Component{
                             <div className="form-group">
                                 <label className="control-label">First Name</label>
                                 <input
-                                    value={this.state.firstName}
+                                    value={this.props.firstName}
                                     onChange={this.onChange}
                                     type="text"
                                     name="firstName"
@@ -73,7 +66,7 @@ class SponsorForm extends Component{
                             <div className="form-group">
                                 <label className="control-label">Last Name</label>
                                 <input
-                                    value={this.state.lastName}
+                                    value={this.props.lastName}
                                     onChange={this.onChange}
                                     type="text"
                                     name="lastName"
@@ -88,7 +81,7 @@ class SponsorForm extends Component{
                                 <label className="control-label">Email</label>
                                 <OverlayTrigger placement="right" overlay={tooltip_email}>
                                     <input
-                                        value={this.state.email}
+                                        value={this.props.email}
                                         onChange={this.onChange}
                                         type="email"
                                         name="email"
@@ -104,7 +97,7 @@ class SponsorForm extends Component{
                                 <label className="control-label">Password</label>
                                 <OverlayTrigger placement="right" overlay={tooltip_password}>
                                     <input
-                                        value={this.state.password}
+                                        value={this.props.password}
                                         onChange={this.onChange}
                                         type="password"
                                         name="password"
