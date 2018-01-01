@@ -5,8 +5,6 @@ class Freemium_AdInfo extends Component{
     constructor(props) {
         super(props);
         this.state = {
-            adName: this.props.adName,
-            genre: this.props.genre,
             adType: 'freemium',
             insertStaticClass: 'freemium-path-panel',
             insertDynamicClass: 'freemium-path-panel',
@@ -24,10 +22,6 @@ class Freemium_AdInfo extends Component{
         let adName = this.adNameInput.value;
         let genre = this.genreInput.value;
         let adFormat = this.adFormat;
-        this.setState({
-            adName: adName,
-            genre: genre
-        });
         if (adName !== '' && genre !== '' && adFormat != '0') {
             buttonNext.classList.add('active', 'hvr-grow');
             buttonNext.removeAttribute('disabled');
@@ -76,14 +70,15 @@ class Freemium_AdInfo extends Component{
         } else {
             nextScreen = this.props.screenId + 1;
         }
-        let adName = this.state.adName;
-        let genre = this.state.genre;
+        let adName = this.adNameInput.value;
+        let genre = this.genreInput.value;
         let adFormat = this.state.adFormat;
         this.props.handler(e, nextScreen, adName, genre, adFormat);
     }
     componentDidMount() {
         let adName = this.props.adName;
         let genre = this.props.genre;
+        let adFormat = this.props.adFormat;
         let buttonNext = this.refs.buttonNext;
         if (adName == undefined && genre == undefined && adFormat == undefined) {
             buttonNext.setAttribute('disabled','disabled');
@@ -91,7 +86,6 @@ class Freemium_AdInfo extends Component{
             buttonNext.classList.add('active', 'hvr-grow');
             buttonNext.removeAttribute('disabled');
         }
-        let adFormat = this.props.adFormat;
         if (adFormat == 'static') {
             this.adFormat = this.refs.staticAd.props.eventKey;
             this.setState({
@@ -142,7 +136,7 @@ class Freemium_AdInfo extends Component{
                             <div className="form-group">
                                 <label className="control-label">Ad Name</label>
                                 <input
-                                    value={this.state.adName}
+                                    value={this.props.adName}
                                     onChange={this.onChange}
                                     type="text"
                                     name="adName"
@@ -155,7 +149,7 @@ class Freemium_AdInfo extends Component{
                             {/*TODO Change default drop down style button*/}
                             <FormGroup controlId="formControlsSelect">
                                 <ControlLabel>Genre</ControlLabel>
-                                <FormControl componentClass="select" onChange={this.onChange} inputRef={ref => { this.genreInput = ref; }} value={this.state.genre} required>
+                                <FormControl componentClass="select" onChange={this.onChange} inputRef={ref => { this.genreInput = ref; }} value={this.props.genre} required>
                                     <option value="technology" >Technology</option>
                                     <option value="finance" >Finance</option>
                                     <option value="retail" >Retail</option>
