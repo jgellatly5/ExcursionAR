@@ -3,10 +3,11 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import SponsorForm from "./SponsorForm";
 import SponsorForm_BusinessInformation from "./SponsorForm_BusinessInformation";
 // Not necessary until premium version is offered
-// import ChooseService from './ChooseService'; 
+// import ChooseService from './ChooseService';
 import Freemium_AdInfo from './Freemium_AdInfo';
 import SetBudget from './SetBudget';
 import ReviewInfo from './ReviewInfo';
+import PaymentInfo from './PaymentInfo';
 
 class SponsorSignupLayout extends Component {
     constructor(props) {
@@ -16,6 +17,7 @@ class SponsorSignupLayout extends Component {
         this.handleFreemiumAdInfoState = this.handleFreemiumAdInfoState.bind(this);
         this.handleSetBudgetState = this.handleSetBudgetState.bind(this);
         this.handleReviewInfoState = this.handleReviewInfoState.bind(this);
+        this.handlePaymentState = this.handlePaymentState.bind(this);
         this.state = {
             screen: 0,
             isScreenChanging: false
@@ -64,8 +66,19 @@ class SponsorSignupLayout extends Component {
     }
     handleReviewInfoState(e, newScreen) {
         e.preventDefault();
+        this.setState({ screen: newScreen });
+    }
+    handlePaymentState(e, newScreen, cardName, cardType, paymentType, billingAddress, city, zipCode, stateAddress) {
+        e.preventDefault();
         this.setState({
-            screen: newScreen
+            screen: newScreen,
+            cardName: cardName,
+            cardType: cardType,
+            paymentType: paymentType,
+            billingAddress: billingAddress,
+            city: city,
+            zipCode: zipCode,
+            stateAddress: stateAddress
         });
     }
     render() {
@@ -129,6 +142,19 @@ class SponsorSignupLayout extends Component {
                             adFormat={this.state.adFormat}
                             dailyBudget={this.state.dailyBudget}
                         />;
+                break;
+            case 5:
+                child = <PaymentInfo
+                            screenId={this.state.screen}
+                            handler={this.handlePaymentState}
+                            cardName={this.state.cardName}
+                            cardType={this.state.cardType}
+                            paymentType={this.state.paymentType}
+                            billingAddress={this.state.billingAddress}
+                            city={this.state.city}
+                            zipCode={this.state.zipCode}
+                            stateAddress={this.state.stateAddress}
+                        />
                 break;
             default:
                 break;

@@ -30,12 +30,12 @@ class PaymentInfo extends Component{
         let billingAddress2 = this.billingAddress2Input.value;
         let city = this.cityInput.value;
         let zipCode = this.zipCodeInput.value;
-        let stateAdress = this.stateInput.value;
+        let stateAddress = this.stateInput.value;
         let terms = this.termsInput.checked;
-        this.setState({ [e.target.name]: e.target.value });
-        if (paymentType != '0' && cardType !== '' && cardName !== '' && cardNumber !== '' && !isNaN(cardNumber) &&
-            expDate !== '' && !isNaN(expDate) && cvvNumber !== '' && billingAddress !== '' && city !== '' &&
-            zipCode !== '' && !isNaN(zipCode) && stateAdress !== '' && terms) {
+        let regex = /[\d-]/g;
+        if (paymentType != '0' && cardType !== '' && cardName !== '' && cardNumber !== '' && regex.test(cardNumber) &&
+            expDate !== '' && regex.test(expDate) && cvvNumber !== '' && billingAddress !== '' && city !== '' &&
+            zipCode !== '' && !isNaN(zipCode) && stateAddress !== '' && terms) {
             buttonNext.classList.add('active', 'hvr-grow');
             buttonNext.removeAttribute('disabled');
         } else {
@@ -70,10 +70,14 @@ class PaymentInfo extends Component{
         } else {
             nextScreen = this.props.screenId + 1;
         }
-        let cardName = this.cardNameInput.cardName;
-        let cardType = this.cardTypeInput.cardType;
+        let cardName = this.cardNameInput.value;
+        let cardType = this.cardTypeInput.value;
         let paymentType = this.state.paymentType;
-        this.props.handler(e, nextScreen, cardName, cardType, paymentType);
+        let billingAddress = this.billingAddressInput.value;
+        let city = this.cityInput.value;
+        let zipCode = this.zipCodeInput.value;
+        let stateAddress = this.stateInput.value;
+        this.props.handler(e, nextScreen, cardName, cardType, paymentType, billingAddress, city, zipCode, stateAddress);
     }
     formatCardNumber() {
         let cardNumber = this.cardNumberInput.value;
@@ -201,7 +205,7 @@ class PaymentInfo extends Component{
                             {/*TODO Change default drop down style button*/}
                             <FormGroup controlId="formControlsSelect">
                                 <ControlLabel>Card Type</ControlLabel>
-                                <FormControl componentClass="select" onChange={this.onChange} inputRef={ref => { this.cardTypeInput = ref; }} value={this.state.cardType} required>
+                                <FormControl componentClass="select" onChange={this.onChange} inputRef={ref => { this.cardTypeInput = ref; }} value={this.props.cardType} required>
                                     <option value="visa" >Visa</option>
                                     <option value="mastercard" >Mastercard</option>
                                     <option value="discover" >Discover</option>
@@ -213,7 +217,7 @@ class PaymentInfo extends Component{
                             <div className="form-group">
                                 <label className="control-label">Name on Card</label>
                                 <input
-                                    value={this.state.cardName}
+                                    value={this.props.cardName}
                                     onChange={this.onChange}
                                     type="text"
                                     name="cardName"
@@ -226,7 +230,7 @@ class PaymentInfo extends Component{
                             <div className="form-group">
                                 <label className="control-label">Card Number</label>
                                 <input
-                                    value={this.state.cardNumber}
+                                    value={this.props.cardNumber}
                                     onChange={this.onChange}
                                     name="cardNumber"
                                     type="text"
@@ -243,7 +247,7 @@ class PaymentInfo extends Component{
                                         <Col xs={4}>
                                             <label className="control-label">Exp Date</label>
                                             <input
-                                                value={this.state.expDate}
+                                                value={this.props.expDate}
                                                 onChange={this.onChange}
                                                 type="text"
                                                 name="expDate"
@@ -256,7 +260,7 @@ class PaymentInfo extends Component{
                                         <Col xs={4}>
                                             <label className="control-label">CVV Number</label>
                                             <input
-                                                value={this.state.cvvNumber}
+                                                value={this.props.cvvNumber}
                                                 onChange={this.onChange}
                                                 type="text"
                                                 name="cvvNumber"
@@ -274,7 +278,7 @@ class PaymentInfo extends Component{
                                 <div className="form-group">
                                     <label className="control-label">Billing Address</label>
                                     <input
-                                        value={this.state.billingAddress}
+                                        value={this.props.billingAddress}
                                         onChange={this.onChange}
                                         type="text"
                                         name="billingAddress"
@@ -284,7 +288,7 @@ class PaymentInfo extends Component{
                                         required
                                     />
                                     <input
-                                        value={this.state.billingAddress2}
+                                        value={this.props.billingAddress2}
                                         onChange={this.onChange}
                                         type="text"
                                         name="billingAddress2"
@@ -298,7 +302,7 @@ class PaymentInfo extends Component{
                                 <div className="form-group">
                                     <label className="control-label">City/Town</label>
                                     <input
-                                        value={this.state.city}
+                                        value={this.props.city}
                                         onChange={this.onChange}
                                         type="text"
                                         name="city"
@@ -311,7 +315,7 @@ class PaymentInfo extends Component{
                                 <div className="form-group">
                                     <label className="control-label">Zip Code</label>
                                     <input
-                                        value={this.state.zipCode}
+                                        value={this.props.zipCode}
                                         onChange={this.onChange}
                                         type="text"
                                         name="zipCode"
@@ -325,7 +329,7 @@ class PaymentInfo extends Component{
                                 {/*TODO Change default drop down style button*/}
                                 <FormGroup controlId="formControlsSelect">
                                     <ControlLabel>State</ControlLabel>
-                                    <FormControl componentClass="select" onChange={this.onChange} inputRef={ref => { this.stateInput = ref; }} value={this.state.stateAddress} required>
+                                    <FormControl componentClass="select" onChange={this.onChange} inputRef={ref => { this.stateInput = ref; }} value={this.props.stateAddress} required>
                                         <option value="N/A">N/A</option>
                                         <option value="AK">Alaska</option>
                                         <option value="AL">Alabama</option>
