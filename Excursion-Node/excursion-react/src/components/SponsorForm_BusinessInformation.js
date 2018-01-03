@@ -128,7 +128,6 @@ class SponsorForm_BusinessInformation extends Component{
                                         type="tel"
                                         name="phoneNumber"
                                         className="form-control"
-                                        pattern='\d{3}[\-]\d{3}[\-]\d{4}'
                                         onKeyUp={this.formatNumber}
                                         ref={(input) => { this.phoneNumberInput = input }}
                                         required

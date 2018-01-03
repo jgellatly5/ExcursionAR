@@ -79,26 +79,25 @@ class PaymentInfo extends Component{
         let cardNumber = this.cardNumberInput.value;
         // Regex includes any character excluding normal digits and spaces
         let regex = /[^\d ]/g;
-        let firstFour, secondFour, thirdFour, fourthFour = '';
+        let first, second, third, fourth = '';
         if (cardNumber !== '') {
             // This essentially removes any character not a digit or a space from the input
             cardNumber = cardNumber.replace(regex, '');
-            firstFour = cardNumber.substr(0,4);
-            // After the fourth character add a space
-            if (firstFour.length == 4) {
-                firstFour = firstFour + ' ';
+            first = cardNumber.substr(0,5);
+            if (first.length == 5) {
+                first = first.substr(0,4) + '-' + first.charAt(4);
             }
-            secondFour = cardNumber.substr(5,4);
-            if (secondFour.length == 4) {
-                secondFour = secondFour + ' ';
+            second = cardNumber.substr(5, 4);
+            if (second.length == 4) {
+                second = second.substr(0,3) + '-' + second.charAt(3);
             }
-            thirdFour = cardNumber.substr(10,4);
-            if (thirdFour.length == 4) {
-                thirdFour = thirdFour + ' ';
+            third = cardNumber.substr(9, 4);
+            if (third.length == 4) {
+                third = third.substr(0,3) + '-' + third.charAt(3);
             }
-            fourthFour = cardNumber.substr(15,4);
-            cardNumber = firstFour + secondFour + thirdFour + fourthFour;
-            this.setState({ cardNumber: cardNumber });
+            fourth = cardNumber.substr(13, 3);
+            cardNumber = first + second + third + fourth;
+            this.cardNumberInput.value = cardNumber;
         }
     }
     formatExpDate() {
@@ -137,7 +136,7 @@ class PaymentInfo extends Component{
             threeDigits = cvvNumber.substr(0, 3);
             cvvNumber = threeDigits;
         }
-        this.setState({ cvvNumber: cvvNumber });
+        this.cvvNumberInput.value = cvvNumber;
     }
     formatZipCode() {
         let zipCode = this.zipCodeInput.value;
@@ -148,7 +147,7 @@ class PaymentInfo extends Component{
             fiveDigits = zipCode.substr(0, 5);
             zipCode = fiveDigits;
         }
-        this.setState({ zipCode: zipCode });
+        this.zipCodeInput.value = zipCode;
     }
     componentDidMount() {
         let cardName = this.props.cardName;
