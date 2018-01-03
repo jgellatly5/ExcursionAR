@@ -16,7 +16,7 @@ class SponsorForm extends Component{
         // String must contain at least one character in front of the @ symbol, an @ symbol
         // a character after the @ symbol, a ., and a character after the .
         let regex = /(\w+?@\w+?\x2E.+)/;
-        if (this.firstName !== '' && lastName !== '' && email !== '' && regex.test(email) && password !== '' && password.length > 7) {
+        if (firstName !== '' && lastName !== '' && email !== '' && regex.test(email) && password !== '' && password.length > 7) {
             button.classList.add('active', 'hvr-grow');
             button.removeAttribute('disabled');
         } else {

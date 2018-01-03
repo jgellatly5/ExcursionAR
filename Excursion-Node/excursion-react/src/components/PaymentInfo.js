@@ -106,25 +106,13 @@ class PaymentInfo extends Component{
         let month, year = '';
         if (expDate !== '') {
             expDate = expDate.replace(regex, '');
-            // month = expDate.substr(0,3);
-            // if (expDate.length == 3) {
-            //     expDate = expDate.substr(0,2) + ' / ' + expDate.charAt(2);
-            // }
-            // if (expDate.length == 7) {
-            //     expDate = expDate.substr(0,7);
-            //     console.log("expDate:" +  expDate);
-            // }
-            // if (month.length == 3) {
-            //     month = month.substr(0,2) + ' / ' + month.charAt(2);
-            // }
-            // year = expDate.substr(6,1);
-            // if (expDate.length == 4) {
-            //     month = expDate.substr(0,2);
-            // }
-            // console.log("month: " + month);
-            // console.log("year: " + year);
-            // expDate = month + year;
-            // this.expDateInput.value = expDate;
+            month = expDate.substr(0,3);
+            if (month.length == 3) {
+                month = month.substr(0,2) + '-' + month.charAt(2);
+            }
+            year = expDate.substr(3,1);
+            expDate = month + year;
+            this.expDateInput.value = expDate;
         }
     }
     formatCvvNumber() {
