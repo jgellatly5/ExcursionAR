@@ -1359,6 +1359,7 @@ input[type='radio']:checked:before {
 
 input[type=checkbox] {
     appearance: none;
+    margin: 0;
 }
 
 .payment-checkbox {
@@ -1369,6 +1370,18 @@ input[type=checkbox] {
     vertical-align: middle;
     /* margin-top: -5px; */
 }
+
+.payment-checkbox:checked {
+    background-color: #1E1E75;
+}
+
+/* input[type="checkbox"]:checked + label {
+    background: black;
+} */
+
+/* input[type="checkbox"] + label {
+    background: black;
+} */
 
 .payment-terms label {
     margin-left: 8px;
