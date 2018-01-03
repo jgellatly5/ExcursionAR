@@ -395,16 +395,17 @@ class PaymentInfo extends Component{
                                     </FormControl>
                                 </FormGroup>
 
-                                <div className="radio-buttons">
+                                <div className="payment-terms">
                                     <input
                                         value="true"
                                         type="checkbox"
                                         name="termsAndConditions"
+                                        className="payment-checkbox"
                                         onChange={this.onChange}
                                         ref={(input) => { this.termsInput = input }}
                                         required
                                     />
-                                    I agree to Excursion{`'`}s terms and conditions
+                                    <label className="control-label">I agree to Excursion{`'`}s terms and conditions</label>
                                 </div>
                             </div>
 
