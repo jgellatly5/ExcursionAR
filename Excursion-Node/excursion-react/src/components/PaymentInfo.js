@@ -107,19 +107,25 @@ class PaymentInfo extends Component{
         let month, year = '';
         if (expDate !== '') {
             expDate = expDate.replace(regex, '');
-            month = expDate.substr(0,2);
-            if (month.length == 2) {
-                month = month + ' / ';
-            }
-            year = expDate.substr(5,2);
-            if (expDate.length == 5) {
-                month = expDate.substr(0,2);
-            }
-            console.log("month: " + month);
-            console.log("year: " + year);
-            expDate = month + year;
-            console.log(month.length);
-            this.setState({ expDate: expDate });
+            // month = expDate.substr(0,3);
+            // if (expDate.length == 3) {
+            //     expDate = expDate.substr(0,2) + ' / ' + expDate.charAt(2);
+            // }
+            // if (expDate.length == 7) {
+            //     expDate = expDate.substr(0,7);
+            //     console.log("expDate:" +  expDate);
+            // }
+            // if (month.length == 3) {
+            //     month = month.substr(0,2) + ' / ' + month.charAt(2);
+            // }
+            // year = expDate.substr(6,1);
+            // if (expDate.length == 4) {
+            //     month = expDate.substr(0,2);
+            // }
+            // console.log("month: " + month);
+            // console.log("year: " + year);
+            // expDate = month + year;
+            // this.expDateInput.value = expDate;
         }
     }
     formatCvvNumber() {
@@ -180,7 +186,7 @@ class PaymentInfo extends Component{
         return (
             <div className="ad-signup-container">
                 <div className="ad-signup" id="fix-margin">
-                    <Panel className="ad-signup-panel">
+                    <Panel className="ad-signup-panel scroll">
                     <h1>Enter payment info</h1>
                     <p>Select a payment method</p>
                     <div>
@@ -277,129 +283,129 @@ class PaymentInfo extends Component{
                                 </Grid>
                             </div>
 
-                            <hr className="payment-hr"/>
+                            <div className="payment-margin">
+                                <div className="form-group">
+                                    <label className="control-label">Billing Address</label>
+                                    <input
+                                        value={this.state.billingAddress}
+                                        onChange={this.onChange}
+                                        type="text"
+                                        name="billingAddress"
+                                        className="form-control address-margin"
+                                        ref={(input) => { this.billingAddressInput = input }}
+                                        placeholder="12345 Street Name"
+                                        required
+                                    />
+                                    <input
+                                        value={this.state.billingAddress2}
+                                        onChange={this.onChange}
+                                        type="text"
+                                        name="billingAddress2"
+                                        className="form-control"
+                                        ref={(input) => { this.billingAddress2Input = input }}
+                                        placeholder="Apt 123"
+                                        required
+                                    />
+                                </div>
 
-                            <div className="form-group">
-                                <label className="control-label">Billing Address</label>
-                                <input
-                                    value={this.state.billingAddress}
-                                    onChange={this.onChange}
-                                    type="text"
-                                    name="billingAddress"
-                                    className="form-control address-margin"
-                                    ref={(input) => { this.billingAddressInput = input }}
-                                    placeholder="12345 Street Name"
-                                    required
-                                />
-                                <input
-                                    value={this.state.billingAddress2}
-                                    onChange={this.onChange}
-                                    type="text"
-                                    name="billingAddress2"
-                                    className="form-control"
-                                    ref={(input) => { this.billingAddress2Input = input }}
-                                    placeholder="Apt 123"
-                                    required
-                                />
-                            </div>
+                                <div className="form-group">
+                                    <label className="control-label">City/Town</label>
+                                    <input
+                                        value={this.state.city}
+                                        onChange={this.onChange}
+                                        type="text"
+                                        name="city"
+                                        className="form-control"
+                                        ref={(input) => { this.cityInput = input }}
+                                        required
+                                    />
+                                </div>
 
-                            <div className="form-group">
-                                <label className="control-label">City/Town</label>
-                                <input
-                                    value={this.state.city}
-                                    onChange={this.onChange}
-                                    type="text"
-                                    name="city"
-                                    className="form-control"
-                                    ref={(input) => { this.cityInput = input }}
-                                    required
-                                />
-                            </div>
+                                <div className="form-group">
+                                    <label className="control-label">Zip Code</label>
+                                    <input
+                                        value={this.state.zipCode}
+                                        onChange={this.onChange}
+                                        type="text"
+                                        name="zipCode"
+                                        className="form-control"
+                                        onKeyUp={this.formatZipCode}
+                                        ref={(input) => { this.zipCodeInput = input }}
+                                        required
+                                    />
+                                </div>
 
-                            <div className="form-group">
-                                <label className="control-label">Zip Code</label>
-                                <input
-                                    value={this.state.zipCode}
-                                    onChange={this.onChange}
-                                    type="text"
-                                    name="zipCode"
-                                    className="form-control"
-                                    onKeyUp={this.formatZipCode}
-                                    ref={(input) => { this.zipCodeInput = input }}
-                                    required
-                                />
-                            </div>
+                                {/*TODO Change default drop down style button*/}
+                                <FormGroup controlId="formControlsSelect">
+                                    <ControlLabel>State</ControlLabel>
+                                    <FormControl componentClass="select" onChange={this.onChange} inputRef={ref => { this.stateInput = ref; }} value={this.state.stateAddress} required>
+                                        <option value="N/A">N/A</option>
+                                        <option value="AK">Alaska</option>
+                                        <option value="AL">Alabama</option>
+                                        <option value="AR">Arkansas</option>
+                                        <option value="AZ">Arizona</option>
+                                        <option value="CA">California</option>
+                                        <option value="CO">Colorado</option>
+                                        <option value="CT">Connecticut</option>
+                                        <option value="DC">District of Columbia</option>
+                                        <option value="DE">Delaware</option>
+                                        <option value="FL">Florida</option>
+                                        <option value="GA">Georgia</option>
+                                        <option value="HI">Hawaii</option>
+                                        <option value="IA">Iowa</option>
+                                        <option value="ID">Idaho</option>
+                                        <option value="IL">Illinois</option>
+                                        <option value="IN">Indiana</option>
+                                        <option value="KS">Kansas</option>
+                                        <option value="KY">Kentucky</option>
+                                        <option value="LA">Louisiana</option>
+                                        <option value="MA">Massachusetts</option>
+                                        <option value="MD">Maryland</option>
+                                        <option value="ME">Maine</option>
+                                        <option value="MI">Michigan</option>
+                                        <option value="MN">Minnesota</option>
+                                        <option value="MO">Missouri</option>
+                                        <option value="MS">Mississippi</option>
+                                        <option value="MT">Montana</option>
+                                        <option value="NC">North Carolina</option>
+                                        <option value="ND">North Dakota</option>
+                                        <option value="NE">Nebraska</option>
+                                        <option value="NH">New Hampshire</option>
+                                        <option value="NJ">New Jersey</option>
+                                        <option value="NM">New Mexico</option>
+                                        <option value="NV">Nevada</option>
+                                        <option value="NY">New York</option>
+                                        <option value="OH">Ohio</option>
+                                        <option value="OK">Oklahoma</option>
+                                        <option value="OR">Oregon</option>
+                                        <option value="PA">Pennsylvania</option>
+                                        <option value="PR">Puerto Rico</option>
+                                        <option value="RI">Rhode Island</option>
+                                        <option value="SC">South Carolina</option>
+                                        <option value="SD">South Dakota</option>
+                                        <option value="TN">Tennessee</option>
+                                        <option value="TX">Texas</option>
+                                        <option value="UT">Utah</option>
+                                        <option value="VA">Virginia</option>
+                                        <option value="VT">Vermont</option>
+                                        <option value="WA">Washington</option>
+                                        <option value="WI">Wisconsin</option>
+                                        <option value="WV">West Virginia</option>
+                                        <option value="WY">Wyoming</option>
+                                    </FormControl>
+                                </FormGroup>
 
-                            {/*TODO Change default drop down style button*/}
-                            <FormGroup controlId="formControlsSelect">
-                                <ControlLabel>State</ControlLabel>
-                                <FormControl componentClass="select" onChange={this.onChange} inputRef={ref => { this.stateInput = ref; }} value={this.state.stateAddress} required>
-                                    <option value="N/A">N/A</option>
-                        			<option value="AK">Alaska</option>
-                        			<option value="AL">Alabama</option>
-                        			<option value="AR">Arkansas</option>
-                        			<option value="AZ">Arizona</option>
-                        			<option value="CA">California</option>
-                        			<option value="CO">Colorado</option>
-                        			<option value="CT">Connecticut</option>
-                        			<option value="DC">District of Columbia</option>
-                        			<option value="DE">Delaware</option>
-                        			<option value="FL">Florida</option>
-                        			<option value="GA">Georgia</option>
-                        			<option value="HI">Hawaii</option>
-                        			<option value="IA">Iowa</option>
-                        			<option value="ID">Idaho</option>
-                        			<option value="IL">Illinois</option>
-                        			<option value="IN">Indiana</option>
-                        			<option value="KS">Kansas</option>
-                        			<option value="KY">Kentucky</option>
-                        			<option value="LA">Louisiana</option>
-                        			<option value="MA">Massachusetts</option>
-                        			<option value="MD">Maryland</option>
-                        			<option value="ME">Maine</option>
-                        			<option value="MI">Michigan</option>
-                        			<option value="MN">Minnesota</option>
-                        			<option value="MO">Missouri</option>
-                        			<option value="MS">Mississippi</option>
-                        			<option value="MT">Montana</option>
-                        			<option value="NC">North Carolina</option>
-                        			<option value="ND">North Dakota</option>
-                        			<option value="NE">Nebraska</option>
-                        			<option value="NH">New Hampshire</option>
-                        			<option value="NJ">New Jersey</option>
-                        			<option value="NM">New Mexico</option>
-                        			<option value="NV">Nevada</option>
-                        			<option value="NY">New York</option>
-                        			<option value="OH">Ohio</option>
-                        			<option value="OK">Oklahoma</option>
-                        			<option value="OR">Oregon</option>
-                        			<option value="PA">Pennsylvania</option>
-                        			<option value="PR">Puerto Rico</option>
-                        			<option value="RI">Rhode Island</option>
-                        			<option value="SC">South Carolina</option>
-                        			<option value="SD">South Dakota</option>
-                        			<option value="TN">Tennessee</option>
-                        			<option value="TX">Texas</option>
-                        			<option value="UT">Utah</option>
-                        			<option value="VA">Virginia</option>
-                        			<option value="VT">Vermont</option>
-                        			<option value="WA">Washington</option>
-                        			<option value="WI">Wisconsin</option>
-                        			<option value="WV">West Virginia</option>
-                        			<option value="WY">Wyoming</option>
-                                </FormControl>
-                            </FormGroup>
-
-                            <div className="radio-buttons">
-                                <input
-                                    value="true"
-                                    type="checkbox"
-                                    name="termsAndConditions"
-                                    onChange={this.onChange}
-                                    ref={(input) => { this.termsInput = input }}
-                                    required
-                                />
-                                I agree to Excursion{`'`}s terms and conditions
+                                <div className="radio-buttons">
+                                    <input
+                                        value="true"
+                                        type="checkbox"
+                                        name="termsAndConditions"
+                                        onChange={this.onChange}
+                                        ref={(input) => { this.termsInput = input }}
+                                        required
+                                    />
+                                    I agree to Excursion{`'`}s terms and conditions
+                                </div>
                             </div>
 
                         </form>

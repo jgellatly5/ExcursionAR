@@ -1346,6 +1346,17 @@ input[type='radio']:checked:before {
     padding-left: 0px;
 }
 
+.payment-margin {
+    margin-left: 18%;
+    border-top: 2px solid #1E1E75;
+    padding-top: 50px;
+    width: 75%;
+}
+
+.payment-margin .form-control {
+    width: 200%;
+}
+
 /*React CSS Transition Group*/
 .sponsor-enter {
     transform: translate(100%);
