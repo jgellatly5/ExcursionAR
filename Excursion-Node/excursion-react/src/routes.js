@@ -32,8 +32,8 @@ const Routes = (props) => (
             <Route component={Freemium_AdInfo} />
             <Route component={SetBudget} />
             <Route component={ReviewInfo} />
+            <Route component={PaymentInfo} />
         </Route>
-        <Route path="/test" component={PaymentInfo} />
         <Route path="*" component={NotFound} />
     </Router>
 );

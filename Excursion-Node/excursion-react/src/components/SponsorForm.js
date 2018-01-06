@@ -4,10 +4,17 @@ import { Panel, Tooltip, OverlayTrigger } from 'react-bootstrap';
 class SponsorForm extends Component{
     constructor(props) {
         super(props);
+        this.state = {
+            nextScreen: this.props.screenId + 1,
+            firstName: this.props.firstName,
+            lastName: this.props.lastName,
+            email: this.props.email
+        }
         this.onChange = this.onChange.bind(this);
         this.endScreen = this.endScreen.bind(this);
     }
     onChange(e) {
+        this.setState({ [e.target.name]: e.target.value });
         let button = this.refs.button;
         let firstName = this.firstNameInput.value;
         let lastName = this.lastNameInput.value;
@@ -25,11 +32,14 @@ class SponsorForm extends Component{
         }
     }
     endScreen(e) {
+        e.preventDefault();
         let nextScreen = this.props.screenId + 1;
         let firstName = this.firstNameInput.value;
         let lastName = this.lastNameInput.value;
         let email = this.emailInput.value;
-        this.props.handler(e, nextScreen, firstName, lastName, email);
+        console.log({...this.state});
+        this.props.handler({...this.state});
+        // this.props.handler(nextScreen, firstName, lastName, email);
     }
     componentDidMount() {
         let button = this.refs.button;
@@ -53,7 +63,7 @@ class SponsorForm extends Component{
                             <div className="form-group">
                                 <label className="control-label">First Name</label>
                                 <input
-                                    value={this.props.firstName}
+                                    value={this.state.firstName}
                                     onChange={this.onChange}
                                     type="text"
                                     name="firstName"
@@ -66,7 +76,7 @@ class SponsorForm extends Component{
                             <div className="form-group">
                                 <label className="control-label">Last Name</label>
                                 <input
-                                    value={this.props.lastName}
+                                    value={this.state.lastName}
                                     onChange={this.onChange}
                                     type="text"
                                     name="lastName"
@@ -81,7 +91,7 @@ class SponsorForm extends Component{
                                 <label className="control-label">Email</label>
                                 <OverlayTrigger placement="right" overlay={tooltip_email}>
                                     <input
-                                        value={this.props.email}
+                                        value={this.state.email}
                                         onChange={this.onChange}
                                         type="email"
                                         name="email"
@@ -97,7 +107,7 @@ class SponsorForm extends Component{
                                 <label className="control-label">Password</label>
                                 <OverlayTrigger placement="right" overlay={tooltip_password}>
                                     <input
-                                        value={this.props.password}
+                                        value={this.state.password}
                                         onChange={this.onChange}
                                         type="password"
                                         name="password"

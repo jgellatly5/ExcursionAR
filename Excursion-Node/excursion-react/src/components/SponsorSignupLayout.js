@@ -24,21 +24,18 @@ class SponsorSignupLayout extends Component {
         };
     }
     componentDidMount() {
+        this.setState({ isScreenChanging: true });
+    }
+    handleSponsorFormState(sponsor_form) {
+        console.log(sponsor_form);
         this.setState({
-            isScreenChanging: true
+            screen: sponsor_form.nextScreen,
+            firstName: sponsor_form.firstName,
+            lastName: sponsor_form.lastName,
+            email: sponsor_form.email
         });
     }
-    handleSponsorFormState(e, newScreen, firstName, lastName, email) {
-        e.preventDefault();
-        this.setState({
-            screen: newScreen,
-            firstName: firstName,
-            lastName: lastName,
-            email: email
-        });
-    }
-    handleSponsorFormBusinessInfoState(e, newScreen, companyName, industry, phoneNumber, website) {
-        e.preventDefault();
+    handleSponsorFormBusinessInfoState(newScreen, companyName, industry, phoneNumber, website) {
         this.setState({
             screen: newScreen,
             companyName: companyName,
@@ -47,8 +44,7 @@ class SponsorSignupLayout extends Component {
             website: website
         });
     }
-    handleFreemiumAdInfoState(e, newScreen, adName, genre, adFormat) {
-        e.preventDefault();
+    handleFreemiumAdInfoState(newScreen, adName, genre, adFormat) {
         this.setState({
             screen: newScreen,
             adName: adName,

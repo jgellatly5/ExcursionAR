@@ -4,11 +4,19 @@ import { Panel, Tooltip, OverlayTrigger } from 'react-bootstrap';
 class SponsorForm_BusinessInformation extends Component{
     constructor(props) {
         super(props);
+        this.state = {
+            newScreen: this.props.screenId,
+            companyName: this.props.companyName,
+            industry: this.props.industry,
+            phoneNumber: this.props.phoneNumber,
+            website: this.props.website
+        }
         this.onChange = this.onChange.bind(this);
         this.changeScreen = this.changeScreen.bind(this);
         this.formatNumber = this.formatNumber.bind(this);
     }
     onChange(e) {
+        this.setState({ [e.target.name]: e.target.value });
         let button = this.refs.button;
         let companyName = this.companyNameInput.value;
         let industry = this.industryInput.value;
@@ -28,21 +36,24 @@ class SponsorForm_BusinessInformation extends Component{
         }
     }
     changeScreen(e) {
-        let nextScreen;
+        e.preventDefault();
+        let newScreen;
         if (e.target.name == 'back') {
-            nextScreen = this.props.screenId - 1;
+            newScreen = this.props.screenId - 1;
         } else {
-            nextScreen = this.props.screenId + 1;
+            newScreen = this.props.screenId + 1;
         }
         let companyName = this.companyNameInput.value;
         let industry = this.industryInput.value;
         let phoneNumber = this.phoneNumberInput.value;
         let website = this.websiteInput.value;
-        this.props.handler(e, nextScreen, companyName, industry, phoneNumber, website);
+        // this.props.handler({...this.state});
+        this.props.handler(newScreen, companyName, industry, phoneNumber, website);
     }
     formatNumber() {
         let phoneNumber = this.phoneNumberInput.value,
         regex = /(\D+)/g,
+        limit = /(\d{12})/g,
         areaCode = '',
         firstDigits = '',
         lastDigits = '';
@@ -63,6 +74,7 @@ class SponsorForm_BusinessInformation extends Component{
             lastDigits = phoneNumber.substr(7, 3);
             phoneNumber = areaCode + firstDigits + lastDigits;
             this.phoneNumberInput.value = phoneNumber;
+            this.setState({ phoneNumber: phoneNumber });
         }
     }
     componentDidMount() {
@@ -96,7 +108,7 @@ class SponsorForm_BusinessInformation extends Component{
                             <div className="form-group">
                                 <label className="control-label">Company Name</label>
                                 <input
-                                    value={this.props.companyName}
+                                    value={this.state.companyName}
                                     onChange={this.onChange}
                                     type="text"
                                     name="companyName"
@@ -109,7 +121,7 @@ class SponsorForm_BusinessInformation extends Component{
                             <div className="form-group">
                                 <label className="control-label">Industry</label>
                                 <input
-                                    value={this.props.industry}
+                                    value={this.state.industry}
                                     onChange={this.onChange}
                                     type="text"
                                     name="industry"
@@ -123,7 +135,7 @@ class SponsorForm_BusinessInformation extends Component{
                                 <label className="control-label">Phone Number</label>
                                 <OverlayTrigger placement="right" overlay={tooltip_phoneNumber}>
                                     <input
-                                        value={this.props.phoneNumber}
+                                        value={this.state.phoneNumber}
                                         onChange={this.onChange}
                                         type="tel"
                                         name="phoneNumber"
@@ -139,7 +151,7 @@ class SponsorForm_BusinessInformation extends Component{
                                 <label className="control-label">Website</label>
                                 <OverlayTrigger placement="right" overlay={tooltip_url}>
                                 <input
-                                    value={this.props.website}
+                                    value={this.state.website}
                                     onChange={this.onChange}
                                     type="url"
                                     name="website"
