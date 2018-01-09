@@ -27,7 +27,6 @@ class SponsorSignupLayout extends Component {
         this.setState({ isScreenChanging: true });
     }
     handleSponsorFormState(sponsor_form) {
-        console.log(sponsor_form);
         this.setState({
             screen: sponsor_form.nextScreen,
             firstName: sponsor_form.firstName,

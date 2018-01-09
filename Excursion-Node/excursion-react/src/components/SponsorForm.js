@@ -33,13 +33,7 @@ class SponsorForm extends Component{
     }
     endScreen(e) {
         e.preventDefault();
-        let nextScreen = this.props.screenId + 1;
-        let firstName = this.firstNameInput.value;
-        let lastName = this.lastNameInput.value;
-        let email = this.emailInput.value;
-        console.log({...this.state});
         this.props.handler({...this.state});
-        // this.props.handler(nextScreen, firstName, lastName, email);
     }
     componentDidMount() {
         let button = this.refs.button;
