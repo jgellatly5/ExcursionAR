@@ -32,45 +32,50 @@ class SponsorSignupLayout extends Component {
         this.setState({ isScreenChanging: true });
     }
     handleSponsorFormState(sponsor_form) {
+        const {nextScreen, firstName, lastName, email} = sponsor_form;
         this.setState({
-            screen: sponsor_form.nextScreen,
-            firstName: sponsor_form.firstName,
-            lastName: sponsor_form.lastName,
-            email: sponsor_form.email
+            screen: nextScreen,
+            firstName: firstName,
+            lastName: lastName,
+            email: email
         });
     }
     handleSponsorFormBusinessInfoStateBack(sponsor_form) {
+        const {lastScreen, companyName, industry, phoneNumber, website} = sponsor_form;
         this.setState({
-            screen: sponsor_form.lastScreen,
-            companyName: sponsor_form.companyName,
-            industry: sponsor_form.industry,
-            phoneNumber: sponsor_form.phoneNumber,
-            website: sponsor_form.website
+            screen: lastScreen,
+            companyName: companyName,
+            industry: industry,
+            phoneNumber: phoneNumber,
+            website: website
         });
     }
     handleSponsorFormBusinessInfoStateForward(sponsor_form) {
+        const {nextScreen, companyName, industry, phoneNumber, website} = sponsor_form;
         this.setState({
-            screen: sponsor_form.nextScreen,
-            companyName: sponsor_form.companyName,
-            industry: sponsor_form.industry,
-            phoneNumber: sponsor_form.phoneNumber,
-            website: sponsor_form.website
+            screen: nextScreen,
+            companyName: companyName,
+            industry: industry,
+            phoneNumber: phoneNumber,
+            website: website
         });
     }
     handleFreemiumAdInfoStateBack(sponsor_form) {
+        const {lastScreen, adName, genre, adFormat} = sponsor_form;
         this.setState({
-            screen: sponsor_form.lastScreen,
-            adName: sponsor_form.adName,
-            genre: sponsor_form.genre,
-            adFormat: sponsor_form.adFormat
+            screen: lastScreen,
+            adName: adName,
+            genre: genre,
+            adFormat: adFormat
         });
     }
     handleFreemiumAdInfoStateForward(sponsor_form) {
+        const {nextScreen, adName, genre, adFormat} = sponsor_form;
         this.setState({
-            screen: sponsor_form.nextScreen,
-            adName: sponsor_form.adName,
-            genre: sponsor_form.genre,
-            adFormat: sponsor_form.adFormat
+            screen: nextScreen,
+            adName: adName,
+            genre: genre,
+            adFormat: adFormat
         });
     }
     handleSetBudgetStateBack(sponsor_form) {
@@ -122,11 +127,12 @@ class SponsorSignupLayout extends Component {
         switch(this.state.screen) {
             case 0:
                 if (this.state.isScreenChanging) {
+                    const {firstName, lastName, email} = this.state;
                     child = <SponsorForm
                                 handler={this.handleSponsorFormState}
-                                firstName={this.state.firstName}
-                                lastName={this.state.lastName}
-                                email={this.state.email}
+                                firstName={firstName}
+                                lastName={lastName}
+                                email={email}
                             />;
                 }
                 break;
