@@ -17,9 +17,12 @@ class SponsorSignupLayout extends Component {
         this.handleSponsorFormBusinessInfoStateForward = this.handleSponsorFormBusinessInfoStateForward.bind(this);
         this.handleFreemiumAdInfoStateBack = this.handleFreemiumAdInfoStateBack.bind(this);
         this.handleFreemiumAdInfoStateForward = this.handleFreemiumAdInfoStateForward.bind(this);
-        this.handleSetBudgetState = this.handleSetBudgetState.bind(this);
-        this.handleReviewInfoState = this.handleReviewInfoState.bind(this);
-        this.handlePaymentState = this.handlePaymentState.bind(this);
+        this.handleSetBudgetStateBack = this.handleSetBudgetStateBack.bind(this);
+        this.handleSetBudgetStateForward = this.handleSetBudgetStateForward.bind(this);
+        this.handleReviewInfoStateBack = this.handleReviewInfoStateBack.bind(this);
+        this.handleReviewInfoStateForward = this.handleReviewInfoStateForward.bind(this);
+        this.handlePaymentStateBack = this.handlePaymentStateBack.bind(this);
+        this.handlePaymentStateForward = this.handlePaymentStateForward.bind(this);
         this.state = {
             screen: 0,
             isScreenChanging: false
@@ -70,29 +73,48 @@ class SponsorSignupLayout extends Component {
             adFormat: sponsor_form.adFormat
         });
     }
-    handleSetBudgetState(e, newScreen, dailyBudget, monthlyBudget) {
-        e.preventDefault();
+    handleSetBudgetStateBack(sponsor_form) {
         this.setState({
-            screen: newScreen,
-            dailyBudget: dailyBudget,
-            monthlyBudget: monthlyBudget
+            screen: sponsor_form.lastScreen,
+            dailyBudget: sponsor_form.dailyBudget,
+            monthlyBudget: sponsor_form.monthlyBudget
         });
     }
-    handleReviewInfoState(e, newScreen) {
-        e.preventDefault();
-        this.setState({ screen: newScreen });
-    }
-    handlePaymentState(e, newScreen, cardName, cardType, paymentType, billingAddress, city, zipCode, stateAddress) {
-        e.preventDefault();
+    handleSetBudgetStateForward(sponsor_form) {
         this.setState({
-            screen: newScreen,
-            cardName: cardName,
-            cardType: cardType,
-            paymentType: paymentType,
-            billingAddress: billingAddress,
-            city: city,
-            zipCode: zipCode,
-            stateAddress: stateAddress
+            screen: sponsor_form.nextScreen,
+            dailyBudget: sponsor_form.dailyBudget,
+            monthlyBudget: sponsor_form.monthlyBudget
+        });
+    }
+    handleReviewInfoStateBack(sponsor_form) {
+        this.setState({ screen: sponsor_form.lastScreen });
+    }
+    handleReviewInfoStateForward(sponsor_form) {
+        this.setState({ screen: sponsor_form.nextScreen });
+    }
+    handlePaymentStateBack(sponsor_form) {
+        this.setState({
+            screen: sponsor_form.lastScreen,
+            cardName: sponsor_form.cardName,
+            cardType: sponsor_form.cardType,
+            paymentType: sponsor_form.paymentType,
+            billingAddress: sponsor_form.billingAddress,
+            city: sponsor_form.city,
+            zipCode: sponsor_form.zipCode,
+            stateAddress: sponsor_form.stateAddress
+        });
+    }
+    handlePaymentStateForward(sponsor_form) {
+        this.setState({
+            screen: sponsor_form.nextScreen,
+            cardName: sponsor_form.cardName,
+            cardType: sponsor_form.cardType,
+            paymentType: sponsor_form.paymentType,
+            billingAddress: sponsor_form.billingAddress,
+            city: sponsor_form.city,
+            zipCode: sponsor_form.zipCode,
+            stateAddress: sponsor_form.stateAddress
         });
     }
     render() {
@@ -124,7 +146,6 @@ class SponsorSignupLayout extends Component {
             //     break;
             case 2:
                 child = <Freemium_AdInfo
-                            screenId={this.state.screen}
                             handlerBack={this.handleFreemiumAdInfoStateBack}
                             handlerForward={this.handleFreemiumAdInfoStateForward}
                             adName={this.state.adName}
@@ -134,16 +155,16 @@ class SponsorSignupLayout extends Component {
                 break;
             case 3:
                 child = <SetBudget
-                            screenId={this.state.screen}
-                            handler={this.handleSetBudgetState}
+                            handlerBack={this.handleSetBudgetStateBack}
+                            handlerForward={this.handleSetBudgetStateForward}
                             dailyBudget={this.state.dailyBudget}
                             monthlyBudget={this.state.monthlyBudget}
                         />;
                 break;
             case 4:
                 child = <ReviewInfo
-                            screenId={this.state.screen}
-                            handler={this.handleReviewInfoState}
+                            handlerBack={this.handleReviewInfoStateBack}
+                            handlerForward={this.handleReviewInfoStateForward}
                             firstName={this.state.firstName}
                             lastName={this.state.lastName}
                             email={this.state.email}
@@ -159,8 +180,8 @@ class SponsorSignupLayout extends Component {
                 break;
             case 5:
                 child = <PaymentInfo
-                            screenId={this.state.screen}
-                            handler={this.handlePaymentState}
+                            handlerBack={this.handleReviewInfoStateBack}
+                            handlerForward={this.handleReviewInfoStateForward}
                             cardName={this.state.cardName}
                             cardType={this.state.cardType}
                             paymentType={this.state.paymentType}

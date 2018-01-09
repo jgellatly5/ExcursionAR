@@ -10,6 +10,10 @@ function budgetFormatter(v) {
 class SetBudget extends Component{
     constructor(props) {
         super(props);
+        this.state = {
+            lastScreen: 2,
+            nextScreen: 4
+        }
         this.monthlyBudget = this.props.monthlyBudget;
         this.dailyBudget = this.props.dailyBudget;
         this.onChange = this.onChange.bind(this);
@@ -37,15 +41,12 @@ class SetBudget extends Component{
         });
     }
     changeScreen(e) {
-        let nextScreen;
+        e.preventDefault();
         if (e.target.name == 'back') {
-            nextScreen = this.props.screenId - 1;
+            this.props.handlerBack({...this.state});
         } else {
-            nextScreen = this.props.screenId + 1;
+            this.props.handlerForward({...this.state});
         }
-        let dailyBudget = this.dailyBudget;
-        let monthlyBudget = this.monthlyBudget;
-        this.props.handler(e, nextScreen, dailyBudget, monthlyBudget);
     }
     componentDidMount() {
         let buttonNext = this.refs.buttonNext;

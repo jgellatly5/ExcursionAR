@@ -8,16 +8,19 @@ function capitalizeFirstLetter(string) {
 class ReviewInfo extends Component{
     constructor(props) {
         super(props);
+        this.state = {
+            lastScreen: 3,
+            nextScreen: 5
+        }
         this.changeScreen = this.changeScreen.bind(this);
     }
     changeScreen(e) {
-        let nextScreen;
+        e.preventDefault();
         if (e.target.name == 'back') {
-            nextScreen = this.props.screenId - 1;
+            this.props.handlerBack({...this.state});
         } else {
-            nextScreen = this.props.screenId + 1;
+            this.props.handlerForward({...this.state});
         }
-        this.props.handler(e, nextScreen);
     }
     render() {
         return (

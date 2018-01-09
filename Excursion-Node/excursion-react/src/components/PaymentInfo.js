@@ -5,6 +5,8 @@ class PaymentInfo extends Component{
     constructor(props) {
         super(props);
         this.state = {
+            lastScreen: 4,
+            nextScreen: 6,
             insertCreditCardClass: 'payment-info-panel',
             insertPayPalClass: 'payment-info-panel'
         };
@@ -64,20 +66,12 @@ class PaymentInfo extends Component{
         this.onChange(e);
     }
     changeScreen(e) {
-        let nextScreen;
+        e.preventDefault();
         if (e.target.name == 'back') {
-            nextScreen = this.props.screenId - 1;
+            this.props.handlerBack({...this.state});
         } else {
-            nextScreen = this.props.screenId + 1;
+            this.props.handlerForward({...this.state});
         }
-        let cardName = this.cardNameInput.value;
-        let cardType = this.cardTypeInput.value;
-        let paymentType = this.state.paymentType;
-        let billingAddress = this.billingAddressInput.value;
-        let city = this.cityInput.value;
-        let zipCode = this.zipCodeInput.value;
-        let stateAddress = this.stateInput.value;
-        this.props.handler(e, nextScreen, cardName, cardType, paymentType, billingAddress, city, zipCode, stateAddress);
     }
     formatCardNumber() {
         let cardNumber = this.cardNumberInput.value;
