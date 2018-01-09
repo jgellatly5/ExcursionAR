@@ -69,10 +69,7 @@ class SponsorForm_BusinessInformation extends Component{
         }
     }
     componentDidMount() {
-        let companyName = this.props.companyName;
-        let industry = this.props.industry;
-        let phoneNumber = this.props.phoneNumber;
-        let website = this.props.website;
+        const {companyName, industry, phoneNumber, website} = this.props;
         let button = this.refs.button;
         if (companyName == undefined || industry == undefined || phoneNumber == undefined || website == undefined) {
             button.setAttribute('disabled','disabled');

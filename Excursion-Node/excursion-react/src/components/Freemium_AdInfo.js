@@ -7,9 +7,8 @@ class Freemium_AdInfo extends Component{
         this.state = {
             lastScreen: 1,
             nextScreen: 3,
+            ...props,
             adType: 'freemium',
-            adName: this.props.adName,
-            genre: this.props.genre,
             insertStaticClass: 'freemium-path-panel',
             insertDynamicClass: 'freemium-path-panel',
             insertInteractiveClass: 'freemium-path-panel'
@@ -27,13 +26,14 @@ class Freemium_AdInfo extends Component{
         let adName = this.adNameInput.value;
         let genre = this.genreInput.value;
         let adFormat = this.adFormat;
-        if (adName !== '' && genre !== '' && adFormat !== '0') {
+        if (adName !== '' && genre !== '' && adFormat !== 0) {
             buttonNext.classList.add('active', 'hvr-grow');
             buttonNext.removeAttribute('disabled');
         } else {
             buttonNext.classList.remove('active', 'hvr-grow');
             buttonNext.setAttribute('disabled','disabled');
         }
+        this.setState({ genre: genre });
     }
     onSelectStatic(e) {
         e.preventDefault();
@@ -77,11 +77,9 @@ class Freemium_AdInfo extends Component{
         }
     }
     componentDidMount() {
-        let adName = this.props.adName;
-        let genre = this.props.genre;
-        let adFormat = this.props.adFormat;
+        const {adName, genre, adFormat} = this.props;
         let buttonNext = this.refs.buttonNext;
-        if (adName == undefined && genre == undefined && adFormat == undefined) {
+        if (adName == undefined || genre == undefined || adFormat == undefined) {
             buttonNext.setAttribute('disabled','disabled');
         } else {
             buttonNext.classList.add('active', 'hvr-grow');

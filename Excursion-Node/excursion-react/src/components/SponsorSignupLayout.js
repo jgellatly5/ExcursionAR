@@ -180,8 +180,8 @@ class SponsorSignupLayout extends Component {
                 break;
             case 5:
                 child = <PaymentInfo
-                            handlerBack={this.handleReviewInfoStateBack}
-                            handlerForward={this.handleReviewInfoStateForward}
+                            handlerBack={this.handlePaymentStateBack}
+                            handlerForward={this.handlePaymentStateForward}
                             cardName={this.state.cardName}
                             cardType={this.state.cardType}
                             paymentType={this.state.paymentType}
