@@ -5,11 +5,9 @@ class SponsorForm_BusinessInformation extends Component{
     constructor(props) {
         super(props);
         this.state = {
-            newScreen: this.props.screenId,
-            companyName: this.props.companyName,
-            industry: this.props.industry,
-            phoneNumber: this.props.phoneNumber,
-            website: this.props.website
+            lastScreen: 0,
+            nextScreen: 2,
+            ...props
         }
         this.onChange = this.onChange.bind(this);
         this.changeScreen = this.changeScreen.bind(this);
@@ -37,18 +35,11 @@ class SponsorForm_BusinessInformation extends Component{
     }
     changeScreen(e) {
         e.preventDefault();
-        let newScreen;
         if (e.target.name == 'back') {
-            newScreen = this.props.screenId - 1;
+            this.props.handlerBack({...this.state});
         } else {
-            newScreen = this.props.screenId + 1;
+            this.props.handlerForward({...this.state});
         }
-        let companyName = this.companyNameInput.value;
-        let industry = this.industryInput.value;
-        let phoneNumber = this.phoneNumberInput.value;
-        let website = this.websiteInput.value;
-        // this.props.handler({...this.state});
-        this.props.handler(newScreen, companyName, industry, phoneNumber, website);
     }
     formatNumber() {
         let phoneNumber = this.phoneNumberInput.value,

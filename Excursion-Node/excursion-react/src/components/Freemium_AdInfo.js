@@ -5,6 +5,8 @@ class Freemium_AdInfo extends Component{
     constructor(props) {
         super(props);
         this.state = {
+            lastScreen: 1,
+            nextScreen: 3,
             adType: 'freemium',
             adName: this.props.adName,
             genre: this.props.genre,
@@ -68,16 +70,11 @@ class Freemium_AdInfo extends Component{
     }
     changeScreen(e) {
         e.preventDefault();
-        let nextScreen;
         if (e.target.name == 'back') {
-            nextScreen = this.props.screenId - 1;
+            this.props.handlerBack({...this.state});
         } else {
-            nextScreen = this.props.screenId + 1;
+            this.props.handlerForward({...this.state});
         }
-        let adName = this.adNameInput.value;
-        let genre = this.genreInput.value;
-        let adFormat = this.state.adFormat;
-        this.props.handler(nextScreen, adName, genre, adFormat);
     }
     componentDidMount() {
         let adName = this.props.adName;

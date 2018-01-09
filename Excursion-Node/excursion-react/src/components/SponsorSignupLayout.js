@@ -13,8 +13,10 @@ class SponsorSignupLayout extends Component {
     constructor(props) {
         super(props);
         this.handleSponsorFormState = this.handleSponsorFormState.bind(this);
-        this.handleSponsorFormBusinessInfoState = this.handleSponsorFormBusinessInfoState.bind(this);
-        this.handleFreemiumAdInfoState = this.handleFreemiumAdInfoState.bind(this);
+        this.handleSponsorFormBusinessInfoStateBack = this.handleSponsorFormBusinessInfoStateBack.bind(this);
+        this.handleSponsorFormBusinessInfoStateForward = this.handleSponsorFormBusinessInfoStateForward.bind(this);
+        this.handleFreemiumAdInfoStateBack = this.handleFreemiumAdInfoStateBack.bind(this);
+        this.handleFreemiumAdInfoStateForward = this.handleFreemiumAdInfoStateForward.bind(this);
         this.handleSetBudgetState = this.handleSetBudgetState.bind(this);
         this.handleReviewInfoState = this.handleReviewInfoState.bind(this);
         this.handlePaymentState = this.handlePaymentState.bind(this);
@@ -34,21 +36,38 @@ class SponsorSignupLayout extends Component {
             email: sponsor_form.email
         });
     }
-    handleSponsorFormBusinessInfoState(newScreen, companyName, industry, phoneNumber, website) {
+    handleSponsorFormBusinessInfoStateBack(sponsor_form) {
         this.setState({
-            screen: newScreen,
-            companyName: companyName,
-            industry: industry,
-            phoneNumber: phoneNumber,
-            website: website
+            screen: sponsor_form.lastScreen,
+            companyName: sponsor_form.companyName,
+            industry: sponsor_form.industry,
+            phoneNumber: sponsor_form.phoneNumber,
+            website: sponsor_form.website
         });
     }
-    handleFreemiumAdInfoState(newScreen, adName, genre, adFormat) {
+    handleSponsorFormBusinessInfoStateForward(sponsor_form) {
         this.setState({
-            screen: newScreen,
-            adName: adName,
-            genre: genre,
-            adFormat: adFormat
+            screen: sponsor_form.nextScreen,
+            companyName: sponsor_form.companyName,
+            industry: sponsor_form.industry,
+            phoneNumber: sponsor_form.phoneNumber,
+            website: sponsor_form.website
+        });
+    }
+    handleFreemiumAdInfoStateBack(sponsor_form) {
+        this.setState({
+            screen: sponsor_form.lastScreen,
+            adName: sponsor_form.adName,
+            genre: sponsor_form.genre,
+            adFormat: sponsor_form.adFormat
+        });
+    }
+    handleFreemiumAdInfoStateForward(sponsor_form) {
+        this.setState({
+            screen: sponsor_form.nextScreen,
+            adName: sponsor_form.adName,
+            genre: sponsor_form.genre,
+            adFormat: sponsor_form.adFormat
         });
     }
     handleSetBudgetState(e, newScreen, dailyBudget, monthlyBudget) {
@@ -82,7 +101,6 @@ class SponsorSignupLayout extends Component {
             case 0:
                 if (this.state.isScreenChanging) {
                     child = <SponsorForm
-                                screenId={this.state.screen}
                                 handler={this.handleSponsorFormState}
                                 firstName={this.state.firstName}
                                 lastName={this.state.lastName}
@@ -92,8 +110,8 @@ class SponsorSignupLayout extends Component {
                 break;
             case 1:
                 child = <SponsorForm_BusinessInformation
-                            screenId={this.state.screen}
-                            handler={this.handleSponsorFormBusinessInfoState}
+                            handlerBack={this.handleSponsorFormBusinessInfoStateBack}
+                            handlerForward={this.handleSponsorFormBusinessInfoStateForward}
                             companyName={this.state.companyName}
                             industry={this.state.industry}
                             phoneNumber={this.state.phoneNumber}
@@ -107,7 +125,8 @@ class SponsorSignupLayout extends Component {
             case 2:
                 child = <Freemium_AdInfo
                             screenId={this.state.screen}
-                            handler={this.handleFreemiumAdInfoState}
+                            handlerBack={this.handleFreemiumAdInfoStateBack}
+                            handlerForward={this.handleFreemiumAdInfoStateForward}
                             adName={this.state.adName}
                             genre={this.state.genre}
                             adFormat={this.state.adFormat}

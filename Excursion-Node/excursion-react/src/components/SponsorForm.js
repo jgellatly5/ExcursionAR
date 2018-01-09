@@ -5,10 +5,8 @@ class SponsorForm extends Component{
     constructor(props) {
         super(props);
         this.state = {
-            nextScreen: this.props.screenId + 1,
-            firstName: this.props.firstName,
-            lastName: this.props.lastName,
-            email: this.props.email
+            nextScreen: 1,
+            ...props
         }
         this.onChange = this.onChange.bind(this);
         this.endScreen = this.endScreen.bind(this);
