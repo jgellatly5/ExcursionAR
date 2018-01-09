@@ -71,9 +71,11 @@ class Freemium_AdInfo extends Component{
     changeScreen(e) {
         e.preventDefault();
         if (e.target.name == 'back') {
-            this.props.handlerBack({...this.state});
+            this.props.handler({...this.state});
+            this.props.handleLastScreen(this.state.lastScreen);
         } else {
-            this.props.handlerForward({...this.state});
+            this.props.handler({...this.state});
+            this.props.handleNextScreen(this.state.nextScreen);
         }
     }
     componentDidMount() {

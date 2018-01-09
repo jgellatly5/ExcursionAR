@@ -32,6 +32,7 @@ class SponsorForm extends Component{
     endScreen(e) {
         e.preventDefault();
         this.props.handler({...this.state});
+        this.props.handleNextScreen(this.state.nextScreen);
     }
     componentDidMount() {
         let button = this.refs.button;
