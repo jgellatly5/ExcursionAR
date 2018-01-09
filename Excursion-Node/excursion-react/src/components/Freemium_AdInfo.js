@@ -126,8 +126,8 @@ class Freemium_AdInfo extends Component{
                     <p>Choose what ad you would like to use on our platform.</p>
                     <div>
                         <form>
-                            {/* //We are currently offering only one type of tier for sponsors, ad type will be necessary when we begin offering premium services
-                                <div className="form-group">
+                            {/*We are currently offering only one type of tier for sponsors, ad type will be necessary when we begin offering premium services*/}
+                            {/* <div className="form-group">
                                 <label className="control-label">Ad Type</label>
                                 <p className="ad-type">Freemium</p>
                             </div>*/}

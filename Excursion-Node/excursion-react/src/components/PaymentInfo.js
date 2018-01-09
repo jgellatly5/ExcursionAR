@@ -38,8 +38,9 @@ class PaymentInfo extends Component{
         let terms = this.termsInput.checked;
         let regex = /[\d-]/g;
         if (paymentType !== 0 && cardType !== '' && cardName !== '' && cardNumber !== '' && regex.test(cardNumber) &&
-            expDate !== '' && regex.test(expDate) && cvvNumber !== '' && billingAddress !== '' && city !== '' &&
-            zipCode !== '' && !isNaN(zipCode) && stateAddress !== '' && terms) {
+            cardNumber.length >= 19 && expDate !== '' && regex.test(expDate) &&  expDate.length >= 5 && cvvNumber !== '' &&
+            cvvNumber.length >= 3 && billingAddress !== '' && city !== '' && zipCode !== '' && !isNaN(zipCode) &&
+            zipCode.length >= 5 && stateAddress !== '' && terms) {
             buttonNext.classList.add('active', 'hvr-grow');
             buttonNext.removeAttribute('disabled');
         } else {
@@ -143,17 +144,9 @@ class PaymentInfo extends Component{
         this.setState({ zipCode: zipCode });
     }
     componentDidMount() {
-        const {cardName, cardType, city, stateAddress, billingAddress, zipCode} = this.props;
+        const {paymentType} = this.props;
         let buttonNext = this.refs.buttonNext;
-        if (cardName == undefined || cardType == undefined || paymentType == undefined ||
-            city == undefined || stateAddress == undefined || billingAddress == undefined ||
-            zipCode == undefined) {
-            buttonNext.setAttribute('disabled','disabled');
-        } else {
-            buttonNext.classList.add('active', 'hvr-grow');
-            buttonNext.removeAttribute('disabled');
-        }
-        let paymentType = this.props.paymentType;
+        buttonNext.setAttribute('disabled','disabled');
         if (paymentType == 'creditCard') {
             this.paymentType = this.refs.creditCardCard.props.eventKey;
             this.setState({
@@ -388,6 +381,7 @@ class PaymentInfo extends Component{
                                     </FormControl>
                                 </FormGroup>
 
+                                {/*TODO Customize the checkbox when checked*/}
                                 <div className="payment-terms">
                                     <input
                                         type="checkbox"

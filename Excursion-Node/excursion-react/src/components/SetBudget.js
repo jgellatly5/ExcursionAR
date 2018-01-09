@@ -12,7 +12,8 @@ class SetBudget extends Component{
         super(props);
         this.state = {
             lastScreen: 2,
-            nextScreen: 4
+            nextScreen: 4,
+            ...props
         }
         this.monthlyBudget = this.props.monthlyBudget;
         this.dailyBudget = this.props.dailyBudget;
@@ -50,7 +51,7 @@ class SetBudget extends Component{
     }
     componentDidMount() {
         let buttonNext = this.refs.buttonNext;
-        if (this.dailyBudget == undefined) {
+        if (this.dailyBudget === 0 || this.dailyBudget == undefined) {
             buttonNext.setAttribute('disabled','disabled');
         } else {
             buttonNext.classList.add('active', 'hvr-grow');
