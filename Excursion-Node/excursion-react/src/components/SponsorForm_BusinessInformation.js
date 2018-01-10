@@ -46,7 +46,6 @@ class SponsorForm_BusinessInformation extends Component{
     formatNumber() {
         let phoneNumber = this.phoneNumberInput.value,
         regex = /(\D+)/g,
-        limit = /(\d{12})/g,
         areaCode = '',
         firstDigits = '',
         lastDigits = '';

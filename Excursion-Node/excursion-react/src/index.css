@@ -1327,8 +1327,13 @@ input[type='radio']:checked:before {
     margin-top: -20px;
 }
 
+.payment-card-details {
+    margin-left: -3%;
+    margin-bottom: 7%;
+}
+
 .payment-card-details .payment-exp {
-    width: 100%;
+    width: 110%;
 }
 
 .payment-hr {
@@ -1339,7 +1344,7 @@ input[type='radio']:checked:before {
 }
 
 .address-margin {
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 
 .payment-method .col-xs-3 {
@@ -1347,14 +1352,15 @@ input[type='radio']:checked:before {
 }
 
 .payment-margin {
-    margin-left: 18%;
-    border-top: 2px solid #1E1E75;
-    padding-top: 50px;
     width: 75%;
 }
 
 .payment-margin .form-control {
     width: 200%;
+}
+
+.payment-info .bottom-form .btn {
+    margin-top: 0px;
 }
 
 input[type=checkbox] {
@@ -1383,9 +1389,46 @@ input[type=checkbox] {
     background: black;
 } */
 
+.payment-terms {
+    width: 400px;
+}
+
 .payment-terms label {
     margin-left: 8px;
+    font-size: 18px;
     /* vertical-align: middle; */
+}
+
+.billing-address {
+    margin-bottom: 15px;
+}
+
+.city-town {
+    margin-top: 23px;
+}
+
+.state-address {
+    margin-bottom: 50px;
+}
+
+.column-2 {
+    padding-left: 60px;
+}
+
+.payment-info .form-group {
+    width: 69%;
+}
+
+.payment-fix {
+    margin-left: -30px;
+}
+
+.payment-info .payment-header, .payment-info .payment-para {
+    margin-left: 11%;
+}
+
+.payment-panel {
+    height: 875px;
 }
 
 /*React CSS Transition Group*/
