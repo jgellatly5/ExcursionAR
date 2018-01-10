@@ -1375,7 +1375,6 @@ input[type=checkbox] {
     border-radius: 4px;
     vertical-align: middle;
     margin-left: 20px;
-    /* margin-top: -5px; */
 }
 
 .payment-checkbox:checked {
@@ -1397,7 +1396,6 @@ input[type=checkbox] {
 .payment-terms label {
     margin-left: 12px;
     font-size: 17px;
-    /* vertical-align: middle; */
 }
 
 .billing-address {

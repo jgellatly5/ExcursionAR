@@ -17,10 +17,7 @@ class PaymentInfo extends Component{
         this.onSelectPayPal = this.onSelectPayPal.bind(this);
         this.changeScreen = this.changeScreen.bind(this);
         this.formatCardNumber = this.formatCardNumber.bind(this);
-        this.formatExpMonth = this.formatExpMonth.bind(this);
-        this.formatExpYear = this.formatExpYear.bind(this);
-        this.formatCvvNumber = this.formatCvvNumber.bind(this);
-        this.formatZipCode = this.formatZipCode.bind(this);
+        this.formatCardInfo = this.formatCardInfo.bind(this);
     }
     onChange(e) {
         this.setState({ [e.target.name]: e.target.value });
@@ -41,7 +38,7 @@ class PaymentInfo extends Component{
         if (paymentType !== 0 && cardType !== '' && cardName !== '' && cardNumber !== '' &&
             cardNumber.length >= 19 && expMonth !== '' &&  expMonth.length >= 2 && expYear !== '' &&
             expYear.length >= 2 && cvvNumber !== '' && cvvNumber.length >= 3 && billingAddress !== '' &&
-            city !== '' && zipCode !== '' && !isNaN(zipCode) && zipCode.length >= 5 && stateAddress !== '' && terms) {
+            city !== '' && zipCode !== '' && !isNaN(zipCode) && zipCode.length >= 5 && stateAddress !== 'Please Select' && terms) {
             buttonNext.classList.add('active', 'hvr-grow');
             buttonNext.removeAttribute('disabled');
         } else {
@@ -83,7 +80,7 @@ class PaymentInfo extends Component{
     formatCardNumber() {
         let cardNumber = this.cardNumberInput.value;
         // Regex includes any character excluding normal digits and spaces
-        let regex = /[^\d ]/g;
+        let regex = /[^\d]/g;
         let first, second, third, fourth = '';
         if (cardNumber !== '') {
             // This essentially removes any character not a digit or a space from the input
@@ -106,53 +103,17 @@ class PaymentInfo extends Component{
             this.setState({ cardNumber: cardNumber });
         }
     }
-    formatExpMonth() {
-        let expMonth = this.expMonthInput.value;
+    formatCardInfo(e) {
         let regex = /[^\d]/g;
-        let month = '';
-        if (expMonth !== '') {
-            expMonth = expMonth.replace(regex, '');
-            month = expMonth.substr(0,2);
-            expMonth = month;
+        e.target.value = e.target.value.replace(regex, '');
+        if (e.target.name == "zipCode") {
+            e.target.value = e.target.value.substr(0,5);
+        } else if (e.target.name == "cvvNumber") {
+            e.target.value = e.target.value.substr(0,3);
+        } else {
+            e.target.value = e.target.value.substr(0,2);
         }
-        this.expMonthInput.value = expMonth;
-        this.setState({ expMonth: expMonth });
-    }
-    formatExpYear() {
-        let expYear = this.expYearInput.value;
-        let regex = /[^\d]/g;
-        let year = '';
-        if (expYear !== '') {
-            expYear = expYear.replace(regex, '');
-            year = expYear.substr(0,2);
-            expYear = year;
-        }
-        this.expYearInput.value = expYear;
-        this.setState({ expYear: expYear });
-    }
-    formatCvvNumber() {
-        let cvvNumber = this.cvvNumberInput.value;
-        let regex = /[^\d]/g;
-        let threeDigits = '';
-        if (cvvNumber !== '') {
-            cvvNumber = cvvNumber.replace(regex, '');
-            threeDigits = cvvNumber.substr(0, 3);
-            cvvNumber = threeDigits;
-        }
-        this.cvvNumberInput.value = cvvNumber;
-        this.setState({ cvvNumber: cvvNumber });
-    }
-    formatZipCode() {
-        let zipCode = this.zipCodeInput.value;
-        let regex = /[^\d]/g;
-        let fiveDigits = '';
-        if (zipCode !== '') {
-            zipCode = zipCode.replace(regex, '');
-            fiveDigits = zipCode.substr(0, 5);
-            zipCode = fiveDigits;
-        }
-        this.zipCodeInput.value = zipCode;
-        this.setState({ zipCode: zipCode });
+        this.setState({ [e.target.name]: e.target.value });
     }
     componentDidMount() {
         const {paymentType} = this.props;
@@ -262,7 +223,7 @@ class PaymentInfo extends Component{
                                                                 type="text"
                                                                 name="expMonth"
                                                                 className="form-control payment-exp"
-                                                                onKeyUp={this.formatExpMonth}
+                                                                onKeyUp={this.formatCardInfo}
                                                                 ref={(input) => { this.expMonthInput = input }}
                                                                 placeholder="MM"
                                                                 required
@@ -276,7 +237,7 @@ class PaymentInfo extends Component{
                                                                 type="text"
                                                                 name="expYear"
                                                                 className="form-control payment-exp"
-                                                                onKeyUp={this.formatExpYear}
+                                                                onKeyUp={this.formatCardInfo}
                                                                 ref={(input) => { this.expYearInput = input }}
                                                                 placeholder="YY"
                                                                 required
@@ -290,7 +251,7 @@ class PaymentInfo extends Component{
                                                                 type="text"
                                                                 name="cvvNumber"
                                                                 className="form-control payment-exp"
-                                                                onKeyUp={this.formatCvvNumber}
+                                                                onKeyUp={this.formatCardInfo}
                                                                 ref={(input) => { this.cvvNumberInput = input }}
                                                                 required
                                                             />
@@ -346,7 +307,7 @@ class PaymentInfo extends Component{
                                                         type="text"
                                                         name="zipCode"
                                                         className="form-control"
-                                                        onKeyUp={this.formatZipCode}
+                                                        onKeyUp={this.formatCardInfo}
                                                         ref={(input) => { this.zipCodeInput = input }}
                                                         required
                                                     />
@@ -356,7 +317,7 @@ class PaymentInfo extends Component{
                                                 <FormGroup controlId="formControlsSelect" className="state-address">
                                                     <ControlLabel>State</ControlLabel>
                                                     <FormControl componentClass="select" onChange={this.onChange} inputRef={ref => { this.stateInput = ref; }} value={this.state.stateAddress} name="stateAddress" required>
-                                                        <option value="N/A">N/A</option>
+                                                        <option value="Please Select">Please Select</option>
                                                         <option value="AK">Alaska</option>
                                                         <option value="AL">Alabama</option>
                                                         <option value="AR">Arkansas</option>
