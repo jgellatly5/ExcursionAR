@@ -34,7 +34,6 @@ const Routes = (props) => (
             <Route component={ReviewInfo} />
             <Route component={PaymentInfo} />
         </Route>
-        <Route path="/test" component={SponsorForm_BusinessInformation} />
         <Route path="*" component={NotFound} />
     </Router>
 );

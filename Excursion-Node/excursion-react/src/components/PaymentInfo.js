@@ -58,7 +58,9 @@ class PaymentInfo extends Component{
             paymentType: 'creditCard',
             insertCreditCardClass: 'payment-info-panel active',
             insertPayPalClass: 'payment-info-panel',
-            hiddenClass: 'ad-signup-panel payment-panel'
+            hiddenClass: '',
+            insertPaymentTermsClass: 'payment-terms',
+            insertPaymentPanelClass: 'ad-signup-panel payment-panel'
         });
         this.onChange(e);
     }
