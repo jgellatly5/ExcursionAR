@@ -4,9 +4,11 @@ import { Grid, Row, Col, Panel, FormGroup, ControlLabel, FormControl } from 'rea
 class Freemium_AdInfo extends Component{
     constructor(props) {
         super(props);
+        const lastScreen = 1;
+        const nextScreen = 3;
         this.state = {
-            lastScreen: 1,
-            nextScreen: 3,
+            lastScreen: lastScreen,
+            nextScreen: nextScreen,
             ...props,
             adType: 'freemium',
             insertStaticClass: 'freemium-path-panel',

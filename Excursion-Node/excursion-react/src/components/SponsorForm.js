@@ -4,8 +4,9 @@ import { Panel, Tooltip, OverlayTrigger } from 'react-bootstrap';
 class SponsorForm extends Component{
     constructor(props) {
         super(props);
+        const nextScreen = 1;
         this.state = {
-            nextScreen: 1,
+            nextScreen: nextScreen,
             ...props
         }
         this.onChange = this.onChange.bind(this);
