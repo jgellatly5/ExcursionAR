@@ -38,10 +38,9 @@ class PaymentInfo extends Component{
         let zipCode = this.zipCodeInput.value;
         let stateAddress = this.stateInput.value;
         let terms = this.termsInput.checked;
-        let regex = /[\d]/g;
-        if (paymentType !== 0 && cardType !== '' && cardName !== '' && cardNumber !== '' && regex.test(cardNumber) &&
-            cardNumber.length >= 19 && expMonth !== '' && regex.test(expMonth) &&  expMonth.length >= 2 && expYear !== '' &&
-            regex.test(expYear) &&  expYear.length >= 2 && cvvNumber !== '' && cvvNumber.length >= 3 && billingAddress !== '' &&
+        if (paymentType !== 0 && cardType !== '' && cardName !== '' && cardNumber !== '' &&
+            cardNumber.length >= 19 && expMonth !== '' &&  expMonth.length >= 2 && expYear !== '' &&
+            expYear.length >= 2 && cvvNumber !== '' && cvvNumber.length >= 3 && billingAddress !== '' &&
             city !== '' && zipCode !== '' && !isNaN(zipCode) && zipCode.length >= 5 && stateAddress !== '' && terms) {
             buttonNext.classList.add('active', 'hvr-grow');
             buttonNext.removeAttribute('disabled');
