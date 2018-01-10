@@ -11,7 +11,9 @@ class PaymentInfo extends Component{
             nextScreen: nextScreen,
             ...props,
             insertCreditCardClass: 'payment-info-panel',
-            insertPayPalClass: 'payment-info-panel'
+            insertPayPalClass: 'payment-info-panel',
+            insertPaymentTermsClass: 'payment-terms',
+            insertPaymentPanelClass: 'payment-panel'
         };
         this.paymentType = 0;
         this.onChange = this.onChange.bind(this);
@@ -56,7 +58,7 @@ class PaymentInfo extends Component{
             paymentType: 'creditCard',
             insertCreditCardClass: 'payment-info-panel active',
             insertPayPalClass: 'payment-info-panel',
-            hiddenClass: ''
+            hiddenClass: 'ad-signup-panel payment-panel'
         });
         this.onChange(e);
     }
@@ -67,7 +69,9 @@ class PaymentInfo extends Component{
             paymentType: 'payPal',
             insertCreditCardClass: 'payment-info-panel',
             insertPayPalClass: 'payment-info-panel active',
-            hiddenClass: 'hidden'
+            hiddenClass: 'hidden',
+            insertPaymentTermsClass: 'payment-terms paypal',
+            insertPaymentPanelClass: 'ad-signup-panel payment-panel paypal'
         });
         this.onChange(e);
     }
@@ -148,7 +152,7 @@ class PaymentInfo extends Component{
         return (
             <div className="ad-signup-container">
                 <div className="ad-signup payment-info" id="fix-margin">
-                    <Panel className="ad-signup-panel payment-panel">
+                    <Panel className={this.state.insertPaymentPanelClass}>
                     <div className="payment-fix">
                         <h1 className="payment-header">Enter payment info</h1>
                         <p className="payment-para">Select a payment method</p>
@@ -383,7 +387,7 @@ class PaymentInfo extends Component{
                                                 </div>
 
                                                 {/*TODO Customize the checkbox when checked*/}
-                                                <div className="payment-terms">
+                                                <div className={this.state.insertPaymentTermsClass}>
                                                     <input
                                                         type="checkbox"
                                                         name="termsAndConditions"

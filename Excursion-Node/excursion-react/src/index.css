@@ -1392,6 +1392,15 @@ input[type=checkbox] {
     width: 500px;
 }
 
+.payment-terms.paypal {
+    margin-top: 100px;
+    margin-bottom: 185px;
+}
+
+.payment-panel.paypal {
+    height: 600px;
+}
+
 .payment-terms label {
     margin-left: 12px;
     font-size: 17px;
