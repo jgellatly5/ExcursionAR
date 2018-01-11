@@ -3,6 +3,12 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import GeneralForm from "./GeneralForm";
 import PublisherForm_AppInfo from "./PublisherForm_AppInfo";
 
+const screenChoiceEnum = {
+    GENERAL_FORM: 0,
+    PUBLISHER_FORM_APP_INFO: 1
+}
+Object.freeze(screenChoiceEnum);
+
 class PublisherSignupLayout extends Component {
     constructor(props) {
         super(props);
@@ -46,6 +52,7 @@ class PublisherSignupLayout extends Component {
                     child = <GeneralForm
                                 handler={this.handleGeneralFormState}
                                 handleNextScreen={this.handleNextScreen}
+                                nextScreen={screenChoiceEnum.PUBLISHER_FORM_APP_INFO}
                                 firstName={firstName}
                                 lastName={lastName}
                                 email={email}
@@ -57,6 +64,7 @@ class PublisherSignupLayout extends Component {
                             handler={this.handlePublisherFormAppInfoState}
                             handleLastScreen={this.handleLastScreen}
                             handleNextScreen={this.handleNextScreen}
+                            lastScreen={screenChoiceEnum.GENERAL_FORM}
                         />;
                 break;
             default:

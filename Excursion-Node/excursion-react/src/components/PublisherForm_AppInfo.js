@@ -4,13 +4,7 @@ import { Panel, Tooltip, OverlayTrigger } from 'react-bootstrap';
 class PublisherForm_AppInfo extends Component{
     constructor(props) {
         super(props);
-        const lastScreen = 0;
-        const nextScreen = 2;
-        this.state = {
-            lastScreen: lastScreen,
-            nextScreen: nextScreen,
-            ...props
-        }
+        this.state = {...props};
         this.onChange = this.onChange.bind(this);
         this.changeScreen = this.changeScreen.bind(this);
     }
@@ -55,16 +49,13 @@ class PublisherForm_AppInfo extends Component{
         }
     }
     render() {
-        const tooltip_phoneNumber = (
-            <Tooltip id="tooltip">Format: 000-000-0000</Tooltip>
-        );
         const tooltip_url = (
             <Tooltip id="tooltip">Must be a valid website</Tooltip>
         );
         return (
             <div className="ad-signup-container">
                 <div className="ad-signup">
-                    <Panel className="ad-signup-panel sponsor-form-two">
+                    <Panel className="ad-signup-panel sponsor-form-two publisher-app-info">
                     <h1>What is your application?</h1>
                     <p>Fill out information about your app.</p>
                     <div>
@@ -96,92 +87,90 @@ class PublisherForm_AppInfo extends Component{
                             </div>
 
                             <div className="form-group">
-                                <label className="control-label">Operating System</label>
-                                <OverlayTrigger placement="right" overlay={tooltip_phoneNumber}>
+                                <label className="control-label radio-label">Operating System</label>
+                                    <br/>
                                     <input
-                                        value={this.state.phoneNumber}
+                                        value="iOS"
                                         onChange={this.onChange}
-                                        type="tel"
-                                        name="phoneNumber"
-                                        className="form-control"
-                                        onKeyUp={this.formatNumber}
+                                        type="radio"
+                                        name="operatingSystem"
                                         ref={(input) => { this.phoneNumberInput = input }}
                                         required
                                     />
-                                </OverlayTrigger>
+                                    <label className="control-label ios-label">iOS</label>
+                                    <input
+                                        value="Android"
+                                        onChange={this.onChange}
+                                        type="radio"
+                                        name="operatingSystem"
+                                        ref={(input) => { this.phoneNumberInput = input }}
+                                        required
+                                    />
+                                    <label className="control-label">Android</label>
                             </div>
 
                             <div className="form-group">
-                                <label className="control-label">Type of Ad Format</label>
+                                <label className="control-label radio-label">Type of Ad Format</label>
+                                    <br/>
+                                    <input
+                                        value="Static"
+                                        onChange={this.onChange}
+                                        type="radio"
+                                        name="adFormat"
+                                        ref={(input) => { this.phoneNumberInput = input }}
+                                        required
+                                    />
+                                    <label className="control-label">Static</label>
+                                    <input
+                                        value="Dynamic"
+                                        onChange={this.onChange}
+                                        type="radio"
+                                        name="adFormat"
+                                        ref={(input) => { this.phoneNumberInput = input }}
+                                        required
+                                    />
+                                    <label className="control-label">Dynamic</label>
+                            </div>
+
+                            <div className="form-group">
+                                <label className="control-label">App Store Link</label>
                                 <OverlayTrigger placement="right" overlay={tooltip_url}>
                                 <input
                                     value={this.state.website}
                                     onChange={this.onChange}
                                     type="url"
                                     name="website"
-                                    pattern='^https?://'
                                     className="form-control"
                                     ref={(input) => { this.websiteInput = input }}
-                                    onKeyUp={this.checkWebsite}
                                     required
-                                    id="last"
                                 />
                                 </OverlayTrigger>
                             </div>
 
-                            <div className="form-group">
-                                <label className="control-label">App Store Link</label>
-                                <OverlayTrigger placement="right" overlay={tooltip_url}>
+                            <div className="form-group publisher-app checkbox-agreement">
                                 <input
-                                    value={this.state.website}
-                                    onChange={this.onChange}
-                                    type="url"
-                                    name="website"
-                                    pattern='^https?://'
-                                    className="form-control"
-                                    ref={(input) => { this.websiteInput = input }}
-                                    onKeyUp={this.checkWebsite}
-                                    required
-                                    id="last"
-                                />
-                                </OverlayTrigger>
-                            </div>
-
-                            <div className="form-group">
-                                <label className="control-label">App Store Link</label>
-                                <OverlayTrigger placement="right" overlay={tooltip_url}>
-                                <input
-                                    value={this.state.website}
                                     onChange={this.onChange}
                                     type="checkbox"
-                                    name="website"
-                                    pattern='^https?://'
-                                    className="form-control"
+                                    name="agreement"
+                                    className="payment-checkbox"
                                     ref={(input) => { this.websiteInput = input }}
-                                    onKeyUp={this.checkWebsite}
                                     required
-                                    id="last"
                                 />
-                                </OverlayTrigger>
+                                <label className="control-label terms-label">I agree to allow ads in Excursion{`'`}s network to be displayed in my application.</label>
                             </div>
 
-                            <div className="form-group">
-                                <label className="control-label">App Store Link</label>
-                                <OverlayTrigger placement="right" overlay={tooltip_url}>
+                            <div className="form-group publisher-app checkbox-agreement">
                                 <input
-                                    value={this.state.website}
                                     onChange={this.onChange}
                                     type="checkbox"
-                                    name="checkbox"
-                                    pattern='^https?://'
-                                    className="form-control"
+                                    name="terms"
+                                    className="payment-checkbox"
                                     ref={(input) => { this.websiteInput = input }}
-                                    onKeyUp={this.checkWebsite}
                                     required
-                                    id="last"
                                 />
-                                </OverlayTrigger>
+                                <label className="control-label terms-label">I agree to Excursion{`'`}s terms of contract.</label>
                             </div>
+
                         </form>
                         <div className="bottom-form">
                             <button className="btn btn-lg back hvr-grow" name="back" onClick={this.changeScreen}>

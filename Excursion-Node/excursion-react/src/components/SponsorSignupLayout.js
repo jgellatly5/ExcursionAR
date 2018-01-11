@@ -10,7 +10,7 @@ import ReviewInfo from './ReviewInfo';
 import PaymentInfo from './PaymentInfo';
 
 const screenChoiceEnum = {
-    SPONSOR_FORM: 0,
+    GENERAL_FORM: 0,
     SPONSOR_FORM_BUSINESS_INFO: 1,
     FREEMIUM_AD_INFO: 2,
     SET_BUDGET: 3,
@@ -24,7 +24,7 @@ class SponsorSignupLayout extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            screen: screenChoiceEnum.SPONSOR_FORM,
+            screen: screenChoiceEnum.GENERAL_FORM,
             isScreenChanging: false
         };
         this.handleLastScreen = this.handleLastScreen.bind(this);
@@ -113,7 +113,7 @@ class SponsorSignupLayout extends Component {
                             handler={this.handleSponsorFormBusinessInfoState}
                             handleLastScreen={this.handleLastScreen}
                             handleNextScreen={this.handleNextScreen}
-                            lastScreen={screenChoiceEnum.SPONSOR_FORM}
+                            lastScreen={screenChoiceEnum.GENERAL_FORM}
                             nextScreen={screenChoiceEnum.FREEMIUM_AD_INFO}
                             companyName={companyName}
                             industry={industry}

@@ -140,10 +140,8 @@ class SponsorForm_BusinessInformation extends Component{
                                     onChange={this.onChange}
                                     type="url"
                                     name="website"
-                                    pattern='^https?://'
                                     className="form-control"
                                     ref={(input) => { this.websiteInput = input }}
-                                    onKeyUp={this.checkWebsite}
                                     required
                                     id="last"
                                 />
