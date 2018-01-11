@@ -10,13 +10,7 @@ function budgetFormatter(v) {
 class SetBudget extends Component{
     constructor(props) {
         super(props);
-        const lastScreen = 2;
-        const nextScreen = 4;
-        this.state = {
-            lastScreen: lastScreen,
-            nextScreen: nextScreen,
-            ...props
-        }
+        this.state = {...props};
         this.monthlyBudget = this.props.monthlyBudget;
         this.dailyBudget = this.props.dailyBudget;
         this.onChange = this.onChange.bind(this);

@@ -1,21 +1,23 @@
 import React, { Component } from 'react';
 import { Grid, Row, Col, Panel, FormGroup, ControlLabel, FormControl } from 'react-bootstrap';
 
+const paymentTypeEnum = {
+    CREDIT_CARD: 0,
+    PAYPAL: 1
+}
+Object.freeze(paymentTypeEnum);
+
 class PaymentInfo extends Component{
     constructor(props) {
         super(props);
-        const lastScreen = 4;
-        const nextScreen = 6;
         this.state = {
-            lastScreen: lastScreen,
-            nextScreen: nextScreen,
             ...props,
             insertCreditCardClass: 'payment-info-panel',
             insertPayPalClass: 'payment-info-panel',
             insertPaymentTermsClass: 'payment-terms',
             insertPaymentPanelClass: 'payment-panel'
         };
-        this.paymentType = 0;
+        this.paymentType = paymentTypeEnum.CREDIT_CARD;
         this.onChange = this.onChange.bind(this);
         this.onSelectCreditCard = this.onSelectCreditCard.bind(this);
         this.onSelectPayPal = this.onSelectPayPal.bind(this);
@@ -39,10 +41,14 @@ class PaymentInfo extends Component{
         let zipCode = this.zipCodeInput.value;
         let stateAddress = this.stateInput.value;
         let terms = this.termsInput.checked;
-        if (paymentType !== 0 && cardType !== '' && cardName !== '' && cardNumber !== '' &&
+        if (paymentType == 1 && terms) {
+            buttonNext.classList.add('active', 'hvr-grow');
+            buttonNext.removeAttribute('disabled');
+        } else if (paymentType == 0 && cardType !== '' && cardName !== '' && cardNumber !== '' &&
             cardNumber.length >= 19 && expMonth !== '' &&  expMonth.length >= 2 && expYear !== '' &&
             expYear.length >= 2 && cvvNumber !== '' && cvvNumber.length >= 3 && billingAddress !== '' &&
-            city !== '' && zipCode !== '' && !isNaN(zipCode) && zipCode.length >= 5 && stateAddress !== 'Please Select' && terms) {
+            city !== '' && zipCode !== '' && !isNaN(zipCode) && zipCode.length >= 5 &&
+            stateAddress !== 'Please Select' && terms) {
             buttonNext.classList.add('active', 'hvr-grow');
             buttonNext.removeAttribute('disabled');
         } else {
@@ -53,9 +59,9 @@ class PaymentInfo extends Component{
     }
     onSelectCreditCard(e) {
         e.preventDefault();
-        this.paymentType = this.refs.creditCardCard.props.eventKey;
+        this.paymentType = paymentTypeEnum.CREDIT_CARD;
         this.setState({
-            paymentType: 'creditCard',
+            paymentType: 'CREDIT_CARD',
             insertCreditCardClass: 'payment-info-panel active',
             insertPayPalClass: 'payment-info-panel',
             hiddenClass: '',
@@ -66,9 +72,9 @@ class PaymentInfo extends Component{
     }
     onSelectPayPal(e) {
         e.preventDefault();
-        this.paymentType = this.refs.payPalCard.props.eventKey;
+        this.paymentType = paymentTypeEnum.PAYPAL;
         this.setState({
-            paymentType: 'payPal',
+            paymentType: 'PAYPAL',
             insertCreditCardClass: 'payment-info-panel',
             insertPayPalClass: 'payment-info-panel active',
             hiddenClass: 'hidden',
@@ -129,24 +135,25 @@ class PaymentInfo extends Component{
         const {paymentType} = this.props;
         let buttonNext = this.refs.buttonNext;
         buttonNext.setAttribute('disabled','disabled');
-        if (paymentType == 'creditCard') {
-            this.paymentType = this.refs.creditCardCard.props.eventKey;
+        if (paymentType == 'PAYPAL') {
+            this.paymentType = paymentTypeEnum.PAYPAL;
             this.setState({
-                paymentType: 'creditCard',
-                insertCreditCardClass: 'payment-info-panel active',
-                insertPayPalClass: 'payment-info-panel'
-            });
-        } else if (paymentType == 'payPal') {
-            this.paymentType = this.refs.payPalCard.props.eventKey;
-            this.setState({
-                paymentType: 'payPal',
+                paymentType: 'PAYPAL',
                 insertCreditCardClass: 'payment-info-panel',
-                insertPayPalClass: 'payment-info-panel active'
+                insertPayPalClass: 'payment-info-panel active',
+                hiddenClass: 'hidden',
+                insertPaymentTermsClass: 'payment-terms paypal',
+                insertPaymentPanelClass: 'ad-signup-panel payment-panel paypal'
             });
         } else {
+            this.paymentType = paymentTypeEnum.CREDIT_CARD;
             this.setState({
-                insertCreditCardClass: 'payment-info-panel',
-                insertPayPalClass: 'payment-info-panel'
+                paymentType: 'CREDIT_CARD',
+                insertCreditCardClass: 'payment-info-panel active',
+                insertPayPalClass: 'payment-info-panel',
+                hiddenClass: '',
+                insertPaymentTermsClass: 'payment-terms',
+                insertPaymentPanelClass: 'ad-signup-panel payment-panel'
             });
         }
     }
@@ -168,13 +175,13 @@ class PaymentInfo extends Component{
                                                 <Grid>
                                                     <Row>
                                                         <Col xs={3}>
-                                                            <Panel className={this.state.insertCreditCardClass} onClick={this.onSelectCreditCard} ref="creditCardCard" eventKey="1" name="creditCard">
+                                                            <Panel className={this.state.insertCreditCardClass} onClick={this.onSelectCreditCard} name="creditCard">
                                                                 <img className="credit-card" src={require("../blank.png")} alt="blank"/>
                                                                 <h4>Credit Card</h4>
                                                             </Panel>
                                                         </Col>
                                                         <Col xs={3} className="pay-pal-card">
-                                                            <Panel className={this.state.insertPayPalClass} onClick={this.onSelectPayPal} ref="payPalCard" eventKey="2" name="payPal">
+                                                            <Panel className={this.state.insertPayPalClass} onClick={this.onSelectPayPal} name="payPal">
                                                                 <img src={require("../pay_pal.png")} alt="pay pal"/>
                                                                 <h4>PayPal</h4>
                                                             </Panel>
