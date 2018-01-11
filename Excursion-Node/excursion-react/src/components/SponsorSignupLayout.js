@@ -9,9 +9,24 @@ import SetBudget from './SetBudget';
 import ReviewInfo from './ReviewInfo';
 import PaymentInfo from './PaymentInfo';
 
+const screenChoiceEnum = {
+    SPONSOR_FORM: 0,
+    SPONSOR_FORM_BUSINESS_INFO: 1,
+    FREEMIUM_AD_INFO: 2,
+    SET_BUDGET: 3,
+    REVIEW_INFO: 4,
+    PAYMENT_INFO: 5,
+    FINISH_SPONSOR: 6
+}
+Object.freeze(screenChoiceEnum);
+
 class SponsorSignupLayout extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            screen: screenChoiceEnum.SPONSOR_FORM,
+            isScreenChanging: false
+        };
         this.handleLastScreen = this.handleLastScreen.bind(this);
         this.handleNextScreen = this.handleNextScreen.bind(this);
         this.handleSponsorFormState = this.handleSponsorFormState.bind(this);
@@ -19,10 +34,6 @@ class SponsorSignupLayout extends Component {
         this.handleFreemiumAdInfoState = this.handleFreemiumAdInfoState.bind(this);
         this.handleSetBudgetState = this.handleSetBudgetState.bind(this);
         this.handlePaymentState = this.handlePaymentState.bind(this);
-        this.state = {
-            screen: 0,
-            isScreenChanging: false
-        };
     }
     componentDidMount() {
         this.setState({ isScreenChanging: true });
@@ -90,6 +101,7 @@ class SponsorSignupLayout extends Component {
                     child = <SponsorForm
                                 handler={this.handleSponsorFormState}
                                 handleNextScreen={this.handleNextScreen}
+                                nextScreen={screenChoiceEnum.SPONSOR_FORM_BUSINESS_INFO}
                                 firstName={firstName}
                                 lastName={lastName}
                                 email={email}
@@ -101,6 +113,8 @@ class SponsorSignupLayout extends Component {
                             handler={this.handleSponsorFormBusinessInfoState}
                             handleLastScreen={this.handleLastScreen}
                             handleNextScreen={this.handleNextScreen}
+                            lastScreen={screenChoiceEnum.SPONSOR_FORM}
+                            nextScreen={screenChoiceEnum.FREEMIUM_AD_INFO}
                             companyName={companyName}
                             industry={industry}
                             phoneNumber={phoneNumber}
@@ -116,6 +130,8 @@ class SponsorSignupLayout extends Component {
                             handler={this.handleFreemiumAdInfoState}
                             handleLastScreen={this.handleLastScreen}
                             handleNextScreen={this.handleNextScreen}
+                            lastScreen={screenChoiceEnum.SPONSOR_FORM_BUSINESS_INFO}
+                            nextScreen={screenChoiceEnum.SET_BUDGET}
                             adName={adName}
                             genre={genre}
                             adFormat={adFormat}
@@ -126,6 +142,8 @@ class SponsorSignupLayout extends Component {
                             handler={this.handleSetBudgetState}
                             handleLastScreen={this.handleLastScreen}
                             handleNextScreen={this.handleNextScreen}
+                            lastScreen={screenChoiceEnum.FREEMIUM_AD_INFO}
+                            nextScreen={screenChoiceEnum.REVIEW_INFO}
                             dailyBudget={dailyBudget}
                             monthlyBudget={monthlyBudget}
                         />;
@@ -134,6 +152,8 @@ class SponsorSignupLayout extends Component {
                 child = <ReviewInfo
                             handleLastScreen={this.handleLastScreen}
                             handleNextScreen={this.handleNextScreen}
+                            lastScreen={screenChoiceEnum.SET_BUDGET}
+                            nextScreen={screenChoiceEnum.PAYMENT_INFO}
                             firstName={firstName}
                             lastName={lastName}
                             email={email}
@@ -152,6 +172,8 @@ class SponsorSignupLayout extends Component {
                             handler={this.handlePaymentState}
                             handleLastScreen={this.handleLastScreen}
                             handleNextScreen={this.handleNextScreen}
+                            lastScreen={screenChoiceEnum.REVIEW_INFO}
+                            nextScreen={screenChoiceEnum.FINISH_SPONSOR}
                             cardName={cardName}
                             cardType={cardType}
                             paymentType={paymentType}

@@ -5,15 +5,12 @@ const paymentTypeEnum = {
     CREDIT_CARD: 0,
     PAY_PAL: 1
 }
+Object.freeze(paymentTypeEnum);
 
 class PaymentInfo extends Component{
     constructor(props) {
         super(props);
-        const lastScreen = 4;
-        const nextScreen = 6;
         this.state = {
-            lastScreen: lastScreen,
-            nextScreen: nextScreen,
             ...props,
             insertCreditCardClass: 'payment-info-panel',
             insertPayPalClass: 'payment-info-panel',

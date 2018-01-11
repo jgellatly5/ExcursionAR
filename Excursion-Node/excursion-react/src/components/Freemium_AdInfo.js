@@ -1,21 +1,25 @@
 import React, { Component } from 'react';
 import { Grid, Row, Col, Panel, FormGroup, ControlLabel, FormControl } from 'react-bootstrap';
 
+const adFormatEnum = {
+    UNSELECTED: 0,
+    STATIC: 1,
+    DYNAMIC: 2,
+    INTERACTIVE: 3
+}
+Object.freeze(adFormatEnum);
+
 class Freemium_AdInfo extends Component{
     constructor(props) {
         super(props);
-        const lastScreen = 1;
-        const nextScreen = 3;
         this.state = {
-            lastScreen: lastScreen,
-            nextScreen: nextScreen,
             ...props,
             adType: 'freemium',
             insertStaticClass: 'freemium-path-panel',
             insertDynamicClass: 'freemium-path-panel',
             insertInteractiveClass: 'freemium-path-panel'
         };
-        this.adFormat = 0;
+        this.adFormat = adFormatEnum.UNSELECTED;
         this.onChange = this.onChange.bind(this);
         this.onSelectStatic = this.onSelectStatic.bind(this);
         this.onSelectDynamic = this.onSelectDynamic.bind(this);
@@ -39,7 +43,7 @@ class Freemium_AdInfo extends Component{
     }
     onSelectStatic(e) {
         e.preventDefault();
-        this.adFormat = this.refs.staticAd.props.eventKey;
+        this.adFormat = adFormatEnum.STATIC;
         this.setState({
             adFormat: 'static',
             insertStaticClass: 'freemium-path-panel active',
@@ -50,7 +54,7 @@ class Freemium_AdInfo extends Component{
     }
     onSelectDynamic(e) {
         e.preventDefault();
-        this.adFormat = this.refs.dynamicAd.props.eventKey;
+        this.adFormat = adFormatEnum.DYNAMIC;
         this.setState({
             adFormat: 'dynamic',
             insertStaticClass: 'freemium-path-panel',
@@ -61,7 +65,7 @@ class Freemium_AdInfo extends Component{
     }
     onSelectInteractive(e) {
         e.preventDefault();
-        this.adFormat = this.refs.interactiveAd.props.eventKey;
+        this.adFormat = adFormatEnum.INTERACTIVE;
         this.setState({
             adFormat: 'interactive',
             insertStaticClass: 'freemium-path-panel',
@@ -90,7 +94,7 @@ class Freemium_AdInfo extends Component{
             buttonNext.removeAttribute('disabled');
         }
         if (adFormat == 'static') {
-            this.adFormat = this.refs.staticAd.props.eventKey;
+            this.adFormat = adFormatEnum.STATIC;
             this.setState({
                 adFormat: 'static',
                 insertStaticClass: 'freemium-path-panel active',
@@ -98,7 +102,7 @@ class Freemium_AdInfo extends Component{
                 insertInteractiveClass: 'freemium-path-panel'
             });
         } else if (adFormat == 'dynamic') {
-            this.adFormat = this.refs.dynamicAd.props.eventKey;
+            this.adFormat = adFormatEnum.DYNAMIC;
             this.setState({
                 adFormat: 'dynamic',
                 insertStaticClass: 'freemium-path-panel',
@@ -106,7 +110,7 @@ class Freemium_AdInfo extends Component{
                 insertInteractiveClass: 'freemium-path-panel'
             });
         } else if (adFormat == 'interactive') {
-            this.adFormat = this.refs.interactiveAd.props.eventKey;
+            this.adFormat = adFormatEnum.INTERACTIVE;
             this.setState({
                 adFormat: 'interactive',
                 insertStaticClass: 'freemium-path-panel',
@@ -168,21 +172,21 @@ class Freemium_AdInfo extends Component{
                                 <Grid>
                                     <Row>
                                         <Col xs={4}>
-                                            <Panel className={this.state.insertStaticClass} onClick={this.onSelectStatic} ref="staticAd" eventKey="1" name="static">
+                                            <Panel className={this.state.insertStaticClass} onClick={this.onSelectStatic} name="static">
                                                 <img src={require("../blank.png")} alt="blank"/>
                                                 <h4>Static</h4>
                                                 <p>The ad remains in a fixed position. Example: TV screen or potted plant</p>
                                             </Panel>
                                         </Col>
                                         <Col xs={4}>
-                                            <Panel className={this.state.insertDynamicClass} onClick={this.onSelectDynamic} ref="dynamicAd" eventKey="2" name="dynamic">
+                                            <Panel className={this.state.insertDynamicClass} onClick={this.onSelectDynamic} name="dynamic">
                                                 <img src={require("../blank.png")} alt="blank"/>
                                                 <h4>Dynamic</h4>
                                                 <p>The ad moves across the screen or contains an animation. Example: plane or rocket</p>
                                             </Panel>
                                         </Col>
                                         <Col xs={4}>
-                                            <Panel className={this.state.insertInteractiveClass} onClick={this.onSelectInteractive} ref="interactiveAd" eventKey="3" name="interactive">
+                                            <Panel className={this.state.insertInteractiveClass} onClick={this.onSelectInteractive} name="interactive">
                                                 <img src={require("../blank.png")} alt="blank"/>
                                                 <h4>Interactive</h4>
                                                 <p>The ad provides in-app rewards or extends the normal user experience.</p>
