@@ -1,18 +1,25 @@
 import React, { Component } from 'react';
 import { Grid, Row, Col, Panel, FormGroup, ControlLabel, FormControl } from 'react-bootstrap';
 
+const adFormatEnum = {
+    UNSELECTED: 0,
+    STATIC: 1,
+    DYNAMIC: 2,
+    INTERACTIVE: 3
+}
+Object.freeze(adFormatEnum);
+
 class Freemium_AdInfo extends Component{
     constructor(props) {
         super(props);
         this.state = {
-            adName: this.props.adName,
-            genre: this.props.genre,
+            ...props,
             adType: 'freemium',
             insertStaticClass: 'freemium-path-panel',
             insertDynamicClass: 'freemium-path-panel',
             insertInteractiveClass: 'freemium-path-panel'
         };
-        this.adFormat = 0;
+        this.adFormat = adFormatEnum.UNSELECTED;
         this.onChange = this.onChange.bind(this);
         this.onSelectStatic = this.onSelectStatic.bind(this);
         this.onSelectDynamic = this.onSelectDynamic.bind(this);
@@ -20,25 +27,23 @@ class Freemium_AdInfo extends Component{
         this.changeScreen = this.changeScreen.bind(this);
     }
     onChange(e) {
+        this.setState({ [e.target.name]: e.target.value });
         let buttonNext = this.refs.buttonNext;
         let adName = this.adNameInput.value;
         let genre = this.genreInput.value;
         let adFormat = this.adFormat;
-        this.setState({
-            adName: adName,
-            genre: genre
-        });
-        if (adName !== '' && genre !== '' && adFormat != '0') {
+        if (adName !== '' && genre !== '' && adFormat !== 0) {
             buttonNext.classList.add('active', 'hvr-grow');
             buttonNext.removeAttribute('disabled');
         } else {
             buttonNext.classList.remove('active', 'hvr-grow');
             buttonNext.setAttribute('disabled','disabled');
         }
+        this.setState({ genre: genre });
     }
     onSelectStatic(e) {
         e.preventDefault();
-        this.adFormat = this.refs.staticAd.props.eventKey;
+        this.adFormat = adFormatEnum.STATIC;
         this.setState({
             adFormat: 'static',
             insertStaticClass: 'freemium-path-panel active',
@@ -49,7 +54,7 @@ class Freemium_AdInfo extends Component{
     }
     onSelectDynamic(e) {
         e.preventDefault();
-        this.adFormat = this.refs.dynamicAd.props.eventKey;
+        this.adFormat = adFormatEnum.DYNAMIC;
         this.setState({
             adFormat: 'dynamic',
             insertStaticClass: 'freemium-path-panel',
@@ -60,7 +65,7 @@ class Freemium_AdInfo extends Component{
     }
     onSelectInteractive(e) {
         e.preventDefault();
-        this.adFormat = this.refs.interactiveAd.props.eventKey;
+        this.adFormat = adFormatEnum.INTERACTIVE;
         this.setState({
             adFormat: 'interactive',
             insertStaticClass: 'freemium-path-panel',
@@ -70,30 +75,26 @@ class Freemium_AdInfo extends Component{
         this.onChange(e);
     }
     changeScreen(e) {
-        let nextScreen;
+        e.preventDefault();
         if (e.target.name == 'back') {
-            nextScreen = this.props.screenId - 1;
+            this.props.handler({...this.state});
+            this.props.handleLastScreen(this.state.lastScreen);
         } else {
-            nextScreen = this.props.screenId + 1;
+            this.props.handler({...this.state});
+            this.props.handleNextScreen(this.state.nextScreen);
         }
-        let adName = this.state.adName;
-        let genre = this.state.genre;
-        let adFormat = this.state.adFormat;
-        this.props.handler(e, nextScreen, adName, genre, adFormat);
     }
     componentDidMount() {
-        let adName = this.props.adName;
-        let genre = this.props.genre;
+        const {adName, genre, adFormat} = this.props;
         let buttonNext = this.refs.buttonNext;
-        if (adName == undefined && genre == undefined && adFormat == undefined) {
+        if (adName == undefined || genre == undefined || adFormat == undefined) {
             buttonNext.setAttribute('disabled','disabled');
         } else {
             buttonNext.classList.add('active', 'hvr-grow');
             buttonNext.removeAttribute('disabled');
         }
-        let adFormat = this.props.adFormat;
         if (adFormat == 'static') {
-            this.adFormat = this.refs.staticAd.props.eventKey;
+            this.adFormat = adFormatEnum.STATIC;
             this.setState({
                 adFormat: 'static',
                 insertStaticClass: 'freemium-path-panel active',
@@ -101,7 +102,7 @@ class Freemium_AdInfo extends Component{
                 insertInteractiveClass: 'freemium-path-panel'
             });
         } else if (adFormat == 'dynamic') {
-            this.adFormat = this.refs.dynamicAd.props.eventKey;
+            this.adFormat = adFormatEnum.DYNAMIC;
             this.setState({
                 adFormat: 'dynamic',
                 insertStaticClass: 'freemium-path-panel',
@@ -109,7 +110,7 @@ class Freemium_AdInfo extends Component{
                 insertInteractiveClass: 'freemium-path-panel'
             });
         } else if (adFormat == 'interactive') {
-            this.adFormat = this.refs.interactiveAd.props.eventKey;
+            this.adFormat = adFormatEnum.INTERACTIVE;
             this.setState({
                 adFormat: 'interactive',
                 insertStaticClass: 'freemium-path-panel',
@@ -133,8 +134,8 @@ class Freemium_AdInfo extends Component{
                     <p>Choose what ad you would like to use on our platform.</p>
                     <div>
                         <form>
-                            {/* //We are currently offering only one type of tier for sponsors, ad type will be necessary when we begin offering premium services
-                                <div className="form-group">
+                            {/*We are currently offering only one type of tier for sponsors, ad type will be necessary when we begin offering premium services*/}
+                            {/* <div className="form-group">
                                 <label className="control-label">Ad Type</label>
                                 <p className="ad-type">Freemium</p>
                             </div>*/}
@@ -153,9 +154,10 @@ class Freemium_AdInfo extends Component{
                             </div>
 
                             {/*TODO Change default drop down style button*/}
+                            {/*TODO The Other selection will show a new text input, and deselecting will remove it*/}
                             <FormGroup controlId="formControlsSelect">
                                 <ControlLabel>Genre</ControlLabel>
-                                <FormControl componentClass="select" onChange={this.onChange} inputRef={ref => { this.genreInput = ref; }} value={this.state.genre} required>
+                                <FormControl componentClass="select" onChange={this.onChange} inputRef={ref => { this.genreInput = ref; }} value={this.state.genre} name="genre" required>
                                     <option value="technology" >Technology</option>
                                     <option value="finance" >Finance</option>
                                     <option value="retail" >Retail</option>
@@ -170,21 +172,21 @@ class Freemium_AdInfo extends Component{
                                 <Grid>
                                     <Row>
                                         <Col xs={4}>
-                                            <Panel className={this.state.insertStaticClass} onClick={this.onSelectStatic} ref="staticAd" eventKey="1" name="static">
+                                            <Panel className={this.state.insertStaticClass} onClick={this.onSelectStatic} name="static">
                                                 <img src={require("../blank.png")} alt="blank"/>
                                                 <h4>Static</h4>
                                                 <p>The ad remains in a fixed position. Example: TV screen or potted plant</p>
                                             </Panel>
                                         </Col>
                                         <Col xs={4}>
-                                            <Panel className={this.state.insertDynamicClass} onClick={this.onSelectDynamic} ref="dynamicAd" eventKey="2" name="dynamic">
+                                            <Panel className={this.state.insertDynamicClass} onClick={this.onSelectDynamic} name="dynamic">
                                                 <img src={require("../blank.png")} alt="blank"/>
                                                 <h4>Dynamic</h4>
                                                 <p>The ad moves across the screen or contains an animation. Example: plane or rocket</p>
                                             </Panel>
                                         </Col>
                                         <Col xs={4}>
-                                            <Panel className={this.state.insertInteractiveClass} onClick={this.onSelectInteractive} ref="interactiveAd" eventKey="3" name="interactive">
+                                            <Panel className={this.state.insertInteractiveClass} onClick={this.onSelectInteractive} name="interactive">
                                                 <img src={require("../blank.png")} alt="blank"/>
                                                 <h4>Interactive</h4>
                                                 <p>The ad provides in-app rewards or extends the normal user experience.</p>

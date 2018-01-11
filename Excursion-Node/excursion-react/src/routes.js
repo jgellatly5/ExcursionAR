@@ -12,6 +12,7 @@ import SponsorForm_BusinessInformation from './components/SponsorForm_BusinessIn
 import Freemium_AdInfo from './components/Freemium_AdInfo';
 import SetBudget from './components/SetBudget';
 import ReviewInfo from './components/ReviewInfo';
+import PaymentInfo from './components/PaymentInfo';
 import AppLayout from './components/AppLayout';
 import SponsorSignupLayout from './components/SponsorSignupLayout';
 
@@ -31,6 +32,7 @@ const Routes = (props) => (
             <Route component={Freemium_AdInfo} />
             <Route component={SetBudget} />
             <Route component={ReviewInfo} />
+            <Route component={PaymentInfo} />
         </Route>
         <Route path="*" component={NotFound} />
     </Router>

@@ -4,18 +4,12 @@ import { Panel, Tooltip, OverlayTrigger } from 'react-bootstrap';
 class SponsorForm_BusinessInformation extends Component{
     constructor(props) {
         super(props);
-        this.state = {
-            companyName: this.props.companyName,
-            industry: this.props.industry,
-            phoneNumber: this.props.phoneNumber,
-            website: this.props.website
-        }
+        this.state = {...props};
         this.onChange = this.onChange.bind(this);
         this.changeScreen = this.changeScreen.bind(this);
         this.formatNumber = this.formatNumber.bind(this);
     }
     onChange(e) {
-        e.preventDefault();
         this.setState({ [e.target.name]: e.target.value });
         let button = this.refs.button;
         let companyName = this.companyNameInput.value;
@@ -26,7 +20,7 @@ class SponsorForm_BusinessInformation extends Component{
         // Url must have at least a 2 character extension (.co)
         // Url must have a character in between the protocol ID (http) and the extension (.co)
         // This does NOT work for www extensions
-        let regex = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/;
+        let regex = /^((ftp|http|https):\/\/)?(www.)?(?!.*(ftp|http|https|www.))[a-zA-Z0-9_-]+(\.[a-zA-Z]+)+((\/)[\w#]+)*(\/\w+\?[a-zA-Z0-9_]+=\w+(&[a-zA-Z0-9_]+=\w+)*)?$/gm;
         if (companyName !== '' && industry !== '' && phoneNumber !== '' && phoneNumber.length > 11 && website !== '' && regex.test(website)) {
             button.classList.add('active', 'hvr-grow');
             button.removeAttribute('disabled');
@@ -36,27 +30,24 @@ class SponsorForm_BusinessInformation extends Component{
         }
     }
     changeScreen(e) {
-        let nextScreen;
+        e.preventDefault();
         if (e.target.name == 'back') {
-            nextScreen = this.props.screenId - 1;
+            this.props.handler({...this.state});
+            this.props.handleLastScreen(this.state.lastScreen);
         } else {
-            nextScreen = this.props.screenId + 1;
+            this.props.handler({...this.state});
+            this.props.handleNextScreen(this.state.nextScreen);
         }
-        let companyName = this.state.companyName;
-        let industry = this.state.industry;
-        let phoneNumber = this.state.phoneNumber;
-        let website = this.state.website;
-        this.props.handler(e, nextScreen, companyName, industry, phoneNumber, website);
     }
     formatNumber() {
         let phoneNumber = this.phoneNumberInput.value,
-        r = /(\D+)/g,
+        regex = /(\D+)/g,
         areaCode = '',
         firstDigits = '',
         lastDigits = '';
         if (phoneNumber !== '') {
             // every input is required to be a number by the r expression
-            phoneNumber = phoneNumber.replace(r, '');
+            phoneNumber = phoneNumber.replace(regex, '');
             // areaCode waits for length of string to reach 4 characters, then adds hyphen in between character 3 and 4
             areaCode = phoneNumber.substr(0, 4);
             if (areaCode.length == 4) {
@@ -70,16 +61,12 @@ class SponsorForm_BusinessInformation extends Component{
             // lastDigits start at the 8th character of the whole string, and ends string after adding 3 more characters
             lastDigits = phoneNumber.substr(7, 3);
             phoneNumber = areaCode + firstDigits + lastDigits;
-            this.setState({
-                phoneNumber: phoneNumber
-            });
+            this.phoneNumberInput.value = phoneNumber;
+            this.setState({ phoneNumber: phoneNumber });
         }
     }
     componentDidMount() {
-        let companyName = this.props.companyName;
-        let industry = this.props.industry;
-        let phoneNumber = this.props.phoneNumber;
-        let website = this.props.website;
+        const {companyName, industry, phoneNumber, website} = this.props;
         let button = this.refs.button;
         if (companyName == undefined || industry == undefined || phoneNumber == undefined || website == undefined) {
             button.setAttribute('disabled','disabled');
@@ -138,7 +125,6 @@ class SponsorForm_BusinessInformation extends Component{
                                         type="tel"
                                         name="phoneNumber"
                                         className="form-control"
-                                        pattern='\d{3}[\-]\d{3}[\-]\d{4}'
                                         onKeyUp={this.formatNumber}
                                         ref={(input) => { this.phoneNumberInput = input }}
                                         required

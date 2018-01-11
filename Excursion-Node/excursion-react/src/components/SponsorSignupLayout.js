@@ -3,93 +3,122 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import SponsorForm from "./SponsorForm";
 import SponsorForm_BusinessInformation from "./SponsorForm_BusinessInformation";
 // Not necessary until premium version is offered
-// import ChooseService from './ChooseService'; 
+// import ChooseService from './ChooseService';
 import Freemium_AdInfo from './Freemium_AdInfo';
 import SetBudget from './SetBudget';
 import ReviewInfo from './ReviewInfo';
+import PaymentInfo from './PaymentInfo';
+
+const screenChoiceEnum = {
+    SPONSOR_FORM: 0,
+    SPONSOR_FORM_BUSINESS_INFO: 1,
+    FREEMIUM_AD_INFO: 2,
+    SET_BUDGET: 3,
+    REVIEW_INFO: 4,
+    PAYMENT_INFO: 5,
+    FINISH_SPONSOR: 6
+}
+Object.freeze(screenChoiceEnum);
 
 class SponsorSignupLayout extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            screen: screenChoiceEnum.SPONSOR_FORM,
+            isScreenChanging: false
+        };
+        this.handleLastScreen = this.handleLastScreen.bind(this);
+        this.handleNextScreen = this.handleNextScreen.bind(this);
         this.handleSponsorFormState = this.handleSponsorFormState.bind(this);
         this.handleSponsorFormBusinessInfoState = this.handleSponsorFormBusinessInfoState.bind(this);
         this.handleFreemiumAdInfoState = this.handleFreemiumAdInfoState.bind(this);
         this.handleSetBudgetState = this.handleSetBudgetState.bind(this);
-        this.handleReviewInfoState = this.handleReviewInfoState.bind(this);
-        this.state = {
-            screen: 0,
-            isScreenChanging: false
-        };
+        this.handlePaymentState = this.handlePaymentState.bind(this);
     }
     componentDidMount() {
-        this.setState({
-            isScreenChanging: true
-        });
+        this.setState({ isScreenChanging: true });
     }
-    handleSponsorFormState(e, newScreen, firstName, lastName, email) {
-        e.preventDefault();
+    handleLastScreen(screen) {
+        this.setState({ screen: screen });
+    }
+    handleNextScreen(screen) {
+        this.setState({ screen: screen });
+    }
+    handleSponsorFormState(sponsor_form) {
+        const {firstName, lastName, email} = sponsor_form;
         this.setState({
-            screen: newScreen,
             firstName: firstName,
             lastName: lastName,
             email: email
         });
     }
-    handleSponsorFormBusinessInfoState(e, newScreen, companyName, industry, phoneNumber, website) {
-        e.preventDefault();
+    handleSponsorFormBusinessInfoState(sponsor_form) {
+        const {companyName, industry, phoneNumber, website} = sponsor_form;
         this.setState({
-            screen: newScreen,
             companyName: companyName,
             industry: industry,
             phoneNumber: phoneNumber,
             website: website
         });
     }
-    handleFreemiumAdInfoState(e, newScreen, adName, genre, adFormat) {
-        e.preventDefault();
+    handleFreemiumAdInfoState(sponsor_form) {
+        const {adName, genre, adFormat} = sponsor_form;
         this.setState({
-            screen: newScreen,
             adName: adName,
             genre: genre,
             adFormat: adFormat
         });
     }
-    handleSetBudgetState(e, newScreen, dailyBudget, monthlyBudget) {
-        e.preventDefault();
+    handleSetBudgetState(sponsor_form) {
+        const {dailyBudget, monthlyBudget} = sponsor_form;
         this.setState({
-            screen: newScreen,
             dailyBudget: dailyBudget,
             monthlyBudget: monthlyBudget
         });
     }
-    handleReviewInfoState(e, newScreen) {
-        e.preventDefault();
+    handlePaymentState(sponsor_form) {
+        const {cardName, cardType, paymentType, billingAddress, city, zipCode, stateAddress} = sponsor_form;
         this.setState({
-            screen: newScreen
+            cardName: cardName,
+            cardType: cardType,
+            paymentType: paymentType,
+            billingAddress: billingAddress,
+            city: city,
+            zipCode: zipCode,
+            stateAddress: stateAddress
         });
     }
     render() {
         let child;
+        const {
+            firstName, lastName, email, companyName, industry, phoneNumber,
+            website, adName, genre, adFormat, dailyBudget, monthlyBudget,
+            cardName, cardType, paymentType, billingAddress, city, zipCode, stateAddress
+        } = this.state;
         switch(this.state.screen) {
             case 0:
                 if (this.state.isScreenChanging) {
                     child = <SponsorForm
-                                screenId={this.state.screen}
                                 handler={this.handleSponsorFormState}
-                                firstName={this.state.firstName}
-                                lastName={this.state.lastName}
-                                email={this.state.email}
+                                handleNextScreen={this.handleNextScreen}
+                                nextScreen={screenChoiceEnum.SPONSOR_FORM_BUSINESS_INFO}
+                                firstName={firstName}
+                                lastName={lastName}
+                                email={email}
                             />;
                 }
                 break;
             case 1:
                 child = <SponsorForm_BusinessInformation
-                            screenId={this.state.screen}
                             handler={this.handleSponsorFormBusinessInfoState}
-                            companyName={this.state.companyName}
-                            industry={this.state.industry}
-                            phoneNumber={this.state.phoneNumber}
-                            website={this.state.website}
+                            handleLastScreen={this.handleLastScreen}
+                            handleNextScreen={this.handleNextScreen}
+                            lastScreen={screenChoiceEnum.SPONSOR_FORM}
+                            nextScreen={screenChoiceEnum.FREEMIUM_AD_INFO}
+                            companyName={companyName}
+                            industry={industry}
+                            phoneNumber={phoneNumber}
+                            website={website}
                         />;
                 break;
             // This case will be released when sponsor can choose between freemium or premium membership
@@ -98,37 +127,61 @@ class SponsorSignupLayout extends Component {
             //     break;
             case 2:
                 child = <Freemium_AdInfo
-                            screenId={this.state.screen}
                             handler={this.handleFreemiumAdInfoState}
-                            adName={this.state.adName}
-                            genre={this.state.genre}
-                            adFormat={this.state.adFormat}
+                            handleLastScreen={this.handleLastScreen}
+                            handleNextScreen={this.handleNextScreen}
+                            lastScreen={screenChoiceEnum.SPONSOR_FORM_BUSINESS_INFO}
+                            nextScreen={screenChoiceEnum.SET_BUDGET}
+                            adName={adName}
+                            genre={genre}
+                            adFormat={adFormat}
                         />;
                 break;
             case 3:
                 child = <SetBudget
-                            screenId={this.state.screen}
                             handler={this.handleSetBudgetState}
-                            dailyBudget={this.state.dailyBudget}
-                            monthlyBudget={this.state.monthlyBudget}
+                            handleLastScreen={this.handleLastScreen}
+                            handleNextScreen={this.handleNextScreen}
+                            lastScreen={screenChoiceEnum.FREEMIUM_AD_INFO}
+                            nextScreen={screenChoiceEnum.REVIEW_INFO}
+                            dailyBudget={dailyBudget}
+                            monthlyBudget={monthlyBudget}
                         />;
                 break;
             case 4:
                 child = <ReviewInfo
-                            screenId={this.state.screen}
-                            handler={this.handleReviewInfoState}
-                            firstName={this.state.firstName}
-                            lastName={this.state.lastName}
-                            email={this.state.email}
-                            companyName={this.state.companyName}
-                            industry={this.state.industry}
-                            phoneNumber={this.state.phoneNumber}
-                            website={this.state.website}
-                            adName={this.state.adName}
-                            genre={this.state.genre}
-                            adFormat={this.state.adFormat}
-                            dailyBudget={this.state.dailyBudget}
+                            handleLastScreen={this.handleLastScreen}
+                            handleNextScreen={this.handleNextScreen}
+                            lastScreen={screenChoiceEnum.SET_BUDGET}
+                            nextScreen={screenChoiceEnum.PAYMENT_INFO}
+                            firstName={firstName}
+                            lastName={lastName}
+                            email={email}
+                            companyName={companyName}
+                            industry={industry}
+                            phoneNumber={phoneNumber}
+                            website={website}
+                            adName={adName}
+                            genre={genre}
+                            adFormat={adFormat}
+                            dailyBudget={dailyBudget}
                         />;
+                break;
+            case 5:
+                child = <PaymentInfo
+                            handler={this.handlePaymentState}
+                            handleLastScreen={this.handleLastScreen}
+                            handleNextScreen={this.handleNextScreen}
+                            lastScreen={screenChoiceEnum.REVIEW_INFO}
+                            nextScreen={screenChoiceEnum.FINISH_SPONSOR}
+                            cardName={cardName}
+                            cardType={cardType}
+                            paymentType={paymentType}
+                            billingAddress={billingAddress}
+                            city={city}
+                            zipCode={zipCode}
+                            stateAddress={stateAddress}
+                        />
                 break;
             default:
                 break;

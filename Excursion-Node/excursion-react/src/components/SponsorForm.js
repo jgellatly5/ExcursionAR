@@ -4,12 +4,7 @@ import { Panel, Tooltip, OverlayTrigger } from 'react-bootstrap';
 class SponsorForm extends Component{
     constructor(props) {
         super(props);
-        this.state = {
-            firstName: this.props.firstName,
-            lastName: this.props.lastName,
-            email: this.props.email,
-            password: ''
-        }
+        this.state = {...props};
         this.onChange = this.onChange.bind(this);
         this.endScreen = this.endScreen.bind(this);
     }
@@ -19,10 +14,10 @@ class SponsorForm extends Component{
         let firstName = this.firstNameInput.value;
         let lastName = this.lastNameInput.value;
         let email = this.emailInput.value;
+        let password = this.passwordInput.value;
         // String must contain at least one character in front of the @ symbol, an @ symbol
         // a character after the @ symbol, a ., and a character after the .
         let regex = /(\w+?@\w+?\x2E.+)/;
-        let password = this.passwordInput.value;
         if (firstName !== '' && lastName !== '' && email !== '' && regex.test(email) && password !== '' && password.length > 7) {
             button.classList.add('active', 'hvr-grow');
             button.removeAttribute('disabled');
@@ -32,11 +27,9 @@ class SponsorForm extends Component{
         }
     }
     endScreen(e) {
-        let nextScreen = this.props.screenId + 1;
-        let firstName = this.state.firstName;
-        let lastName = this.state.lastName;
-        let email = this.state.email;
-        this.props.handler(e, nextScreen, firstName, lastName, email);
+        e.preventDefault();
+        this.props.handler({...this.state});
+        this.props.handleNextScreen(this.state.nextScreen);
     }
     componentDidMount() {
         let button = this.refs.button;
@@ -83,7 +76,7 @@ class SponsorForm extends Component{
                                 />
                             </div>
 
-                            //TODO Extract this field for separate login validation
+                            {/*TODO Extract this field for separate login validation*/}
                             <div className="form-group">
                                 <label className="control-label">Email</label>
                                 <OverlayTrigger placement="right" overlay={tooltip_email}>
@@ -99,7 +92,7 @@ class SponsorForm extends Component{
                                 </OverlayTrigger>
                             </div>
 
-                            //TODO Extract this field for separate login validation and encryption
+                            {/*TODO Extract this field for separate login validation*/}
                             <div className="form-group">
                                 <label className="control-label">Password</label>
                                 <OverlayTrigger placement="right" overlay={tooltip_password}>

@@ -221,10 +221,6 @@ class Home extends Component{
                         </Modal>
                     </div>
                     <div className="greywrap second">
-                        {/*<video preload="preload" autoPlay="autoPlay" loop="loop">
-                            <source src="video/excursionPrototype.mp4" type="video/mp4"></source>
-                        </video>*/}
-
                         <Jumbotron bsClass="altbg">
                             <h1>Proof of Concept/Demo</h1>
                             <iframe width="1000" height="600" src="https://www.youtube.com/embed/irljsEAt8YE?rel=0&amp;controls=0&amp;showinfo=0" frameBorder="0" allowFullScreen></iframe>

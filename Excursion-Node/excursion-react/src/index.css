@@ -25,16 +25,6 @@ body {
     background-color: #eaf0f9;
 }
 
-.footer-distributed {
-    background-color: #eaf0f9;
-    box-sizing: border-box;
-    width: 100%;
-    text-align: left;
-    font: normal 16px sans-serif;
-    padding: 45px 50px;
-    font-family: Lato;
-}
-
 .signup, .login, .adform {
     background-color: #131617;
     padding-bottom: 150px;
@@ -48,40 +38,32 @@ body {
 
 .sdk {
     margin-top: 200px;
-    font-size: 30px;
-    box-shadow: 0 4px 2px -2px grey;
-    background-color: #0e76bd;
-    border-color: #0e76bd;
-}
-
-.sdk:hover {
-    background-color: #0e76bd;
-    border-color: #0e76bd;
 }
 
 .adv {
     margin-top: 250px;
+}
+
+.sdk, .adv {
     font-size: 30px;
     box-shadow: 0 4px 2px -2px grey;
-    background-color: #0e76bd;
-    border-color: #0e76bd;
 }
 
-.adv:hover {
-    background-color: #0e76bd;
-    border-color: #0e76bd;
-}
-
-.contactbutton {
-    background-color: #0e76bd;
-    border-color: #0e76bd;
-}
-
-.contactbutton:hover {
+.sdk, .sdk:hover, .adv, .adv:hover, .contactbutton, .contactbutton:hover {
     background-color: #0e76bd;
     border-color: #0e76bd;
 }
 /* Footer links */
+.footer-distributed {
+    background-color: #eaf0f9;
+    box-sizing: border-box;
+    width: 100%;
+    text-align: left;
+    font: normal 16px sans-serif;
+    padding: 45px 50px;
+    font-family: Lato;
+}
+
 .footer-distributed .footer-left p {
     color:  #8f9296;
     font-size: 14px;
@@ -139,18 +121,6 @@ body {
     padding-right: 0px;
 }
 
-video {
-    background-size: cover;
-    background-position: center center;
-    margin: 0;
-    padding: 0;
-    min-width: 100%;
-    min-height: 100%;
-    width: 100%;
-    height: 100%;
-    vertical-align: middle;
-}
-
 .fa-map-o:before, .fa-clock-o:before, .fa-money:before, .fa-group:before, .fa-users:before, .fa-file-image-o:before, .fa-tachometer:before, .fa-calculator:before, .fa-bar-chart:before, .fa-gavel:before {
     font-size: 100px;
 }
@@ -171,6 +141,7 @@ video {
 
 h4 {
     font-size: 28px;
+    font-weight: bold;
 }
 
 .jumbotron h1 {
@@ -216,10 +187,6 @@ h4 {
     padding-top: 100px;
     background-color: #fff;
     color: black;
-}
-
-h4 {
-    font-weight: bold;
 }
 
 .registration, .greywrap {
@@ -315,31 +282,20 @@ form {
     background-color: #0e76bd;
 }
 
-.navbar-default .navbar-nav > li > a {
+.navbar-default .navbar-nav > li > a,
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:active,
+.navbar-default .navbar-brand,
+.navbar-default .navbar-brand:hover,
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:focus {
     color: white;
 }
 
-.navbar-default .navbar-nav > li > a:hover {
-    color: white;
-}
-
-.navbar-default .navbar-nav > li > a:active {
-    color: white;
-}
-
-.navbar-default .navbar-brand {
-    color: white;
-}
-
-.navbar-default .navbar-brand:hover {
-    color: white;
-}
-
-.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
-    color: white;
-}
-
-.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:focus {
     background-color: transparent;
 }
 
@@ -447,28 +403,8 @@ table {
     color: white;
 }
 
-.learnmorephoto {
-    background: url("/images/traveler-photo.jpg") no-repeat center top;
-    padding-top: 120px;
-    text-align: center;
-    background-position: center center;
-    min-height: 650px;
-    width: 100%;
-    background-size: cover;
-}
-
 .link, .link:hover {
     color: blue;
-}
-/* Pricing Page */
-.pricingphoto {
-    background: url("/images/pexels-photo-314726.jpeg") no-repeat center top;
-    padding-top: 120px;
-    text-align: center;
-    background-position: center center;
-    min-height: 650px;
-    width: 100%;
-    background-size: cover;
 }
 
 /* Contact Page */
@@ -548,6 +484,7 @@ table {
 .adform .form-control {
     width: 150%;
 }
+
 /* animations from hover.css */
 .hvr-grow {
     display: inline-block;
@@ -575,7 +512,10 @@ table {
     -webkit-transition-duration: 0.5s;
     transition-duration: 0.5s;
 }
-.hvr-bounce-in:hover, .hvr-bounce-in:focus, .hvr-bounce-in:active {
+
+.hvr-bounce-in:hover,
+.hvr-bounce-in:focus,
+.hvr-bounce-in:active {
     -webkit-transform: scale(1.2);
     transform: scale(1.2);
     -webkit-transition-timing-function: cubic-bezier(0.47, 2.02, 0.31, -0.36);
@@ -607,7 +547,9 @@ table {
     -webkit-transition-timing-function: ease-out;
     transition-timing-function: ease-out;
 }
-.hvr-underline-from-left:hover:before, .hvr-underline-from-left:focus:before, .hvr-underline-from-left:active:before {
+.hvr-underline-from-left:hover:before,
+.hvr-underline-from-left:focus:before,
+.hvr-underline-from-left:active:before {
     right: 0;
 }
 
@@ -636,7 +578,9 @@ table {
     -webkit-transition-timing-function: ease-out;
     transition-timing-function: ease-out;
 }
-.hvr-underline-from-left-white:hover:before, .hvr-underline-from-left-white:focus:before, .hvr-underline-from-left-white:active:before {
+.hvr-underline-from-left-white:hover:before,
+.hvr-underline-from-left-white:focus:before,
+.hvr-underline-from-left-white:active:before {
     right: 0;
 }
 
@@ -649,57 +593,6 @@ table {
     position: relative;
     overflow: hidden;
     border-bottom: 2px solid #161162;
-}
-
-.hvr-border-fade {
-    display: inline-block;
-    vertical-align: middle;
-    -webkit-transform: perspective(1px) translateZ(0);
-    transform: perspective(1px) translateZ(0);
-    box-shadow: 0 0 1px transparent;
-    -webkit-transition-duration: 0.3s;
-    transition-duration: 0.3s;
-    -webkit-transition-property: box-shadow;
-    transition-property: box-shadow;
-    box-shadow: inset 0 0 0 4px #e1e1e1, 0 0 1px transparent;
-    /* Hack to improve aliasing on mobile/tablet devices */
-}
-.hvr-border-fade:hover, .hvr-border-fade:focus, .hvr-border-fade:active {
-    box-shadow: inset 0 0 0 4px #2098D1, 0 0 1px transparent;
-    /* Hack to improve aliasing on mobile/tablet devices */
-}
-
-.hvr-reveal {
-    display: inline-block;
-    vertical-align: middle;
-    -webkit-transform: perspective(1px) translateZ(0);
-    transform: perspective(1px) translateZ(0);
-    box-shadow: 0 0 1px transparent;
-    position: relative;
-    overflow: hidden;
-}
-.hvr-reveal:before {
-    content: "";
-    position: absolute;
-    z-index: -1;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    border-color: #2098D1;
-    border-style: solid;
-    border-width: 0;
-    -webkit-transition-property: border-width;
-    transition-property: border-width;
-    -webkit-transition-duration: 0.1s;
-    transition-duration: 0.1s;
-    -webkit-transition-timing-function: ease-out;
-    transition-timing-function: ease-out;
-}
-.hvr-reveal:hover:before, .hvr-reveal:focus:before, .hvr-reveal:active:before {
-    -webkit-transform: translateY(0);
-    transform: translateY(0);
-    border-width: 4px;
 }
 
 /*Signup*/
@@ -1136,7 +1029,8 @@ table {
     background: url(http://i62.tinypic.com/15xvbd5.png) no-repeat scroll right;
 }*/
 
-.freemium-path-panel .panel-body {
+.freemium-path-panel .panel-body,
+.payment-info-panel .panel-body {
     background-color: #FFFFFF;
     padding-top: 50px;
     border: none;
@@ -1151,11 +1045,23 @@ table {
     margin: -2px;
 }
 
+.payment-info-panel:hover .panel-body:hover {
+    border: 2px solid #4CC1FC;
+    margin: -4px;
+}
+
+.payment-info-panel.active .panel-body{
+    border: 2px solid #44C0FF;
+    border-radius: 4px;
+    padding-top: 50px;
+    margin: -4px;
+}
+
 #fix-margin .panel-body {
     margin-bottom: 0px;
 }
 
-.freemium-path-panel.active .panel-body {
+.freemium-path-panel.active .panel-body{
     border: 2px solid #44C0FF;
     border-radius: 4px;
     padding-top: 50px;
@@ -1224,14 +1130,16 @@ input[type='radio']:checked:before {
     margin-bottom: 30px;
 }
 
-.freemium-path-panel h4 {
+.freemium-path-panel h4,
+.payment-info-panel h4 {
     color: #44C0FF;
     font-size: 18px;
     font-weight: 500;
     line-height: 22px;
 }
 
-.freemium-path-panel p {
+.freemium-path-panel p,
+.payment-info-panel p {
     color: #3F3E3E;
     font-size: 14px;
     line-height: 17px;
@@ -1404,6 +1312,134 @@ input[type='radio']:checked:before {
 
 .right-side-review .form-group{
     width: 100%;
+}
+
+/*Payment Info*/
+.payment-info-panel .panel-body {
+    height: 100px;
+}
+
+.payment-info-panel .panel-body .credit-card {
+    width: 60px;
+    height: 60px;
+    background-color: grey;
+    border-radius: 80%;
+    margin-top: -20px;
+}
+
+.payment-card-details {
+    margin-left: -3%;
+    margin-bottom: 7%;
+}
+
+.payment-card-details .payment-exp {
+    width: 110%;
+}
+
+.payment-hr {
+    background: #1E1E75;
+    height: 2px;
+    width: 75%;
+    margin-top: -50px;
+}
+
+.address-margin {
+    margin-bottom: 30px;
+}
+
+.payment-method .col-xs-3 {
+    padding-left: 0px;
+}
+
+.payment-margin {
+    width: 75%;
+}
+
+.payment-margin .form-control {
+    width: 200%;
+}
+
+.payment-info .bottom-form .btn {
+    margin-top: 0px;
+}
+
+input[type=checkbox] {
+    appearance: none;
+    margin: 0;
+}
+
+.payment-info .payment-checkbox {
+    height: 25px;
+    width: 25px;
+    border: 2px solid #1E1E75;
+    border-radius: 4px;
+    vertical-align: middle;
+}
+
+.payment-checkbox:checked {
+    background-color: #1E1E75;
+}
+
+/* input[type="checkbox"]:checked + label {
+    background: black;
+} */
+
+/* input[type="checkbox"] + label {
+    background: black;
+} */
+
+.payment-terms {
+    width: 500px;
+}
+
+.payment-terms.paypal {
+    margin-top: 100px;
+    margin-bottom: 185px;
+}
+
+.payment-panel.paypal {
+    height: 600px;
+}
+
+.payment-terms label {
+    margin-left: 12px;
+    font-size: 17px;
+}
+
+.billing-address {
+    margin-bottom: 15px;
+}
+
+.city-town {
+    margin-top: 23px;
+}
+
+.state-address {
+    margin-bottom: 50px;
+}
+
+.column-2 {
+    padding-left: 60px;
+}
+
+.payment-info .form-group {
+    width: 69%;
+}
+
+.payment-fix {
+    margin-left: -30px;
+}
+
+.payment-info .payment-header, .payment-info .payment-para {
+    margin-left: 11%;
+}
+
+.payment-panel {
+    height: 875px;
+}
+
+.hidden {
+    display: none;
 }
 
 /*React CSS Transition Group*/

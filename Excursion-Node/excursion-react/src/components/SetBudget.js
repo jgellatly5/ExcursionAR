@@ -10,6 +10,7 @@ function budgetFormatter(v) {
 class SetBudget extends Component{
     constructor(props) {
         super(props);
+        this.state = {...props};
         this.monthlyBudget = this.props.monthlyBudget;
         this.dailyBudget = this.props.dailyBudget;
         this.onChange = this.onChange.bind(this);
@@ -37,19 +38,18 @@ class SetBudget extends Component{
         });
     }
     changeScreen(e) {
-        let nextScreen;
+        e.preventDefault();
         if (e.target.name == 'back') {
-            nextScreen = this.props.screenId - 1;
+            this.props.handler({...this.state});
+            this.props.handleLastScreen(this.state.lastScreen);
         } else {
-            nextScreen = this.props.screenId + 1;
+            this.props.handler({...this.state});
+            this.props.handleNextScreen(this.state.nextScreen);
         }
-        let dailyBudget = this.dailyBudget;
-        let monthlyBudget = this.monthlyBudget;
-        this.props.handler(e, nextScreen, dailyBudget, monthlyBudget);
     }
     componentDidMount() {
         let buttonNext = this.refs.buttonNext;
-        if (this.dailyBudget == undefined) {
+        if (this.dailyBudget === 0 || this.dailyBudget == undefined) {
             buttonNext.setAttribute('disabled','disabled');
         } else {
             buttonNext.classList.add('active', 'hvr-grow');
