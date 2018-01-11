@@ -41,13 +41,22 @@ class PublisherForm_AppInfo extends Component{
         }
     }
     componentDidMount() {
-        const {companyName, industry, phoneNumber, website} = this.props;
+        const {operatingSystem, adFormat} = this.props;
         let button = this.refs.button;
-        if (companyName == undefined || industry == undefined || phoneNumber == undefined || website == undefined) {
-            button.setAttribute('disabled','disabled');
+        button.setAttribute('disabled','disabled');
+        if (operatingSystem == 'iOS') {
+            this.iOSInput.checked = true;
+        } else if (operatingSystem == 'Android') {
+            this.androidInput.checked = true;
         } else {
-            button.classList.add('active', 'hvr-grow');
-            button.removeAttribute('disabled');
+            return;
+        }
+        if (adFormat == 'Static') {
+            this.staticInput.checked = true;
+        } else if (adFormat == 'Dynamic') {
+            this.dynamicInput.checked = true;
+        } else {
+            return;
         }
     }
     render() {
@@ -141,7 +150,7 @@ class PublisherForm_AppInfo extends Component{
                                     value={this.state.appStoreLink}
                                     onChange={this.onChange}
                                     type="url"
-                                    name="website"
+                                    name="appStoreLink"
                                     className="form-control"
                                     ref={(input) => { this.appStoreLinkInput = input }}
                                     required

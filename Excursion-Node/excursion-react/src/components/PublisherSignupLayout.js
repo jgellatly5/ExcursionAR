@@ -39,12 +39,19 @@ class PublisherSignupLayout extends Component {
         });
     }
     handlePublisherFormAppInfoState(publisher_form) {
-
+        const {companyName, industry, operatingSystem, adFormat, appStoreLink} = publisher_form;
+        this.setState({
+            companyName: companyName,
+            industry: industry,
+            operatingSystem: operatingSystem,
+            adFormat: adFormat,
+            appStoreLink
+        });
     }
     render() {
         let child;
         const {
-            firstName, lastName, email
+            firstName, lastName, email, companyName, industry, operatingSystem, adFormat, appStoreLink
         } = this.state;
         switch(this.state.screen) {
             case 0:
@@ -65,6 +72,11 @@ class PublisherSignupLayout extends Component {
                             handleLastScreen={this.handleLastScreen}
                             handleNextScreen={this.handleNextScreen}
                             lastScreen={screenChoiceEnum.GENERAL_FORM}
+                            companyName={companyName}
+                            industry={industry}
+                            operatingSystem={operatingSystem}
+                            adFormat={adFormat}
+                            appStoreLink={appStoreLink}                    
                         />;
                 break;
             default:
