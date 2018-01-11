@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Panel, Tooltip, OverlayTrigger } from 'react-bootstrap';
 
-class SponsorForm extends Component{
+class GeneralForm extends Component{
     constructor(props) {
         super(props);
         const nextScreen = 1;
@@ -126,4 +126,4 @@ class SponsorForm extends Component{
     }
 };
 
-export default SponsorForm;
+export default GeneralForm;

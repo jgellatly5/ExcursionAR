@@ -671,7 +671,7 @@ table {
 }
 
 .choose-path-panel p {
-    margin-left: 0%;
+    margin-left: auto;
     text-align: center;
     color: #FFFFFF;
     font-size: 18px;
@@ -685,7 +685,8 @@ table {
 
 .choose-path-panel .desc {
     text-align: left;
-    margin-left: 20%;
+    margin-left: 10%;
+    margin-right: 10%;
     color: #C7C7C7;
     line-height: 22px;
     margin-top: 26px;

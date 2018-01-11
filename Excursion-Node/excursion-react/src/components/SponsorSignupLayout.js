@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import SponsorForm from "./SponsorForm";
+import GeneralForm from "./GeneralForm";
 import SponsorForm_BusinessInformation from "./SponsorForm_BusinessInformation";
 // Not necessary until premium version is offered
 // import ChooseService from './ChooseService';
@@ -14,7 +14,7 @@ class SponsorSignupLayout extends Component {
         super(props);
         this.handleLastScreen = this.handleLastScreen.bind(this);
         this.handleNextScreen = this.handleNextScreen.bind(this);
-        this.handleSponsorFormState = this.handleSponsorFormState.bind(this);
+        this.handleGeneralFormState = this.handleGeneralFormState.bind(this);
         this.handleSponsorFormBusinessInfoState = this.handleSponsorFormBusinessInfoState.bind(this);
         this.handleFreemiumAdInfoState = this.handleFreemiumAdInfoState.bind(this);
         this.handleSetBudgetState = this.handleSetBudgetState.bind(this);
@@ -33,7 +33,7 @@ class SponsorSignupLayout extends Component {
     handleNextScreen(screen) {
         this.setState({ screen: screen });
     }
-    handleSponsorFormState(sponsor_form) {
+    handleGeneralFormState(sponsor_form) {
         const {firstName, lastName, email} = sponsor_form;
         this.setState({
             firstName: firstName,
@@ -87,8 +87,8 @@ class SponsorSignupLayout extends Component {
         switch(this.state.screen) {
             case 0:
                 if (this.state.isScreenChanging) {
-                    child = <SponsorForm
-                                handler={this.handleSponsorFormState}
+                    child = <GeneralForm
+                                handler={this.handleGeneralFormState}
                                 handleNextScreen={this.handleNextScreen}
                                 firstName={firstName}
                                 lastName={lastName}

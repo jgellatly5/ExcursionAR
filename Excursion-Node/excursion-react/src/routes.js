@@ -6,7 +6,7 @@ import GetStarted from './components/GetStarted';
 import LearnMore from './components/LearnMore';
 import ContactForm from './components/ContactForm';
 import Signup from './components/Signup';
-import SponsorForm from './components/SponsorForm';
+import GeneralForm from './components/GeneralForm';
 import SponsorForm_BusinessInformation from './components/SponsorForm_BusinessInformation';
 // import ChooseService from './components/ChooseService'; //ChooseService component is unncessary until premium memberships are introduced
 import Freemium_AdInfo from './components/Freemium_AdInfo';
@@ -26,13 +26,16 @@ const Routes = (props) => (
         </Route>
         <Route path="/signup" component={Signup} />
         <Route path="/sponsor" component={SponsorSignupLayout}>
-            <IndexRoute component={SponsorForm} />
+            <IndexRoute component={GeneralForm} />
             <Route component={SponsorForm_BusinessInformation} />
             {/*<Route component={ChooseService} /> //Not needed until further notice*/}
             <Route component={Freemium_AdInfo} />
             <Route component={SetBudget} />
             <Route component={ReviewInfo} />
             <Route component={PaymentInfo} />
+        </Route>
+        <Route path="/publisher" component={SponsorSignupLayout}>
+            <IndexRoute component={GeneralForm} />
         </Route>
         <Route path="*" component={NotFound} />
     </Router>

@@ -15,7 +15,10 @@ class Signup extends Component{
                                 <Panel className="choose-path-panel">
                                     <img src={require("../blank.png")} alt="sponsorSignup" className="icon-speaker"/>
                                     <p className="path">I want to advertise my business.</p>
-                                    <p className="desc">Excursion rocks!</p>
+                                    <p className="desc">
+                                        Provide us with some general information about you and your company.
+                                        Then select from a few of our different ad formats and set the budget for your ad campaign.
+                                    </p>
                                     <LinkContainer to="/sponsor">
                                         <Button bsStyle="info" className="choose-path-button hvr-grow">
                                             Let{`'`}s Get Started
@@ -27,10 +30,15 @@ class Signup extends Component{
                                 <Panel>
                                     <img src={require("../blank.png")} alt="publisherSignup" className="icon-phone"/>
                                     <p className="path">I want to monetize my business.</p>
-                                    <p className="desc">Excursion rocks!</p>
-                                    <Button bsStyle="info" className="choose-path-button hvr-grow">
-                                        Let{`'`}s Get Started
-                                    </Button>
+                                    <p className="desc">
+                                        Provide us with information about your AR application and your company.
+                                        Then we will provide you with the API keys and access to our SDK.
+                                    </p>
+                                    <LinkContainer to="/publisher">
+                                        <Button bsStyle="info" className="choose-path-button hvr-grow">
+                                            Let{`'`}s Get Started
+                                        </Button>
+                                    </LinkContainer>
                                 </Panel>
                             </Col>
                         </Row>
