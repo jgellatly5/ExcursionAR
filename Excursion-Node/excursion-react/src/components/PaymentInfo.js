@@ -3,7 +3,7 @@ import { Grid, Row, Col, Panel, FormGroup, ControlLabel, FormControl } from 'rea
 
 const paymentTypeEnum = {
     CREDIT_CARD: 0,
-    PAY_PAL: 1
+    PAYPAL: 1
 }
 Object.freeze(paymentTypeEnum);
 
@@ -61,7 +61,7 @@ class PaymentInfo extends Component{
         e.preventDefault();
         this.paymentType = paymentTypeEnum.CREDIT_CARD;
         this.setState({
-            paymentType: 'creditCard',
+            paymentType: 'CREDIT_CARD',
             insertCreditCardClass: 'payment-info-panel active',
             insertPayPalClass: 'payment-info-panel',
             hiddenClass: '',
@@ -72,9 +72,9 @@ class PaymentInfo extends Component{
     }
     onSelectPayPal(e) {
         e.preventDefault();
-        this.paymentType = paymentTypeEnum.PAY_PAL;
+        this.paymentType = paymentTypeEnum.PAYPAL;
         this.setState({
-            paymentType: 'payPal',
+            paymentType: 'PAYPAL',
             insertCreditCardClass: 'payment-info-panel',
             insertPayPalClass: 'payment-info-panel active',
             hiddenClass: 'hidden',
@@ -135,10 +135,10 @@ class PaymentInfo extends Component{
         const {paymentType} = this.props;
         let buttonNext = this.refs.buttonNext;
         buttonNext.setAttribute('disabled','disabled');
-        if (paymentType == 'payPal') {
-            this.paymentType = paymentTypeEnum.PAY_PAL;
+        if (paymentType == 'PAYPAL') {
+            this.paymentType = paymentTypeEnum.PAYPAL;
             this.setState({
-                paymentType: 'payPal',
+                paymentType: 'PAYPAL',
                 insertCreditCardClass: 'payment-info-panel',
                 insertPayPalClass: 'payment-info-panel active',
                 hiddenClass: 'hidden',
@@ -148,7 +148,7 @@ class PaymentInfo extends Component{
         } else {
             this.paymentType = paymentTypeEnum.CREDIT_CARD;
             this.setState({
-                paymentType: 'creditCard',
+                paymentType: 'CREDIT_CARD',
                 insertCreditCardClass: 'payment-info-panel active',
                 insertPayPalClass: 'payment-info-panel',
                 hiddenClass: '',
