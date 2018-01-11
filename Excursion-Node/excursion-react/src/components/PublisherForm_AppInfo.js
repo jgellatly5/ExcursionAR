@@ -13,14 +13,16 @@ class PublisherForm_AppInfo extends Component{
         let button = this.refs.button;
         let companyName = this.companyNameInput.value;
         let industry = this.industryInput.value;
-        let phoneNumber = this.phoneNumberInput.value;
-        let website = this.websiteInput.value;
-        // The website must use a protocol identifier (http, https) and it must be valid (be totally correct)
-        // Url must have at least a 2 character extension (.co)
-        // Url must have a character in between the protocol ID (http) and the extension (.co)
-        // This does NOT work for www extensions
+        let iOS = this.iOSInput.checked;
+        let Android = this.androidInput.checked;
+        let staticAd = this.staticInput.checked;
+        let dynamicAd = this.dynamicInput.checked;
+        let appStoreLink = this.appStoreLinkInput.value;
+        let agreement = this.agreementInput.checked;
+        let terms = this.termsInput.checked;
+        // This should work for any website
         let regex = /^((ftp|http|https):\/\/)?(www.)?(?!.*(ftp|http|https|www.))[a-zA-Z0-9_-]+(\.[a-zA-Z]+)+((\/)[\w#]+)*(\/\w+\?[a-zA-Z0-9_]+=\w+(&[a-zA-Z0-9_]+=\w+)*)?$/gm;
-        if (companyName !== '' && industry !== '' && phoneNumber !== '' && phoneNumber.length > 11 && website !== '' && regex.test(website)) {
+        if (companyName !== '' && industry !== '' && (iOS || Android) && (staticAd || dynamicAd) && appStoreLink !== '' && regex.test(appStoreLink) && agreement && terms) {
             button.classList.add('active', 'hvr-grow');
             button.removeAttribute('disabled');
         } else {
@@ -94,7 +96,7 @@ class PublisherForm_AppInfo extends Component{
                                         onChange={this.onChange}
                                         type="radio"
                                         name="operatingSystem"
-                                        ref={(input) => { this.phoneNumberInput = input }}
+                                        ref={(input) => { this.iOSInput = input }}
                                         required
                                     />
                                     <label className="control-label ios-label">iOS</label>
@@ -103,7 +105,7 @@ class PublisherForm_AppInfo extends Component{
                                         onChange={this.onChange}
                                         type="radio"
                                         name="operatingSystem"
-                                        ref={(input) => { this.phoneNumberInput = input }}
+                                        ref={(input) => { this.androidInput = input }}
                                         required
                                     />
                                     <label className="control-label">Android</label>
@@ -117,7 +119,7 @@ class PublisherForm_AppInfo extends Component{
                                         onChange={this.onChange}
                                         type="radio"
                                         name="adFormat"
-                                        ref={(input) => { this.phoneNumberInput = input }}
+                                        ref={(input) => { this.staticInput = input }}
                                         required
                                     />
                                     <label className="control-label">Static</label>
@@ -126,7 +128,7 @@ class PublisherForm_AppInfo extends Component{
                                         onChange={this.onChange}
                                         type="radio"
                                         name="adFormat"
-                                        ref={(input) => { this.phoneNumberInput = input }}
+                                        ref={(input) => { this.dynamicInput = input }}
                                         required
                                     />
                                     <label className="control-label">Dynamic</label>
@@ -136,12 +138,12 @@ class PublisherForm_AppInfo extends Component{
                                 <label className="control-label">App Store Link</label>
                                 <OverlayTrigger placement="right" overlay={tooltip_url}>
                                 <input
-                                    value={this.state.website}
+                                    value={this.state.appStoreLink}
                                     onChange={this.onChange}
                                     type="url"
                                     name="website"
                                     className="form-control"
-                                    ref={(input) => { this.websiteInput = input }}
+                                    ref={(input) => { this.appStoreLinkInput = input }}
                                     required
                                 />
                                 </OverlayTrigger>
@@ -153,7 +155,7 @@ class PublisherForm_AppInfo extends Component{
                                     type="checkbox"
                                     name="agreement"
                                     className="payment-checkbox"
-                                    ref={(input) => { this.websiteInput = input }}
+                                    ref={(input) => { this.agreementInput = input }}
                                     required
                                 />
                                 <label className="control-label terms-label">I agree to allow ads in Excursion{`'`}s network to be displayed in my application.</label>
@@ -165,7 +167,7 @@ class PublisherForm_AppInfo extends Component{
                                     type="checkbox"
                                     name="terms"
                                     className="payment-checkbox"
-                                    ref={(input) => { this.websiteInput = input }}
+                                    ref={(input) => { this.termsInput = input }}
                                     required
                                 />
                                 <label className="control-label terms-label">I agree to Excursion{`'`}s terms of contract.</label>
