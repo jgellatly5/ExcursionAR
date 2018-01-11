@@ -39,10 +39,14 @@ class PaymentInfo extends Component{
         let zipCode = this.zipCodeInput.value;
         let stateAddress = this.stateInput.value;
         let terms = this.termsInput.checked;
-        if (paymentType !== 0 && cardType !== '' && cardName !== '' && cardNumber !== '' &&
+        if (paymentType == 2 && terms) {
+            buttonNext.classList.add('active', 'hvr-grow');
+            buttonNext.removeAttribute('disabled');
+        } else if (paymentType !== 0 && cardType !== '' && cardName !== '' && cardNumber !== '' &&
             cardNumber.length >= 19 && expMonth !== '' &&  expMonth.length >= 2 && expYear !== '' &&
             expYear.length >= 2 && cvvNumber !== '' && cvvNumber.length >= 3 && billingAddress !== '' &&
-            city !== '' && zipCode !== '' && !isNaN(zipCode) && zipCode.length >= 5 && stateAddress !== 'Please Select' && terms) {
+            city !== '' && zipCode !== '' && !isNaN(zipCode) && zipCode.length >= 5 &&
+            stateAddress !== 'Please Select' && terms) {
             buttonNext.classList.add('active', 'hvr-grow');
             buttonNext.removeAttribute('disabled');
         } else {
@@ -134,19 +138,28 @@ class PaymentInfo extends Component{
             this.setState({
                 paymentType: 'creditCard',
                 insertCreditCardClass: 'payment-info-panel active',
-                insertPayPalClass: 'payment-info-panel'
+                insertPayPalClass: 'payment-info-panel',
+                hiddenClass: '',
+                insertPaymentTermsClass: 'payment-terms',
+                insertPaymentPanelClass: 'ad-signup-panel payment-panel'
             });
         } else if (paymentType == 'payPal') {
             this.paymentType = this.refs.payPalCard.props.eventKey;
             this.setState({
                 paymentType: 'payPal',
                 insertCreditCardClass: 'payment-info-panel',
-                insertPayPalClass: 'payment-info-panel active'
+                insertPayPalClass: 'payment-info-panel active',
+                hiddenClass: 'hidden',
+                insertPaymentTermsClass: 'payment-terms paypal',
+                insertPaymentPanelClass: 'ad-signup-panel payment-panel paypal'
             });
         } else {
             this.setState({
                 insertCreditCardClass: 'payment-info-panel',
-                insertPayPalClass: 'payment-info-panel'
+                insertPayPalClass: 'payment-info-panel',
+                hiddenClass: '',
+                insertPaymentTermsClass: 'payment-terms',
+                insertPaymentPanelClass: 'ad-signup-panel payment-panel'
             });
         }
     }

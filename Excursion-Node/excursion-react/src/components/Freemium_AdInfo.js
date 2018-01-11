@@ -150,6 +150,7 @@ class Freemium_AdInfo extends Component{
                             </div>
 
                             {/*TODO Change default drop down style button*/}
+                            {/*TODO The Other selection will show a new text input, and deselecting will remove it*/}
                             <FormGroup controlId="formControlsSelect">
                                 <ControlLabel>Genre</ControlLabel>
                                 <FormControl componentClass="select" onChange={this.onChange} inputRef={ref => { this.genreInput = ref; }} value={this.state.genre} name="genre" required>
