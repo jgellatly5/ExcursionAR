@@ -13,8 +13,10 @@ import Freemium_AdInfo from './components/Freemium_AdInfo';
 import SetBudget from './components/SetBudget';
 import ReviewInfo from './components/ReviewInfo';
 import PaymentInfo from './components/PaymentInfo';
+import PublisherForm_AppInfo from './components/PublisherForm_AppInfo';
 import AppLayout from './components/AppLayout';
 import SponsorSignupLayout from './components/SponsorSignupLayout';
+import PublisherSignupLayout from './components/PublisherSignupLayout';
 
 const Routes = (props) => (
     <Router history={browserHistory}>
@@ -34,9 +36,11 @@ const Routes = (props) => (
             <Route component={ReviewInfo} />
             <Route component={PaymentInfo} />
         </Route>
-        <Route path="/publisher" component={SponsorSignupLayout}>
+        <Route path="/publisher" component={PublisherSignupLayout}>
             <IndexRoute component={GeneralForm} />
+            <Route component={PublisherForm_AppInfo} />
         </Route>
+        <Route path="/test" component={PublisherForm_AppInfo} />
         <Route path="*" component={NotFound} />
     </Router>
 );
