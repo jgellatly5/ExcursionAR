@@ -40,7 +40,6 @@ const Routes = (props) => (
             <IndexRoute component={GeneralForm} />
             <Route component={PublisherForm_AppInfo} />
         </Route>
-        <Route path="/test" component={PublisherForm_AppInfo} />
         <Route path="*" component={NotFound} />
     </Router>
 );

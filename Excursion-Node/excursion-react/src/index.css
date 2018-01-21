@@ -684,7 +684,7 @@ table {
 }
 
 .choose-path-panel .desc {
-    text-align: left;
+    text-align: justify;
     margin-left: 10%;
     margin-right: 10%;
     color: #C7C7C7;

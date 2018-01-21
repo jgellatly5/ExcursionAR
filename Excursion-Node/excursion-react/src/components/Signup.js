@@ -11,13 +11,13 @@ class Signup extends Component{
                     <p>Please choose the following:</p>
                     <Grid>
                         <Row>
-                            <Col xs={6}>
-                                <Panel className="choose-path-panel">
+                            <Col xs={6} className="choose-path-panel">
+                                <Panel>
                                     <img src={require("../blank.png")} alt="sponsorSignup" className="icon-speaker"/>
                                     <p className="path">I want to advertise my business.</p>
                                     <p className="desc">
-                                        Provide us with some general information about you and your company.
-                                        Then select from a few of our different ad formats and set the budget for your ad campaign.
+                                        Provide us with general information about you and your company.
+                                        Then select from our different ad formats and set the budget for your ad campaign.
                                     </p>
                                     <LinkContainer to="/sponsor">
                                         <Button bsStyle="info" className="choose-path-button hvr-grow">
