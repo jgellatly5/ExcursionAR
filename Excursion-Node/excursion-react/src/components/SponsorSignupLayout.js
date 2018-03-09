@@ -39,53 +39,53 @@ class SponsorSignupLayout extends Component {
         this.setState({ isScreenChanging: true });
     }
     handleLastScreen(screen) {
-        this.setState({ screen: screen });
+        this.setState({ screen });
     }
     handleNextScreen(screen) {
-        this.setState({ screen: screen });
+        this.setState({ screen });
     }
     handleGeneralFormState(sponsor_form) {
         const {firstName, lastName, email} = sponsor_form;
         this.setState({
-            firstName: firstName,
-            lastName: lastName,
-            email: email
+            firstName,
+            lastName,
+            email
         });
     }
     handleSponsorFormBusinessInfoState(sponsor_form) {
         const {companyName, industry, phoneNumber, website} = sponsor_form;
         this.setState({
-            companyName: companyName,
-            industry: industry,
-            phoneNumber: phoneNumber,
-            website: website
+            companyName,
+            industry,
+            phoneNumber,
+            website
         });
     }
     handleFreemiumAdInfoState(sponsor_form) {
         const {adName, genre, adFormat} = sponsor_form;
         this.setState({
-            adName: adName,
-            genre: genre,
-            adFormat: adFormat
+            adName,
+            genre,
+            adFormat
         });
     }
     handleSetBudgetState(sponsor_form) {
         const {dailyBudget, monthlyBudget} = sponsor_form;
         this.setState({
-            dailyBudget: dailyBudget,
-            monthlyBudget: monthlyBudget
+            dailyBudget,
+            monthlyBudget
         });
     }
     handlePaymentState(sponsor_form) {
         const {cardName, cardType, paymentType, billingAddress, city, zipCode, stateAddress} = sponsor_form;
         this.setState({
-            cardName: cardName,
-            cardType: cardType,
-            paymentType: paymentType,
-            billingAddress: billingAddress,
-            city: city,
-            zipCode: zipCode,
-            stateAddress: stateAddress
+            cardName,
+            cardType,
+            paymentType,
+            billingAddress,
+            city,
+            zipCode,
+            stateAddress
         });
     }
     render() {
